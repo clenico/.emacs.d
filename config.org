@@ -62,6 +62,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
    view-read-only t)                                ; Always open read-only buffers in view-mode
   (cd "~/")                                         ; Move to the user directory
   (column-number-mode 1)                            ; Show the column number
+  (set-fill-column 80)
   (display-time-mode 0)                             ; Enable time in the mode-line
   (fset 'yes-or-no-p 'y-or-n-p)                     ; Replace yes/no prompts with y/n
   (set-default-coding-systems 'utf-8)               ; Default to utf-8 encoding
@@ -71,6 +72,11 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (server-start)                                    ; Start emacs Server
   (set-face-attribute 'default nil :height 140)     ; Set fonts size
   (global-hl-line-mode)                             ; Hightlight current line
+  (when window-system
+      (menu-bar-mode 1)                             ; Disable the menu bar
+      (scroll-bar-mode 1)                           ; Enable the scroll bar
+      (tool-bar-mode -1)                            ; Disable the tool bar
+      (tooltip-mode 1))                             ; Enable tooltips
 #+end_src
 
 ** Customization
@@ -107,3 +113,66 @@ might change shortly
 
 ** TODO LSP   
 Emacs is sometimes quite tricky to set up. In order to get some nice IDE features, i decided to go for an LSP client-server model.
+
+* Programming languages 
+* Org-Mode
+* Advanced configurations
+** Alert
+
+Most packages use =alerts= to make notifications with =libnotify=. Don't forget
+to first install a notification daemon, like =dunst=.
+
+#+BEGIN_QUOTE
+Alert is a Growl-workalike for Emacs which uses a common notification interface
+and multiple, selectable "styles", whose use is fully customizable by the user.
+
+[[https://github.com/jwiegley/alert][John Wiegley]]
+#+END_QUOTE
+
+#+begin_src emacs-lisp :tangle yes
+  (use-package alert
+    :defer 1
+    :custom (alert-default-style 'libnotify))
+#+end_src
+
+** Auto-Completion
+As a completion package, i'm using company with several other packages to rice it.
+
+*** Company
+#+begin_src emacs-lisp
+  (use-package company
+    :diminish company-mode
+    :config
+    (add-hook 'after-init-hook 'global-company-mode)
+    (setq company-minimum-prefix-length 2)
+    (setq company-dabbrev-downcase nil)
+    (bind-keys :map company-active-map
+	       ("C-d" . company-show-doc-buffer)
+	       ("C-l" . company-show-location)
+	       ("C-n" . company-select-next)
+	       ("C-p" . company-select-previous)
+	       ("TAB" . company-complete))
+    :config
+    (company-begin-commands '(self-insert-command))
+    (company-idle-delay .1)
+    (company-minimum-prefix-length 2)
+    (company-show-numbers t)
+    (company-tooltip-align-annotations 't))
+#+end_src
+*** Company-go
+#+begin_quote
+Completion will start automatically whenever the current symbol is preceded by a ., or after you type company-minimum-prefix-length letters.
+#+end_quote
+#+begin_src emacs-lisp
+(use-package company-go)
+#+end_src
+
+*** Company-box
+#+begin_quote
+A company front-end with icons.
+#+end_quote
+#+begin_src emacs-lisp
+(use-package company-box
+    :after company
+    :hook (company-mode . company-box-mode))
+#+end_src
