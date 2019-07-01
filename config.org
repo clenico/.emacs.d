@@ -1,0 +1,109 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: Clement NICOLAS
+#+EMAIL: niccle27@gmail.com
+
+* Table of Contents :TOC:
+- [[#acknowledgement][Acknowledgement]]
+  - [[#noteworthy-configurations][Noteworthy configurations]]
+- [[#before-startup][Before Startup]]
+  - [[#define-repos][Define repos]]
+  - [[#install-use-package][Install use-package]]
+
+* Acknowledgement
+  My configuration is mainly based on many other peoples configuration. Thank
+  you all for your work !
+
+** Noteworthy configurations
+* Before Startup
+** Define repos
+  First i define the repos from where to download packages.
+#+begin_src emacs-lisp :tangle yes
+  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                           ("melpa" . "http://melpa.org/packages/")
+                           ("org" . "http://orgmode.org/elpa/")))
+#+end_src
+** Install use-package
+ If use-package isn't already installed, refresh contents and then install it so
+ that the rest of the configuration is easier to maintain.
+
+#+begin_src emacs-lisp :tangle yes
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+  ;; (use-package delight :ensure t)
+  (use-package use-package-ensure-system-package :ensure t)
+#+end_src
+
+* On Startup
+** Better defaults
+
+For a better user experience of GNU Emacs, here are the default values I use.
+
+#+begin_src emacs-lisp :tangle yes
+  (setq-default
+   ad-redefinition-action 'accept                   ; Silence warnings for redefinition
+   cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
+   display-time-default-load-average nil            ; Don't display load average
+   fill-column 80                                   ; Set width for automatic line breaks
+   help-window-select t                             ; Focus new help windows when opened
+   indent-tabs-mode nil                             ; Prefers spaces over tabs
+   inhibit-startup-screen t                         ; Disable start-up screen
+   initial-scratch-message ""                       ; Empty the initial *scratch* buffer
+   kill-ring-max 128                                ; Maximum length of kill ring
+   load-prefer-newer t                              ; Prefers the newest version of a file
+   mark-ring-max 128                                ; Maximum length of mark ring
+   scroll-conservatively most-positive-fixnum       ; Always scroll by one line
+   select-enable-clipboard t                        ; Merge system's and Emacs' clipboard
+   tab-width 4                                      ; Set width for tabs
+   use-package-always-ensure t                      ; Avoid the :ensure keyword for each package
+   user-full-name "NICOLAS Clement"                 ; Set the full name of the current user
+   user-mail-address "niccle27@gmail.com"           ; Set the email address of the current user
+   vc-follow-symlinks t                             ; Always follow the symlinks
+   view-read-only t)                                ; Always open read-only buffers in view-mode
+  (cd "~/")                                         ; Move to the user directory
+  (column-number-mode 1)                            ; Show the column number
+  (display-time-mode 0)                             ; Enable time in the mode-line
+  (fset 'yes-or-no-p 'y-or-n-p)                     ; Replace yes/no prompts with y/n
+  (set-default-coding-systems 'utf-8)               ; Default to utf-8 encoding
+  (show-paren-mode 1)                               ; Show the parent
+  (global-display-line-numbers-mode)                ; Always display lines number
+  (blink-cursor-mode 0)                             ; Disable Cursor Blinking
+  (server-start)                                    ; Start emacs Server
+  (set-face-attribute 'default nil :height 140)     ; Set fonts size
+  (global-hl-line-mode)                             ; Hightlight current line
+#+end_src
+
+** Customization
+   
+In order to keep the init.el file clean,we specify an other file which should be include as well for storing customization information.
+
+#+begin_src emacs-lisp
+    ;; (when (file-exists-p custom-file)
+      ;; (load custom-file t))
+  (setq custom-file "~/.emacs.d/custom.el")
+#+end_src
+
+#+RESULTS:
+: ~/.emacs.d/custom.el
+
+** Fonts
+In order to use your favorite font.
+
+#+begin_src emacs-lisp :tangle yes
+  (set-face-attribute 'default nil :font "Source Code Pro")
+  (set-fontset-font t 'latin "Noto Sans")
+#+end_src
+
+** Theme
+I decided to go for the dracula theme because it's contrasted enough, but i
+might change shortly
+
+#+begin_src emacs-lisp
+(use-package dracula-theme
+  :config (load-theme 'dracula t)
+  (set-face-background 'mode-line "#510370")
+  (set-face-background 'mode-line-inactive "#212020"))
+#+end_src
+
+** TODO LSP   
+Emacs is sometimes quite tricky to set up. In order to get some nice IDE features, i decided to go for an LSP client-server model.
