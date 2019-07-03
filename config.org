@@ -92,6 +92,46 @@
      (match-string 1))))
 #+end_src
 
+#+begin_src emacs-lisp
+(global-set-key
+ (kbd "M-o")
+ (defhydra hydra-window()
+   "window"
+   ("h" windmove-left)
+   ("j" windmove-down)
+   ("k" windmove-up)
+   ("l" windmove-right)
+   ("x" (lambda ()
+	  (interactive)
+	  (split-window-right)
+	  (windmove-right))
+    "vertical")
+   ("v" (lambda ()
+	  (interactive)
+	  (split-window-below)
+	  (windmove-down))
+    "horizontal")
+   ("t" transpose-frame "'")
+   ;; ("o" delete-window "one" :color blue)
+   ("D" delete-other-windows "one" :color blue)
+   ;; ("o" delete-windows-on "one" :color blue)
+   ("g" ace-window "go to")
+   ("s" ace-swap-window "swap")
+   ("d" (lambda ()
+	  (interactive)
+	  (delete-window)
+	  ;; (hydra-window))
+	  )
+    "del")
+   ("i" ace-maximize-window "maximise hint" :color blue)
+   ("b" ido-switch-buffer "buffer")
+   ;; ("m" headlong-bookmark-jump "bmk")
+   ("q" nil "cancel")))
+#+end_src
+
+#+RESULTS:
+: hydra-window/body
+
 * Acknowledgement
   My configuration is mainly based on many other peoples configuration. Thank
   you all for your work !
@@ -169,6 +209,9 @@ For a better user experience of GNU Emacs, here are the default values I use.
       (tooltip-mode 1))                             ; Enable tooltips
 #+end_src
 
+#+RESULTS:
+: t
+
 ** Navigation
 *** Move-text
 #+begin_src emacs-lisp
@@ -184,7 +227,7 @@ Vim) are more popular than Emacs itself. Emulation of Vi-style modal
 editing for Emacs is provided by several various modes, but the most
 advanced is Evil.
 [[https://github.com/emacs-evil/evil][Evil]]
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 
   (use-package evil
     :init
@@ -204,7 +247,7 @@ advanced is Evil.
 *** Ace jump
 Ace jump mode is a minor mode of emacs, which help you to move the cursor within Emacs. You can move your cursor to ANY position ( across window and frame ) in emacs by using only 3 times key press. Have a try and I am sure you will love it.
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package ace-jump-mode)
   (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
 #+end_src
@@ -218,7 +261,7 @@ efficient way to go to the beginning of a line with =move-beginning-of-line=
 *FROM:*
 http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (defun my/smarter-move-beginning-of-line (arg)
     "Moves point back to indentation of beginning of line.
 
@@ -253,19 +296,57 @@ Currently not working
     :ensure nil
     :bind ("C-R" . imenu))
 #+end_src
+*** Split windows
+Put the focus on the newly created frame
+#+begin_src emacs-lisp :tangle yes
+  (use-package window
+    :ensure nil
+    :bind (("C-x 3" . hsplit-last-buffer)
+           ("C-x 2" . vsplit-last-buffer))
+    :preface
+    (defun hsplit-last-buffer ()
+      "Gives the focus to the last created horizontal window."
+      (interactive)
+      (split-window-horizontally)
+      (other-window 1))
+
+    (defun vsplit-last-buffer ()
+      "Gives the focus to the last created vertical window."
+      (interactive)
+      (split-window-vertically)
+      (other-window 1)))
+#+end_src
+
+*** Windmove
+#+begin_src emacs-lisp :tangle yes
+  (use-package windmove
+    :bind (("C-c h" . windmove-left)
+           ("C-c j" . windmove-down)
+           ("C-c k" . windmove-up)
+           ("C-c l" . windmove-right)))
+#+end_src
+*** Winner
+This package allow you to keep an history of windows so that you can roll back
+C-c left : undo
+C-c right : redo
+#+begin_src emacs-lisp :tangle yes
+  (use-package winner
+    :defer 2
+    :config (winner-mode 1))
+#+end_src
 ** Edition
 *** Iedit
 [[https://github.com/victorhge/iedit][Iedit]]
 Edit multiple regions in the same way simultaneously
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package iedit
     :ensure t
   :bind (("M-e" . iedit-mode)))
 #+end_src
 
 *** Expand-region
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package expand-region
     :bind (("C-+" . er/contract-region)
            ("C-=" . er/expand-region)))
@@ -276,13 +357,13 @@ Edit multiple regions in the same way simultaneously
 In order to keep the init.el file clean,we specify an other file which should be include as well for storing customization information.
 
 #+begin_src emacs-lisp
-    ;; (when (file-exists-p custom-file)
-      ;; (load custom-file t))
   (setq custom-file "~/.emacs.d/custom.el")
+  (when (file-exists-p custom-file)
+    (load custom-file t))
 #+end_src
 
 #+RESULTS:
-: ~/.emacs.d/custom.el
+: t
 
 *** Auto-revert
 #+begin_src emacs-lisp
@@ -295,7 +376,7 @@ In order to keep the init.el file clean,we specify an other file which should be
 
 *** Parentheses
 **** Color matching parentheses
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode)
   :config
@@ -313,7 +394,7 @@ In order to keep the init.el file clean,we specify an other file which should be
 #+end_src
 
 **** Smart parentheses
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package smartparens
     :defer 1
     :custom (sp-escape-quotes-after-insert nil)
@@ -348,7 +429,7 @@ might change shortly
 #+end_src
 
 *** Icons
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package all-the-icons :defer 0.5)
 #+end_src
 
@@ -422,7 +503,7 @@ Ensure to install the hunspell before using the package.
 #+end_src
 **** TODO Grammar Checker
 *** Lorem Ipsum
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package lorem-ipsum
     :bind (("C-c C-v l" . lorem-ipsum-insert-list)
            ("C-c C-v p" . lorem-ipsum-insert-paragraphs)
@@ -441,7 +522,7 @@ Replace the stock package list manager with a more modern one
 #+end_src
 
 *** Which-key
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package which-key
     :defer 0.2
     :config (which-key-mode)
@@ -451,227 +532,227 @@ Replace the stock package list manager with a more modern one
 
 *** Ivy Counsel
 #+begin_src emacs-lisp
-(use-package ivy-rich
-  :init
-  (setq ivy-format-function 'ivy-format-function-line)
-  :config
-  (progn
-    (defun ivy-rich-switch-buffer-icon (candidate)
-      (with-current-buffer
-          (get-buffer candidate)
-        (let ((icon (all-the-icons-icon-for-mode major-mode)))
-          (if (symbolp icon)
-              (all-the-icons-icon-for-mode 'fundamental-mode)
-            icon))))
-    (setq
-      ivy-rich--display-transformers-list
-     '(ivy-switch-buffer
-       (:columns
-        ((ivy-rich-switch-buffer-icon :width 2)
-         (ivy-rich-candidate (:width 30))
-         (ivy-rich-switch-buffer-size (:width 7))
-         (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-         (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-         (ivy-rich-switch-buffer-project (:width 15 :face success))
-         (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-        :predicate
-        (lambda (cand) (get-buffer cand))))))
-  (setq ivy-format-function 'ivy-format-function-line))
+  (use-package ivy-rich
+    :init
+    (setq ivy-format-function 'ivy-format-function-line)
+    :config
+    (progn
+      (defun ivy-rich-switch-buffer-icon (candidate)
+	(with-current-buffer
+	    (get-buffer candidate)
+	  (let ((icon (all-the-icons-icon-for-mode major-mode)))
+	    (if (symbolp icon)
+		(all-the-icons-icon-for-mode 'fundamental-mode)
+	      icon))))
+      (setq
+	ivy-rich--display-transformers-list
+       '(ivy-switch-buffer
+	 (:columns
+	  ((ivy-rich-switch-buffer-icon :width 2)
+	   (ivy-rich-candidate (:width 30))
+	   (ivy-rich-switch-buffer-size (:width 7))
+	   (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+	   (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+	   (ivy-rich-switch-buffer-project (:width 15 :face success))
+	   (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
+	  :predicate
+	  (lambda (cand) (get-buffer cand))))))
+    (setq ivy-format-function 'ivy-format-function-line))
 
-(use-package ivy-rich
-  :defines (all-the-icons-icon-alist
-            all-the-icons-dir-icon-alist
-            bookmark-alist)
-  :functions (all-the-icons-icon-for-file
-              all-the-icons-icon-for-mode
-              all-the-icons-icon-family
-              all-the-icons-match-to-alist
-              all-the-icons-faicon
-              all-the-icons-octicon
-              all-the-icons-dir-is-submodule)
-  :preface
-  (defun ivy-rich-bookmark-name (candidate)
-    (car (assoc candidate bookmark-alist)))
+  (use-package ivy-rich
+    :defines (all-the-icons-icon-alist
+	      all-the-icons-dir-icon-alist
+	      bookmark-alist)
+    :functions (all-the-icons-icon-for-file
+		all-the-icons-icon-for-mode
+		all-the-icons-icon-family
+		all-the-icons-match-to-alist
+		all-the-icons-faicon
+		all-the-icons-octicon
+		all-the-icons-dir-is-submodule)
+    :preface
+    (defun ivy-rich-bookmark-name (candidate)
+      (car (assoc candidate bookmark-alist)))
 
-  (defun ivy-rich-buffer-icon (candidate)
-    "Display buffer icons in `ivy-rich'."
-    (when (display-graphic-p)
-      (let* ((buffer (get-buffer candidate))
-             (buffer-file-name (buffer-file-name buffer))
-             (major-mode (buffer-local-value 'major-mode buffer))
-             (icon (if (and buffer-file-name
-                            (all-the-icons-match-to-alist buffer-file-name
-                                                          all-the-icons-icon-alist))
-                       (all-the-icons-icon-for-file (file-name-nondirectory buffer-file-name)
-                                                    :height 0.9 :v-adjust -0.05)
-                     (all-the-icons-icon-for-mode major-mode :height 0.9 :v-adjust -0.05))))
-        (if (symbolp icon)
-            (setq icon (all-the-icons-faicon "file-o" :face 'all-the-icons-dsilver :height 0.9 :v-adjust -0.05))
-          icon))))
+    (defun ivy-rich-buffer-icon (candidate)
+      "Display buffer icons in `ivy-rich'."
+      (when (display-graphic-p)
+	(let* ((buffer (get-buffer candidate))
+	       (buffer-file-name (buffer-file-name buffer))
+	       (major-mode (buffer-local-value 'major-mode buffer))
+	       (icon (if (and buffer-file-name
+			      (all-the-icons-match-to-alist buffer-file-name
+							    all-the-icons-icon-alist))
+			 (all-the-icons-icon-for-file (file-name-nondirectory buffer-file-name)
+						      :height 0.9 :v-adjust -0.05)
+		       (all-the-icons-icon-for-mode major-mode :height 0.9 :v-adjust -0.05))))
+	  (if (symbolp icon)
+	      (setq icon (all-the-icons-faicon "file-o" :face 'all-the-icons-dsilver :height 0.9 :v-adjust -0.05))
+	    icon))))
 
-  (defun ivy-rich-file-icon (candidate)
-    "Display file icons in `ivy-rich'."
-    (when (display-graphic-p)
-      (let* ((path (concat ivy--directory candidate))
-             (file (file-name-nondirectory path))
-             (icon (cond ((file-directory-p path)
-                          (cond
-                           ((and (fboundp 'tramp-tramp-file-p)
-                                 (tramp-tramp-file-p default-directory))
-                            (all-the-icons-octicon "file-directory" :height 0.93 :v-adjust 0.01))
-                           ((file-symlink-p path)
-                            (all-the-icons-octicon "file-symlink-directory" :height 0.93 :v-adjust 0.01))
-                           ((all-the-icons-dir-is-submodule path)
-                            (all-the-icons-octicon "file-submodule" :height 0.93 :v-adjust 0.01))
-                           ((file-exists-p (format "%s/.git" path))
-                            (all-the-icons-octicon "repo" :height 1.0 :v-adjust -0.01))
-                           (t (let ((matcher (all-the-icons-match-to-alist candidate all-the-icons-dir-icon-alist)))
-                                (apply (car matcher) (list (cadr matcher) :height 0.93 :v-adjust 0.01))))))
-                         ((string-match "^/.*:$" path)
-                          (all-the-icons-material "settings_remote" :height 0.9 :v-adjust -0.2))
-                         ((not (string-empty-p file))
-                          (all-the-icons-icon-for-file file :height 0.9 :v-adjust -0.05)))))
-        (if (symbolp icon)
-            (setq icon (all-the-icons-faicon "file-o" :face 'all-the-icons-dsilver :height 0.9 :v-adjust -0.05))
-          icon))))
-  :hook ((ivy-mode . ivy-rich-mode)
-         (ivy-rich-mode . (lambda ()
-                            (setq ivy-virtual-abbreviate
-                                  (or (and ivy-rich-mode 'abbreviate) 'name)))))
-  :init
-  ;; For better performance
-  (setq ivy-rich-parse-remote-buffer nil)
+    (defun ivy-rich-file-icon (candidate)
+      "Display file icons in `ivy-rich'."
+      (when (display-graphic-p)
+	(let* ((path (concat ivy--directory candidate))
+	       (file (file-name-nondirectory path))
+	       (icon (cond ((file-directory-p path)
+			    (cond
+			     ((and (fboundp 'tramp-tramp-file-p)
+				   (tramp-tramp-file-p default-directory))
+			      (all-the-icons-octicon "file-directory" :height 0.93 :v-adjust 0.01))
+			     ((file-symlink-p path)
+			      (all-the-icons-octicon "file-symlink-directory" :height 0.93 :v-adjust 0.01))
+			     ((all-the-icons-dir-is-submodule path)
+			      (all-the-icons-octicon "file-submodule" :height 0.93 :v-adjust 0.01))
+			     ((file-exists-p (format "%s/.git" path))
+			      (all-the-icons-octicon "repo" :height 1.0 :v-adjust -0.01))
+			     (t (let ((matcher (all-the-icons-match-to-alist candidate all-the-icons-dir-icon-alist)))
+				  (apply (car matcher) (list (cadr matcher) :height 0.93 :v-adjust 0.01))))))
+			   ((string-match "^/.*:$" path)
+			    (all-the-icons-material "settings_remote" :height 0.9 :v-adjust -0.2))
+			   ((not (string-empty-p file))
+			    (all-the-icons-icon-for-file file :height 0.9 :v-adjust -0.05)))))
+	  (if (symbolp icon)
+	      (setq icon (all-the-icons-faicon "file-o" :face 'all-the-icons-dsilver :height 0.9 :v-adjust -0.05))
+	    icon))))
+    :hook ((ivy-mode . ivy-rich-mode)
+	   (ivy-rich-mode . (lambda ()
+			      (setq ivy-virtual-abbreviate
+				    (or (and ivy-rich-mode 'abbreviate) 'name)))))
+    :init
+    ;; For better performance
+    (setq ivy-rich-parse-remote-buffer nil)
 
-  (setq ivy-rich-display-transformers-list
-        '(ivy-switch-buffer
-          (:columns
-           ((ivy-rich-buffer-icon)
-            (ivy-rich-candidate (:width 30))
-            (ivy-rich-switch-buffer-size (:width 7))
-            (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-            (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-            (ivy-rich-switch-buffer-project (:width 15 :face success))
-            (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-           :predicate
-           (lambda (cand) (get-buffer cand)))
-          ivy-switch-buffer-other-window
-          (:columns
-           ((ivy-rich-buffer-icon)
-            (ivy-rich-candidate (:width 30))
-            (ivy-rich-switch-buffer-size (:width 7))
-            (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-            (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-            (ivy-rich-switch-buffer-project (:width 15 :face success))
-            (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-           :predicate
-           (lambda (cand) (get-buffer cand)))
-          counsel-switch-buffer
-          (:columns
-           ((ivy-rich-buffer-icon)
-            (ivy-rich-candidate (:width 30))
-            (ivy-rich-switch-buffer-size (:width 7))
-            (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-            (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-            (ivy-rich-switch-buffer-project (:width 15 :face success))
-            (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-           :predicate
-           (lambda (cand) (get-buffer cand)))
-          persp-switch-to-buffer
-          (:columns
-           ((ivy-rich-buffer-icon)
-            (ivy-rich-candidate (:width 30))
-            (ivy-rich-switch-buffer-size (:width 7))
-            (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-            (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-            (ivy-rich-switch-buffer-project (:width 15 :face success))
-            (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-           :predicate
-           (lambda (cand) (get-buffer cand)))
-          counsel-M-x
-          (:columns
-           ((counsel-M-x-transformer (:width 50))
-            (ivy-rich-counsel-function-docstring (:face font-lock-doc-face))))
-          counsel-describe-function
-          (:columns
-           ((counsel-describe-function-transformer (:width 50))
-            (ivy-rich-counsel-function-docstring (:face font-lock-doc-face))))
-          counsel-describe-variable
-          (:columns
-           ((counsel-describe-variable-transformer (:width 50))
-            (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face))))
-          counsel-find-file
-          (:columns
-           ((ivy-rich-file-icon)
-            (ivy-read-file-transformer)))
-          counsel-file-jump
-          (:columns
-           ((ivy-rich-file-icon)
-            (ivy-rich-candidate)))
-          counsel-dired
-          (:columns
-           ((ivy-rich-file-icon)
-            (ivy-read-file-transformer)))
-          counsel-dired-jump
-          (:columns
-           ((ivy-rich-file-icon)
-            (ivy-rich-candidate)))
-          counsel-git
-          (:columns
-           ((ivy-rich-file-icon)
-            (ivy-rich-candidate)))
-          counsel-recentf
-          (:columns
-           ((ivy-rich-file-icon)
-            (ivy-rich-candidate (:width 0.8))
-            (ivy-rich-file-last-modified-time (:face font-lock-comment-face))))
-          counsel-bookmark
-          (:columns
-           ((ivy-rich-bookmark-type)
-            (ivy-rich-bookmark-name (:width 40))
-            (ivy-rich-bookmark-info)))
-          counsel-projectile-switch-project
-          (:columns
-           ((ivy-rich-file-icon)
-            (ivy-rich-candidate)))
-          counsel-projectile-find-file
-          (:columns
-           ((ivy-rich-file-icon)
-            (counsel-projectile-find-file-transformer)))
-          counsel-projectile-find-dir
-          (:columns
-           ((ivy-rich-file-icon)
-            (counsel-projectile-find-dir-transformer)))
-          treemacs-projectile
-          (:columns
-           ((ivy-rich-file-icon)
-            (ivy-rich-candidate))))))
+    (setq ivy-rich-display-transformers-list
+	  '(ivy-switch-buffer
+	    (:columns
+	     ((ivy-rich-buffer-icon)
+	      (ivy-rich-candidate (:width 30))
+	      (ivy-rich-switch-buffer-size (:width 7))
+	      (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+	      (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+	      (ivy-rich-switch-buffer-project (:width 15 :face success))
+	      (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
+	     :predicate
+	     (lambda (cand) (get-buffer cand)))
+	    ivy-switch-buffer-other-window
+	    (:columns
+	     ((ivy-rich-buffer-icon)
+	      (ivy-rich-candidate (:width 30))
+	      (ivy-rich-switch-buffer-size (:width 7))
+	      (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+	      (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+	      (ivy-rich-switch-buffer-project (:width 15 :face success))
+	      (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
+	     :predicate
+	     (lambda (cand) (get-buffer cand)))
+	    counsel-switch-buffer
+	    (:columns
+	     ((ivy-rich-buffer-icon)
+	      (ivy-rich-candidate (:width 30))
+	      (ivy-rich-switch-buffer-size (:width 7))
+	      (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+	      (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+	      (ivy-rich-switch-buffer-project (:width 15 :face success))
+	      (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
+	     :predicate
+	     (lambda (cand) (get-buffer cand)))
+	    persp-switch-to-buffer
+	    (:columns
+	     ((ivy-rich-buffer-icon)
+	      (ivy-rich-candidate (:width 30))
+	      (ivy-rich-switch-buffer-size (:width 7))
+	      (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+	      (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+	      (ivy-rich-switch-buffer-project (:width 15 :face success))
+	      (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
+	     :predicate
+	     (lambda (cand) (get-buffer cand)))
+	    counsel-M-x
+	    (:columns
+	     ((counsel-M-x-transformer (:width 50))
+	      (ivy-rich-counsel-function-docstring (:face font-lock-doc-face))))
+	    counsel-describe-function
+	    (:columns
+	     ((counsel-describe-function-transformer (:width 50))
+	      (ivy-rich-counsel-function-docstring (:face font-lock-doc-face))))
+	    counsel-describe-variable
+	    (:columns
+	     ((counsel-describe-variable-transformer (:width 50))
+	      (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face))))
+	    counsel-find-file
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (ivy-read-file-transformer)))
+	    counsel-file-jump
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (ivy-rich-candidate)))
+	    counsel-dired
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (ivy-read-file-transformer)))
+	    counsel-dired-jump
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (ivy-rich-candidate)))
+	    counsel-git
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (ivy-rich-candidate)))
+	    counsel-recentf
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (ivy-rich-candidate (:width 0.8))
+	      (ivy-rich-file-last-modified-time (:face font-lock-comment-face))))
+	    counsel-bookmark
+	    (:columns
+	     ((ivy-rich-bookmark-type)
+	      (ivy-rich-bookmark-name (:width 40))
+	      (ivy-rich-bookmark-info)))
+	    counsel-projectile-switch-project
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (ivy-rich-candidate)))
+	    counsel-projectile-find-file
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (counsel-projectile-find-file-transformer)))
+	    counsel-projectile-find-dir
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (counsel-projectile-find-dir-transformer)))
+	    treemacs-projectile
+	    (:columns
+	     ((ivy-rich-file-icon)
+	      (ivy-rich-candidate))))))
 
-(use-package ivy
-  :hook (after-init . ivy-mode)
-  :config
-  (progn
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-initial-inputs-alist nil)
-    (counsel-mode)
-    (ivy-rich-mode)))
+  (use-package ivy
+    :hook (after-init . ivy-mode)
+    :config
+    (progn
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-initial-inputs-alist nil)
+      (counsel-mode)
+      (ivy-rich-mode)))
 
-(use-package counsel
-  :after ivy
-  :config
-  (setq counsel-grep-base-command
-        "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
-  :bind
-  (("M-x" . counsel-M-x)
-    ("C-x C-f" . counsel-find-file)
-    ("C-c p f" . counsel-projectile-find-file)
-    ("C-c p d" . counsel-projectile-find-dir)
-    ("C-c p p" . counsel-projectile-switch-project)
-    ("<f1> f" . counsel-describe-function)
-    ("<f1> v" . counsel-describe-variable)
-    ("<f1> l" . counsel-load-library)
-    ("<f2> i" . counsel-info-lookup-symbol)
-    ("<f2> u" . counsel-unicode-char)
-    ("C-c k" . counsel-rg)))
+  (use-package counsel
+    :after ivy
+    :config
+    (setq counsel-grep-base-command
+	  "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+    :bind
+    (("M-x" . counsel-M-x)
+     ("C-x C-f" . counsel-find-file)
+     ;; ("C-c p f" . counsel-projectile-find-file)
+     ;; ("C-c p d" . counsel-projectile-find-dir)
+     ;; ("C-c p p" . counsel-projectile-switch-project)
+     ("<f1> f" . counsel-describe-function)
+     ("<f1> v" . counsel-describe-variable)
+     ("<f1> l" . counsel-load-library)
+     ("<f2> i" . counsel-info-lookup-symbol)
+     ("<f2> u" . counsel-unicode-char)
+     ("C-c k" . counsel-rg)))
 #+end_src
 
 **** TODO Password
@@ -691,7 +772,7 @@ Replace the stock package list manager with a more modern one
 
 #+end_src
 *** PDF
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package pdf-tools
     :defer 1
     :magic ("%PDF" . pdf-view-mode)
@@ -714,7 +795,7 @@ Replace the stock package list manager with a more modern one
 ** Projects
 *** Projectile
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package projectile
     :defer 1
     :preface
@@ -786,7 +867,7 @@ Show add, modification, delete on the side of a versioned file
 #+end_src
 
 **** Git-timemachine
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package git-timemachine
     :defer 1)
 #+end_src
@@ -796,7 +877,7 @@ Show add, modification, delete on the side of a versioned file
 [[https://github.com/ralesi/ranger.el][Ranger]]
 This is a minor mode that runs within dired, it emulates many
 of ranger's features
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package ranger
     :bind ("C-c b" . ranger)
     :custom
@@ -839,14 +920,14 @@ Colorize colors as text with their value.
 #+end_src
 
 *** Whitespaces deletion
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package simple
     :ensure nil
     :hook (before-save . delete-trailing-whitespace))
 #+end_src
 
 *** Hungry-delete
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package hungry-delete
     :defer 0.7
     :config (global-hungry-delete-mode))
@@ -875,6 +956,25 @@ Colorize colors as text with their value.
 #+end_src
 
 ** TODO Linters
+** Snippets
+*** YASnippet
+#+begin_src emacs-lisp :tangle yes
+  (use-package yasnippet-snippets
+    :after yasnippet
+    :config (yasnippet-snippets-initialize))
+
+  (use-package yasnippet
+    :hook (yas-minor-mode . my/disable-yas-if-no-snippets)
+    :config (yas-global-mode)
+    :preface
+    (defun my/disable-yas-if-no-snippets ()
+      (when (and yas-minor-mode (null (yas--get-snippet-tables)))
+        (yas-minor-mode -1))))
+
+  (use-package ivy-yasnippet :after yasnippet)
+  (use-package react-snippets :after yasnippet)
+#+end_src
+
 * Org-Mode
 * Advanced configurations
 ** Alert
@@ -1548,12 +1648,12 @@ Group window-related commands.
 #+end_src
 
 ** Try
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package try :defer 5)
 #+end_src
 
 ** Undo-tree
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package undo-tree
     :bind ("C--" . undo-tree-redo)
     :init (global-undo-tree-mode)
@@ -1565,7 +1665,7 @@ Group window-related commands.
 ** Wiki-summary
 *** =wiki-summary=
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package wiki-summary
     :defer 1
     :preface
@@ -1584,7 +1684,7 @@ Group window-related commands.
 #+end_src
 ** TODO IRC
 ** Recent Files
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package recentf
     :bind ("C-c r" . recentf-open-files)
     :init (recentf-mode)
@@ -1601,7 +1701,7 @@ Group window-related commands.
 #+end_src
 
 ** Reveal.js
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package org-re-reveal
     :after org
     :custom
