@@ -393,6 +393,14 @@ Ensure to install the hunspell before using the package.
          ("C-c C-v s" . lorem-ipsum-insert-sentences)))
 #+end_src
 ** Interface Enhancement
+*** Enhanced package manager
+#+begin_src emacs-lisp :tangle yes
+(use-package paradox
+  :custom
+  (paradox-execute-asynchronously t)
+  :config
+  (paradox-enable))
+#+end_src
 
 * Programming languages 
 
