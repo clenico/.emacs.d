@@ -1,3 +1,13 @@
+(defun copy-filename ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+
 (defun eshell-here ()
   "Opens up a new shell in the directory associated with the
     current buffer's file. The eshell is renamed to match that
@@ -76,8 +86,12 @@
 
 (use-package move-text
   :bind (("M-p" . move-text-up)
-	 ("M-n" . move-text-down))
+	   ("M-n" . move-text-down))
   :config (move-text-default-bindings))
+
+(use-package caps-lock
+  :bind
+  ("M-A" . caps-lock-mode))
 
 (use-package evil
   :init
@@ -88,53 +102,55 @@
 (use-package evil-escape
   :after evil
   :init
-  (evil-escape-mode 1)
-  :bind
-  (("M-A" . caps-lock-mode)))
+  (evil-escape-mode 1))
 
-(use-package ace-jump-mode)
-(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
-
-(defun my/smarter-move-beginning-of-line (arg)
-  "Moves point back to indentation of beginning of line.
-
-   Move point to the first non-whitespace character on this line.
-   If point is already there, move to the beginning of the line.
-   Effectively toggle between the first non-whitespace character and
-   the beginning of the line.
-
-   If ARG is not nil or 1, move forward ARG - 1 lines first. If
-   point reaches the beginning or end of the buffer, stop there."
-  (interactive "^p")
-  (setq arg (or arg 1))
-
-  ;; Move lines first
-  (when (/= arg 1)
-    (let ((line-move-visual nil))
-      (forward-line (1- arg))))
-
-  (let ((orig-point (point)))
-    (back-to-indentation)
-    (when (= orig-point (point))
-      (move-beginning-of-line 1))))
-
-(global-set-key (kbd "C-a") 'my/smarter-move-beginning-of-line)
+(use-package ace-jump-mode
+  :after evil
+  :config
+  (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode))
 
 (use-package imenu
     :ensure nil
     :bind ("C-R" . imenu))
 
+(use-package window
+  :ensure nil
+  :bind (("C-x 3" . hsplit-last-buffer)
+         ("C-x 2" . vsplit-last-buffer))
+  :preface
+  (defun hsplit-last-buffer ()
+    "Gives the focus to the last created horizontal window."
+    (interactive)
+    (split-window-horizontally)
+    (other-window 1))
+
+  (defun vsplit-last-buffer ()
+    "Gives the focus to the last created vertical window."
+    (interactive)
+    (split-window-vertically)
+    (other-window 1)))
+
+(use-package windmove
+  :bind (("C-c h" . windmove-left)
+         ("C-c j" . windmove-down)
+         ("C-c k" . windmove-up)
+         ("C-c l" . windmove-right)))
+
+(use-package winner
+  :defer 2
+  :config (winner-mode 1))
+
 (use-package iedit
   :ensure t
-:bind (("M-e" . iedit-mode)))
+:bind (("M-E" . iedit-mode)))
 
 (use-package expand-region
   :bind (("C-+" . er/contract-region)
          ("C-=" . er/expand-region)))
 
+;; (when (file-exists-p custom-file)
+    ;; (load custom-file t))
 (setq custom-file "~/.emacs.d/custom.el")
-(when (file-exists-p custom-file)
-  (load custom-file t))
 
 (use-package autorevert
   :ensure nil
@@ -170,13 +186,13 @@
   (set-face-background 'mode-line "#510370")
   (set-face-background 'mode-line-inactive "#212020"))
 
-(require 'color)
-(if (display-graphic-p)
-    (set-face-attribute 'org-block nil :background
-                        (color-darken-name
-                         (face-attribute 'default :background) 10)))
-
-(use-package all-the-icons :defer 0.5)
+(use-package color
+  :after org
+  :config
+  (if (display-graphic-p)
+      (set-face-attribute 'org-block nil :background
+                          (color-darken-name
+                           (face-attribute 'default :background) 10))))
 
 ;; (use-package abbrev
 ;;   :hook (text-mode . abbrev-mode)
@@ -230,367 +246,9 @@
          ("C-c C-v p" . lorem-ipsum-insert-paragraphs)
          ("C-c C-v s" . lorem-ipsum-insert-sentences)))
 
-(use-package paradox
-  :custom
-  (paradox-execute-asynchronously t)
-  :config
-  (paradox-enable))
-
-(use-package which-key
-  :defer 0.2
-  :config (which-key-mode)
-  :bind
-  ("<f5>" . which-key-show-top-level))
-
-(use-package ivy-rich
-  :init
-  (setq ivy-format-function 'ivy-format-function-line)
-  :config
-  (progn
-    (defun ivy-rich-switch-buffer-icon (candidate)
-      (with-current-buffer
-	  (get-buffer candidate)
-	(let ((icon (all-the-icons-icon-for-mode major-mode)))
-	  (if (symbolp icon)
-	      (all-the-icons-icon-for-mode 'fundamental-mode)
-	    icon))))
-    (setq
-      ivy-rich--display-transformers-list
-     '(ivy-switch-buffer
-       (:columns
-	((ivy-rich-switch-buffer-icon :width 2)
-	 (ivy-rich-candidate (:width 30))
-	 (ivy-rich-switch-buffer-size (:width 7))
-	 (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-	 (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-	 (ivy-rich-switch-buffer-project (:width 15 :face success))
-	 (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-	:predicate
-	(lambda (cand) (get-buffer cand))))))
-  (setq ivy-format-function 'ivy-format-function-line))
-
-(use-package ivy-rich
-  :defines (all-the-icons-icon-alist
-	    all-the-icons-dir-icon-alist
-	    bookmark-alist)
-  :functions (all-the-icons-icon-for-file
-	      all-the-icons-icon-for-mode
-	      all-the-icons-icon-family
-	      all-the-icons-match-to-alist
-	      all-the-icons-faicon
-	      all-the-icons-octicon
-	      all-the-icons-dir-is-submodule)
-  :preface
-  (defun ivy-rich-bookmark-name (candidate)
-    (car (assoc candidate bookmark-alist)))
-
-  (defun ivy-rich-buffer-icon (candidate)
-    "Display buffer icons in `ivy-rich'."
-    (when (display-graphic-p)
-      (let* ((buffer (get-buffer candidate))
-	     (buffer-file-name (buffer-file-name buffer))
-	     (major-mode (buffer-local-value 'major-mode buffer))
-	     (icon (if (and buffer-file-name
-			    (all-the-icons-match-to-alist buffer-file-name
-							  all-the-icons-icon-alist))
-		       (all-the-icons-icon-for-file (file-name-nondirectory buffer-file-name)
-						    :height 0.9 :v-adjust -0.05)
-		     (all-the-icons-icon-for-mode major-mode :height 0.9 :v-adjust -0.05))))
-	(if (symbolp icon)
-	    (setq icon (all-the-icons-faicon "file-o" :face 'all-the-icons-dsilver :height 0.9 :v-adjust -0.05))
-	  icon))))
-
-  (defun ivy-rich-file-icon (candidate)
-    "Display file icons in `ivy-rich'."
-    (when (display-graphic-p)
-      (let* ((path (concat ivy--directory candidate))
-	     (file (file-name-nondirectory path))
-	     (icon (cond ((file-directory-p path)
-			  (cond
-			   ((and (fboundp 'tramp-tramp-file-p)
-				 (tramp-tramp-file-p default-directory))
-			    (all-the-icons-octicon "file-directory" :height 0.93 :v-adjust 0.01))
-			   ((file-symlink-p path)
-			    (all-the-icons-octicon "file-symlink-directory" :height 0.93 :v-adjust 0.01))
-			   ((all-the-icons-dir-is-submodule path)
-			    (all-the-icons-octicon "file-submodule" :height 0.93 :v-adjust 0.01))
-			   ((file-exists-p (format "%s/.git" path))
-			    (all-the-icons-octicon "repo" :height 1.0 :v-adjust -0.01))
-			   (t (let ((matcher (all-the-icons-match-to-alist candidate all-the-icons-dir-icon-alist)))
-				(apply (car matcher) (list (cadr matcher) :height 0.93 :v-adjust 0.01))))))
-			 ((string-match "^/.*:$" path)
-			  (all-the-icons-material "settings_remote" :height 0.9 :v-adjust -0.2))
-			 ((not (string-empty-p file))
-			  (all-the-icons-icon-for-file file :height 0.9 :v-adjust -0.05)))))
-	(if (symbolp icon)
-	    (setq icon (all-the-icons-faicon "file-o" :face 'all-the-icons-dsilver :height 0.9 :v-adjust -0.05))
-	  icon))))
-  :hook ((ivy-mode . ivy-rich-mode)
-	 (ivy-rich-mode . (lambda ()
-			    (setq ivy-virtual-abbreviate
-				  (or (and ivy-rich-mode 'abbreviate) 'name)))))
-  :init
-  ;; For better performance
-  (setq ivy-rich-parse-remote-buffer nil)
-
-  (setq ivy-rich-display-transformers-list
-	'(ivy-switch-buffer
-	  (:columns
-	   ((ivy-rich-buffer-icon)
-	    (ivy-rich-candidate (:width 30))
-	    (ivy-rich-switch-buffer-size (:width 7))
-	    (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-	    (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-	    (ivy-rich-switch-buffer-project (:width 15 :face success))
-	    (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-	   :predicate
-	   (lambda (cand) (get-buffer cand)))
-	  ivy-switch-buffer-other-window
-	  (:columns
-	   ((ivy-rich-buffer-icon)
-	    (ivy-rich-candidate (:width 30))
-	    (ivy-rich-switch-buffer-size (:width 7))
-	    (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-	    (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-	    (ivy-rich-switch-buffer-project (:width 15 :face success))
-	    (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-	   :predicate
-	   (lambda (cand) (get-buffer cand)))
-	  counsel-switch-buffer
-	  (:columns
-	   ((ivy-rich-buffer-icon)
-	    (ivy-rich-candidate (:width 30))
-	    (ivy-rich-switch-buffer-size (:width 7))
-	    (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-	    (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-	    (ivy-rich-switch-buffer-project (:width 15 :face success))
-	    (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-	   :predicate
-	   (lambda (cand) (get-buffer cand)))
-	  persp-switch-to-buffer
-	  (:columns
-	   ((ivy-rich-buffer-icon)
-	    (ivy-rich-candidate (:width 30))
-	    (ivy-rich-switch-buffer-size (:width 7))
-	    (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-	    (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-	    (ivy-rich-switch-buffer-project (:width 15 :face success))
-	    (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-	   :predicate
-	   (lambda (cand) (get-buffer cand)))
-	  counsel-M-x
-	  (:columns
-	   ((counsel-M-x-transformer (:width 50))
-	    (ivy-rich-counsel-function-docstring (:face font-lock-doc-face))))
-	  counsel-describe-function
-	  (:columns
-	   ((counsel-describe-function-transformer (:width 50))
-	    (ivy-rich-counsel-function-docstring (:face font-lock-doc-face))))
-	  counsel-describe-variable
-	  (:columns
-	   ((counsel-describe-variable-transformer (:width 50))
-	    (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face))))
-	  counsel-find-file
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (ivy-read-file-transformer)))
-	  counsel-file-jump
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (ivy-rich-candidate)))
-	  counsel-dired
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (ivy-read-file-transformer)))
-	  counsel-dired-jump
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (ivy-rich-candidate)))
-	  counsel-git
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (ivy-rich-candidate)))
-	  counsel-recentf
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (ivy-rich-candidate (:width 0.8))
-	    (ivy-rich-file-last-modified-time (:face font-lock-comment-face))))
-	  counsel-bookmark
-	  (:columns
-	   ((ivy-rich-bookmark-type)
-	    (ivy-rich-bookmark-name (:width 40))
-	    (ivy-rich-bookmark-info)))
-	  counsel-projectile-switch-project
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (ivy-rich-candidate)))
-	  counsel-projectile-find-file
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (counsel-projectile-find-file-transformer)))
-	  counsel-projectile-find-dir
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (counsel-projectile-find-dir-transformer)))
-	  treemacs-projectile
-	  (:columns
-	   ((ivy-rich-file-icon)
-	    (ivy-rich-candidate))))))
-
-(use-package ivy
-  :hook (after-init . ivy-mode)
-  :config
-  (progn
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-initial-inputs-alist nil)
-    (counsel-mode)
-    (ivy-rich-mode)))
-
-(use-package counsel
-  :after ivy
-  :config
-  (setq counsel-grep-base-command
-	"rg -i -M 120 --no-heading --line-number --color never '%s' %s")
-  :bind
-  (("M-x" . counsel-M-x)
-   ("C-x C-f" . counsel-find-file)
-   ;; ("C-c p f" . counsel-projectile-find-file)
-   ;; ("C-c p d" . counsel-projectile-find-dir)
-   ;; ("C-c p p" . counsel-projectile-switch-project)
-   ("<f1> f" . counsel-describe-function)
-   ("<f1> v" . counsel-describe-variable)
-   ("<f1> l" . counsel-load-library)
-   ("<f2> i" . counsel-info-lookup-symbol)
-   ("<f2> u" . counsel-unicode-char)
-   ("C-c k" . counsel-rg)))
-
-;; (use-package ivy-pass
-;;   :after ivy
-;;   :commands ivy-pass)
-
-(use-package swiper
-  :after ivy
-  :bind (("C-s" . swiper)
-         :map swiper-map
-         ("M-%" . swiper-query-replace)))
-
-(use-package pdf-tools
-  :defer 1
-  :magic ("%PDF" . pdf-view-mode)
-  :init (pdf-tools-install :no-query))
-
-(use-package pdf-view
-  :ensure nil
-  :after pdf-tools
-  :bind (:map pdf-view-mode-map
-              ("C-s" . isearch-forward)
-              ("d" . pdf-annot-delete)
-              ("h" . pdf-annot-add-highlight-markup-annotation)
-              ("t" . pdf-annot-add-text-annotation))
-  :custom
-  (pdf-view-display-size 'fit-page)
-  (pdf-view-resize-factor 1.1)
-  (pdf-view-use-unicode-ligther nil))
-
-(use-package projectile
-  :defer 1
-  :preface
-  (defun my/projectile-compilation-buffers (&optional project)
-    "Get a list of a project's compilation buffers.
-  If PROJECT is not specified the command acts on the current project."
-    (let* ((project-root (or project (projectile-project-root)))
-           (buffer-list (mapcar #'process-buffer compilation-in-progress))
-           (all-buffers (cl-remove-if-not
-                         (lambda (buffer)
-                           (projectile-project-buffer-p buffer project-root))
-                         buffer-list)))
-      (if projectile-buffers-filter-function
-          (funcall projectile-buffers-filter-function all-buffers)
-        all-buffers)))
-  :custom
-  (projectile-completion-system 'ivy)
-  (projectile-enable-caching t)
-  (projectile-keymap-prefix (kbd "C-c C-p"))
-  (projectile-mode-line '(:eval (projectile-project-name)))
-  :config (projectile-global-mode))
-
-(use-package counsel-projectile
-  :after (counsel projectile)
-  :config (counsel-projectile-mode 1))
-
-(use-package magit :defer 0.3)
-
-;; (use-package git-commit
-;;   :after magit
-;;   :hook (git-commit-mode . my/git-commit-auto-fill-everywhere)
-;;   :custom (git-commit-summary-max-length 50)
-;;   :preface
-;;   (defun my/git-commit-auto-fill-everywhere ()
-;;     "Ensures that the commit body does not exceed 72 characters."
-;;     (setq fill-column 72)
-;;     (setq-local comment-auto-fill-only-comments nil)))
-
-(use-package smerge-mode
-    :after hydra
-    :hook (magit-diff-visit-file . (lambda ()
-                                     (when smerge-mode
-                                       (hydra-merge/body)))))
-
-(use-package forge)
-
-(use-package git-gutter
-   :defer 0.3
-   :init (global-git-gutter-mode ))
-
-(use-package git-timemachine
-  :defer 1)
-
-(use-package ranger
-  :bind ("C-c b" . ranger)
-  :custom
-  (ranger-preview-file 1))
-
 (use-package editorconfig
   :defer 0.3
   :config (editorconfig-mode 1))
-
-(use-package aggressive-indent
-  :hook ((css-mode . aggressive-indent-mode)
-         (emacs-lisp-mode . aggressive-indent-mode)
-         (js-mode . aggressive-indent-mode)
-         (lisp-mode . aggressive-indent-mode))
-  :custom (aggressive-indent-comments-too))
-
-(use-package electric-operator
-  ;; :hook (python-mode . electric-operator-mode)
-  :config (electric-operator-mode 1))
-
-(use-package rainbow-mode
-  :hook (prog-mode))
-
-(use-package simple
-  :ensure nil
-  :hook (before-save . delete-trailing-whitespace))
-
-(use-package hungry-delete
-  :defer 0.7
-  :config (global-hungry-delete-mode))
-
-(use-package web-mode
-  :mode "\\.phtml\\'"
-  :mode "\\.volt\\'"
-  :mode "\\.html\\'"
-  :mode "\\.svelte\\'"
-  :config
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-css-indent-offset 2))
-
-(use-package emmet-mode
-  :config
-  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-  )
 
 (use-package alert
   :defer 1
@@ -671,21 +329,14 @@
 (use-package ibuffer-git
   :after ibuffer)
 
-(when (get-buffer "*scratch*")
 (with-current-buffer "*scratch*"
-	  (emacs-lock-mode 'kill)))
-
-(when (get-buffer "*dashboard*")
-(with-current-buffer "*dashboard*"
-	  (emacs-lock-mode 'kill)))
-
-(when (get-buffer "*Backtrace*")
-(with-current-buffer "*Backtrace*"
-	  (emacs-lock-mode 'kill)))
-
-(when (get-buffer "*Messages*")
+      (emacs-lock-mode 'kill))
+;; (with-current-buffer "*dashboard*"
+      ;; (emacs-lock-mode 'kill))
+;; (with-current-buffer "*Backtrace*"
+;;       (emacs-lock-mode 'kill))
 (with-current-buffer "*Messages*"
-	  (emacs-lock-mode 'kill)))
+      (emacs-lock-mode 'kill))
 
 (use-package calc
   :defer t
@@ -1009,56 +660,3 @@
    (("-" text-scale-decrease "out")
     ("+" text-scale-increase "in")
     ("=" (text-scale-increase 0) "reset"))))
-
-(use-package gnuplot
-  :ensure-system-package gnuplot
-  :defer 2)
-
-(use-package gnuplot-mode
-  :after gnuplot
-  :mode "\\.gp\\'")
-
-(use-package try :defer 5)
-
-(use-package undo-tree
-  :bind ("C--" . undo-tree-redo)
-  :init (global-undo-tree-mode)
-  :custom
-  (undo-tree-visualizer-timestamps t)
-  (undo-tree-visualizer-diff t))
-
-(use-package wiki-summary
-  :defer 1
-  :preface
-  (defun my/format-summary-in-buffer (summary)
-    "Given a summary, sticks it in the *wiki-summary* buffer and displays
-     the buffer."
-    (let ((buf (generate-new-buffer "*wiki-summary*")))
-      (with-current-buffer buf
-        (princ summary buf)
-        (fill-paragraph)
-        (goto-char (point-min))
-        (view-mode))
-      (pop-to-buffer buf))))
-
-(advice-add 'wiki-summary/format-summary-in-buffer :override #'my/format-summary-in-buffer)
-
-(use-package recentf
-  :bind ("C-c r" . recentf-open-files)
-  :init (recentf-mode)
-  :custom
-  (recentf-exclude (list "COMMIT_EDITMSG"
-                         "~$"
-                         "/scp:"
-                         "/ssh:"
-                         "/sudo:"
-                         "/tmp/"))
-  (recentf-max-menu-items 15)
-  (recentf-max-saved-items 200)
-  :config (run-at-time nil (* 5 60) 'recentf-save-list))
-
-(use-package org-re-reveal
-  :after org
-  :custom
-  (org-reveal-mathjax t)
-  (org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/"))

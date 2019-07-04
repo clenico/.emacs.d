@@ -1,1 +1,15 @@
-.el
+.cache
+.auto-save-list
+elpa
+snippets
+transient
+config.el
+config.org.old
+forge-database.sqlite
+history
+org-clock-save.el
+projectile-bookmarks.eld
+recentf
+test.org
+
+*~
