@@ -3,7 +3,6 @@
 #+EMAIL: niccle27@gmail.com
 
 * Table of Contents :TOC:
-- [[#to-sort-later][To Sort Later]]
 - [[#acknowledgement][Acknowledgement]]
   - [[#noteworthy-configurations][Noteworthy configurations]]
 - [[#before-startup][Before Startup]]
@@ -24,11 +23,13 @@
   - [[#file-manager][File Manager]]
 - [[#programming-languages][Programming languages]]
   - [[#general-programming-settings][General programming settings]]
+  - [[#specific-mode-settings][Specific mode settings]]
   - [[#web-mode][Web-mode]]
-  - [[#emmet-mode][Emmet-mode]]
   - [[#linters][Linters]]
   - [[#snippets][Snippets]]
 - [[#org-mode][Org-Mode]]
+  - [[#org-mode-appearance][Org-Mode appearance]]
+  - [[#to-refile][To refile]]
 - [[#advanced-configurations][Advanced configurations]]
   - [[#alert][Alert]]
   - [[#auto-completion][Auto-Completion]]
@@ -46,95 +47,15 @@
   - [[#irc][IRC]]
   - [[#recent-files][Recent Files]]
   - [[#revealjs][Reveal.js]]
-
-* To Sort Later
-
-#+begin_src emacs-lisp :tangle yes
-(defun copy-filename ()
-  "Copy the current buffer file name to the clipboard."
-  (interactive)
-  (let ((filename (if (equal major-mode 'dired-mode)
-                      default-directory
-                    (buffer-file-name))))
-    (when filename
-      (kill-new filename)
-      (message "Copied buffer file name '%s' to the clipboard." filename))))
-#+end_src
-
-#+begin_src emacs-lisp :tangle yes
-(defun eshell-here ()
-  "Opens up a new shell in the directory associated with the
-    current buffer's file. The eshell is renamed to match that
-    directory to make multiple eshell windows easier."
-  (interactive)
-  (let* ((height (/ (window-total-height) 3)))
-    (split-window-vertically (- height))
-    (other-window 1)
-    (eshell "new")
-    (insert (concat "ls"))
-    (eshell-send-input)))
-#+end_src
-
-#+begin_src emacs-lisp :tangle yes
-(defun what-is-my-ip ()
-  (interactive)
-  (message "IP: %s"
-           (with-current-buffer (url-retrieve-synchronously "https://api.ipify.org")
-             (buffer-substring (+ 1 url-http-end-of-headers) (point-max)))))
-#+end_src
-
-#+begin_src emacs-lisp :tangle yes
-(defun what-the-commit ()
-  (interactive)
-  (insert
-   (with-current-buffer
-       (url-retrieve-synchronously "http://whatthecommit.com")
-     (re-search-backward "<p>\\([^<]+\\)\n<\/p>")
-     (match-string 1))))
-#+end_src
-
-#+begin_src emacs-lisp :tangle yes
-(global-set-key
- (kbd "M-o")
- (defhydra hydra-window()
-   "window"
-   ("h" windmove-left)
-   ("j" windmove-down)
-   ("k" windmove-up)
-   ("l" windmove-right)
-   ("x" (lambda ()
-	  (interactive)
-	  (split-window-right)
-	  (windmove-right))
-    "vertical")
-   ("v" (lambda ()
-	  (interactive)
-	  (split-window-below)
-	  (windmove-down))
-    "horizontal")
-   ("t" transpose-frame "'")
-   ;; ("o" delete-window "one" :color blue)
-   ("D" delete-other-windows "one" :color blue)
-   ;; ("o" delete-windows-on "one" :color blue)
-   ("g" ace-window "go to")
-   ("s" ace-swap-window "swap")
-   ("d" (lambda ()
-	  (interactive)
-	  (delete-window)
-	  ;; (hydra-window))
-	  )
-    "del")
-   ("i" ace-maximize-window "maximise hint" :color blue)
-   ("b" ido-switch-buffer "buffer")
-   ;; ("m" headlong-bookmark-jump "bmk")
-   ("q" nil "cancel")))
-#+end_src
+  - [[#utility-functions][Utility functions]]
 
 * Acknowledgement
   My configuration is mainly based on many other peoples configuration. Thank
   you all for your work !
 
 ** Noteworthy configurations
+[[https://github.com/abrochard/emacs-config][Adrien Brochard]] (=abrochard=)
+[[https://github.com/rememberYou/.emacs.d][Terencio Agozzino]] (=rememberYou=)
 * Before Startup
 ** Refresh packages
    #+begin_src emacs-lisp :tangle yes
@@ -199,15 +120,14 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (set-face-attribute 'default nil :height 140)     ; Set fonts size
   (global-hl-line-mode)                             ; Hightlight current line
   (when window-system
-    (menu-bar-mode 1)                             ; Disable the menu bar
-    (scroll-bar-mode 1)                           ; Enable the scroll bar
-    (tool-bar-mode -1)                            ; Disable the tool bar
-    (tooltip-mode 1))                             ; Enable tooltips
-  (delete-selection-mode 1)                       ; Enable de deletion of selected text
+    (menu-bar-mode 1)                               ; Disable the menu bar
+    (scroll-bar-mode 1)                             ; Enable the scroll bar
+    (tool-bar-mode -1)                              ; Disable the tool bar
+    (tooltip-mode 1))                               ; Enable tooltips
+  (delete-selection-mode 1)                         ; Enable de deletion of selected text
+  (toggle-frame-maximized)                          ; Toggle fullscreen by default
+  (setq visible-bell 1)                             ; Disable the bell on Windows
 #+end_src
-
-#+RESULTS:
-: t
 
 ** Navigation
 *** Half scroll
@@ -302,7 +222,7 @@ http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-l
   (global-set-key (kbd "C-a") 'my/smarter-move-beginning-of-line)
 
 #+end_src
-*** TODO Imenu
+*** Imenu
 Imenu produces menus for accessing locations in documents.
 Currently not working
 #+begin_src emacs-lisp :tangle yes
@@ -864,7 +784,6 @@ Replace the stock package list manager with a more modern one
 #+begin_src emacs-lisp :tangle yes
   (use-package magit :defer 0.3)
 #+end_src
-
 **** TODO Git-commit
 Must look whether i'm gonna used this or not
 #+begin_src emacs-lisp :tangle yes
@@ -880,18 +799,13 @@ Must look whether i'm gonna used this or not
 #+end_src
 
 **** TODO Smerge-mode
+Help in resolving merge conflicts
 #+begin_src emacs-lisp :tangle yes
 (use-package smerge-mode
     :after hydra
     :hook (magit-diff-visit-file . (lambda ()
                                      (when smerge-mode
                                        (hydra-merge/body)))))
-#+end_src
-
-**** TODO Forge
-Usefull to connect to some git forge like github, gitlab... from the comfort of Magit.
-#+begin_src emacs-lisp :tangle yes
-(use-package forge)
 #+end_src
 
 **** Git-gutter
@@ -922,7 +836,6 @@ of ranger's features
 
 * Programming languages
 ** General programming settings
-
 *** EditorConfig
 #+begin_src emacs-lisp :tangle yes
 (use-package editorconfig
@@ -968,6 +881,24 @@ Colorize colors as text with their value.
     :defer 0.7
     :config (global-hungry-delete-mode))
 #+end_src
+*** Kill buffer without confirmation
+#+begin_src emacs-lisp :tangle yes
+(global-set-key [remap kill-buffer] #'kill-this-buffer)
+#+end_src
+
+** Specific mode settings
+*** Python
+#+begin_src emacs-lisp :tangle yes
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
+#+end_src
+
+#+RESULTS:
+
+*** TODO RestClient-mode
 
 ** Web-mode
 #+begin_src emacs-lisp :tangle yes
@@ -982,15 +913,6 @@ Colorize colors as text with their value.
   (setq web-mode-css-indent-offset 2))
 #+end_src
 
-** Emmet-mode
-#+begin_src emacs-lisp :tangle yes
-(use-package emmet-mode
-  :config
-  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-  )
-#+end_src
-
 ** TODO Linters
 ** Snippets
 *** YASnippet
@@ -1000,12 +922,9 @@ Colorize colors as text with their value.
     :config (yasnippet-snippets-initialize))
 
   (use-package yasnippet
-    :hook (yas-minor-mode . my/disable-yas-if-no-snippets)
-    :config (yas-global-mode)
-    :preface
-    (defun my/disable-yas-if-no-snippets ()
-      (when (and yas-minor-mode (null (yas--get-snippet-tables)))
-        (yas-minor-mode -1))))
+    :ensure t
+    :init
+    (yas-global-mode 1))
 
   (use-package ivy-yasnippet :after yasnippet)
   (use-package react-snippets :after yasnippet)
@@ -1013,10 +932,21 @@ Colorize colors as text with their value.
 
 * Org-Mode
 ** Org-Mode appearance
+*** Toc-org
+#+begin_src emacs-lisp :tangle yes
+  (use-package toc-org
+    :config
+    (toc-org-enable))
+#+end_src
 *** Bullets
 #+begin_src emacs-lisp :tangle yes
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode))
+#+end_src
+
+** To refile
+#+begin_src emacs-lisp :tangle yes
+(setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
 #+end_src
 
 * Advanced configurations
@@ -1276,407 +1206,6 @@ Since it's quite difficult to remember all the shortcuts. Hydra gives you the op
 
 #+RESULTS:
 
-*** Hydra / BToggle
-
-Group a lot of commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-btoggle
-    (:hint nil :color amaranth :quit-key "q" :title (with-faicon "toggle-on" "Toggle" 1 -0.05))
-    ("Basic"
-     (("a" abbrev-mode "abbrev" :toggle t)
-      ("h" global-hungry-delete-mode "hungry delete" :toggle t))
-     "Coding"
-     (("e" electric-operator-mode "electric operator" :toggle t)
-      ("F" flyspell-mode "flyspell" :toggle t)
-      ("f" flycheck-mode "flycheck" :toggle t)
-      ("l" lsp-mode "lsp" :toggle t)
-      ("k" subword-mode "CamelCase" :toggle t)
-      ("s" smartparens-mode "smartparens" :toggle t))
-     "UI"
-     (("i" ivy-rich-mode "ivy-rich" :toggle t))))
-#+end_src
-
-#+RESULTS:
-: hydra-btoggle/body
-
-*** Hydra / Clock
-    :LOGBOOK:
-    CLOCK: [2019-06-25 Tue 21:56]
-    :END:
-
-Group clock commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-clock
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "clock-o" "Clock" 1 -0.05))
-    ("Action"
-     (("c" org-clock-cancel "cancel")
-      ("d" org-clock-display "display")
-      ("e" org-clock-modify-effort-estimate "effort")
-      ("i" org-clock-in "in")
-      ("j" org-clock-goto "jump")
-      ("o" org-clock-out "out")
-      ("r" org-clock-report "report"))))
-#+end_src
-
-#+RESULTS:
-: hydra-clock/body
-
-*** Hydra / ERC
-
-Group ERC commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-erc
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "comments-o" "ERC" 1 -0.05))
-    ("Action"
-     (("b" my/erc-browse-last-url "browse last url")
-      ("c" my/erc-start-or-switch "connect")
-      ("d" erc-quit-server "disconnect")
-      ("j" erc-join-channel "join")
-      ("n" erc-channel-names "names")
-      ("o" my/erc-get-ops "ops")
-      ("u" my/erc-count-users "users")
-      ("r" my/erc-reset-track-mode "reset track mode"))))
-#+END_SRC
-
-#+RESULTS:
-: hydra-erc/body
-
-*** Hydra / Flycheck
-
-Group Flycheck commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-flycheck
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "plane" "Flycheck" 1 -0.05))
-    ("Checker"
-     (("?" flycheck-describe-checker "describe")
-      ("d" flycheck-disable-checker "disable")
-      ("m" flycheck-mode "mode")
-      ("s" flycheck-select-checker "select"))
-     "Errors"
-     (("<" flycheck-previous-error "previous" :color pink)
-      (">" flycheck-next-error "next" :color pink)
-      ("f" flycheck-buffer "check")
-      ("l" flycheck-list-errors "list"))
-     "Other"
-     (("M" flycheck-manual "manual")
-      ("v" flycheck-verify-setup "verify setup"))))
-#+end_src
-
-#+RESULTS:
-: hydra-flycheck/body
-
-*** Hydra / Go To
-
-Group jump-to-files commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-go-to-file
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "file-text-o" "Go To" 1 -0.05))
-    ("Agenda"
-     (("ac" (find-file "~/.personal/agenda/contacts.org") "contacts")
-      ("af" (find-file "~/.personal/agenda/findmycat.org") "findmycat")
-      ("ao" (find-file "~/.personal/agenda/organizer.org") "organizer")
-      ("ap" (find-file "~/.personal/agenda/people.org") "people")
-      ("ar" (find-file "~/.personal/agenda/routine.org") "routine")
-      ("as" (find-file "~/.personal/agenda/school.org") "school"))
-     "Config"
-     (("ca" (find-file (format "%s/alacritty/alacritty.yml" xdg-config)) "alacritty")
-      ("cA" (find-file (format "%s/sh/aliases" xdg-config)) "aliases")
-      ("cd" (find-file (format "%s/dunst/dunstrc" xdg-config)))
-      ("ce" (find-file "~/.emacs.d/config.org") "emacs")
-      ("cE" (find-file (format "%s/sh/environ" xdg-config)) "environ")
-      ("ci" (find-file (format "%s/i3/config" xdg-config))"i3")
-      ("cn" (find-file (format "%s/neofetch/config.conf" xdg-config)) "neofetch")
-      ("cp" (find-file (format "%s/polybar/config" xdg-config)) "polybar")
-      ("cq" (find-file (format "%s/qutebrowser/config.py" xdg-config)) "qutebrowser")
-      ("cR" (find-file (format "%s/rofi/config.rasi" xdg-config)) "rofi")
-      ("cr" (find-file (format "%s/ranger/rc.conf" xdg-config)) "ranger")
-      ("cs" (find-file (format "%s/sway/config" xdg-config)) "sway")
-      ("ct" (find-file (format "%s/tmux/tmux.conf" xdg-config)) "tmux")
-      ("cx" (find-file (format "%s/sh/xdg" xdg-config)) "xdg"))
-     "Other"
-     (("ob" (find-file "~/.personal/other/books.org") "book")
-      ("ol" (find-file "~/.personal/other/learning.org") "learning")
-      ("om" (find-file "~/.personal/other/movies.org"))
-      ("op" (find-file "~/.personal/other/purchases.org") "purchase")
-      ("ou" (find-file "~/.personal/other/usb.org") "usb"))))
-#+end_src
-
-#+RESULTS:
-: hydra-go-to-file/body
-
-*** Hydra / Image
-
-Group images commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-image
-    (:hint nil :color pink :quit-key "q" :title (with-faicon "file-image-o" "Images" 1 -0.05))
-    ("Action"
-     (("r" image-rotate "rotate")
-      ("s" image-save "save" :color teal))
-      "Zoom"
-      (("-" image-decrease-size "out")
-       ("+" image-increase-size "in")
-       ("=" image-transform-reset "reset"))))
-#+end_src
-
-#+RESULTS:
-: hydra-image/body
-
-*** Hydra / Ledger
-
-Group Ledger commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-ledger
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "usd" "Ledger" 1 -0.05))
-    ("Action"
-     (("b" leadger-add-transaction "add")
-      ("c" ledger-mode-clean-buffer "clear")
-      ("i" ledger-copy-transaction-at-point "copy")
-      ("s" ledger-delete-current-transaction "delete")
-      ("r" ledger-report "report"))))
-#+end_src
-
-#+RESULTS:
-: hydra-ledger/body
-
-*** Hydra / Magit
-
-Group Magit commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-magit
-    (:hint nil :color teal :quit-key "q" :title (with-alltheicon "git" "Magit" 1 -0.05))
-    ("Action"
-     (("b" magit-blame "blame")
-      ("c" magit-clone "clone")
-      ("i" magit-init "init")
-      ("l" magit-log-buffer-file "commit log (current file)")
-      ("L" magit-log-current "commit log (project)")
-      ("s" magit-status "status"))))
-#+end_src
-
-#+RESULTS:
-: hydra-magit/body
-
-*** Hydra / Merge
-
-Group Merge commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-merge
-    (:hint nil :color pink :quit-key "q" :title (with-alltheicon "git" "Merge" 1 -0.05))
-    ("Move"
-     (("n" smerge-next "next")
-      ("p" smerge-prev "previous"))
-     "Keep"
-     (("RET" smerge-keep-current "current")
-      ("a" smerge-keep-all "all")
-      ("b" smerge-keep-base "base")
-      ("l" smerge-keep-lower "lower")
-      ("u" smerge-keep-upper "upper"))
-     "Diff"
-     (("<" smerge-diff-base-upper "upper/base")
-      ("=" smerge-diff-upper-lower "upper/lower")
-      (">" smerge-diff-base-lower "base/lower")
-      ("R" smerge-refine "redefine")
-      ("E" smerge-ediff "ediff"))
-     "Other"
-     (("C" smerge-combine-with-next "combine")
-      ("r" smerge-resolve "resolve")
-      ("k" smerge-kill-current "kill current"))))
-#+end_src
-
-#+RESULTS:
-: hydra-merge/body
-
-*** Hydra / Org
-
-Group Org commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-org
-    (:hint nil :color teal :quit-key "q" :title (with-fileicon "org" "Org" 1 -0.05))
-    ("Action"
-     (("A" my/org-archive-done-tasks "archive")
-      ("a" org-agenda "agenda")
-      ("c" org-capture "capture")
-      ("d" org-decrypt-entry "decrypt")
-      ("i" org-insert-link-global "insert-link")
-      ("j" my/org-jump "jump-task")
-      ("k" org-cut-subtree "cut-subtree")
-      ("o" org-open-at-point-global "open-link")
-      ("r" org-refile "refile")
-      ("s" org-store-link "store-link")
-      ("t" org-show-todo-tree "todo-tree"))))
-#+end_src
-
-#+RESULTS:
-: hydra-org/body
-
-*** Hydra / Projectile
-
-Group Projectile commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-projectile
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "rocket" "Projectile" 1 -0.05))
-    ("Buffers"
-     (("b" counsel-projectile-switch-to-buffer "list")
-      ("k" projectile-kill-buffers "kill all")
-      ("S" projectile-save-project-buffers "save all"))
-     "Find"
-     (("d" counsel-projectile-find-dir "directory")
-      ("D" projectile-dired "root")
-      ("f" counsel-projectile-find-file "file")
-      ("p" counsel-projectile-switch-project "project"))
-     "Other"
-     (("i" projectile-invalidate-cache "reset cache"))
-     "Search"
-     (("r" projectile-replace "replace")
-      ("R" projectile-replace-regexp "regexp replace")
-      ("s" counsel-rg "search"))))
-#+end_src
-
-#+RESULTS:
-: hydra-projectile/body
-
-*** Hydra / Query
-
-Group Query commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-query
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "search" "Engine-Mode" 1 -0.05))
-    ("Query"
-     (("a" engine/search-amazon "amazon")
-      ("d" engine/search-duckduckgo "duckduckgo")
-      ("g" engine/search-github "github")
-      ("i" engine/search-google-images "google images")
-      ("m" engine/search-google-maps "google maps")
-      ("s" engine/search-stack-overflow "stack overflow")
-      ("w" engine/search-wikipedia "wikipedia")
-      ("y" engine/search-youtube "youtube"))))
-#+end_src
-
-#+RESULTS:
-: hydra-query/body
-
-*** Hydra / Spelling
-
-Group spelling commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-spelling
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "magic" "Spelling" 1 -0.05))
-    ("Checker"
-     (("c" langtool-correct-buffer "correction")
-      ("C" langtool-check-done "clear")
-      ("d" ispell-change-dictionary "dictionary")
-      ("l" (message "Current language: %s (%s)" langtool-default-language ispell-current-dictionary) "language")
-      ("s" my/switch-language "switch")
-      ("w" wiki-summary "wiki"))
-     "Errors"
-     (("<" flyspell-correct-previous "previous" :color pink)
-      (">" flyspell-correct-next "next" :color pink)
-      ("f" langtool-check "find"))))
-#+end_src
-
-#+RESULTS:
-: hydra-spelling/body
-
-*** Hydra / TeX
-
-Group TeX commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-tex
-    (:hint nil :color teal :quit-key "q" :title (with-fileicon "tex" "LaTeX" 1 -0.05))
-    ("Action"
-     (("g" reftex-goto-label "goto")
-      ("r" reftex-query-replace-document "replace")
-      ("s" counsel-rg "search")
-      ("t" reftex-toc "table of content"))))
-#+end_src
-
-#+RESULTS:
-: hydra-tex/body
-
-*** Hydra / Tool
-
-Group Tool commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-tool
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "briefcase" "Tool" 1 -0.05))
-    ("Network"
-     (("c" ipcalc "subnet calculator")
-      ("i" ipinfo "ip info"))))
-#+end_src
-
-#+RESULTS:
-: hydra-tool/body
-
-*** Hydra / TypeScript
-
-Group TypeScript commands.
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-typescript
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "briefcase" "Tool" 1 -0.05))
-    ("Network"
-     (("q" nil)
-     ("b" tide-jump-back "back")
-     ("e" tide-project-errors "errors")
-     ("j" tide-jump-to-definition "jump")
-     ("r" tide-references "references")
-     ("R" tide-restart-server "restart"))))
-#+end_src
-
-#+RESULTS:
-: hydra-typescript/body
-
-*** Hydra / Upload
-
-Group upload commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-upload
-    (:hint nil :color teal :quit-key "q" :title (with-faicon "cloud-upload" "Upload" 1 -0.05))
-    ("Action"
-     (("b" webpaste-paste-buffe "buffer")
-      ("i" imgbb-upload "image")
-      ("r" webpaste-paste-region "region"))))
-#+end_src
-
-#+RESULTS:
-: hydra-upload/body
-
-*** Hydra / Windows
-
-Group window-related commands.
-
-#+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define hydra-windows
-    (:hint nil :forein-keys warn :quit-key "q" :title (with-faicon "windows" "Windows" 1 -0.05))
-    ("Window"
-     (("b" balance-windows "balance")
-      ("i" enlarge-window "heighten")
-      ("j" shrink-window-horizontally "narrow")
-      ("k" shrink-window "lower")
-      ("l" enlarge-window-horizontally "widen")
-      ("s" switch-window-then-swap-buffer "swap" :color teal))
-     "Zoom"
-     (("-" text-scale-decrease "out")
-      ("+" text-scale-increase "in")
-      ("=" (text-scale-increase 0) "reset"))))
-#+end_src
-
 ** Draw graphics
 *** Gnuplot
 
@@ -1751,3 +1280,109 @@ Group window-related commands.
     (org-reveal-mathjax t)
     (org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/"))
 #+end_src
+** Utility functions
+*** Generate scratch buffer
+#+begin_src emacs-lisp :tangle yes
+(defun generate-scratch-buffer ()
+  "Create and switch to a temporary scratch buffer with a random
+     name."
+  (interactive)
+  (switch-to-buffer (make-temp-name "scratch-")))
+#+end_src
+*** Open all marked files in Dired
+#+begin_src emacs-lisp :tangle yes
+(eval-after-load "dired"
+  '(progn
+     (define-key dired-mode-map "F" 'my-dired-find-file)
+     (defun my-dired-find-file (&optional arg)
+       "Open each of the marked files, or the file under the point, or when prefix arg, the next N files "
+       (interactive "P")
+       (let* ((fn-list (dired-get-marked-files nil arg)))
+         (mapc 'find-file fn-list)))))
+#+end_src
+*** Copy file name
+#+begin_src emacs-lisp :tangle yes
+(defun copy-filename ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+#+end_src
+*** Get current public ip
+#+begin_src emacs-lisp :tangle yes
+(defun what-is-my-ip ()
+  (interactive)
+  (message "IP: %s"
+           (with-current-buffer (url-retrieve-synchronously "https://api.ipify.org")
+             (buffer-substring (+ 1 url-http-end-of-headers) (point-max)))))
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+(global-set-key
+ (kbd "M-o")
+ (defhydra hydra-window()
+   "window"
+   ("h" windmove-left)
+   ("j" windmove-down)
+   ("k" windmove-up)
+   ("l" windmove-right)
+   ("x" (lambda ()
+	  (interactive)
+	  (split-window-right)
+	  (windmove-right))
+    "vertical")
+   ("v" (lambda ()
+	  (interactive)
+	  (split-window-below)
+	  (windmove-down))
+    "horizontal")
+   ("t" transpose-frame "'")
+   ;; ("o" delete-window "one" :color blue)
+   ("D" delete-other-windows "one" :color blue)
+   ;; ("o" delete-windows-on "one" :color blue)
+   ("g" ace-window "go to")
+   ("s" ace-swap-window "swap")
+   ("d" (lambda ()
+	  (interactive)
+	  (delete-window)
+	  ;; (hydra-window))
+	  )
+    "del")
+   ("i" ace-maximize-window "maximise hint" :color blue)
+   ("b" ido-switch-buffer "buffer")
+   ;; ("m" headlong-bookmark-jump "bmk")
+   ("q" nil "cancel")))
+#+end_src
+*** Move files
+#+begin_src emacs-lisp :tangle yes
+(defun move-file ()
+  "Write this file to a new location, and delete the old one."
+  (interactive)
+  (let ((old-location (buffer-file-name)))
+    (call-interactively #'write-file)
+    (when old-location
+      (delete-file old-location))))
+#+end_src
+*** Format long function parameter list into multiline
+#+begin_src emacs-lisp :tangle yes
+(defun format-function-parameters ()
+  "Turn the list of function parameters into multiline."
+  (interactive)
+  (beginning-of-line)
+  (search-forward "(" (line-end-position))
+  (newline-and-indent)
+  (while (search-forward "," (line-end-position) t)
+    (newline-and-indent))
+  (end-of-line)
+  (c-hungry-delete-forward)
+  (insert " ")
+  (search-backward ")")
+  (newline-and-indent))
+#+end_src
+
+#+RESULTS:
+: format-function-parameters
