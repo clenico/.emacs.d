@@ -868,6 +868,7 @@ separately for each major mode that you wish to use it with.
     :config (electric-operator-mode 1))
 #+end_src
 
+
 *** Rainbow-mode
 Colorize colors as text with their value.
 #+begin_src emacs-lisp :tangle yes
