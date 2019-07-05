@@ -5,7 +5,7 @@
 (defun open_conf_org()
   "open config.org, need to delete this one i get this to work"
   (interactive)
-  (find-file "~/Documents/Projects/.emacs.d/config.org")
+  (find-file "~/.emacs.d/config.org")
   )
 (require 'package)
 (package-initialize)
