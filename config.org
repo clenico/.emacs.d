@@ -1017,6 +1017,17 @@ Colorize colors as text with their value.
   (use-package flymd)
 #+end_src
 
+*** X Mod Map Mode
+#+begin_src emacs-lisp :tangle yes
+  (define-generic-mode 'xmodmap-mode
+    '(?!)
+    '("add" "clear" "keycode" "keysym" "pointer" "remove")
+    nil
+    '("[xX]modmap\\(rc\\)?\\'")
+    nil
+    "Simple mode for xmodmap files.")
+#+end_src
+
 ** Web-mode
 #+begin_src emacs-lisp :tangle yes
 (use-package web-mode
