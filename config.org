@@ -83,7 +83,7 @@
 
 * General
 ** Better defaults
-
+*** Variables
 For a better user experience of GNU Emacs, here are the default values I use.
 
 #+begin_src emacs-lisp :tangle yes
@@ -127,6 +127,11 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (delete-selection-mode 1)                         ; Enable de deletion of selected text
   (toggle-frame-maximized)                          ; Toggle fullscreen by default
   (setq visible-bell 1)                             ; Disable the bell on Windows
+#+end_src
+*** Keybindings
+#+begin_src emacs-lisp :tangle yes
+  (global-set-key (kbd "M-[") 'backward-paragraph)
+  (global-set-key (kbd "M-]") 'forward-paragraph)
 #+end_src
 
 ** Navigation
@@ -923,7 +928,7 @@ of ranger's features
     (ranger-preview-file 1))
 #+end_src
 
-* Programming languages
+ * Programming languages
 ** General programming settings
 *** EditorConfig
 #+begin_src emacs-lisp :tangle yes
@@ -1007,6 +1012,11 @@ Colorize colors as text with their value.
 
 *** TODO RestClient-mode
 
+*** Markdown
+#+begin_src emacs-lisp :tangle yes
+  (use-package flymd)
+#+end_src
+
 ** Web-mode
 #+begin_src emacs-lisp :tangle yes
 (use-package web-mode
@@ -1035,6 +1045,9 @@ Colorize colors as text with their value.
 
   (use-package ivy-yasnippet :after yasnippet)
   (use-package react-snippets :after yasnippet)
+
+  ;; used for creating local snippets or persistant snippets
+  (use-package auto-yasnippet )
 #+end_src
 
 * Org-Mode
@@ -1269,8 +1282,7 @@ Adding some usefull unit calculation
 #+end_src
 ** Hydra
 Since it's quite difficult to remember all the shortcuts. Hydra gives you the opportunity to configure control panels from which you can run some commands.
-
-
+*** Hydra use-package
 #+begin_src emacs-lisp :tangle yes
   (use-package hydra
     :bind (("C-c I" . hydra-image/body)
@@ -1310,8 +1322,25 @@ Since it's quite difficult to remember all the shortcuts. Hydra gives you the op
       "Displays an icon from the GitHub Octicons."
       (s-concat (all-the-icons-octicon icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str)))
 #+end_src
+*** hydra-Launcher
+#+begin_src emacs-lisp :tangle yes
+  ;; (pretty-hydra-define hydra-launcher
+  ;;   (:hint nil :color teal :quit-key "q" :title (with-faicon "clock-o" "Clock" 1 -0.05))
+  ;;   ("Action"
+  ;;    (("g" hydra-general/body "hydra general")))))
 
-#+RESULTS:
+  ;; (pretty-hydra-define hydra-general
+  ;;   (:hint nil :color amaranth :quit-key "q" :title (with-faicon "toggle-on" "Toggle" 1 -0.05))
+  ;;   ("Create"
+  ;;    (("s" generate-scratch-buffer "generate scratch buffer" ))
+  ;;    "Coding"
+  ;;    (("e" electric-operator-mode "electric operator" :toggle t)
+  ;;     ("F" flyspell-mode "flyspell" :toggle t)
+  ;;     ("l" lsp-mode "lsp" :toggle t))
+  ;;    "UI"
+  ;;    (("t" treemacs  "Treemacs" :toggle t))))
+
+#+end_src
 
 ** Draw graphics
 *** Gnuplot
