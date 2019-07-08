@@ -135,6 +135,12 @@ For a better user experience of GNU Emacs, here are the default values I use.
 #+end_src
 
 ** Navigation
+*** Caps Lock
+#+begin_src emacs-lisp :tangle yes
+  (use-package caps-lock
+    :bind(("M-p" . caps-lock-mode)))
+#+end_src
+
 *** Half scroll
 #+begin_src emacs-lisp :tangle yes
   (defun window-half-height ()
