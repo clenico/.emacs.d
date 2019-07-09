@@ -80,7 +80,6 @@
   ;; (use-package delight :ensure t)
   (use-package use-package-ensure-system-package :ensure t)
 #+end_src
-
 * General
 ** Better defaults
 *** Variables
@@ -130,8 +129,14 @@ For a better user experience of GNU Emacs, here are the default values I use.
 #+end_src
 *** Keybindings
 #+begin_src emacs-lisp :tangle yes
-  (global-set-key (kbd "M-[") 'backward-paragraph)
-  (global-set-key (kbd "M-]") 'forward-paragraph)
+  (defun backward-paragraph-bracket()
+    (interactive)
+    (backward-paragraph))
+  (defun forward-paragraph-bracket()
+    (interactive)
+    (forward-paragraph))
+  (global-set-key (kbd "M-[") 'backward-paragraph-bracket)
+  (global-set-key (kbd "M-]") 'forward-paragraph-bracket)
 #+end_src
 
 ** Navigation
