@@ -1637,6 +1637,10 @@ Since it's quite difficult to remember all the shortcuts. Hydra gives you the op
   (search-backward ")")
   (newline-and-indent))
 #+end_src
-
-#+RESULTS:
-: format-function-parameters
+*** Reload configuration
+#+begin_src emacs-lisp :tangle yes
+  (defun config-reload ()
+    "Reloads ~/.emacs.d/config.org at runtime"
+    (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+#+end_src
