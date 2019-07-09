@@ -371,6 +371,14 @@ Edit multiple regions in the same way simultaneously
 :config (atomic-chrome-start-server))
 (setq atomic-chrome-buffer-open-style 'frame)
 #+end_src
+*** Sudo-edit
+#+begin_src emacs-lisp :tangle yes
+  (use-package sudo-edit
+    :ensure t
+    :bind
+    ("C-c su" . sudo-edit))
+#+end_src
+
 ** Customization
 *** Change custom file location
 In order to keep the init.el file clean,we specify an other file which should be include as well for storing customization information.
