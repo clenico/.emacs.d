@@ -989,8 +989,11 @@ Replace the stock package list manager with a more modern one
 *** Version Control
 **** TODO Magit
 #+begin_src emacs-lisp :tangle yes
-  (use-package magit :defer 0.3)
+  (use-package magit
+    :defer 0.3
+    :bind((("C-x g"). magit-status)))
 #+end_src
+
 **** TODO Git-commit
 Must look whether i'm gonna used this or not
 #+begin_src emacs-lisp :tangle yes
