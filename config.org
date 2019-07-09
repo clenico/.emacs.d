@@ -1199,6 +1199,23 @@ Edit the code blocks in the same window
 #+begin_src emacs-lisp :tangle yes
 (setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
 #+end_src
+** Export
+*** Latex
+Make sure you got the Pygment python package installed (using pip or your
+package-manage)
+#+begin_src emacs-lisp :tangle yes
+  (setq org-latex-listings 'minted
+        org-latex-packages-alist '(("" "minted")))
+
+  (setq org-latex-pdf-process
+        '("xelatex -interaction nonstopmode %f"
+          "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+
+#+end_src
+
+#+RESULTS:
+| xelatex -interaction nonstopmode %f | xelatex -interaction nonstopmode %f |
+
 ** Language compilation
 #+begin_src emacs-lisp :tangle yes
   (use-package ob-C :ensure nil :after org)
