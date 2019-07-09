@@ -1417,24 +1417,7 @@ Adding some usefull unit calculation
 Since it's quite difficult to remember all the shortcuts. Hydra gives you the opportunity to configure control panels from which you can run some commands.
 *** Hydra use-package
 #+begin_src emacs-lisp :tangle yes
-  (use-package hydra
-    :bind (("C-c I" . hydra-image/body)
-           ("C-c L" . hydra-ledger/body)
-           ("C-c M" . hydra-merge/body)
-           ("C-c T" . hydra-tool/body)
-           ("C-c b" . hydra-btoggle/body)
-           ("C-c c" . hydra-clock/body)
-           ("C-c e" . hydra-erc/body)
-           ("C-c f" . hydra-flycheck/body)
-           ("C-c g" . hydra-go-to-file/body)
-           ("C-c m" . hydra-magit/body)
-           ("C-c o" . hydra-org/body)
-           ("C-c p" . hydra-projectile/body)
-           ("C-c q" . hydra-query/body)
-           ("C-c s" . hydra-spelling/body)
-           ("C-c t" . hydra-tex/body)
-           ("C-c u" . hydra-upload/body)
-           ("C-c w" . hydra-windows/body)))
+  (use-package hydra)
 
   (use-package major-mode-hydra
     :after hydra
