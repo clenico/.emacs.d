@@ -939,6 +939,15 @@ Replace the stock package list manager with a more modern one
 #+RESULTS:
 : t
 
+*** Close all buffers
+#+begin_src emacs-lisp :tangle yes
+  (defun close-all-buffers ()
+    "Kill all buffers without regard for their origin."
+    (interactive)
+    (mapc 'kill-buffer (buffer-list)))
+  (global-set-key (kbd "C-M-s-k") 'close-all-buffers)
+#+end_src
+
 ** Projects
 *** Projectile
 
