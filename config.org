@@ -288,6 +288,65 @@ C-c right : redo
     :config (winner-mode 1))
 #+end_src
 ** Edition
+*** Improve built in functions
+**** Kill Word
+#+begin_src emacs-lisp :tangle yes
+  (defun daedreth/kill-inner-word ()
+    "Kills the entire word your cursor is in. Equivalent to 'ciw' in vim."
+    (interactive)
+    (forward-char 1)
+    (backward-word)
+    (kill-word 1))
+  (global-set-key (kbd "C-c cw") 'daedreth/kill-inner-word)
+#+end_src
+**** Copy Word
+#+begin_src emacs-lisp :tangle yes
+(defun daedreth/copy-whole-word ()
+  (interactive)
+  (save-excursion
+    (forward-char 1)
+    (backward-word)
+    (kill-word 1)
+    (yank)))
+(global-set-key (kbd "C-c yw") 'daedreth/copy-whole-word)
+#+end_src
+**** Copy a line
+#+begin_src emacs-lisp :tangle yes
+  (defun daedreth/copy-whole-line ()
+    "Copies a line without regard for cursor position."
+    (interactive)
+    (save-excursion
+      (kill-new
+       (buffer-substring
+        (point-at-bol)
+        (point-at-eol)))))
+  (global-set-key (kbd "C-c yy") 'daedreth/copy-whole-line)
+#+end_src
+**** ci Vim equivalent
+#+begin_src emacs-lisp :tangle yes
+  (defun seek-backward-to-char (chr)
+    "Seek backwards to a character"
+    (interactive "cSeek back to char: ")
+    (while (not (= (char-after) chr))
+      (forward-char -1)))
+
+
+  (defun delete-between-pair (char)
+    "Delete in between the given pair"
+    (interactive "cDelete between char: ")
+    (seek-backward-to-char char)
+    (forward-char 1)
+    (zap-to-char 1 char)
+    (insert char)
+    (forward-char -1))
+
+  (global-set-key (kbd "C-c ci") 'delete-between-pair)
+#+end_src
+**** Kill line
+#+begin_src emacs-lisp :tangle yes
+  (global-set-key (kbd "C-c dd") 'kill-whole-line)
+#+end_src
+
 *** Iedit
 [[https://github.com/victorhge/iedit][Iedit]]
 Edit multiple regions in the same way simultaneously
