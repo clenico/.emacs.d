@@ -1168,6 +1168,12 @@ Colorize colors as text with their value.
 #+end_src
 
 * Org-Mode
+** Org better defaults
+Edit the code blocks in the same window
+#+begin_src emacs-lisp :tangle yes
+  (setq org-src-window-setup 'current-window)
+#+end_src
+
 ** Org-Mode appearance
 *** Toc-org
 #+begin_src emacs-lisp :tangle yes
