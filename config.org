@@ -139,11 +139,14 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (global-set-key (kbd "M-]") 'forward-paragraph-bracket)
 #+end_src
 
+#+RESULTS:
+: forward-paragraph-bracket
+
 ** Navigation
 *** Caps Lock
 #+begin_src emacs-lisp :tangle yes
   (use-package caps-lock
-    :bind(("M-p" . caps-lock-mode)))
+    :bind(("þ" . caps-lock-mode)))
 #+end_src
 
 *** Half scroll
