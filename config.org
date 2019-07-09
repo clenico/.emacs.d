@@ -1378,6 +1378,8 @@ Adding some usefull unit calculation
     :config
     (dashboard-setup-startup-hook))
 
+  (setq dashboard-startup-banner "~/.emacs.d/assert/img/dashLogo.png")
+
   (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   (setq dashboard-set-footer nil)
 
