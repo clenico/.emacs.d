@@ -1235,11 +1235,13 @@ As a completion package, i'm using company with several other packages to rice i
     (setq company-show-numbers t)
     (setq company-tooltip-align-annotations 't)
     (bind-keys :map company-active-map
-           ("C-d" . company-show-doc-buffer)
-           ("C-l" . company-show-location)
-           ("C-n" . company-select-next)
-           ("C-p" . company-select-previous)
-           ("TAB" . company-complete)))
+               ("C-d" . company-show-doc-buffer)
+               ("C-l" . company-show-location)
+               ("C-n" . company-select-next)
+               ("C-p" . company-select-previous)
+               ("SPC" . company-abort)
+               ("ESC" . company-abort)
+               ("TAB" . company-complete)))
 #+end_src
 
 #+RESULTS:
