@@ -384,6 +384,22 @@ In order to keep the init.el file clean,we specify an other file which should be
 #+RESULTS:
 : t
 *** Modeline
+
+#+begin_src emacs-lisp :tangle no
+  (use-package spaceline
+    :ensure t
+    :config
+    (require 'spaceline-config)
+      (setq spaceline-buffer-encoding-abbrev-p nil)
+      (setq spaceline-line-column-p nil)
+      (setq spaceline-line-p nil)
+      (setq powerline-default-separator (quote arrow))
+      (spaceline-spacemacs-theme))
+#+end_src
+
+#+RESULTS:
+: t
+
 #+begin_src emacs-lisp :tangle yes
 (use-package doom-modeline
       :ensure t
