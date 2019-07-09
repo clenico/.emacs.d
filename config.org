@@ -1179,8 +1179,9 @@ Edit the code blocks in the same window
 #+begin_src emacs-lisp :tangle yes
   (use-package toc-org
     :config
-    (toc-org-enable))
+    (toc-org-mode t))
 #+end_src
+
 *** Bullets
 #+begin_src emacs-lisp :tangle yes
 (use-package org-bullets
