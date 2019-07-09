@@ -21,7 +21,6 @@
   - [[#interface-enhancement][Interface Enhancement]]
   - [[#projects][Projects]]
   - [[#file-manager][File Manager]]
-- [[#programming-languages][Programming languages]]
   - [[#general-programming-settings][General programming settings]]
   - [[#specific-mode-settings][Specific mode settings]]
   - [[#web-mode][Web-mode]]
@@ -127,6 +126,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (toggle-frame-maximized)                          ; Toggle fullscreen by default
   (setq visible-bell 1)                             ; Disable the bell on Windows
 #+end_src
+
 *** Keybindings
 #+begin_src emacs-lisp :tangle yes
   (defun backward-paragraph-bracket()
