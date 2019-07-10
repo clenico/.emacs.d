@@ -850,7 +850,9 @@ Replace the stock package list manager with a more modern one
      ("<f1> l" . counsel-load-library)
      ("<f2> i" . counsel-info-lookup-symbol)
      ("<f2> u" . counsel-unicode-char)
-     ("C-c k" . counsel-rg)))
+     ("C-c k" . counsel-rg)
+     :map org-mode-map
+     ("C-c C-f" . counsel-org-goto)))
 
   (use-package swiper
     :after ivy
