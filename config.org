@@ -317,7 +317,8 @@ C-c right : redo
     (interactive "p")
     (kill-ring-save (line-beginning-position)
                     (line-beginning-position (+ 1 arg)))
-    (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
+    (message "%d line%s copied" arg (if (= 1 arg) "" "s"))
+    (beginning-of-line))
   (global-set-key (kbd "C-c yy") 'copy-line)
 #+end_src
 
