@@ -346,6 +346,15 @@ C-c right : redo
   (global-set-key (kbd "C-c dd") 'kill-whole-line)
 #+end_src
 
+**** Kill all scratch buffer
+#+begin_src emacs-lisp :tangle yes
+  (defun kill-all-random-scratch-buffer()
+    (interactive)
+    (kill-matching-buffers "^scratch-" t t))
+
+  (global-set-key (kbd "C-H-k") 'kill-all-random-scratch-buffer)
+#+end_src
+
 *** Iedit
 [[https://github.com/victorhge/iedit][Iedit]]
 Edit multiple regions in the same way simultaneously
