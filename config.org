@@ -125,7 +125,11 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (delete-selection-mode 1)                         ; Enable de deletion of selected text
   (toggle-frame-maximized)                          ; Toggle fullscreen by default
   (setq visible-bell 1)                             ; Disable the bell on Windows
+  (setq save-silently 1)                            ; Disable minibuffer messageon saving
 #+end_src
+
+#+RESULTS:
+: 1
 
 *** Keybindings
 #+begin_src emacs-lisp :tangle yes
