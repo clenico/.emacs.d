@@ -500,6 +500,32 @@ might change shortly
 ** TODO LSP
 Emacs is sometimes quite tricky to set up. In order to get some nice IDE features, i decided to go for an LSP client-server model.
 
+*** Setup LSP
+#+begin_src emacs-lisp :tangle yes
+  (use-package lsp-mode
+    :hook (prog-mode . lsp))
+
+  (use-package lsp-ui)
+  (use-package company-lsp)
+  (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+#+end_src
+*** C/C++
+#+begin_src emacs-lisp :tangle yes
+  (use-package ccls
+    :after projectile
+    :ensure-system-package ccls
+    :custom
+    (ccls-args nil)
+    (ccls-executable (executable-find "ccls"))
+    (projectile-project-root-files-top-down-recurring
+     (append '("compile_commands.json" ".ccls")
+             projectile-project-root-files-top-down-recurring))
+    :config (push ".ccls-cache" projectile-globally-ignored-directories))
+#+end_src
+
+#+RESULTS:
+: t
+
 ** Typing
 *** TODO Abbrev
     When taking some notes, abbreviation can save you some time.
