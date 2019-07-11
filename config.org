@@ -466,8 +466,12 @@ In order to keep the init.el file clean,we specify an other file which should be
   (use-package smartparens
     :defer 1
     :custom (sp-escape-quotes-after-insert nil)
-    :config (smartparens-global-mode 1))
+    :config (smartparens-global-mode 1)
+    :bind("C-c spd" . sp-splice-sexp))
 #+end_src
+
+#+RESULTS:
+: sp-splice-sexp
 
 ** Fonts
 In order to use your favorite font.
