@@ -863,10 +863,11 @@ Replace the stock package list manager with a more modern one
     :bind (("C-s" . swiper)
            :map swiper-map
            ("M-%" . swiper-query-replace)))
+
+  (use-package smex)
 #+end_src
 
 #+RESULTS:
-: swiper-query-replace
 
 **** TODO Password
 #+begin_src emacs-lisp :tangle yes
