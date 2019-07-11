@@ -1315,7 +1315,10 @@ Colorize colors as text with their value.
 Edit the code blocks in the same window
 #+begin_src emacs-lisp :tangle yes
   (setq org-src-window-setup 'current-window)
+  (setq org-startup-folded nil)
 #+end_src
+
+#+RESULTS:
 
 ** Org-Mode appearance
 *** Toc-org
