@@ -1347,13 +1347,13 @@ package-manage)
         org-latex-packages-alist '(("" "minted")))
 
   (setq org-latex-pdf-process
-        '("xelatex -interaction nonstopmode %f"
-          "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+        '("xelatex -shell-escape -interaction nonstopmode %f"
+          "xelatex -shell-escape -interaction nonstopmode %f")) ;; for multiple passes
 
 #+end_src
 
 #+RESULTS:
-| xelatex -interaction nonstopmode %f | xelatex -interaction nonstopmode %f |
+| xelatex -shell-escape -interaction nonstopmode %f | xelatex -shell-escape -interaction nonstopmode %f |
 
 ** Language compilation
 #+begin_src emacs-lisp :tangle yes
