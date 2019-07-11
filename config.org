@@ -1554,6 +1554,18 @@ Adding some usefull unit calculation
        (let* ((fn-list (dired-get-marked-files nil arg)))
          (mapc 'find-file fn-list)))))
 #+end_src
+*** dired-subtree
+#+begin_src emacs-lisp :tangle yes
+(use-package dired-subtree :ensure t
+  :after dired
+  :config
+  (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
+  (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map))
+#+end_src
+
+#+RESULTS:
+: t
+
 *** TODO customise dired
 ** History
 #+begin_src emacs-lisp :tangle yes
