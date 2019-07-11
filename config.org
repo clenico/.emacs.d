@@ -1420,13 +1420,10 @@ As a completion package, i'm using company with several other packages to rice i
                ("C-l" . company-show-location)
                ("C-n" . company-select-next)
                ("C-p" . company-select-previous)
-               ("SPC" . company-abort)
                ("ESC" . company-abort)
-               ("TAB" . company-complete)))
+               ("TAB" . company-complete))
+    :bind("M-TAB" . company-complete))
 #+end_src
-
-#+RESULTS:
-: t
 
 *** Company-go
 #+begin_quote
