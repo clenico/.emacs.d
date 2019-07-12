@@ -1267,7 +1267,7 @@ Colorize colors as text with their value.
 
   (eval-after-load "tex"
     '(add-to-list 'TeX-command-list
-                  '("XeLaTeX" "xelatex --shell-escape  -interaction=nonstopmode %s"
+                  '("XeLaTeX" "xelatex  --shell-escape -synctex=1 -interaction=nonstopmode %s "
                     TeX-run-command t t :help "Run xelatex") t))
 #+end_src
 
@@ -1343,13 +1343,13 @@ package-manage)
         org-latex-packages-alist '(("" "minted")))
 
   (setq org-latex-pdf-process
-        '("xelatex -shell-escape -interaction nonstopmode %f"
-          "xelatex -shell-escape -interaction nonstopmode %f")) ;; for multiple passes
+        '("xelatex -synctex=1 -shell-escape -interaction nonstopmode %f"
+          "xelatex -synctex=1 -shell-escape -interaction nonstopmode %f")) ;; for multiple passes
 
 #+end_src
 
 #+RESULTS:
-| xelatex -shell-escape -interaction nonstopmode %f | xelatex -shell-escape -interaction nonstopmode %f |
+| xelatex --synctex=1 -shell-escape -interaction nonstopmode %f | xelatex --synctex=1 -shell-escape -interaction nonstopmode %f |
 
 ** Language compilation
 #+begin_src emacs-lisp :tangle yes
