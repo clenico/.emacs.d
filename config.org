@@ -1246,7 +1246,8 @@ Colorize colors as text with their value.
     (advice-add 'TeX-next-error :after #'my/switch-to-help-window)
     (advice-add 'TeX-recenter-output-buffer :after #'my/switch-to-help-window)
     ;; the ":hook" doesn't work for this one... don't ask me why.
-    (add-hook 'TeX-after-compilation-finished-functions 'TeX-revert-document-buffer))
+    (add-hook 'TeX-after-compilation-finished-functions 'TeX-revert-document-buffer)
+    (setq reftex-plug-into-auctex t))
 
   (use-package bibtex
     :after auctex
