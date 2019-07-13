@@ -1255,7 +1255,9 @@ Colorize colors as text with their value.
     :preface
     (defun my/bibtex-fill-column ()
       "Ensures that each entry does not exceed 120 characters."
-      (setq fill-column 120)))
+      (setq fill-column 120))
+    :config
+    (setq bibtex-maintain-sorted-entries t))
 
   (use-package company-auctex
     :after (auctex company)
