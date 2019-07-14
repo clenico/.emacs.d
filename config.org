@@ -1265,15 +1265,21 @@ Colorize colors as text with their value.
 
   (use-package company-math :after (auctex company))
 
+
   (setq-default TeX-engine 'xetex)
 
-  (eval-after-load "tex"
-    '(add-to-list 'TeX-command-list
-                  '("XeLaTeX" "xelatex  --shell-escape -synctex=1 -interaction=nonstopmode %s "
-                    TeX-run-command t t :help "Run xelatex") t))
+  (add-hook 'LaTeX-mode-hook
+            (lambda()
+              (add-to-list 'TeX-command-list
+                           '("XeLaTeX" "xelatex  --shell-escape -synctex=1 -interaction=nonstopmode %s "
+                             TeX-run-command t t :help "Run xelatex") t)
+              (setq TeX-command-default "XeLaTeX")
+              (setq TeX-save-query nil)
+              (setq TeX-show-compilation t)))
 #+end_src
 
 #+RESULTS:
+| (lambda nil (add-to-list (quote TeX-command-list) (quote (XeLaTeX xelatex  --shell-escape -synctex=1 -interaction=nonstopmode %s  TeX-run-command t t :help Run xelatex)) t) (setq TeX-command-default XeLaTeX) (setq TeX-save-query nil) (setq TeX-show-compilation t)) | preview-mode-setup | reftex-mode |
 
 ** Web-mode
 #+begin_src emacs-lisp :tangle yes
