@@ -363,6 +363,19 @@ C-c right : redo
 #+begin_src emacs-lisp :tangle yes
   (global-set-key (kbd "M-F") 'forward-whitespace)
 #+end_src
+**** Clear
+#+begin_src emacs-lisp :tangle yes
+  (defun my/clear ()
+    (interactive)
+    (let ((comint-buffer-maximum-size 0))
+      (comint-truncate-buffer)))
+
+  (global-set-key (kbd "C-c cl") 'my/clear)
+#+end_src
+
+#+RESULTS:
+: my/clear
+
 *** Iedit
 [[https://github.com/victorhge/iedit][Iedit]]
 Edit multiple regions in the same way simultaneously
