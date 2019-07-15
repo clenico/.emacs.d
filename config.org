@@ -616,9 +616,9 @@ Ensure to install the hunspell before using the package.
 *** Lorem Ipsum
 #+begin_src emacs-lisp :tangle yes
   (use-package lorem-ipsum
-    :bind (("C-c C-v l" . lorem-ipsum-insert-list)
-           ("C-c C-v p" . lorem-ipsum-insert-paragraphs)
-           ("C-c C-v s" . lorem-ipsum-insert-sentences)))
+    :bind (("C-c v l" . lorem-ipsum-insert-list)
+           ("C-c v p" . lorem-ipsum-insert-paragraphs)
+           ("C-c v s" . lorem-ipsum-insert-sentences)))
 #+end_src
 
 ** Interface Enhancement
