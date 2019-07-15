@@ -1062,7 +1062,7 @@ Replace the stock package list manager with a more modern one
     :custom
     (projectile-completion-system 'ivy)
     (projectile-enable-caching t)
-    (projectile-keymap-prefix (kbd "C-c C-p"))
+    (projectile-keymap-prefix (kbd "C-c p"))
     (projectile-mode-line '(:eval (projectile-project-name)))
     :config (projectile-global-mode))
 
