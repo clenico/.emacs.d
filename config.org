@@ -1342,6 +1342,7 @@ Edit the code blocks in the same window
 *** Toc-org
 #+begin_src emacs-lisp :tangle yes
   (use-package toc-org
+    :hook (org-mode . toc-org-mode)
     :config
     (toc-org-mode t))
 #+end_src
