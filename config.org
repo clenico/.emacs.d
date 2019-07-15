@@ -1318,7 +1318,8 @@ Colorize colors as text with their value.
   (use-package yasnippet
     :ensure t
     :init
-    (yas-global-mode 1))
+    (yas-global-mode 1)
+    :bind("H-c" . ivy-yasnippet))
 
   (use-package ivy-yasnippet :after yasnippet)
   (use-package react-snippets :after yasnippet)
