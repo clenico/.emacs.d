@@ -523,13 +523,67 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 
 *** Setup LSP
 #+begin_src emacs-lisp :tangle yes
+  ;; (use-package lsp-mode
+  ;;   :hook (prog-mode . lsp))
+
   (use-package lsp-mode
-    :hook (prog-mode . lsp))
+    :hook ((c-mode c++-mode java-mode ) . lsp)
+    :custom
+    (lsp-prefer-flymake nil))
 
   (use-package lsp-ui)
   (use-package company-lsp)
   (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+  (use-package dap-mode
+    :after lsp-mode
+    :config
+    (dap-mode t)
+    (dap-ui-mode t))
 #+end_src
+
+*** Python
+#+begin_src emacs-lisp :tangle yes
+  ;; (setq py-python-command "python3")
+  ;; (setq python-shell-interpreter "python3")
+
+  ;; (use-package elpy
+  ;;   :ensure t
+  ;;   :custom (elpy-rpc-backend "jedi")
+  ;;   :config
+  ;;   (advice-add 'python-mode :before 'elpy-enable))
+
+  ;; (use-package virtualenvwrapper
+  ;;   :ensure t
+  ;;   :config
+  ;;   (venv-initialize-interactive-shells)
+  ;;   (venv-initialize-eshell))
+
+  (use-package lsp-python-ms
+    :ensure t
+    :after projectile
+    :hook (python-mode . (lambda ()
+                           (require 'lsp-python-ms)
+                           (lsp))))  ; or lsp-deferred
+
+  (defun my/clear ()
+    (interactive)
+    (let ((comint-buffer-maximum-size 0))
+      (comint-truncate-buffer)))
+
+  (use-package python
+    :delight "π "
+    :bind (:map python-mode-map
+                ("M-[" . python-nav-backward-block)
+                ("M-]" . python-nav-forward-block))
+    :config
+    (setq python-indent-guess-indent-offset t)
+    (setq python-indent-guess-indent-offset-verbose nil))
+#+end_src
+
+#+RESULTS:
+: python-nav-forward-block
+
 *** C/C++
 #+begin_src emacs-lisp :tangle yes
   (use-package ccls
