@@ -1419,6 +1419,71 @@ Edit the code blocks in the same window
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode))
 #+end_src
+*** Faces
+#+begin_src emacs-lisp :tangle yes
+  (use-package org-faces
+    :ensure nil
+    :after org
+    :custom
+    (org-todo-keyword-faces
+     '(
+       ("TODO" . (:foreground "red" :weight bold))
+       ("WAITING" . (:foreground "orange" :weight bold))
+       ("DONE" . (:foreground "green" :weight bold))
+       ("CANCELED" . (:foreground "gray" :weight bold))
+       ("BUG" . (:foreground "yellow" :weight bold))
+       ("KNOWNCAUSE" . (:foreground "light sea green" :weight bold))
+       ("FIXED" . (:foreground "forest green" :weight bold))
+       )))
+#+end_src
+
+#+RESULTS:
+
+** Add On
+*** Capture
+#+begin_src emacs-lisp :tangle yes
+  (use-package org-capture
+    :ensure nil
+    :after org
+    :bind(("C-c c" . org-capture))
+    :config
+    (setq org-default-notes-file "~/Org/refile.org"))
+
+  (setq org-capture-templates
+        (quote (("t" "todo" entry (file "~/git/org/refile.org")
+                 "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+                ("r" "respond" entry (file "~/git/org/refile.org")
+                 "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
+                ("n" "note" entry (file "~/git/org/refile.org")
+                 "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+                ("j" "Journal" entry (file+datetree "~/git/org/diary.org")
+                 "* %?\n%U\n" :clock-in t :clock-resume t)
+                ("w" "org-protocol" entry (file "~/git/org/refile.org")
+                 "* TODO Review %c\n%U\n" :immediate-finish t)
+                ("m" "Meeting" entry (file "~/git/org/refile.org")
+                 "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+                ("p" "Phone call" entry (file "~/git/org/refile.org")
+                 "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+                ("h" "Habit" entry (file "~/git/org/refile.org")
+                 "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
+#+end_src
+
+#+RESULTS:
+| t | todo | entry | (file ~/git/org/refile.org) | * TODO %? |
+*** Agenda
+#+begin_src emacs-lisp :tangle yes
+  (setq org-agenda-files (quote ("~/Org/refile.org"
+                                 "~/Org/testAutre.org")))
+
+  (setq org-todo-keywords
+        '((sequence "TODO(t!)" "WAITING(w@/!)"  "|" "DONE(d)" "CANCELED(c)")
+          (sequence "BUG(b@/!)" "KNOWNCAUSE(k@)" "|" "FIXED(f)")))
+
+#+end_src
+
+#+RESULTS:
+| sequence | TODO(t!)  | WAITING(w@/!)  |   |   | DONE(d)  | CANCELED(c) |
+| sequence | BUG(b@/!) | KNOWNCAUSE(k@) |   |   | FIXED(f) |             |
 
 ** To refile
 #+begin_src emacs-lisp :tangle yes
