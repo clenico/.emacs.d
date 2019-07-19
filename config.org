@@ -29,7 +29,7 @@
 - [[#org-mode][Org-Mode]]
   - [[#org-better-defaults][Org better defaults]]
   - [[#org-mode-appearance][Org-Mode appearance]]
-  - [[#to-refile][To refile]]
+  - [[#add-on][Add On]]
   - [[#export][Export]]
   - [[#language-compilation][Language compilation]]
 - [[#advanced-configurations][Advanced configurations]]
@@ -50,6 +50,7 @@
   - [[#recent-files][Recent Files]]
   - [[#revealjs][Reveal.js]]
   - [[#utility-functions][Utility functions]]
+  - [[#plantuml-mode][PlantUML-mode]]
 
 * Acknowledgement
   My configuration is mainly based on many other peoples configuration. Thank
