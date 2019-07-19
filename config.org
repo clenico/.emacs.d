@@ -1402,6 +1402,8 @@ Edit the code blocks in the same window
 #+begin_src emacs-lisp :tangle yes
   (setq org-src-window-setup 'current-window)
   (setq org-startup-folded nil)
+  (setq org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar")
+  (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
 #+end_src
 
 #+RESULTS:
