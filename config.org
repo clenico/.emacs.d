@@ -1476,13 +1476,18 @@ Edit the code blocks in the same window
 | t | todo | entry | (file ~/git/org/refile.org) | * TODO %? |
 *** Agenda
 #+begin_src emacs-lisp :tangle yes
+  (global-set-key (kbd "C-c a") 'org-agenda)
+
   (setq org-agenda-files (quote ("~/Org/refile.org"
                                  "~/Org/testAutre.org")))
 
   (setq org-todo-keywords
-        '((sequence "TODO(t!)" "WAITING(w@/!)"  "|" "DONE(d)" "CANCELED(c)")
+        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)"  "|" "DONE(d)" "CANCELED(c@/!)")
           (sequence "BUG(b@/!)" "KNOWNCAUSE(k@)" "|" "FIXED(f)")))
 
+
+  (setq org-refile-targets (quote ((nil :maxlevel . 9)  ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
+                                   (org-agenda-files :maxlevel . 9))))
 #+end_src
 
 #+RESULTS:
