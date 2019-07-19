@@ -1996,3 +1996,9 @@ Since it's quite difficult to remember all the shortcuts. Hydra gives you the op
     (interactive)
     (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
 #+end_src
+** PlantUML-mode
+#+begin_src emacs-lisp :tangle yes
+  (setq plantuml-exec-mode "jar")
+  (setq plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
+  (setq plantuml-output-type "utxt")
+#+end_src
