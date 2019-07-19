@@ -1431,6 +1431,7 @@ Edit the code blocks in the same window
     (org-todo-keyword-faces
      '(
        ("TODO" . (:foreground "red" :weight bold))
+       ("NEXT" . (:foreground "magenta" :weight bold))
        ("WAITING" . (:foreground "orange" :weight bold))
        ("DONE" . (:foreground "green" :weight bold))
        ("CANCELED" . (:foreground "gray" :weight bold))
