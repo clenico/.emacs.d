@@ -1419,6 +1419,73 @@ Edit the code blocks in the same window
 
 #+RESULTS:
 
+*** Org speed command
+ #+begin_src emacs-lisp :tangle yes
+   (defun my/org-use-speed-commands-for-headings-and-lists ()
+     "Activates speed commands on list items too."
+     (or (and (looking-at org-outline-regexp) (looking-back "^(\**)|^(\s*#)"))
+         (save-excursion (and (looking-at (org-item-re)) (looking-back "^[ \t]*")))))
+
+   (setq org-use-speed-commands 'my/org-use-speed-commands-for-headings-and-lists)
+
+   (setq org-speed-commands-user '(("N" org-speed-move-safe 'org-forward-heading-same-level)
+                                   ("P" org-speed-move-safe 'org-backward-heading-same-level)
+                                   ("F" . org-next-block)
+                                   ("B" . org-previous-block)
+                                   ("u" org-speed-move-safe 'outline-up-heading)
+                                   ("j" . org-goto)
+                                   ("g" org-refile t)
+                                   ("Outline Visibility")
+                                   ("c" . org-cycle)
+                                   ("C" . org-shifttab)
+                                   (" " . org-display-outline-path)
+                                   ("s" . org-toggle-narrow-to-subtree)
+                                   ("k" . org-cut-subtree)
+                                   ("=" . org-columns)
+                                   ("Outline Structure Editing")
+                                   ("U" . org-metaup)
+                                   ("D" . org-metadown)
+                                   ("r" . org-metaright)
+                                   ("l" . org-metaleft)
+                                   ("R" . org-shiftmetaright)
+                                   ("L" . org-shiftmetaleft)
+                                   ("i" progn
+                                    (forward-char 1)
+                                    (call-interactively 'org-insert-heading-respect-content))
+                                   ("^" . org-sort)
+                                   ("w" . org-refile)
+                                   ("a" . org-archive-subtree-default-with-confirmation)
+                                   ("@" . org-mark-subtree)
+                                   ("#" . org-toggle-comment)
+                                   ("Clock Commands")
+                                   ("I" . org-clock-in)
+                                   ("O" . org-clock-out)
+                                   ("Meta Data Editing")
+                                   ("t" . org-todo)
+                                   ("," org-priority)
+                                   ("0" org-priority 32)
+                                   ("1" org-priority 65)
+                                   ("2" org-priority 66)
+                                   ("3" org-priority 67)
+                                   (":" . org-set-tags-command)
+                                   ("e" . org-set-effort)
+                                   ("E" . org-inc-effort)
+                                   ("W" lambda
+                                    (m)
+                                    (interactive "sMinutes before warning: ")
+                                    (org-entry-put
+                                     (point)
+                                     "APPT_WARNTIME" m))
+                                   ("Agenda Views etc")
+                                   ("v" . org-agenda)
+                                   ("/" . org-sparse-tree)
+                                   ("Misc")
+                                   ("o" . org-open-at-point)
+                                   ("?" . org-speed-command-help)
+                                   ("<" org-agenda-set-restriction-lock 'subtree)
+                                   (">" org-agenda-remove-restriction-lock))
+         )
+ #+end_src
 ** Org-Mode appearance
 *** Toc-org
 #+begin_src emacs-lisp :tangle yes
