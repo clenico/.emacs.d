@@ -180,6 +180,17 @@ For a better user experience of GNU Emacs, here are the default values I use.
     (interactive)
     (scroll-down (window-half-height)))
 
+  (defun scroll-other-up-half ()
+    (interactive)
+    (scroll-other-window (window-half-height)))
+
+  (defun scroll-other-down-half ()
+    (interactive)
+    (scroll-other-window-down (window-half-height)))
+
+  (global-set-key (kbd "H-o") 'scroll-other-up-half)
+  (global-set-key (kbd "H-p") 'scroll-other-down-half)
+
   (global-set-key (kbd "C-v") 'scroll-up-half)
   (global-set-key (kbd "M-v") 'scroll-down-half)
 #+end_src
