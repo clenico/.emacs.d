@@ -1618,7 +1618,18 @@ package-manage)
   (use-package ob-shell :ensure nil :after org)
   (use-package ob-sql :ensure nil :after org)
 #+end_src
-
+** Custom function
+*** TODO Org copy block
+  #+begin_src emacs-lisp :tangle yes
+    (defun org-copy-blocks ()
+      (interactive)
+      (let ((code ""))
+        (save-restriction
+          (org-narrow-to-subtree)
+          (org-babel-map-src-blocks nil
+            (setq code (concat code (org-no-properties body)))))
+        (kill-new code)))
+  #+end_src
 * Advanced configurations
 ** Alert
 
