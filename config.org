@@ -32,6 +32,7 @@
   - [[#add-on][Add On]]
   - [[#export][Export]]
   - [[#language-compilation][Language compilation]]
+  - [[#custom-function][Custom function]]
 - [[#advanced-configurations][Advanced configurations]]
   - [[#alert][Alert]]
   - [[#auto-completion][Auto-Completion]]
@@ -51,6 +52,7 @@
   - [[#revealjs][Reveal.js]]
   - [[#utility-functions][Utility functions]]
   - [[#plantuml-mode][PlantUML-mode]]
+- [[#to-sort][To Sort]]
 
 * Acknowledgement
   My configuration is mainly based on many other peoples configuration. Thank
@@ -1151,7 +1153,7 @@ Replace the stock package list manager with a more modern one
 #+end_src
 
 *** Version Control
-**** TODO Magit
+**** Magit
 #+begin_src emacs-lisp :tangle yes
   (use-package magit
     :defer 0.3
@@ -1272,26 +1274,14 @@ Colorize colors as text with their value.
 
 ** Specific mode settings
 *** Python
-#+begin_src emacs-lisp :tangle yes
-  (setq py-python-command "python3")
-  (setq python-shell-interpreter "python3")
-
+#+begin_src emacs-lisp :tangle no
   (use-package elpy
     :ensure t
-    :custom (elpy-rpc-backend "jedi")
-    :config
-    (advice-add 'python-mode :before 'elpy-enable))
-
-  (use-package virtualenvwrapper
-    :ensure t
-    :config
-    (venv-initialize-interactive-shells)
-    (venv-initialize-eshell))
-
+    :init
+    (elpy-enable))
 #+end_src
 
 #+RESULTS:
-: t
 
 *** TODO RestClient-mode
 
