@@ -678,18 +678,20 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 Flyspell provides on-the-fly checking and highlighting of misspellings.
      #+begin_src emacs-lisp :tangle yes
        (use-package flyspell
-	 :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
-		(prog-mode . flyspell-prog-mode)
-	 :custom
-	 (flyspell-abbrev-p t)
-	 (flyspell-default-dictionary "en_US")
-	 (flyspell-issue-message-flag nil)
-	 (flyspell-issue-welcome-flag nil))
+         :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
+         (prog-mode . flyspell-prog-mode)
+         :custom
+         (flyspell-abbrev-p t)
+         (flyspell-default-dictionary "en_US")
+         (flyspell-issue-message-flag nil)
+         (flyspell-issue-welcome-flag nil))
 
-       ;; (use-package flyspell-correct-ivy
-       ;;   :after (flyspell ivy)
-       ;;   :init (setq flyspell-correct-interface #'flyspell-correct-ivy))
+       (use-package flyspell-correct-ivy
+         :after (flyspell ivy)
+         :init (setq flyspell-correct-interface #'flyspell-correct-ivy))
 #+end_src
+
+#+RESULTS:
 
 **** Ispell
 Handles spell-checking and correction.
