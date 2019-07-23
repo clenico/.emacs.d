@@ -726,7 +726,7 @@ Replace the stock package list manager with a more modern one
 #+RESULTS:
 : which-key-show-top-level
 
-*** Ivy Counsel
+*** Ivy Counsel Swiper
 #+begin_src emacs-lisp :tangle yes
   (use-package ivy-rich
     :init
@@ -954,11 +954,23 @@ Replace the stock package list manager with a more modern one
 
   (use-package swiper
     :after ivy
-    :bind (("C-s" . swiper)
+    :preface
+    (defun swiper-region ()
+      "If region is selected, `swiper' with the keyword selected in region.
+  If the region isn't selected, `swiper'."
+      (interactive)
+      (if (not (use-region-p))
+          (swiper)
+        (deactivate-mark)
+        (swiper (buffer-substring-no-properties
+                 (region-beginning) (region-end)))))
+
+    :bind (("C-s" . swiper-region)
            :map swiper-map
            ("M-%" . swiper-query-replace)))
 
   (use-package smex)
+
 #+end_src
 
 #+RESULTS:
