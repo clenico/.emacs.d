@@ -1191,6 +1191,29 @@ Replace the stock package list manager with a more modern one
     :bind ("M-y" . popup-kill-ring))
 #+end_src
 
+*** TODO COMMENT Linters
+#+begin_src emacs-lisp :tangle yes
+  (use-package flycheck
+    :defer 2
+    :delight
+    :init (global-flycheck-mode)
+    :custom
+    (flycheck-display-errors-delay .3)
+    ;; (flycheck-pylintrc "~/.pylintrc")
+    ;; (flycheck-python-pylint-executable "/usr/bin/pylint")
+    ;; (flycheck-stylelintrc "~/.stylelintrc.json")
+    ;; :config
+    ;; (flycheck-add-mode 'javascript-eslint 'web-mode)
+    ;; (flycheck-add-mode 'typescript-tslint 'web-mode)
+    )
+  ;; (use-package flycheck-popup-tip
+  ;;   :after flycheck
+  ;;   :hook flycheck-mode)
+#+end_src
+
+#+RESULTS:
+| flycheck-popup-tip | doom-modeline-update-flycheck-text | doom-modeline-update-flycheck-icon | flycheck-mode-set-explicitly |
+
 ** Projects
 *** Projectile
 
@@ -1458,7 +1481,6 @@ Colorize colors as text with their value.
   (setq web-mode-css-indent-offset 2))
 #+end_src
 
-** TODO Linters
 ** Snippets
 *** YASnippet
 #+begin_src emacs-lisp :tangle yes
