@@ -1673,7 +1673,9 @@ Edit the code blocks in the same window
        ("j" "Journal" entry (file+datetree "~/Org/Journal/journal.org")
         ""
         :empty-lines 1)
-       )))
+       ))
+    :bind
+    ("H-c" . org-capture))
 #+end_src
 
 #+RESULTS:
