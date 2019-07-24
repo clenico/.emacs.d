@@ -1190,14 +1190,14 @@ Replace the stock package list manager with a more modern one
     :bind ("M-y" . popup-kill-ring))
 #+end_src
 
-*** TODO COMMENT Linters
+*** TODO Linters
 #+begin_src emacs-lisp :tangle yes
   (use-package flycheck
     :defer 2
     :delight
     :init (global-flycheck-mode)
     :custom
-    (flycheck-display-errors-delay .3)
+    (flycheck-display-errors-delay 1)
     ;; (flycheck-pylintrc "~/.pylintrc")
     ;; (flycheck-python-pylint-executable "/usr/bin/pylint")
     ;; (flycheck-stylelintrc "~/.stylelintrc.json")
