@@ -1282,10 +1282,21 @@ Help in resolving merge conflicts
 **** Git-gutter
 Show add, modification, delete on the side of a versioned file
 #+begin_src emacs-lisp :tangle yes
- (use-package git-gutter
+  (use-package git-gutter
     :defer 0.3
-    :init (global-git-gutter-mode ))
+    :preface
+    (defun git-gutter:popup-hunk-other-windows()
+      (interactive)
+      (git-gutter:popup-hunk)
+      (other-window 1))
+    :init (global-git-gutter-mode )
+    :bind (
+           ("C-:" . git-gutter:popup-hunk-other-windows)
+           ))
 #+end_src
+
+#+RESULTS:
+: git-gutter:popup-hunk-other-windows
 
 **** Git-timemachine
 #+begin_src emacs-lisp :tangle yes
