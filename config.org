@@ -1451,7 +1451,7 @@ Colorize colors as text with their value.
     "Simple mode for xmodmap files.")
 #+end_src
 
-*** TODO LaTeX
+*** LaTeX
 #+begin_src emacs-lisp :tangle yes
   (use-package tex
     :ensure auctex
