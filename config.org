@@ -736,6 +736,7 @@ Ensure to install the hunspell before using the package.
          :defer 2
          :delight
          :custom
+         (langtool-java-bin "/usr/bin/java")
          (langtool-default-language "en")
          (langtool-disabled-rules '("COMMA_PARENTHESIS_WHITESPACE"
                                     "COPYRIGHT"
