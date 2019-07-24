@@ -2293,3 +2293,5 @@ Since it's quite difficult to remember all the shortcuts. Hydra gives you the op
   (setq plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
   (setq plantuml-output-type "utxt")
 #+end_src
+
+* To Sort
