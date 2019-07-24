@@ -1205,13 +1205,13 @@ Replace the stock package list manager with a more modern one
     ;; (flycheck-add-mode 'javascript-eslint 'web-mode)
     ;; (flycheck-add-mode 'typescript-tslint 'web-mode)
     )
+
   ;; (use-package flycheck-popup-tip
   ;;   :after flycheck
   ;;   :hook flycheck-mode)
 #+end_src
 
 #+RESULTS:
-| flycheck-popup-tip | doom-modeline-update-flycheck-text | doom-modeline-update-flycheck-icon | flycheck-mode-set-explicitly |
 
 ** Projects
 *** Projectile
