@@ -1674,13 +1674,13 @@ Edit the code blocks in the same window
   :END:
   Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
 
-    (defvar my/org-contacts-template "* %(org-contacts-template-name)
-  :PROPERTIES:
-  :ADDRESS: %^{289 Cleveland St. Brooklyn, 11206 NY, USA}
-  :BIRTHDAY: %^{yyyy-mm-dd}
-  :EMAIL: %(org-contacts-template-email)
-  :NOTE: %^{NOTE}
-  :END:" "Template for org-contacts.")
+  ;;   (defvar my/org-contacts-template "* %(org-contacts-template-name)
+  ;; :PROPERTIES:
+  ;; :ADDRESS: %^{289 Cleveland St. Brooklyn, 11206 NY, USA}
+  ;; :BIRTHDAY: %^{yyyy-mm-dd}
+  ;; :EMAIL: %(org-contacts-template-email)
+  ;; :NOTE: %^{NOTE}
+  ;; :END:" "Template for org-contacts.")
 
     (defvar my/org-ledger-card-template "%(org-read-date) %^{Payee}
     Expenses:%^{Account}  €%^{Amount}
@@ -1706,9 +1706,9 @@ Edit the code blocks in the same window
         "- [ ] %^{Item}"
         :immediate-finish t)
 
-       ("c" "Contact" entry (file+headline "~/Org/agenda/contacts.org" "Friends"),
-        my/org-contacts-template
-        :empty-lines 1)
+       ;; ("c" "Contact" entry (file+headline "~/Org/agenda/contacts.org" "Friends"),
+       ;;  my/org-contacts-template
+       ;;  :empty-lines 1)
 
        ("l" "Ledger")
 
@@ -1746,7 +1746,7 @@ Edit the code blocks in the same window
 #+end_src
 
 #+RESULTS:
-**** Org Contact
+**** COMMENT Org Contact
 #+begin_src emacs-lisp :tangle yes
   (use-package org-contacts
     :ensure nil
@@ -1754,7 +1754,7 @@ Edit the code blocks in the same window
     :custom (org-contacts-files '("~/.personal/agenda/contacts.org")))
 #+end_src
 
-*** Agenda
+*** COMMENT Agenda
 #+begin_src emacs-lisp :tangle yes
   (global-set-key (kbd "C-c a") 'org-agenda)
 
