@@ -2022,11 +2022,17 @@ A company front-end with icons.
     :after ibuffer)
   (use-package ibuffer-git
     :after ibuffer)
+  (use-package ibuffer-projectile
+    :after ibuffer
+    :preface
+    (defun my/ibuffer-projectile ()
+      (ibuffer-projectile-set-filter-groups)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+        (ibuffer-do-sort-by-alphabetic)))
+    :hook (ibuffer . my/ibuffer-projectile))
 #+end_src
 
-#+RESULTS:
 *** Protection against deletion
-
 #+begin_src emacs-lisp :tangle yes
   (when (get-buffer "*scratch*")
   (with-current-buffer "*scratch*"
