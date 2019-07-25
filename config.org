@@ -1377,7 +1377,18 @@ Colorize colors as text with their value.
 #+end_src
 
 ** Specific mode settings
-*** Python
+
+*** CSS – LESS – SCSS
+    #+begin_src emacs-lisp :tangle yes
+      (use-package css-mode
+        :custom (css-indent-offset 2))
+
+      (use-package less-css-mode
+        :mode "\\.less\\'")
+
+      (use-package scss-mode
+        :mode "\\.scss\\'")
+    #+end_src
 #+begin_src emacs-lisp :tangle yes
   (setq py-python-command "python3")
   (setq python-shell-interpreter "python3")
