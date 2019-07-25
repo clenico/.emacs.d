@@ -1389,30 +1389,81 @@ Colorize colors as text with their value.
       (use-package scss-mode
         :mode "\\.scss\\'")
     #+end_src
+*** CSV
 #+begin_src emacs-lisp :tangle yes
-  (setq py-python-command "python3")
-  (setq python-shell-interpreter "python3")
-
-  (use-package elpy
-    :ensure t
-    :custom (elpy-rpc-backend "jedi")
-    :config
-    (advice-add 'python-mode :before 'elpy-enable))
-
-  (use-package virtualenvwrapper
-    :ensure t
-    :config
-    (venv-initialize-interactive-shells)
-    (venv-initialize-eshell))
-
+  (use-package csv-mode
+    :bind(
+          ("<f6>" . csv-menu)
+          ))
 #+end_src
 
 #+RESULTS:
-: t
+: csv-menu
+*** Lua
+#+begin_src emacs-lisp :tangle yes
+  (use-package lua-mode
+    :delight "Λ "
+    :mode "\\.lua\\'"
+    :interpreter ("lua" . lua-mode))
+#+end_src
+*** SQL
+    #+begin_src emacs-lisp :tangle yes
+      (use-package sql-indent
+        :hook sql-mode)
+
+      (use-package sqlup-mode
+        :hook sql-mode)
+    #+end_src
+*** JSON
+#+begin_src emacs-lisp :tangle yes
+  (use-package json-mode
+    :delight "J "
+    :mode "\\.json\\'"
+    :hook (before-save . my/json-mode-before-save-hook)
+    :preface
+    (defun my/json-mode-before-save-hook ()
+      (when (eq major-mode 'json-mode)
+        (json-pretty-print-buffer))))
+
+  (defun my/json-array-of-numbers-on-one-line (encode array)
+    "Prints the arrays of numbers in one line."
+    (let* ((json-encoding-pretty-print
+            (and json-encoding-pretty-print
+                 (not (loop for x across array always (numberp x)))))
+           (json-encoding-separator (if json-encoding-pretty-print "," ", ")))
+      (funcall encode array)))
+  :config
+  (advice-add 'json-encode-array :around #'my/json-array-of-numbers-on-one-line)
+#+end_src
+*** Docker
+    #+begin_src emacs-lisp :tangle yes
+      (use-package dockerfile-mode
+        :mode "Dockerfile\\'")
+    #+end_src
+
+*** Emacs-lisp
+    #+begin_src emacs-lisp :tangle yes
+      (use-package eldoc
+        :delight
+        :hook (emacs-lisp-mode . eldoc-mode))
+    #+end_src
+
+    #+RESULTS:
+    | eldoc-mode | ert--activate-font-lock-keywords | aggressive-indent-mode |
+
+*** Python
+#+begin_src emacs-lisp :tangle no
+  (use-package elpy
+    :ensure t
+    :init
+    (elpy-enable))
+#+end_src
+
+#+RESULTS:
 
 *** TODO RestClient-mode
 
-*** TODO COMMENT Cmake
+*** TODO COMMENT Make
     must learn the cmake-ide package
 #+begin_src emacs-lisp :tangle yes
   ;; define files for which to enable cmake mode
