@@ -47,11 +47,11 @@
   - [[#try][Try]]
   - [[#undo-tree][Undo-tree]]
   - [[#wiki-summary][Wiki-summary]]
-  - [[#irc][IRC]]
   - [[#recent-files][Recent Files]]
   - [[#revealjs][Reveal.js]]
   - [[#utility-functions][Utility functions]]
   - [[#plantuml-mode][PlantUML-mode]]
+  - [[#pkg-info][Pkg-Info]]
 - [[#to-sort][To Sort]]
 
 * Acknowledgement
