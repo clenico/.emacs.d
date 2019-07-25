@@ -696,6 +696,7 @@ Flyspell provides on-the-fly checking and highlighting of misspellings.
 **** Ispell
 Handles spell-checking and correction.
 Ensure to install the hunspell before using the package.
+Should be used in parallel with Flyspell to show a graphic feedback.
 #+begin_src emacs-lisp :tangle yes
   (use-package ispell
   :defer 2
