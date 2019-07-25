@@ -2217,7 +2217,7 @@ Since it's quite difficult to remember all the shortcuts. Hydra gives you the op
 
   (advice-add 'wiki-summary/format-summary-in-buffer :override #'my/format-summary-in-buffer)
 #+end_src
-** TODO IRC
+
 ** Recent Files
 #+begin_src emacs-lisp :tangle yes
   (use-package recentf
