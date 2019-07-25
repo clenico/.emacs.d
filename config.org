@@ -1817,12 +1817,11 @@ Edit the code blocks in the same window
     :custom (org-contacts-files '("~/.personal/agenda/contacts.org")))
 #+end_src
 
-*** COMMENT Agenda
+*** Agenda
 #+begin_src emacs-lisp :tangle yes
   (global-set-key (kbd "C-c a") 'org-agenda)
 
-  (setq org-agenda-files (quote ("~/Org/refile.org"
-                                 "~/Org/testAutre.org")))
+  (setq org-agenda-files (quote ("~/Org/agenda/organizer.org")))
 
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)"  "|" "DONE(d)" "CANCELED(c@/!)")
