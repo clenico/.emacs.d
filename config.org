@@ -2052,7 +2052,7 @@ A company front-end with icons.
 #+end_src
 #+RESULTS:
 : kill
-** Calculator
+** TODO Calculator
 Adding some usefull unit calculation
 #+begin_src emacs-lisp :tangle yes
   (use-package calc
