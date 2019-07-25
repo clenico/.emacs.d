@@ -1463,7 +1463,23 @@ Colorize colors as text with their value.
 
 *** TODO RestClient-mode
 
-*** TODO COMMENT Make
+*** TODO Gradle
+    #+begin_src emacs-lisp :tangle yes
+      (use-package gradle-mode
+        :mode ("\\.java\\'" "\\.gradle\\'")
+        :bind (:map gradle-mode-map
+                    ("C-c C-c" . gradle-build)
+                    ("C-c C-t" . gradle-test))
+        :preface
+        (defun my/switch-to-compilation-window ()
+          "Switches to the *compilation* buffer after compilation."
+          (other-window 1))
+        :config
+        (advice-add 'gradle-build :after #'my/switch-to-compilation-window)
+        (advice-add 'gradle-test :after #'my/switch-to-compilation-window))
+    #+end_src
+
+*** TODO COMMENT cmake
     must learn the cmake-ide package
 #+begin_src emacs-lisp :tangle yes
   ;; define files for which to enable cmake mode
