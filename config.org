@@ -2276,7 +2276,7 @@ Since it's quite difficult to remember all the shortcuts. Hydra gives you the op
            (with-current-buffer (url-retrieve-synchronously "https://api.ipify.org")
              (buffer-substring (+ 1 url-http-end-of-headers) (point-max)))))
 #+end_src
-
+*** TODO my/hydra-window
 #+begin_src emacs-lisp :tangle yes
 (global-set-key
  (kbd "M-o")
