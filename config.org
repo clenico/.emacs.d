@@ -1581,7 +1581,6 @@ Colorize colors as text with their value.
        ("t" json-toggle-boolean "Toggle true falce (C-c C-t)")
        ("k" json-nullify-sexp "Set current expression to null (C-c C-k)")
        ("i" json-increment-number-at-point "Increment the number at point (C-c C-i)")
-       ("a" (insert "a") "b" :color red)
        ("d" json-decrement-number-at-point "Decrement the number at point (C-c C-d)")))))
 #+end_src
 
