@@ -1403,27 +1403,6 @@ Colorize colors as text with their value.
       (use-package sqlup-mode
         :hook sql-mode)
     #+end_src
-*** JSON
-#+begin_src emacs-lisp :tangle yes
-  (use-package json-mode
-    :delight "J "
-    :mode "\\.json\\'"
-    :hook (before-save . my/json-mode-before-save-hook)
-    :preface
-    (defun my/json-mode-before-save-hook ()
-      (when (eq major-mode 'json-mode)
-        (json-pretty-print-buffer))))
-
-  (defun my/json-array-of-numbers-on-one-line (encode array)
-    "Prints the arrays of numbers in one line."
-    (let* ((json-encoding-pretty-print
-            (and json-encoding-pretty-print
-                 (not (loop for x across array always (numberp x)))))
-           (json-encoding-separator (if json-encoding-pretty-print "," ", ")))
-      (funcall encode array)))
-  :config
-  (advice-add 'json-encode-array :around #'my/json-array-of-numbers-on-one-line)
-#+end_src
 *** Docker
     #+begin_src emacs-lisp :tangle yes
       (use-package dockerfile-mode
@@ -1572,6 +1551,43 @@ Colorize colors as text with their value.
               (setq TeX-save-query nil)
               (setq TeX-show-compilation t)))
 #+end_src
+
+*** JSON
+#+begin_src emacs-lisp :tangle yes
+  (major-mode-hydra)
+  (use-package json-mode
+    :delight "J "
+    :mode "\\.json\\'"
+    :hook (before-save . my/json-mode-before-save-hook)
+    :preface
+    (defun my/json-mode-before-save-hook ()
+      (when (eq major-mode 'json-mode)
+        (json-pretty-print-buffer)))
+
+    (defun my/json-array-of-numbers-on-one-line (encode array)
+      "Prints the arrays of numbers in one line."
+      (let* ((json-encoding-pretty-print
+              (and json-encoding-pretty-print
+                   (not (loop for x across array always (numberp x)))))
+             (json-encoding-separator (if json-encoding-pretty-print "," ", ")))
+        (funcall encode array)))
+    :config
+    (advice-add 'json-encode-array :around #'my/json-array-of-numbers-on-one-line)
+    :mode-hydra
+    ((:hint nil :color red)
+     ("help screen"
+      (("f" json-mode-beautifyjson-reformat "Format region/buffer (C-c C-f)")
+       ("p" json-mode-show-path "Display path to the object at point (C-c C-p:)")
+       ("P" json-mode-kill-path "Copy path to the object to kill ring (C-c P)")
+       ("t" json-toggle-boolean "Toggle true falce (C-c C-t)")
+       ("k" json-nullify-sexp "Set current expression to null (C-c C-k)")
+       ("i" json-increment-number-at-point "Increment the number at point (C-c C-i)")
+       ("a" (insert "a") "b" :color red)
+       ("d" json-decrement-number-at-point "Decrement the number at point (C-c C-d)")))))
+#+end_src
+
+#+RESULTS:
+: major-mode-hydras/json-mode/body
 
 ** Web-mode
 #+begin_src emacs-lisp :tangle yes
