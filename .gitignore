@@ -1,7 +1,6 @@
 *.cache
 *.auto-save-list
 elpa
-snippets
 transient
 config.el
 config.org.old
