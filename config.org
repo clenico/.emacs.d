@@ -1476,8 +1476,7 @@ Colorize colors as text with their value.
     :config (advice-add 'cmake-ide-compile :after #'my/switch-to-compilation-window))
 #+end_src
 
-
-*** Markdown
+*** COMMENT Markdown
 #+begin_src emacs-lisp :tangle yes
   (use-package flymd)
 #+end_src
