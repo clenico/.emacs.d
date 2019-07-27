@@ -42,7 +42,6 @@
   - [[#dashboard][Dashboard]]
   - [[#dired][Dired]]
   - [[#history][History]]
-  - [[#hydra][Hydra]]
   - [[#draw-graphics][Draw graphics]]
   - [[#try][Try]]
   - [[#undo-tree][Undo-tree]]
