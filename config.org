@@ -2354,3 +2354,22 @@ Adding some usefull unit calculation
    : t
 
 * To Sort
+** switch mode
+   #+begin_src emacs-lisp :tangle yes
+     (pretty-hydra-define my/hydra-switch-mode
+       (:hint nil :foreign-keys warn :title "switch-mode" :quit-key "q" :color blue)
+       ("Programming"
+        (("el" emacs-lisp-mode "emacs-lisp")
+         ("py" python-mode "python")
+         ("cpp" c++-mode "C++")
+         ("cc" func "C")
+         ("md" markdown-mode "markdown")
+         ("jn" json-mode "JSON")
+         ("ltx" TeX-latex-mode "LaTeX")
+         ("O" org-mode "Org-mode"))))
+
+     (global-set-key (kbd "H-m") 'my/hydra-switch-mode/body)
+   #+end_src
+
+   #+RESULTS:
+   : my/hydra-switch-mode/body
