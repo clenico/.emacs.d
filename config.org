@@ -1573,15 +1573,15 @@ Colorize colors as text with their value.
     :config
     (advice-add 'json-encode-array :around #'my/json-array-of-numbers-on-one-line)
     :mode-hydra
-    ((:hint nil :color red)
+    ((:hint nil)
      ("help screen"
       (("f" json-mode-beautifyjson-reformat "Format region/buffer (C-c C-f)")
        ("p" json-mode-show-path "Display path to the object at point (C-c C-p:)")
        ("P" json-mode-kill-path "Copy path to the object to kill ring (C-c P)")
-       ("t" json-toggle-boolean "Toggle true falce (C-c C-t)")
+       ("t" json-toggle-boolean "Toggle true falce (C-c C-t)" :color red)
        ("k" json-nullify-sexp "Set current expression to null (C-c C-k)")
-       ("i" json-increment-number-at-point "Increment the number at point (C-c C-i)")
-       ("d" json-decrement-number-at-point "Decrement the number at point (C-c C-d)")))))
+       ("i" json-increment-number-at-point "Increment the number at point (C-c C-i)" :color red)
+       ("d" json-decrement-number-at-point "Decrement the number at point (C-c C-d)" :color red)))))
 #+end_src
 
 #+RESULTS:
