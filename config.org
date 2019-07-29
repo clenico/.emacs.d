@@ -1560,7 +1560,6 @@ Colorize colors as text with their value.
 
 *** JSON
 #+begin_src emacs-lisp :tangle yes
-  (major-mode-hydra)
   (use-package json-mode
     :delight "J "
     :mode "\\.json\\'"
