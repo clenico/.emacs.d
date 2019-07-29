@@ -1189,8 +1189,8 @@ Replace the stock package list manager with a more modern one
 
      (defun with-octicon (icon str &optional height v-adjust)
        "Displays an icon from the GitHub Octicons."
-       (s-concat (all-the-icons-octicon icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str))
-     )
+       (s-concat (all-the-icons-octicon icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str)))
+   (major-mode-hydra)
  #+end_src
 
 **** hydra-Launcher
