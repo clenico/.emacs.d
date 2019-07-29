@@ -371,26 +371,6 @@ C-c right : redo
   (global-set-key (kbd "C-c yy") 'copy-line)
 #+end_src
 
-**** ci Vim equivalent
-#+begin_src emacs-lisp :tangle yes
-  (defun seek-backward-to-char (chr)
-    "Seek backwards to a character"
-    (interactive "cSeek back to char: ")
-    (while (not (= (char-after) chr))
-      (forward-char -1)))
-
-
-  (defun delete-between-pair (char)
-    "Delete in between the given pair"
-    (interactive "cDelete between char: ")
-    (seek-backward-to-char char)
-    (forward-char 1)
-    (zap-to-char 1 char)
-    (insert char)
-    (forward-char -1))
-
-  (global-set-key (kbd "C-c ci") 'delete-between-pair)
-#+end_src
 **** Kill line
 #+begin_src emacs-lisp :tangle yes
   (global-set-key (kbd "C-c dd") 'kill-whole-line)
@@ -483,6 +463,13 @@ Edit multiple regions in the same way simultaneously
     :bind
     ("C-c su" . sudo-edit))
 #+end_src
+*** TODO COMMENT Ciel
+    Ci vim equivalent
+       #+begin_src emacs-lisp :tangle yes
+         (use-package ciel
+           :bind (("C-c i" . ciel-ci)
+                  ("C-c o" . ciel-co)))
+       #+end_src
 
 ** Customization
 *** Change custom file location
