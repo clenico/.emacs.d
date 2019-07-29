@@ -1295,8 +1295,14 @@ Show add, modification, delete on the side of a versioned file
 **** Git-timemachine
 #+begin_src emacs-lisp :tangle yes
   (use-package git-timemachine
-    :defer 1)
+    :defer 1
+    :bind(
+          :map git-timemachine-mode-map
+          ("M-SPC" . git-timemachine-help)))
 #+end_src
+
+#+RESULTS:
+: git-timemachine-help
 
 ** File Manager
 *** Ranger
