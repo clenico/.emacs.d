@@ -471,6 +471,34 @@ Edit multiple regions in the same way simultaneously
        (setq zzz-to-char-reach 800)
        :bind ("M-Z" . zzz-up-to-char))
    #+end_src
+*** TODO COMMENT Viking-mode
+    This mode create several actions when pressing several time de C-d might
+    take a look at this as well
+       #+begin_src emacs-lisp :tangle yes
+         (use-package viking-mode
+           :diminish viking-mode
+           :config
+           (viking-global-mode)
+           (setq viking-greedy-kill nil)
+           (setq viking-enable-region-kill t)
+           (setq viking-kill-functions (list '(lambda()
+                                                (if (region-active-p)
+                                                    (kill-region (region-beginning) (region-end))
+                                                  (delete-char 1 t)))
+                                             '(lambda()
+                                                (insert (pop kill-ring)) ;; insert the char back
+                                                (kill-new "") ;; start a new entry in the kill-ring
+                                                (viking-kill-word)
+                                                (kill-append " " nil)) ;; append the extra space
+                                             'viking-kill-line-from-point
+                                             'viking-kill-line
+                                             'viking-kill-paragraph
+                                             'viking-kill-buffer))
+           :bind("C-D" . viking-kill-thing-at-point))
+       #+end_src
+
+       #+RESULTS:
+       : t
 *** TODO COMMENT Ciel
     Ci vim equivalent
        #+begin_src emacs-lisp :tangle yes
