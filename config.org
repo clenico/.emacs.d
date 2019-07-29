@@ -1033,15 +1033,16 @@ Replace the stock package list manager with a more modern one
         (deactivate-mark)
         (swiper (buffer-substring-no-properties
                  (region-beginning) (region-end)))))
-
     :bind (("C-s" . swiper-region)
            :map swiper-map
-           ("M-%" . swiper-query-replace)))
+           ("M-r" . swiper-query-replace)
+           ("M-a" . swiper-all-query-replace)))
 
   (use-package smex)
 
 #+end_src
 
+#+RESULTS:
 **** TODO Password
 #+begin_src emacs-lisp :tangle yes
   ;; (use-package ivy-pass
