@@ -1708,12 +1708,15 @@ Colorize colors as text with their value.
     (yas-global-mode 1)
     :bind("H-c" . ivy-yasnippet))
 
-  (use-package ivy-yasnippet :after yasnippet)
+  (use-package ivy-yasnippet :after yasnippet
+    :bind ("H-e" . ivy-yasnippet))
   (use-package react-snippets :after yasnippet)
 
   ;; used for creating local snippets or persistant snippets
   (use-package auto-yasnippet )
 #+end_src
+
+#+RESULTS:
 
 * Org-Mode
 ** Org better defaults
