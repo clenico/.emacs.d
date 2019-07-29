@@ -463,6 +463,13 @@ Edit multiple regions in the same way simultaneously
     :bind
     ("C-c su" . sudo-edit))
 #+end_src
+*** zzz-to-char
+   #+begin_src emacs-lisp :tangle yes
+     (use-package zzz-to-char
+       :config
+       (setq zzz-to-char-reach 800)
+       :bind ("M-Z" . zzz-up-to-char))
+   #+end_src
 *** TODO COMMENT Ciel
     Ci vim equivalent
        #+begin_src emacs-lisp :tangle yes
