@@ -1036,7 +1036,6 @@ Replace the stock package list manager with a more modern one
     :bind (("C-s" . swiper-region)
            :map swiper-map
            ("M-r" . swiper-query-replace)
-           ("M-a" . swiper-all-query-replace)))
 
   (use-package smex)
 
@@ -1049,6 +1048,16 @@ Replace the stock package list manager with a more modern one
   ;;   :after ivy
   ;;   :commands ivy-pass)
 #+end_src
+
+
+*** TODO COMMENT anzu
+[[https://github.com/syohex/emacs-anzu][anzu]] is a package that makes it easy to proceed text replacement. I may add
+it later to replace swiper for that usage.
+   #+begin_src emacs-lisp :tangle yes
+     (use-package anzu
+       :config (global-anzu-mode +1)
+       (setq anzu-mode-lighter ""))
+   #+end_src
 
 *** Reserch and Replace
 #+begin_src emacs-lisp :tangle yes
