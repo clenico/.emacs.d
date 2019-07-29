@@ -331,6 +331,12 @@ C-c right : redo
     :config (winner-mode 1))
 #+end_src
 ** Edition
+*** Better editing default
+   #+begin_src emacs-lisp :tangle yes
+     (add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+   #+end_src
+
 *** Improve built in functions
 **** Kill Word
 #+begin_src emacs-lisp :tangle yes
