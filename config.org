@@ -1716,8 +1716,6 @@ Colorize colors as text with their value.
   (use-package auto-yasnippet )
 #+end_src
 
-#+RESULTS:
-
 * Org-Mode
 ** Org better defaults
 Edit the code blocks in the same window
@@ -1727,6 +1725,9 @@ Edit the code blocks in the same window
   (setq org-startup-with-latex-preview t)
   (setq org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar")
   (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
+  (setq org-startup-with-inline-images t)
+
+  (add-hook 'org-mode 'turn-on-auto-fill)
 #+end_src
 
 *** Org speed command
