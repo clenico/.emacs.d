@@ -1453,6 +1453,16 @@ Colorize colors as text with their value.
 #+begin_src emacs-lisp :tangle yes
 (global-set-key [remap kill-buffer] #'kill-this-buffer)
 #+end_src
+*** Prog-Fill
+    This package helps keeping a code that doesn't expand too much vertically by
+    adding breaklines after each ->, (), . etc ... depending on the language
+   #+begin_src emacs-lisp :tangle yes
+     (use-package prog-fill
+       :bind ("M-Q" . prog-fill))
+   #+end_src
+
+   #+RESULTS:
+   : prog-fill
 
 ** Specific mode settings
 
