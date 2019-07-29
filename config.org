@@ -460,6 +460,7 @@ Edit multiple regions in the same way simultaneously
 #+begin_src emacs-lisp :tangle yes
   (use-package sudo-edit
     :ensure t
+    :config (sudo-edit-indicator-mode t)
     :bind
     ("C-c su" . sudo-edit))
 #+end_src
