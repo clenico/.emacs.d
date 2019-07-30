@@ -74,6 +74,7 @@
                            ("melpa" . "http://melpa.org/packages/")
                            ("org" . "http://orgmode.org/elpa/")))
 #+end_src
+
 ** Install use-package
  If use-package isn't already installed, refresh contents and then install it so
  that the rest of the configuration is easier to maintain.
@@ -137,8 +138,6 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (prefer-coding-system 'utf-8-unix)
 #+end_src
 
-#+RESULTS:
-
 *** Keybindings
 
 **** Unset
@@ -154,9 +153,6 @@ For a better user experience of GNU Emacs, here are the default values I use.
       (global-set-key (kbd "C-z") 'z-map) ;; was C-1
 
     #+end_src
-
-    #+RESULTS:
-    : z-map
 ***** Functions
    #+begin_src emacs-lisp :tangle yes
      (defun backward-paragraph-bracket()
@@ -231,9 +227,6 @@ For a better user experience of GNU Emacs, here are the default values I use.
     :config
     (setq avy-background t))
 #+end_src
-
-#+RESULTS:
-: avy-goto-word-2
 
 *** Matching parentheses
 #+begin_src emacs-lisp :tangle yes
@@ -397,6 +390,7 @@ C-c right : redo
 
   (global-set-key (kbd "C-c cl") 'my/clear)
 #+end_src
+
 **** Toggle case
 #+begin_src emacs-lisp :tangle yes
   (defun xah-toggle-letter-case ()
@@ -432,6 +426,7 @@ C-c right : redo
 
   (global-set-key (kbd "C-x C-u") 'xah-toggle-letter-case)
 #+end_src
+
 *** Iedit
 [[https://github.com/victorhge/iedit][Iedit]]
 Edit multiple regions in the same way simultaneously
@@ -456,6 +451,7 @@ Edit multiple regions in the same way simultaneously
 :config (atomic-chrome-start-server))
 (setq atomic-chrome-buffer-open-style 'frame)
 #+end_src
+
 *** Sudo-edit
 #+begin_src emacs-lisp :tangle yes
   (use-package sudo-edit
@@ -464,6 +460,7 @@ Edit multiple regions in the same way simultaneously
     :bind
     ("C-c su" . sudo-edit))
 #+end_src
+
 *** zzz-to-char
    #+begin_src emacs-lisp :tangle yes
      (use-package zzz-to-char
@@ -471,6 +468,7 @@ Edit multiple regions in the same way simultaneously
        (setq zzz-to-char-reach 800)
        :bind ("M-Z" . zzz-up-to-char))
    #+end_src
+
 *** TODO COMMENT Viking-mode
     This mode create several actions when pressing several time de C-d might
     take a look at this as well
@@ -496,9 +494,6 @@ Edit multiple regions in the same way simultaneously
                                              'viking-kill-buffer))
            :bind("C-D" . viking-kill-thing-at-point))
        #+end_src
-
-       #+RESULTS:
-       : t
 *** TODO COMMENT Ciel
     Ci vim equivalent
        #+begin_src emacs-lisp :tangle yes
@@ -516,6 +511,7 @@ In order to keep the init.el file clean,we specify an other file which should be
   (when (file-exists-p custom-file)
     (load custom-file t))
 #+end_src
+
 *** Modeline
 
 #+begin_src emacs-lisp :tangle no
@@ -1380,9 +1376,6 @@ Show add, modification, delete on the side of a versioned file
           ("M-SPC" . git-timemachine-help)))
 #+end_src
 
-#+RESULTS:
-: git-timemachine-help
-
 ** File Manager
 *** Ranger
 [[https://github.com/ralesi/ranger.el][Ranger]]
@@ -1460,9 +1453,6 @@ Colorize colors as text with their value.
      (use-package prog-fill
        :bind ("M-Q" . prog-fill))
    #+end_src
-
-   #+RESULTS:
-   : prog-fill
 
 ** Specific mode settings
 
@@ -1679,9 +1669,6 @@ Colorize colors as text with their value.
        ("d" json-decrement-number-at-point "Decrement the number at point (C-c C-d)" :color red)))))
 #+end_src
 
-#+RESULTS:
-: major-mode-hydras/json-mode/body
-
 ** Web-mode
 #+begin_src emacs-lisp :tangle yes
 (use-package web-mode
@@ -1797,6 +1784,7 @@ Edit the code blocks in the same window
                                    (">" org-agenda-remove-restriction-lock))
          )
  #+end_src
+
 ** Org-Mode appearance
 *** Toc-org
 #+begin_src emacs-lisp :tangle yes
@@ -1811,6 +1799,7 @@ Edit the code blocks in the same window
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode))
 #+end_src
+
 *** Faces
 #+begin_src emacs-lisp :tangle yes
   (use-package org-faces
@@ -2449,9 +2438,6 @@ Adding some usefull unit calculation
   (engine-mode t))
    #+end_src
 
-   #+RESULTS:
-   : t
-
 * To Sort
 ** switch mode
    #+begin_src emacs-lisp :tangle yes
@@ -2470,9 +2456,6 @@ Adding some usefull unit calculation
 
      (global-set-key (kbd "H-m") 'my/hydra-switch-mode/body)
    #+end_src
-
-   #+RESULTS:
-   : my/hydra-switch-mode/body
 ** COMMENT toggle hydra
    #+begin_src emacs-lisp :tangle yes
      (pretty-hydra-define my/hydra-toggle
@@ -2494,6 +2477,3 @@ Adding some usefull unit calculation
 
      (global-set-key (kbd "C-z b") 'my/hydra-toggle/body)
    #+end_src
-
-   #+RESULTS:
-   : my/hydra-toggle/body
