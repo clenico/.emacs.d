@@ -503,6 +503,15 @@ Edit multiple regions in the same way simultaneously
            :bind (("C-c i" . ciel-ci)
                   ("C-c o" . ciel-co)))
        #+end_src
+*** Multi-cursor
+       #+begin_src emacs-lisp :tangle yes
+         (use-package multiple-cursors
+           :bind (("C-S-c C-S-c" . mc/edit-lines)
+                  ("H-j" . mc/mark-next-like-this)
+                  ("H-k" . mc/mark-previous-like-this)
+                  ("H-A" . mc/mark-all-like-this)
+                  ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
+       #+end_src
 
 ** Customization
 *** Change custom file location
