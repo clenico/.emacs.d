@@ -1042,13 +1042,11 @@ Replace the stock package list manager with a more modern one
                  (region-beginning) (region-end)))))
     :bind (("C-s" . swiper-region)
            :map swiper-map
-           ("M-r" . swiper-query-replace)
+           ("M-r" . swiper-query-replace)))
 
   (use-package smex)
 
 #+end_src
-
-#+RESULTS:
 **** TODO Password
 #+begin_src emacs-lisp :tangle yes
   ;; (use-package ivy-pass
