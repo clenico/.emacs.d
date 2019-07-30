@@ -1453,6 +1453,11 @@ Colorize colors as text with their value.
      (use-package prog-fill
        :bind ("M-Q" . prog-fill))
    #+end_src
+*** Highlight-Numbers
+       #+begin_src emacs-lisp :tangle yes
+         (use-package highlight-numbers
+           :config (add-hook 'prog-mode-hook 'highlight-numbers-mode))
+       #+end_src
 
 ** Specific mode settings
 
