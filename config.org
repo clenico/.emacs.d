@@ -2488,3 +2488,20 @@ Adding some usefull unit calculation
 
      (global-set-key (kbd "C-z b") 'my/hydra-toggle/body)
    #+end_src
+** Highlight-Indentation
+      #+begin_src emacs-lisp :tangle yes
+        (use-package highlight-indentation
+          :config
+          (set-face-background 'highlight-indentation-face "#8B6090")
+          (add-hook 'yaml-mode-hook 'highlight-indentation-mode))
+      #+end_src
+** TODO COMMENT Elfeed
+      #+begin_src emacs-lisp :tangle yes
+        (use-package elfeed
+          :bind ("C-x w" . elfeed))
+
+        (use-package elfeed-org
+          :config
+          (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org"))
+          (elfeed-org))
+      #+end_src
