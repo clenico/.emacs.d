@@ -1064,15 +1064,6 @@ it later to replace swiper for that usage.
        (setq anzu-mode-lighter ""))
    #+end_src
 
-*** Reserch and Replace
-#+begin_src emacs-lisp :tangle yes
-    (use-package swiper
-      :after ivy
-      :bind (("C-s" . swiper)
-             :map swiper-map
-             ("M-%" . swiper-query-replace)))
-
-#+end_src
 *** PDF
 #+begin_src emacs-lisp :tangle yes
   (use-package pdf-tools
