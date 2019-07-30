@@ -2175,6 +2175,12 @@ Adding some usefull unit calculation
 #+end_src
 
 ** Dired
+
+*** Dired better default
+       #+begin_src emacs-lisp :tangle yes
+         (setq dired-listing-switches "-alh")
+       #+end_src
+
 *** Enhancement
 #+begin_src emacs-lisp :tangle yes
 (eval-after-load "dired"
