@@ -375,12 +375,14 @@ C-c right : redo
     (interactive)
     (kill-matching-buffers "^scratch-" t t))
 
-  (global-set-key (kbd "H-k s") 'kill-all-random-scratch-buffer)
+  (global-set-key (kbd "H-K") 'kill-all-random-scratch-buffer)
 #+end_src
+
 **** forward WORD (like vi)
 #+begin_src emacs-lisp :tangle yes
   (global-set-key (kbd "M-F") 'forward-whitespace)
 #+end_src
+
 **** Clear
 #+begin_src emacs-lisp :tangle yes
   (defun my/clear ()
