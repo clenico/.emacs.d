@@ -2236,8 +2236,15 @@ A company front-end with icons.
       "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
       :keybinding "w"
       :docstring "Searchin' the wikis.")
+
+    (defengine search-code
+      "https://searchcode.com/?q=%s"
+      :keybinding "c")
     (engine-mode t))
 #+end_src
+
+#+RESULTS:
+: t
 
 ** Buffer
 *** Ibuffer
