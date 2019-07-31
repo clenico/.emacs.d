@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: hydra category template
+# key: hydcat
+# --
+"${2:Subtitle}"
+  (("${3:kb}" ${4:func} "${5:Desc}"))

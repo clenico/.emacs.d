@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: use-package hydra template
+# key: use-h
+# --
+(use-package ${1:name}-mode
+  :ensure t
+  :mode-hydra
+  ($1-mode
+   (:hint nil :foreign-keys warn :title "title" :quit-key "q" )
+   ("${2:Subtitle}"
+    (("${3:kb}" ${4:func} "${5:Desc}")))))

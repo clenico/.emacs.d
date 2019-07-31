@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: hydra line template
+# key: hydline
+# --
+("${3:kb}" ${4:func} "${5:Desc}")

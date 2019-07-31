@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: hydra template
+# key: hydtmp
+# --
+(pretty-hydra-define my/hydra-${1:title}
+  (:hint nil :foreign-keys warn :title "$1" :quit-key "q")
+  ("${2:Subtitle}"
+   (("${3:kb}" ${4:func} "${5:Desc}"))))
