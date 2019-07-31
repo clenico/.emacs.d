@@ -2554,94 +2554,52 @@ Adding some usefull unit calculation
    #+begin_src emacs-lisp :tangle yes
      (use-package pkg-info)
    #+end_src
-** COMMENT Engine
+** Engine
    #+begin_src emacs-lisp :tangle yes
-(use-package engine-mode
-  :defer 3
-  :config
-  (defengine amazon
-    "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=%s"
-    :keybinding "a")
+     (use-package engine-mode
+       :defer 3
+       :config
+       (defengine amazon
+         "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=%s"
+         :keybinding "a")
 
-  (defengine duckduckgo
-    "https://duckduckgo.com/?q=%s"
-    :keybinding "d")
+       (defengine duckduckgo
+         "https://duckduckgo.com/?q=%s"
+         :keybinding "d")
 
-  (defengine github
-    "https://github.com/search?ref=simplesearch&q=%s"
-    :keybinding "g")
+       (defengine github
+         "https://github.com/search?ref=simplesearch&q=%s"
+         :keybinding "g")
 
-  (defengine google-images
-    "http://www.google.com/images?hl=en&source=hp&biw=1440&bih=795&gbv=2&aq=f&aqi=&aql=&oq=&q=%s"
-    :keybinding "i")
+       (defengine google-images
+         "http://www.google.com/images?hl=en&source=hp&biw=1440&bih=795&gbv=2&aq=f&aqi=&aql=&oq=&q=%s"
+         :keybinding "i")
 
-  (defengine google-maps
-    "http://maps.google.com/maps?q=%s"
-    :keybinding "m"
-    :docstring "Mappin' it up.")
+       (defengine google-maps
+         "http://maps.google.com/maps?q=%s"
+         :keybinding "m"
+         :docstring "Mappin' it up.")
 
-  (defengine stack-overflow
-    "https://stackoverflow.com/search?q=%s"
-    :keybinding "s")
+       (defengine stack-overflow
+         "https://stackoverflow.com/search?q=%s"
+         :keybinding "s")
 
-  (defengine youtube
-    "http://www.youtube.com/results?aq=f&oq=&search_query=%s"
-    :keybinding "y")
+       (defengine youtube
+         "http://www.youtube.com/results?aq=f&oq=&search_query=%s"
+         :keybinding "y")
 
-  (defengine wikipedia
-    "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
-    :keybinding "w"
-    :docstring "Searchin' the wikis.")
-  (engine-mode t))
+       (defengine wikipedia
+         "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+         :keybinding "w"
+         :docstring "Searchin' the wikis.")
+       (engine-mode t)
+       :bind ("H-a" . engine/search-duckduckgo))
    #+end_src
 
-* To Sort
-** switch mode
-   #+begin_src emacs-lisp :tangle yes
-     (pretty-hydra-define my/hydra-switch-mode
-       (:hint nil :foreign-keys warn :title "switch-mode" :quit-key "q" :color blue)
-       ("Programming"
-        (("el" emacs-lisp-mode "emacs-lisp")
-         ("py" python-mode "python")
-         ("P" php-mode "php")
-         ("cpp" c++-mode "C++")
-         ("cc" func "C")
-         ("md" markdown-mode "markdown")
-         ("jn" json-mode "JSON")
-         ("ltx" TeX-latex-mode "LaTeX")
-         ("O" org-mode "Org-mode"))))
+   #+RESULTS:
+   : engine/search-duckduckgo
 
-     (global-set-key (kbd "H-m") 'my/hydra-switch-mode/body)
-   #+end_src
-** COMMENT toggle hydra
-   #+begin_src emacs-lisp :tangle yes
-     (pretty-hydra-define my/hydra-toggle
-       (:hint nil :foreign-keys warn :title "toggle" :quit-key "q")
-       ("Basic"
-        (("a" abbrev-mode "abbrev" :toggle t)
-         ("h" global-hungry-delete-mode "hungry delete" :toggle t)
-         )
-        "Coding"
-        (("e" electric-operator-mode "electric operator" :toggle t)
-         ("F" flyspell-mode "flyspell" :toggle t)
-         ("f" flycheck-mode "flycheck" :toggle t)
-         ("l" lsp-mode "lsp" :toggle t)
-         ("s" smartparens-mode "smartparens" :toggle t))
-        "UI"
-        (("i" ivy-rich-mode "ivy-rich" :toggle t)
-        ("T" treemacs "Treemacs")
-        )))
-
-     (global-set-key (kbd "C-z b") 'my/hydra-toggle/body)
-   #+end_src
-** Highlight-Indentation
-      #+begin_src emacs-lisp :tangle yes
-        (use-package highlight-indentation
-          :config
-          (set-face-background 'highlight-indentation-face "#8B6090")
-          (add-hook 'yaml-mode-hook 'highlight-indentation-mode))
-      #+end_src
-** TODO COMMENT Elfeed
+** Elfeed
       #+begin_src emacs-lisp :tangle yes
         (use-package elfeed
           :bind ("C-x w" . elfeed))
