@@ -1595,6 +1595,17 @@ Colorize colors as text with their value.
     :init (cmake-ide-setup)
     :config (advice-add 'cmake-ide-compile :after #'my/switch-to-compilation-window))
 #+end_src
+*** Makefile
+#+begin_src emacs-lisp :tangle yes
+  (use-package make-mode
+    :bind(:map makefile-mode-map
+               ("M-P" . move-text-up)
+               ("M-N" . move-text-down)))
+#+end_src
+
+#+RESULTS:
+: move-text-down
+
 
 *** COMMENT Markdown
 #+begin_src emacs-lisp :tangle yes
