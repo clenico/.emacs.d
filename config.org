@@ -1714,6 +1714,27 @@ Colorize colors as text with their value.
        ("d" json-decrement-number-at-point "Decrement the number at point (C-c C-d)" :color red)))))
 #+end_src
 
+** YAML
+ #+BEGIN_SRC emacs-lisp :tangle yes
+   (use-package yaml-mode
+     :config
+     (add-hook 'yaml-mode-hook 'flycheck-mode)
+     (add-hook 'yaml-mode-hook 'flyspell-mode))
+
+
+  (use-package flycheck-yamllint)
+
+
+  (use-package highlight-indentation
+    :config
+    (set-face-background 'highlight-indentation-face "#8B6090")
+    (add-hook 'yaml-mode-hook 'highlight-indentation-mode))
+#+END_SRC
+
+#+RESULTS:
+: t
+
+
 ** Web-mode
 #+begin_src emacs-lisp :tangle yes
 (use-package web-mode
