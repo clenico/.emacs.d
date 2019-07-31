@@ -22,6 +22,7 @@
   - [[#file-manager][File Manager]]
   - [[#general-programming-settings][General programming settings]]
   - [[#specific-mode-settings][Specific mode settings]]
+  - [[#yaml][YAML]]
   - [[#web-mode][Web-mode]]
   - [[#snippets][Snippets]]
 - [[#org-mode][Org-Mode]]
@@ -50,9 +51,10 @@
   - [[#utility-functions][Utility functions]]
   - [[#plantuml-mode][PlantUML-mode]]
   - [[#pkg-info][Pkg-Info]]
+  - [[#engine][Engine]]
+  - [[#elfeed][Elfeed]]
+  - [[#mermaid][Mermaid]]
 - [[#to-sort][To Sort]]
-  - [[#switch-mode][switch mode]]
-  - [[#highlight-indentation][Highlight-Indentation]]
 - [[#to-add][To add]]
 
 * Acknowledgement
