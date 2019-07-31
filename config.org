@@ -2620,3 +2620,4 @@ npm install mermaid.cli
        :config
        (setq mermaid-mmdc-location "/home/niccle27/node_modules/.bin/mmdc"))
    #+end_src
+* To Sort
