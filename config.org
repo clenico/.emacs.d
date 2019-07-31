@@ -2621,3 +2621,11 @@ npm install mermaid.cli
        (setq mermaid-mmdc-location "/home/niccle27/node_modules/.bin/mmdc"))
    #+end_src
 * To Sort
+* To add
+- [ ] isend-mode : peut être utile pour envoyer ligne par ligne du python pour débugger
+- [ ] refine : permet d'éditer des variables
+- [ ] request : permet d'effectuer des requpete http
+- [ ] prodigy : permet de gérer des services externes
+- [ ] vlf: view large file
+- [ ] mermaid-mode : to make easy graph
+- [ ] cheatsheet ?
