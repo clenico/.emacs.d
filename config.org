@@ -2191,9 +2191,12 @@ A company front-end with icons.
   (use-package browse-url
     :ensure nil
     :custom
-    (browse-url-browser-function 'browse-url-generic)
-    (browse-url-generic-program "qutebrowser"))
+    ;; (browse-url-generic-program "qutebrowser")
+    (browse-url-generic-program "firefox")
+    (browse-url-browser-function 'browse-url-generic))
 #+end_src
+
+#+RESULTS:
 
 **** Launch specific search from emacs
 #+begin_src emacs-lisp :tangle yes
