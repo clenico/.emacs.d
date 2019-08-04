@@ -678,7 +678,14 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
      (append '("compile_commands.json" ".ccls")
              projectile-project-root-files-top-down-recurring))
     :config (push ".ccls-cache" projectile-globally-ignored-directories))
+
+  (use-package google-c-style
+    :hook ((c-mode c++-mode) . google-set-c-style)
+    (c-mode-common . google-make-newline-indent))
 #+end_src
+
+#+RESULTS:
+| google-make-newline-indent |
 
 ** Typing
 *** TODO Abbrev
