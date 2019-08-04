@@ -2553,6 +2553,25 @@ Adding some usefull unit calculation
     (interactive)
     (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
 #+end_src
+*** Copy filename
+ #+begin_src emacs-lisp :tangle yes
+ (defun copy-filename ()
+   "Copy the current buffer file name to the clipboard."
+   (interactive)
+   (let ((filename (if (equal major-mode 'dired-mode)
+                       default-directory
+                     (buffer-file-name))))
+     (when filename
+       (kill-new filename)
+       (message "Copied buffer file name '%s' to the clipboard." filename))))
+ #+end_src
+*** add cmakelist.txt
+ #+begin_src emacs-lisp :tangle yes
+   (defun create-CMakeLists.txt ()
+     (interactive)
+     (find-file "CMakeLists.txt"))
+ #+end_src
+
 ** PlantUML-mode
 #+begin_src emacs-lisp :tangle yes
   (setq plantuml-exec-mode "jar")
