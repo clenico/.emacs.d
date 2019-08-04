@@ -1569,13 +1569,14 @@ Colorize colors as text with their value.
         (advice-add 'gradle-test :after #'my/switch-to-compilation-window))
     #+end_src
 
-*** TODO COMMENT cmake
+*** TODO cmake
     must learn the cmake-ide package
 #+begin_src emacs-lisp :tangle yes
   ;; define files for which to enable cmake mode
   (use-package cmake-mode
-    :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
-
+    :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'")
+    :config
+    (setq cmake-tab-width 4))
   ;; enable better syntax highlighting
   (use-package cmake-font-lock
     :after (cmake-mode)
