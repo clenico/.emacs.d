@@ -1311,10 +1311,13 @@ it later to replace swiper for that usage.
     ("Subtitle"
      (("i" (find-file "~/.config/i3/config") "i3-config")
       ("I" (find-file "~/.config/i3status/config") "i3status")
-  ("kb" func "Desc")
-
-  ))) 
-
+      ("c" (find-file "~/.config/compton/compton.conf") "compton")
+      ("z" (find-file "~/.zshrc") "zshrc")
+      ("qq" (find-file "~/.config/qutebrowser") "qutebrowser")
+      ("qb" (find-file "~/.config/qutebrowser/search_engines.py") "qute engine")
+      ("e" (find-file "~/.emacs.d/config.org") "Emacs")
+      )))
+  (global-set-key (kbd "C-z F") 'my/hydra-go-to-config/body)
 #+end_src
 
 **** TODO COMMENT hydra-Launcher
