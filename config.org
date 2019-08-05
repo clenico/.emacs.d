@@ -99,7 +99,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
    ad-redefinition-action 'accept                   ; Silence warnings for redefinition
    cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
    display-time-default-load-average nil            ; Don't display load average
-   fill-column 79                                   ; Set width for automatic line breaks
+   fill-column 72                                   ; Set width for automatic line breaks
    help-window-select t                             ; Focus new help windows when opened
    indent-tabs-mode nil                             ; Prefers spaces over tabs
    inhibit-startup-screen t                         ; Disable start-up screen
