@@ -716,7 +716,7 @@ Should be used in parallel with Flyspell to show a graphic feedback.
 #+begin_src emacs-lisp :tangle yes
   (use-package ispell
   :defer 2
-  :ensure-system-package (hunspell . "trizen -S hunspell")
+  ;; :ensure-system-package (hunspell . "sudo apt-get install  hunspell")
   :custom
   (ispell-dictionary "en_US")
   (ispell-dictionary-alist
