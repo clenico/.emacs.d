@@ -1297,6 +1297,19 @@ it later to replace swiper for that usage.
 
         (global-set-key (kbd "H-m") 'my/hydra-switch-mode/body)
       #+end_src
+***** Go to config hydra
+#+begin_src emacs-lisp :tangle yes
+  (pretty-hydra-define my/hydra-go-to-config
+    (:hint nil :foreign-keys warn :title "go-to-config" :quit-key "q" :color blue)
+    ("Subtitle"
+     (("i" (find-file "~/.config/i3/config") "i3-config")
+      ("I" (find-file "~/.config/i3status/config") "i3status")
+  ("kb" func "Desc")
+
+  ))) 
+
+#+end_src
+
 **** TODO COMMENT hydra-Launcher
  #+begin_src emacs-lisp :tangle yes
    ;; (pretty-hydra-define hydra-launcher
