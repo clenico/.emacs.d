@@ -678,7 +678,14 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
      (append '("compile_commands.json" ".ccls")
              projectile-project-root-files-top-down-recurring))
     :config (push ".ccls-cache" projectile-globally-ignored-directories))
+
+  (use-package google-c-style
+    :hook ((c-mode c++-mode) . google-set-c-style)
+    (c-mode-common . google-make-newline-indent))
 #+end_src
+
+#+RESULTS:
+| google-make-newline-indent |
 
 ** Typing
 *** TODO Abbrev
@@ -1575,13 +1582,14 @@ Colorize colors as text with their value.
         (advice-add 'gradle-test :after #'my/switch-to-compilation-window))
     #+end_src
 
-*** TODO COMMENT cmake
+*** TODO cmake
     must learn the cmake-ide package
 #+begin_src emacs-lisp :tangle yes
   ;; define files for which to enable cmake mode
   (use-package cmake-mode
-    :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
-
+    :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'")
+    :config
+    (setq cmake-tab-width 4))
   ;; enable better syntax highlighting
   (use-package cmake-font-lock
     :after (cmake-mode)
@@ -1792,6 +1800,7 @@ Edit the code blocks in the same window
   (setq org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar")
   (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
   (setq org-startup-with-inline-images t)
+  (setq org-latex-toc-command "\\tableofcontents \\clearpage")
 
   (setq org-link-frame-setup '((vm . vm-visit-folder-other-frame)
                                (vm-imap . vm-visit-imap-folder-other-frame)
@@ -2464,6 +2473,15 @@ Adding some usefull unit calculation
     (switch-to-buffer (make-temp-name "scratch-")))
   (global-set-key (kbd "H-s") 'generate-scratch-buffer)
 #+end_src
+*** Create a tmp file
+#+begin_src emacs-lisp :tangle yes
+  (defun create-tmp-file ()
+    "Prompt name then create a file in /tmp directory"
+    (interactive)
+    (find-file  (concat "/tmp/" (read-string "/tmp/"))))
+  (global-set-key (kbd "H-t") 'create-tmp-file)
+
+#+end_src
 
 *** Open all marked files in Dired
 #+begin_src emacs-lisp :tangle yes
@@ -2566,6 +2584,25 @@ Adding some usefull unit calculation
     (interactive)
     (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
 #+end_src
+*** Copy filename
+ #+begin_src emacs-lisp :tangle yes
+ (defun copy-filename ()
+   "Copy the current buffer file name to the clipboard."
+   (interactive)
+   (let ((filename (if (equal major-mode 'dired-mode)
+                       default-directory
+                     (buffer-file-name))))
+     (when filename
+       (kill-new filename)
+       (message "Copied buffer file name '%s' to the clipboard." filename))))
+ #+end_src
+*** add cmakelist.txt
+ #+begin_src emacs-lisp :tangle yes
+   (defun create-CMakeLists.txt ()
+     (interactive)
+     (find-file "CMakeLists.txt"))
+ #+end_src
+
 ** PlantUML-mode
 #+begin_src emacs-lisp :tangle yes
   (setq plantuml-exec-mode "jar")
