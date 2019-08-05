@@ -2451,6 +2451,15 @@ Adding some usefull unit calculation
     (switch-to-buffer (make-temp-name "scratch-")))
   (global-set-key (kbd "H-s") 'generate-scratch-buffer)
 #+end_src
+*** Create a tmp file
+#+begin_src emacs-lisp :tangle yes
+  (defun create-tmp-file ()
+    "Prompt name then create a file in /tmp directory"
+    (interactive)
+    (find-file  (concat "/tmp/" (read-string "/tmp/"))))
+  (global-set-key (kbd "H-t") 'create-tmp-file)
+
+#+end_src
 
 *** Open all marked files in Dired
 #+begin_src emacs-lisp :tangle yes
