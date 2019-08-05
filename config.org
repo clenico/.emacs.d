@@ -2497,17 +2497,18 @@ Adding some usefull unit calculation
        (let* ((fn-list (dired-get-marked-files nil arg)))
          (mapc 'find-file fn-list)))))
 #+end_src
-*** Copy file name
+*** Copy file path
 #+begin_src emacs-lisp :tangle yes
-(defun copy-filename ()
-  "Copy the current buffer file name to the clipboard."
-  (interactive)
-  (let ((filename (if (equal major-mode 'dired-mode)
-                      default-directory
-                    (buffer-file-name))))
-    (when filename
-      (kill-new filename)
-      (message "Copied buffer file name '%s' to the clipboard." filename))))
+  (defun copy-path ()
+    "Copy the current buffer file name to the clipboard."
+    (interactive)
+    (let ((filename (if (equal major-mode 'dired-mode)
+                        default-directory
+                      (buffer-file-name))))
+      (when filename
+        (kill-new filename)
+        (message "Copied buffer file name '%s' to the clipboard." filename))))
+  (global-set-key (kbd "C-c cp") 'copy-path)
 #+end_src
 *** Get current public ip
 #+begin_src emacs-lisp :tangle yes
