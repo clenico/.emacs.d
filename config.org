@@ -499,13 +499,14 @@ Edit multiple regions in the same way simultaneously
                                              'viking-kill-buffer))
            :bind("C-D" . viking-kill-thing-at-point))
        #+end_src
-*** TODO COMMENT Ciel
+*** Ciel
     Ci vim equivalent
        #+begin_src emacs-lisp :tangle yes
          (use-package ciel
-           :bind (("C-c i" . ciel-ci)
-                  ("C-c o" . ciel-co)))
+           :bind (("C-c ci" . ciel-ci)
+                  ("C-c co" . ciel-co)))
        #+end_src
+
 *** Multi-cursor
        #+begin_src emacs-lisp :tangle yes
          (use-package multiple-cursors
