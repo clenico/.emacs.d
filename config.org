@@ -2750,10 +2750,6 @@ Adding some usefull unit calculation
       #+end_src
 ** Mermaid
 you need to install the related external package first
-#+begin_quote
-npm install mermaid.cli
-./node_modules/.bin/mmdc -h
-#+end_quote
 #+begin_src bash
   npm install mermaid.cli
   ./node_modules/.bin/mmdc -h
