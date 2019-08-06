@@ -2668,6 +2668,21 @@ Adding some usefull unit calculation
      (find-file "CMakeLists.txt"))
  #+end_src
 
+*** Align sexp table
+ #+begin_src emacs-lisp :tangle yes
+ (defun bjm/align-whitespace (start end)
+   "Align columns by whitespace"
+   (interactive "r")
+   (align-regexp start end
+                 "\\(\\s-*\\)\\s-" 1 0 t))
+
+ (defun bjm/align-& (start end)
+   "Align columns by ampersand"
+   (interactive "r")
+   (align-regexp start end
+                 "\\(\\s-*\\)&" 1 1 t))
+ #+end_src
+
 ** PlantUML-mode
 #+begin_src emacs-lisp :tangle yes
   (setq plantuml-exec-mode "jar")
