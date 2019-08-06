@@ -2245,11 +2245,10 @@ As a completion package, i'm using company with several other packages to rice i
     :diminish company-mode
     :config
     (add-hook 'after-init-hook 'global-company-mode)
-    (setq company-minimum-prefix-length 2)
     (setq company-dabbrev-downcase nil)
     (setq company-begin-commands '(self-insert-command))
     (setq company-idle-delay .1)
-    (setq company-minimum-prefix-length 2)
+    (setq company-minimum-prefix-length 6)
     (setq company-show-numbers t)
     (setq company-tooltip-align-annotations 't)
     (bind-keys :map company-active-map
