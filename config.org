@@ -1458,7 +1458,7 @@ of ranger's features
     (ranger-preview-file 1))
 #+end_src
 
- * Programming languages
+* Programming languages
 ** General programming settings
 *** EditorConfig
 #+begin_src emacs-lisp :tangle yes
