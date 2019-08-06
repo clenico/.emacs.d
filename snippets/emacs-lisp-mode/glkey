@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: global-key
+# key: glkey
+# --
+(global-set-key (kbd "${kb}") '${func})
