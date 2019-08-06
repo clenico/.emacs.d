@@ -2763,7 +2763,37 @@ npm install mermaid.cli
        :config
        (setq mermaid-mmdc-location "/home/niccle27/node_modules/.bin/mmdc"))
    #+end_src
+** Eyebrowse
+#+begin_src emacs-lisp :tangle yes
+  (use-package eyebrowse
+    :ensure t
+    :init
+    :config
+    (eyebrowse-mode)
+    (unbind-key "C-w" eyebrowse-mode-map)
+    (eyebrowse-switch-to-window-config-0)
+    (find-file "~/.emacs.d/config.org")
+    (eyebrowse-switch-to-window-config-1)
+    :bind(
+          ("H-&" . eyebrowse-switch-to-window-config-0)
+          ("H-é" . eyebrowse-switch-to-window-config-1)
+          ("H-\"" . eyebrowse-switch-to-window-config-2)
+          ("H-'" . eyebrowse-switch-to-window-config-3)
+          ("H-(" . eyebrowse-switch-to-window-config-4)
+          ("H-§" . eyebrowse-switch-to-window-config-5)
+          ("H-è" . eyebrowse-switch-to-window-config-6)
+          ("H-!" . eyebrowse-switch-to-window-config-7)
+          ("H-ç" . eyebrowse-switch-to-window-config-8)
+          ("H-à" . eyebrowse-switch-to-window-config-9)
+          )
+    )
+#+end_src
+
+#+RESULTS:
+: eyebrowse-switch-to-window-config-9
+
 * To Sort
+
 * To add
 - [ ] isend-mode : peut être utile pour envoyer ligne par ligne du python pour débugger
 - [ ] refine : permet d'éditer des variables
