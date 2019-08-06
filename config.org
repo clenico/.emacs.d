@@ -1549,6 +1549,22 @@ Colorize colors as text with their value.
           ("<f6>" . csv-menu)
           ))
 #+end_src
+*** Elisp
+#+begin_src emacs-lisp :tangle yes
+  (pretty-hydra-define my/hydra-emacs-lisp
+    (:hint nil :foreign-keys warn :title "emacs-lisp" :quit-key "q" :color blue)
+    ("Eval"
+     (("b" eval-buffer "Buffer")
+      ("r" eval-region "Region")
+      ("l" load-file "Load File")
+      ("o" org-babel-load-file "Org load file")
+      ("L" (load-file "~/.emacs.d/config.el") "Load config.el")
+      ("O" (org-babel-load-file "~/.emacs.d/config.org" ) "Load config.org"))))
+
+  (define-key emacs-lisp-mode-map (kbd "M-SPC") 'my/hydra-emacs-lisp/body)
+
+#+end_src
+
 *** Lua
 #+begin_src emacs-lisp :tangle yes
   (use-package lua-mode
