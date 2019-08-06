@@ -2259,7 +2259,7 @@ As a completion package, i'm using company with several other packages to rice i
                ("C-p" . company-select-previous)
                ("ESC" . company-abort)
                ("TAB" . company-complete))
-    :bind("M-TAB" . company-complete))
+    :bind("H-SPC" . company-complete))
 #+end_src
 
 *** Company-go
