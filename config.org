@@ -1473,7 +1473,8 @@ of ranger's features
     :hook ((css-mode . aggressive-indent-mode)
            (emacs-lisp-mode . aggressive-indent-mode)
            (js-mode . aggressive-indent-mode)
-           (lisp-mode . aggressive-indent-mode))
+           ;; (lisp-mode . aggressive-indent-mode)
+  )
     :custom (aggressive-indent-comments-too))
 #+end_src
 
