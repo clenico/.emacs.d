@@ -1320,7 +1320,7 @@ it later to replace swiper for that usage.
       )))
   (global-set-key (kbd "C-z F") 'my/hydra-go-to-config/body)
 #+end_src
-***** COMMENT Go to folder hydra
+***** Go to folder hydra
 #+begin_src emacs-lisp :tangle yes
   (pretty-hydra-define my/hydra-go-to-config
     (:hint nil :foreign-keys warn :title "go-to-config" :quit-key "q" :color blue)
