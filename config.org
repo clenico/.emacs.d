@@ -2770,6 +2770,8 @@ you need to install the related external package first
     (unbind-key "C-w" eyebrowse-mode-map)
     (eyebrowse-switch-to-window-config-0)
     (find-file "~/.emacs.d/config.org")
+    (eyebrowse-switch-to-window-config-9)
+    (elfeed)
     (eyebrowse-switch-to-window-config-1)
     :bind(
           ("H-&" . eyebrowse-switch-to-window-config-0)
