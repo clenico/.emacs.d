@@ -1711,15 +1711,43 @@ Colorize colors as text with their value.
     (add-hook 'TeX-after-compilation-finished-functions 'TeX-revert-document-buffer)
     (setq reftex-plug-into-auctex t))
 
-  (use-package bibtex
-    :after auctex
-    :hook (bibtex-mode . my/bibtex-fill-column)
-    :preface
-    (defun my/bibtex-fill-column ()
-      "Ensures that each entry does not exceed 120 characters."
-      (setq fill-column 120))
-    :config
-    (setq bibtex-maintain-sorted-entries t))
+  ;; (defvar my-LaTeX-no-autofill-environments
+  ;;   '("equation" "equation*" "align" "align*")
+  ;;   "A list of LaTeX environment names in which `auto-fill-mode' should be inhibited.")
+
+  ;; (defun my-LaTeX-auto-fill-function ()
+  ;;   "This function checks whether point is currently inside one of
+  ;; the LaTeX environments listed in
+  ;; `my-LaTeX-no-autofill-environments'. If so, it inhibits automatic
+  ;; filling of the current paragraph."
+  ;;   (let ((do-auto-fill t)
+  ;;         (current-environment "")
+  ;;         (level 0))
+  ;;     (while (and do-auto-fill (not (string= current-environment "document")))
+  ;;       (setq level (1+ level)
+  ;;             current-environment (LaTeX-current-environment level)
+  ;;             do-auto-fill (not (member current-environment my-LaTeX-no-autofill-environments))))
+  ;;     (when do-auto-fill
+  ;;       (do-auto-fill))))
+
+  ;; (defun my-LaTeX-setup-auto-fill ()
+  ;;   "This function turns on auto-fill-mode and sets the function
+  ;; used to fill a paragraph to `my-LaTeX-auto-fill-function'."
+  ;;   (auto-fill-mode)
+  ;;   (setq auto-fill-function 'my-LaTeX-auto-fill-function))
+
+  ;; (add-hook 'LaTeX-mode-hook 'my-LaTeX-setup-auto-fill)
+
+    (use-package bibtex
+      :after auctex
+      :hook
+      (bibtex-mode . my/bibtex-fill-column)
+      :preface
+      (defun my/bibtex-fill-column ()
+        "Ensures that each entry does not exceed 120 characters."
+        (setq fill-column 120))
+      :config
+      (setq bibtex-maintain-sorted-entries t))
 
   (use-package company-auctex
     :after (auctex company)
