@@ -1903,6 +1903,7 @@ Colorize colors as text with their value.
                                (file . find-file)
                                (wl . wl-other-frame)))
   (setq org-latex-default-class "report")
+  (setq org-export-headline-levels 5)
 
   (add-hook 'org-mode 'turn-on-auto-fill)
 #+end_src
