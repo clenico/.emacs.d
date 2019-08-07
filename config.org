@@ -1690,10 +1690,6 @@ Colorize colors as text with their value.
            ("C-c C-l" . TeX-next-error)
            ("M-[" . outline-previous-heading)
            ("M-]" . outline-next-heading))
-                ("C-c C-o" . TeX-recenter-output-buffer)
-                ("C-c C-l" . TeX-next-error)
-                ("M-[" . outline-previous-heading)
-                ("M-]" . outline-next-heading))
     :hook ((LaTeX-mode . reftex-mode))
     :preface
     (defun my/switch-to-help-window (&optional ARG REPARSE)
