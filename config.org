@@ -2131,6 +2131,8 @@ package-manage)
 
   (setq org-latex-pdf-process
         '("xelatex -synctex=1 -shell-escape -interaction nonstopmode %f"
+          "bibtex %b"
+          "xelatex -synctex=1 -shell-escape -interaction nonstopmode %f"
           "xelatex -synctex=1 -shell-escape -interaction nonstopmode %f")) ;; for multiple passes
 
 #+end_src
