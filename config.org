@@ -1322,8 +1322,8 @@ it later to replace swiper for that usage.
 #+end_src
 ***** Go to folder hydra
 #+begin_src emacs-lisp :tangle yes
-  (pretty-hydra-define my/hydra-go-to-config
-    (:hint nil :foreign-keys warn :title "go-to-config" :quit-key "q" :color blue)
+  (pretty-hydra-define my/hydra-go-to-folder
+    (:hint nil :foreign-keys warn :title "go-to-folder" :quit-key "q" :color blue)
     ("Subtitle"
      (("t" (counsel-find-file "/tmp/") "Tmp")
       ("d" (counsel-find-file "~/Documents/") "Document")
@@ -1335,7 +1335,7 @@ it later to replace swiper for that usage.
       ("T" (counsel-find-file "~/Google Drive/TFE") "TFE")
       ("." (counsel-find-file "~/Dotfiles") "Dotfiles")
       )))
-  (global-set-key (kbd "C-z f") 'my/hydra-go-to-config/body)
+  (global-set-key (kbd "C-z f") 'my/hydra-go-to-folder/body)
 #+end_src
 
 **** TODO COMMENT hydra-Launcher
