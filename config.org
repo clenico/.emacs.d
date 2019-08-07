@@ -2794,6 +2794,7 @@ you need to install the related external package first
     :config
     (eyebrowse-mode)
     (unbind-key "C-w" eyebrowse-mode-map)
+    (unbind-key "C-c C-w" eyebrowse-mode-map)
     (eyebrowse-switch-to-window-config-0)
     (find-file "~/.emacs.d/config.org")
     (eyebrowse-switch-to-window-config-9)
