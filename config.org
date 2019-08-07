@@ -1860,6 +1860,32 @@ Colorize colors as text with their value.
 #+end_src
 
 * Org-Mode
+
+** Org use package
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package org
+    :ensure t
+    :mode-hydra
+    (org-mode
+     (:hint nil :foreign-keys warn :title "Help" :quit-key "q" :color blue)
+     ("Edition"
+      (("c" org-ref-helm-insert-cite-link "cite C-c ]")
+       ("nil" nil "link path C-u C-c C-l")
+       ("l" org-insert-link "link C-c C-l")
+       ("o" org-open-at-point "Open link C-c C-o")
+       ("," org-insert-structure-template "Add template C-c C-,")
+       ("'" org-edit-special "Edit Src C-c '")
+       ("e" org-ctrl-c-ctrl-c "Evaluate Src C-c C-c")
+       ("E" org-export-dispatch "Export C-c C-e")
+       )
+      "Organise"
+      (("a" org-agenda "Agenda C-c a")
+       ("C" org-capture "Capture H-c")
+       ("w" org-refile "Refile C-c C-w"))
+      )))
+
+#+end_src
+
 ** Org better defaults
 
 #+begin_src emacs-lisp :tangle yes :results silent
