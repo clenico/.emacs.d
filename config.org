@@ -1716,7 +1716,8 @@ Colorize colors as text with their value.
     (advice-add 'TeX-recenter-output-buffer :after #'my/switch-to-help-window)
     ;; the ":hook" doesn't work for this one... don't ask me why.
     (add-hook 'TeX-after-compilation-finished-functions 'TeX-revert-document-buffer)
-    (setq reftex-plug-into-auctex t))
+    (setq reftex-plug-into-auctex t)
+    (setq font-latex-fontify-script nil))
 
   (defvar my-LaTeX-no-autofill-environments
     '("equation" "equation*" "align" "align*")
