@@ -1699,6 +1699,13 @@ Colorize colors as text with their value.
     (defun my/switch-to-help-window (&optional ARG REPARSE)
       "Switches to the *TeX Help* buffer after compilation."
       (other-window 1))
+    :mode-hydra
+    (latex-mode
+     (:hint nil :foreign-keys warn :title "title" :quit-key "q" :color blue)
+     ("Help"
+      (
+       ("q" nil "nil")
+       )))
     :custom
     (TeX-auto-save t)
     (TeX-byte-compile t)
