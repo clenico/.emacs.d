@@ -146,6 +146,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
 **** Unset
    #+begin_src emacs-lisp :tangle yes :results silent
      (global-unset-key "\C-z")
+     (global-unset-key "\C-t")
      (global-unset-key "\C-x\C-z")
    #+end_src
 
@@ -153,7 +154,9 @@ For a better user experience of GNU Emacs, here are the default values I use.
 ***** Prefix key
     #+begin_src emacs-lisp :tangle yes :results silent
       (define-prefix-command 'z-map)
-      (global-set-key (kbd "C-z") 'z-map) ;; was C-1
+      (global-set-key (kbd "C-z") 'z-map)
+      (define-prefix-command 't-map)
+      (global-set-key (kbd "C-t") 't-map)
 
     #+end_src
 ***** Functions
