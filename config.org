@@ -66,13 +66,13 @@
 [[https://github.com/sachac/.emacs.d][Sacha Chua]] (=sachac=)
 * Before Startup
 ** Refresh packages
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      ;; (package-refresh-contents)
    #+end_src
 
 ** Define repos
   First i define the repos from where to download packages.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.org/packages/")
                            ("org" . "http://orgmode.org/elpa/")))
@@ -82,7 +82,7 @@
  If use-package isn't already installed, refresh contents and then install it so
  that the rest of the configuration is easier to maintain.
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))
@@ -94,7 +94,7 @@
 *** Variables
 For a better user experience of GNU Emacs, here are the default values I use.
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (setq-default
    ad-redefinition-action 'accept                   ; Silence warnings for redefinition
    cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
@@ -144,20 +144,20 @@ For a better user experience of GNU Emacs, here are the default values I use.
 *** Keybindings
 
 **** Unset
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (global-unset-key "\C-z")
      (global-unset-key "\C-x\C-z")
    #+end_src
 
 **** Set
 ***** Prefix key
-    #+begin_src emacs-lisp :tangle yes
+    #+begin_src emacs-lisp :tangle yes :results silent
       (define-prefix-command 'z-map)
       (global-set-key (kbd "C-z") 'z-map) ;; was C-1
 
     #+end_src
 ***** Functions
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (defun backward-paragraph-bracket()
        (interactive)
        (backward-paragraph))
@@ -172,20 +172,20 @@ For a better user experience of GNU Emacs, here are the default values I use.
 
 ** Navigation
 *** Goto-last-change
-    #+begin_src emacs-lisp :tangle yes
+    #+begin_src emacs-lisp :tangle yes :results silent
       (use-package goto-last-change
         :bind(("C-s-h" . goto-last-change)
               ("C-s-l" . goto-last-change-reverse)))
     #+end_src
 
 *** Caps Lock
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package caps-lock
     :bind(("þ" . caps-lock-mode)))
 #+end_src
 
 *** Half scroll
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun window-half-height ()
     (max 1 (/ (1- (window-height (selected-window))) 2)))
 
@@ -213,7 +213,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
 #+end_src
 
 *** Move-text
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package move-text
     :bind (("M-p" . move-text-up)
 	   ("M-n" . move-text-down))
@@ -221,7 +221,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
 #+end_src
 
 *** Avy
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package avy
     :ensure t
     :bind (("C-z SPC" . avy-goto-char)
@@ -232,7 +232,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
 #+end_src
 
 *** Matching parentheses
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun goto-match-paren (arg)
     "Go to the matching parenthesis if on parenthesis, otherwise insert %.
   vi style of % jumping to matching brace."
@@ -253,7 +253,7 @@ efficient way to go to the beginning of a line with =move-beginning-of-line=
 *FROM:*
 http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun my/smarter-move-beginning-of-line (arg)
     "Moves point back to indentation of beginning of line.
 
@@ -283,14 +283,14 @@ http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-l
 *** Imenu
 Imenu produces menus for accessing locations in documents.
 Currently not working
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package imenu
     :ensure nil
     :bind ("C-R" . imenu))
 #+end_src
 *** Split windows
 Put the focus on the newly created frame
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package window
     :ensure nil
     :bind (("C-x 3" . hsplit-last-buffer)
@@ -310,7 +310,7 @@ Put the focus on the newly created frame
 #+end_src
 
 *** Windmove
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package windmove
     :bind (("C-c h" . windmove-left)
            ("C-c j" . windmove-down)
@@ -321,21 +321,21 @@ Put the focus on the newly created frame
 This package allow you to keep an history of windows so that you can roll back
 C-c left : undo
 C-c right : redo
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package winner
     :defer 2
     :config (winner-mode 1))
 #+end_src
 ** Edition
 *** Better editing default
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
    #+end_src
 
 *** Improve built in functions
 **** Kill Word
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun daedreth/kill-inner-word ()
     "Kills the entire word your cursor is in. Equivalent to 'ciw' in vim."
     (interactive)
@@ -345,7 +345,7 @@ C-c right : redo
   (global-set-key (kbd "C-c cw") 'daedreth/kill-inner-word)
 #+end_src
 **** Copy Word
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (defun daedreth/copy-whole-word ()
   (interactive)
   (save-excursion
@@ -356,7 +356,7 @@ C-c right : redo
 (global-set-key (kbd "C-c yw") 'daedreth/copy-whole-word)
 #+end_src
 **** Copy a line
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun copy-line (arg)
     "Copy lines (as many as prefix argument) in the kill ring"
     (interactive "p")
@@ -368,12 +368,12 @@ C-c right : redo
 #+end_src
 
 **** Kill line
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (global-set-key (kbd "C-c dd") 'kill-whole-line)
 #+end_src
 
 **** Kill all scratch buffer
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun kill-all-random-scratch-buffer()
     (interactive)
     (kill-matching-buffers "^scratch-" t t))
@@ -382,12 +382,12 @@ C-c right : redo
 #+end_src
 
 **** forward WORD (like vi)
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (global-set-key (kbd "M-F") 'forward-whitespace)
 #+end_src
 
 **** Clear
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun my/clear ()
     (interactive)
     (let ((comint-buffer-maximum-size 0))
@@ -397,7 +397,7 @@ C-c right : redo
 #+end_src
 
 **** Toggle case
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun xah-toggle-letter-case ()
     "Toggle the letter case of current word or text selection.
   Always cycle in this order: Init Caps, ALL CAPS, all lower.
@@ -436,21 +436,21 @@ C-c right : redo
 [[https://github.com/victorhge/iedit][Iedit]]
 Edit multiple regions in the same way simultaneously
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package iedit
     :ensure t
   :bind (("M-e" . iedit-mode)))
 #+end_src
 
 *** Expand-region
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package expand-region
     :bind (("C-+" . er/contract-region)
            ("C-=" . er/expand-region)))
 #+end_src
 
 *** atomic-chrome
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package atomic-chrome
 :ensure t
 :config (atomic-chrome-start-server))
@@ -458,7 +458,7 @@ Edit multiple regions in the same way simultaneously
 #+end_src
 
 *** Sudo-edit
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package sudo-edit
     :ensure t
     :config (sudo-edit-indicator-mode t)
@@ -467,7 +467,7 @@ Edit multiple regions in the same way simultaneously
 #+end_src
 
 *** zzz-to-char
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (use-package zzz-to-char
        :config
        (setq zzz-to-char-reach 800)
@@ -477,7 +477,7 @@ Edit multiple regions in the same way simultaneously
 *** TODO COMMENT Viking-mode
     This mode create several actions when pressing several time de C-d might
     take a look at this as well
-       #+begin_src emacs-lisp :tangle yes
+       #+begin_src emacs-lisp :tangle yes :results silent
          (use-package viking-mode
            :diminish viking-mode
            :config
@@ -501,14 +501,14 @@ Edit multiple regions in the same way simultaneously
        #+end_src
 *** Ciel
     Ci vim equivalent
-       #+begin_src emacs-lisp :tangle yes
+       #+begin_src emacs-lisp :tangle yes :results silent
          (use-package ciel
            :bind (("C-c ci" . ciel-ci)
                   ("C-c co" . ciel-co)))
        #+end_src
 
 *** Multi-cursor
-       #+begin_src emacs-lisp :tangle yes
+       #+begin_src emacs-lisp :tangle yes :results silent
          (use-package multiple-cursors
            :bind (("C-S-c C-S-c" . mc/edit-lines)
                   ("H-j" . mc/mark-next-like-this)
@@ -521,7 +521,7 @@ Edit multiple regions in the same way simultaneously
 *** Change custom file location
 In order to keep the init.el file clean,we specify an other file which should be include as well for storing customization information.
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (setq custom-file "~/.emacs.d/custom.el")
   (when (file-exists-p custom-file)
     (load custom-file t))
@@ -529,14 +529,14 @@ In order to keep the init.el file clean,we specify an other file which should be
 
 *** Modeline
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package doom-modeline
       :ensure t
       :hook (after-init . doom-modeline-mode))
 #+end_src
 
 *** Auto-revert
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package autorevert
     :ensure nil
     :bind ("C-x R" . revert-buffer)
@@ -546,7 +546,7 @@ In order to keep the init.el file clean,we specify an other file which should be
 
 *** Parentheses
 **** Color matching parentheses
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode)
   :config
@@ -564,7 +564,7 @@ In order to keep the init.el file clean,we specify an other file which should be
 #+end_src
 
 **** Smart parentheses
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package smartparens
     :defer 1
     :custom (sp-escape-quotes-after-insert nil)
@@ -575,7 +575,7 @@ In order to keep the init.el file clean,we specify an other file which should be
 ** Fonts
 In order to use your favorite font.
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (set-face-attribute 'default nil :font "Source Code Pro")
   (set-fontset-font t 'latin "Noto Sans")
 #+end_src
@@ -584,14 +584,14 @@ In order to use your favorite font.
 I decided to go for the dracula theme because it's contrasted enough, but i
 might change shortly
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package dracula-theme
   :config (load-theme 'dracula t)
   (set-face-background 'mode-line "#510370")
   (set-face-background 'mode-line-inactive "#212020"))
 #+end_src
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (require 'color)
 (if (display-graphic-p)
     (set-face-attribute 'org-block nil :background
@@ -600,7 +600,7 @@ might change shortly
 #+end_src
 
 *** Icons
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package all-the-icons :defer 0.5)
 #+end_src
 
@@ -608,7 +608,7 @@ might change shortly
 Emacs is sometimes quite tricky to set up. In order to get some nice IDE features, i decided to go for an LSP client-server model.
 
 *** Setup LSP
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   ;; (use-package lsp-mode
   ;;   :hook (prog-mode . lsp))
 
@@ -629,7 +629,7 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 #+end_src
 
 *** Python
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   ;; (setq py-python-command "python3")
   ;; (setq python-shell-interpreter "python3")
 
@@ -668,7 +668,7 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 #+end_src
 
 *** C/C++
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package ccls
     :after projectile
     :ensure-system-package ccls
@@ -691,7 +691,7 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 ** Typing
 *** TODO Abbrev
     When taking some notes, abbreviation can save you some time.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   ;; (use-package abbrev
   ;;   :hook (text-mode . abbrev-mode)
   ;;   :config
@@ -702,7 +702,7 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 
 **** Flyspell
 Flyspell provides on-the-fly checking and highlighting of misspellings.
-     #+begin_src emacs-lisp :tangle yes
+     #+begin_src emacs-lisp :tangle yes :results silent
        (use-package flyspell
          :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
          (prog-mode . flyspell-prog-mode)
@@ -721,7 +721,7 @@ Flyspell provides on-the-fly checking and highlighting of misspellings.
 Handles spell-checking and correction.
 Ensure to install the hunspell before using the package.
 Should be used in parallel with Flyspell to show a graphic feedback.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package ispell
   :defer 2
   ;; :ensure-system-package (hunspell . "sudo apt-get install  hunspell")
@@ -754,7 +754,7 @@ Should be used in parallel with Flyspell to show a graphic feedback.
 #+end_src
 
 **** Grammar Checker
-     #+begin_src emacs-lisp :tangle yes
+     #+begin_src emacs-lisp :tangle yes :results silent
        (use-package langtool
          :defer 2
          :delight
@@ -773,7 +773,7 @@ Should be used in parallel with Flyspell to show a graphic feedback.
      #+end_src
 
 *** Lorem Ipsum
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package lorem-ipsum
     :bind (("C-c v l" . lorem-ipsum-insert-list)
            ("C-c v p" . lorem-ipsum-insert-paragraphs)
@@ -783,7 +783,7 @@ Should be used in parallel with Flyspell to show a graphic feedback.
 ** Interface Enhancement
 *** Enhanced package manager
 Replace the stock package list manager with a more modern one
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package paradox
   :custom
   (paradox-execute-asynchronously t)
@@ -792,7 +792,7 @@ Replace the stock package list manager with a more modern one
 #+end_src
 
 *** Which-key
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package which-key
     :defer 0.2
     :config (which-key-mode)
@@ -802,7 +802,7 @@ Replace the stock package list manager with a more modern one
 #+end_src
 
 *** Ivy Counsel Swiper
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package ivy-rich
     :init
     (setq ivy-format-function 'ivy-format-function-line)
@@ -1047,7 +1047,7 @@ Replace the stock package list manager with a more modern one
 
 #+end_src
 **** TODO Password
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   ;; (use-package ivy-pass
   ;;   :after ivy
   ;;   :commands ivy-pass)
@@ -1057,14 +1057,14 @@ Replace the stock package list manager with a more modern one
 *** TODO COMMENT anzu
 [[https://github.com/syohex/emacs-anzu][anzu]] is a package that makes it easy to proceed text replacement. I may add
 it later to replace swiper for that usage.
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (use-package anzu
        :config (global-anzu-mode +1)
        (setq anzu-mode-lighter ""))
    #+end_src
 
 *** PDF
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package pdf-tools
     :defer 1
     :magic ("%PDF" . pdf-view-mode)
@@ -1108,7 +1108,7 @@ it later to replace swiper for that usage.
 #+end_src
 
 *** Treemacs
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package treemacs
     :ensure t
     :defer t
@@ -1187,7 +1187,7 @@ it later to replace swiper for that usage.
 #+end_src
 
 *** Close all buffers
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun close-all-buffers ()
     "Kill all buffers without regard for their origin."
     (interactive)
@@ -1196,14 +1196,14 @@ it later to replace swiper for that usage.
 #+end_src
 
 *** Popup-kill-ring
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package popup-kill-ring
     :ensure t
     :bind ("M-y" . popup-kill-ring))
 #+end_src
 
 *** TODO Linters
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package flycheck
     :defer 2
     :delight
@@ -1224,7 +1224,7 @@ it later to replace swiper for that usage.
 #+end_src
 
 *** Volatile-Highlights
-       #+begin_src emacs-lisp :tangle yes
+       #+begin_src emacs-lisp :tangle yes :results silent
          (use-package volatile-highlights
            :diminish volatile-highlights-mode
            :config
@@ -1236,7 +1236,7 @@ it later to replace swiper for that usage.
 *** Hydra
  Since it's quite difficult to remember all the shortcuts. Hydra gives you the opportunity to configure control panels from which you can run some commands.
 **** Hydra use-package
- #+begin_src emacs-lisp :tangle yes
+ #+begin_src emacs-lisp :tangle yes :results silent
    (use-package hydra)
 
    (use-package dash)  ;; need dash for major-mode-hydra
@@ -1268,7 +1268,7 @@ it later to replace swiper for that usage.
  #+end_src
 **** Hydra panel
 ***** toggle hydra
-      #+begin_src emacs-lisp :tangle yes
+      #+begin_src emacs-lisp :tangle yes :results silent
         (pretty-hydra-define my/hydra-toggle
           (:hint nil :foreign-keys warn :title "toggle" :quit-key "q")
           ("Basic"
@@ -1289,7 +1289,7 @@ it later to replace swiper for that usage.
         (global-set-key (kbd "C-z b") 'my/hydra-toggle/body)
       #+end_src
 ***** switch mode hydra
-      #+begin_src emacs-lisp :tangle yes
+      #+begin_src emacs-lisp :tangle yes :results silent
         (pretty-hydra-define my/hydra-switch-mode
           (:hint nil :foreign-keys warn :title "switch-mode" :quit-key "q" :color blue)
           ("Programming"
@@ -1306,7 +1306,7 @@ it later to replace swiper for that usage.
         (global-set-key (kbd "H-m") 'my/hydra-switch-mode/body)
       #+end_src
 ***** Go to config hydra
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (pretty-hydra-define my/hydra-go-to-config
     (:hint nil :foreign-keys warn :title "go-to-config" :quit-key "q" :color blue)
     ("Subtitle"
@@ -1321,7 +1321,7 @@ it later to replace swiper for that usage.
   (global-set-key (kbd "C-z F") 'my/hydra-go-to-config/body)
 #+end_src
 ***** Go to folder hydra
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (pretty-hydra-define my/hydra-go-to-folder
     (:hint nil :foreign-keys warn :title "go-to-folder" :quit-key "q" :color blue)
     ("Subtitle"
@@ -1339,7 +1339,7 @@ it later to replace swiper for that usage.
 #+end_src
 
 **** TODO COMMENT hydra-Launcher
- #+begin_src emacs-lisp :tangle yes
+ #+begin_src emacs-lisp :tangle yes :results silent
    ;; (pretty-hydra-define hydra-launcher
    ;;   (:hint nil :color teal :quit-key "q" :title (with-faicon "clock-o" "Clock" 1 -0.05))
    ;;   ("Action"
@@ -1361,7 +1361,7 @@ it later to replace swiper for that usage.
 ** Projects
 *** Projectile
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package projectile
     :defer 1
     :preface
@@ -1391,7 +1391,7 @@ it later to replace swiper for that usage.
 
 *** Version Control
 **** Magit
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package magit
     :defer 0.3
     :bind(("C-x g". magit-status)))
@@ -1399,7 +1399,7 @@ it later to replace swiper for that usage.
 
 **** TODO Git-commit
 Must look whether i'm gonna used this or not
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   ;; (use-package git-commit
   ;;   :after magit
   ;;   :hook (git-commit-mode . my/git-commit-auto-fill-everywhere)
@@ -1413,7 +1413,7 @@ Must look whether i'm gonna used this or not
 
 **** TODO Smerge-mode
 Help in resolving merge conflicts
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package smerge-mode
     :after hydra
     :hook (magit-diff-visit-file . (lambda ()
@@ -1423,7 +1423,7 @@ Help in resolving merge conflicts
 
 **** Git-gutter
 Show add, modification, delete on the side of a versioned file
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package git-gutter
     :defer 0.3
     :preface
@@ -1438,7 +1438,7 @@ Show add, modification, delete on the side of a versioned file
 #+end_src
 
 **** Git-timemachine
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package git-timemachine
     :defer 1
     :bind(
@@ -1451,7 +1451,7 @@ Show add, modification, delete on the side of a versioned file
 [[https://github.com/ralesi/ranger.el][Ranger]]
 This is a minor mode that runs within dired, it emulates many
 of ranger's features
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package ranger
     :bind ("C-c b" . ranger)
     :custom
@@ -1461,14 +1461,14 @@ of ranger's features
 * Programming languages
 ** General programming settings
 *** EditorConfig
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package editorconfig
   :defer 0.3
   :config (editorconfig-mode 1))
 #+end_src
 
 *** Aggressive-indent
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package aggressive-indent
     :hook ((css-mode . aggressive-indent-mode)
            (emacs-lisp-mode . aggressive-indent-mode)
@@ -1485,7 +1485,7 @@ Note that electric-operator-mode is not a global minor mode. It must be enabled
 separately for each major mode that you wish to use it with.
 #+end_quote
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package electric-operator
     :hook
     (python-mode . electric-operator-mode)
@@ -1495,37 +1495,37 @@ separately for each major mode that you wish to use it with.
 
 *** Rainbow-mode
 Colorize colors as text with their value.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package rainbow-mode
     :hook (prog-mode))
 #+end_src
 
 *** Whitespaces deletion
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package simple
     :ensure nil
     :hook (before-save . delete-trailing-whitespace))
 #+end_src
 
 *** Hungry-delete
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package hungry-delete
     :defer 0.7
     :config (global-hungry-delete-mode))
 #+end_src
 *** Kill buffer without confirmation
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (global-set-key [remap kill-buffer] #'kill-this-buffer)
 #+end_src
 *** Prog-Fill
     This package helps keeping a code that doesn't expand too much vertically by
     adding breaklines after each ->, (), . etc ... depending on the language
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (use-package prog-fill
        :bind ("M-Q" . prog-fill))
    #+end_src
 *** Highlight-Numbers
-       #+begin_src emacs-lisp :tangle yes
+       #+begin_src emacs-lisp :tangle yes :results silent
          (use-package highlight-numbers
            :config (add-hook 'prog-mode-hook 'highlight-numbers-mode))
        #+end_src
@@ -1533,7 +1533,7 @@ Colorize colors as text with their value.
 ** Specific mode settings
 
 *** CSS – LESS – SCSS
-    #+begin_src emacs-lisp :tangle yes
+    #+begin_src emacs-lisp :tangle yes :results silent
       (use-package css-mode
         :custom (css-indent-offset 2))
 
@@ -1544,14 +1544,14 @@ Colorize colors as text with their value.
         :mode "\\.scss\\'")
     #+end_src
 *** CSV
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package csv-mode
     :bind(
           ("<f6>" . csv-menu)
           ))
 #+end_src
 *** Elisp
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (pretty-hydra-define my/hydra-emacs-lisp
     (:hint nil :foreign-keys warn :title "emacs-lisp" :quit-key "q" :color blue)
     ("Eval"
@@ -1567,14 +1567,14 @@ Colorize colors as text with their value.
 #+end_src
 
 *** Lua
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package lua-mode
     :delight "Λ "
     :mode "\\.lua\\'"
     :interpreter ("lua" . lua-mode))
 #+end_src
 *** SQL
-    #+begin_src emacs-lisp :tangle yes
+    #+begin_src emacs-lisp :tangle yes :results silent
       (use-package sql-indent
         :hook sql-mode)
 
@@ -1582,13 +1582,13 @@ Colorize colors as text with their value.
         :hook sql-mode)
     #+end_src
 *** Docker
-    #+begin_src emacs-lisp :tangle yes
+    #+begin_src emacs-lisp :tangle yes :results silent
       (use-package dockerfile-mode
         :mode "Dockerfile\\'")
     #+end_src
 
 *** Emacs-lisp
-    #+begin_src emacs-lisp :tangle yes
+    #+begin_src emacs-lisp :tangle yes :results silent
       (use-package eldoc
         :delight
         :hook (emacs-lisp-mode . eldoc-mode))
@@ -1605,7 +1605,7 @@ Colorize colors as text with their value.
 *** TODO RestClient-mode
 
 *** TODO Gradle
-    #+begin_src emacs-lisp :tangle yes
+    #+begin_src emacs-lisp :tangle yes :results silent
       (use-package gradle-mode
         :mode ("\\.java\\'" "\\.gradle\\'")
         :bind (:map gradle-mode-map
@@ -1622,7 +1622,7 @@ Colorize colors as text with their value.
 
 *** TODO cmake
     must learn the cmake-ide package
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   ;; define files for which to enable cmake mode
   (use-package cmake-mode
     :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'")
@@ -1655,24 +1655,20 @@ Colorize colors as text with their value.
     :config (advice-add 'cmake-ide-compile :after #'my/switch-to-compilation-window))
 #+end_src
 *** Makefile
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package make-mode
     :bind(:map makefile-mode-map
                ("M-P" . move-text-up)
                ("M-N" . move-text-down)))
 #+end_src
 
-#+RESULTS:
-: move-text-down
-
-
 *** COMMENT Markdown
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package flymd)
 #+end_src
 
 *** X Mod Map Mode
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (define-generic-mode 'xmodmap-mode
     '(?!)
     '("add" "clear" "keycode" "keysym" "pointer" "remove")
@@ -1683,7 +1679,7 @@ Colorize colors as text with their value.
 #+end_src
 
 *** LaTeX
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package tex
     :ensure auctex
     :bind (:map TeX-mode-map
@@ -1770,7 +1766,7 @@ Colorize colors as text with their value.
 #+end_src
 
 *** JSON
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package json-mode
     :delight "J "
     :mode "\\.json\\'"
@@ -1802,7 +1798,7 @@ Colorize colors as text with their value.
 #+end_src
 
 ** YAML
- #+BEGIN_SRC emacs-lisp :tangle yes
+ #+BEGIN_SRC emacs-lisp :tangle yes :results silent
    (use-package yaml-mode
      :config
      (add-hook 'yaml-mode-hook 'flycheck-mode)
@@ -1818,12 +1814,8 @@ Colorize colors as text with their value.
     (add-hook 'yaml-mode-hook 'highlight-indentation-mode))
 #+END_SRC
 
-#+RESULTS:
-: t
-
-
 ** Web-mode
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package web-mode
   :mode "\\.phtml\\'"
   :mode "\\.volt\\'"
@@ -1837,7 +1829,7 @@ Colorize colors as text with their value.
 
 ** Snippets
 *** YASnippet
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package yasnippet-snippets
     :after yasnippet
     :config (yasnippet-snippets-initialize))
@@ -1858,8 +1850,8 @@ Colorize colors as text with their value.
 
 * Org-Mode
 ** Org better defaults
-Edit the code blocks in the same window
-#+begin_src emacs-lisp :tangle yes
+
+#+begin_src emacs-lisp :tangle yes :results silent
   (setq org-src-window-setup 'current-window)
   (setq org-startup-folded nil)
   (setq org-startup-with-latex-preview t)
@@ -1877,11 +1869,8 @@ Edit the code blocks in the same window
   (add-hook 'org-mode 'turn-on-auto-fill)
 #+end_src
 
-#+RESULTS:
-| turn-on-auto-fill |
-
 *** Org speed command
- #+begin_src emacs-lisp :tangle yes
+ #+begin_src emacs-lisp :tangle yes :results silent
    (defun my/org-use-speed-commands-for-headings-and-lists ()
      "Activates speed commands on list items too."
      (or (and (looking-at org-outline-regexp) (looking-back "^(\**)|^(\s*#)"))
@@ -1950,7 +1939,7 @@ Edit the code blocks in the same window
 
 ** Org-Mode appearance
 *** Toc-org
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package toc-org
     :hook (org-mode . toc-org-mode)
     :config
@@ -1958,13 +1947,13 @@ Edit the code blocks in the same window
 #+end_src
 
 *** Bullets
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode))
 #+end_src
 
 *** Faces
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package org-faces
     :ensure nil
     :after org
@@ -1985,7 +1974,7 @@ Edit the code blocks in the same window
 ** Add On
 
 *** Org-capture
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package org-capture
     :ensure nil
     :after org
@@ -2067,7 +2056,7 @@ Edit the code blocks in the same window
     ("H-c" . org-capture))
 #+end_src
 **** COMMENT Org Contact
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package org-contacts
     :ensure nil
     :after org
@@ -2075,7 +2064,7 @@ Edit the code blocks in the same window
 #+end_src
 
 *** Agenda
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (global-set-key (kbd "C-c a") 'org-agenda)
 
   (setq org-agenda-files (quote ("~/Org/agenda/organizer.org")))
@@ -2090,14 +2079,14 @@ Edit the code blocks in the same window
 #+end_src
 
 ** To refile
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
 #+end_src
 ** Export
 *** Latex
 Make sure you got the Pygment python package installed (using pip or your
 package-manage)
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (setq org-latex-listings 'minted
         org-latex-packages-alist '(("" "minted")))
 
@@ -2108,7 +2097,7 @@ package-manage)
 #+end_src
 
 ** Language compilation
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package ob-C :ensure nil :after org)
   (use-package ob-css :ensure nil :after org)
   (use-package ob-ditaa :ensure nil :after org)
@@ -2134,7 +2123,7 @@ package-manage)
 #+end_src
 ** Custom function
 *** TODO Org copy block
-  #+begin_src emacs-lisp :tangle yes
+  #+begin_src emacs-lisp :tangle yes :results silent
     (defun org-copy-blocks ()
       (interactive)
       (let ((code ""))
@@ -2145,7 +2134,7 @@ package-manage)
         (kill-new code)))
   #+end_src
 *** Org return
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (require 'org-inlinetask)
 
      (defun scimax/org-return (&optional ignore)
@@ -2232,7 +2221,7 @@ and multiple, selectable "styles", whose use is fully customizable by the user.
 [[https://github.com/jwiegley/alert][John Wiegley]]
 #+END_QUOTE
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package alert
     :defer 1
     :custom (alert-default-style 'libnotify))
@@ -2241,7 +2230,7 @@ and multiple, selectable "styles", whose use is fully customizable by the user.
 ** Auto-Completion
 As a completion package, i'm using company with several other packages to rice it.
 *** Company
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package company
     :diminish company-mode
     :config
@@ -2266,7 +2255,7 @@ As a completion package, i'm using company with several other packages to rice i
 #+begin_quote
 Completion will start automatically whenever the current symbol is preceded by a ., or after you type company-minimum-prefix-length letters.
 #+end_quote
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package company-go)
 #+end_src
 
@@ -2274,7 +2263,7 @@ Completion will start automatically whenever the current symbol is preceded by a
 #+begin_quote
 A company front-end with icons.
 #+end_quote
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package company-box
     :after company
     :hook (company-mode . company-box-mode))
@@ -2283,7 +2272,7 @@ A company front-end with icons.
 ** External Launch
 *** Browser
 **** Default launcher
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package browse-url
     :ensure nil
     :custom
@@ -2292,10 +2281,8 @@ A company front-end with icons.
     (browse-url-browser-function 'browse-url-generic))
 #+end_src
 
-#+RESULTS:
-
 **** Launch specific search from emacs
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package engine-mode
     :defer 3
     :config
@@ -2339,12 +2326,9 @@ A company front-end with icons.
     (engine-mode t))
 #+end_src
 
-#+RESULTS:
-: t
-
 ** Buffer
 *** Ibuffer
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package ibuffer
       :bind ("C-x C-b" . ibuffer))
   (use-package ibuffer-vc
@@ -2362,7 +2346,7 @@ A company front-end with icons.
 #+end_src
 
 *** Protection against deletion
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (when (get-buffer "*scratch*")
   (with-current-buffer "*scratch*"
 	    (emacs-lock-mode 'kill)))
@@ -2381,7 +2365,7 @@ A company front-end with icons.
 #+end_src
 ** TODO Calculator
 Adding some usefull unit calculation
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package calc
     :defer t
     :custom
@@ -2398,7 +2382,7 @@ Adding some usefull unit calculation
 #+end_src
 
 ** Dashboard
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package dashboard
     :ensure t
     :config
@@ -2419,12 +2403,12 @@ Adding some usefull unit calculation
 ** Dired
 
 *** Dired better default
-       #+begin_src emacs-lisp :tangle yes
+       #+begin_src emacs-lisp :tangle yes :results silent
          (setq dired-listing-switches "-alh")
        #+end_src
 
 *** Enhancement
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (eval-after-load "dired"
   '(progn
      (define-key dired-mode-map "F" 'my-dired-find-file)
@@ -2435,7 +2419,7 @@ Adding some usefull unit calculation
          (mapc 'find-file fn-list)))))
 #+end_src
 *** dired-subtree
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (use-package dired-subtree :ensure t
   :after dired
   :config
@@ -2445,7 +2429,7 @@ Adding some usefull unit calculation
 
 *** TODO customise dired
 ** History
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package savehist
     :ensure nil
     :custom
@@ -2457,7 +2441,7 @@ Adding some usefull unit calculation
 ** Draw graphics
 *** Gnuplot
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package gnuplot
     :ensure-system-package gnuplot
     :defer 2)
@@ -2468,12 +2452,12 @@ Adding some usefull unit calculation
 #+end_src
 
 ** Try
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package try :defer 5)
 #+end_src
 
 ** Undo-tree
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package undo-tree
     :bind ("C--" . undo-tree-redo)
     :init (global-undo-tree-mode)
@@ -2485,7 +2469,7 @@ Adding some usefull unit calculation
 ** Wiki-summary
 *** =wiki-summary=
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package wiki-summary
     :defer 1
     :preface
@@ -2504,7 +2488,7 @@ Adding some usefull unit calculation
 #+end_src
 
 ** Recent Files
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package recentf
     :bind ("C-c r" . recentf-open-files)
     :init (recentf-mode)
@@ -2521,7 +2505,7 @@ Adding some usefull unit calculation
 #+end_src
 
 ** Reveal.js
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package org-re-reveal
     :after org
     :custom
@@ -2530,7 +2514,7 @@ Adding some usefull unit calculation
 #+end_src
 ** Utility functions
 *** Generate scratch buffer
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun generate-scratch-buffer ()
     "Create and switch to a temporary scratch buffer with a random
        name."
@@ -2539,7 +2523,7 @@ Adding some usefull unit calculation
   (global-set-key (kbd "H-s") 'generate-scratch-buffer)
 #+end_src
 *** Create a tmp file
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun create-tmp-file ()
     "Prompt name then create a file in /tmp directory"
     (interactive)
@@ -2549,7 +2533,7 @@ Adding some usefull unit calculation
 #+end_src
 
 *** Open all marked files in Dired
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (eval-after-load "dired"
   '(progn
      (define-key dired-mode-map "F" 'my-dired-find-file)
@@ -2560,7 +2544,7 @@ Adding some usefull unit calculation
          (mapc 'find-file fn-list)))))
 #+end_src
 *** Copy file path
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun copy-path ()
     "Copy the current buffer file name to the clipboard."
     (interactive)
@@ -2573,7 +2557,7 @@ Adding some usefull unit calculation
   (global-set-key (kbd "C-c cp") 'copy-path)
 #+end_src
 *** Get current public ip
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (defun what-is-my-ip ()
   (interactive)
   (message "IP: %s"
@@ -2581,7 +2565,7 @@ Adding some usefull unit calculation
              (buffer-substring (+ 1 url-http-end-of-headers) (point-max)))))
 #+end_src
 *** TODO my/hydra-window
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (global-set-key
  (kbd "M-o")
  (defhydra hydra-window()
@@ -2618,7 +2602,7 @@ Adding some usefull unit calculation
    ("q" nil "cancel")))
 #+end_src
 *** Move files
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (defun move-file ()
   "Write this file to a new location, and delete the old one."
   (interactive)
@@ -2628,7 +2612,7 @@ Adding some usefull unit calculation
       (delete-file old-location))))
 #+end_src
 *** Format long function parameter list into multiline
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
 (defun format-function-parameters ()
   "Turn the list of function parameters into multiline."
   (interactive)
@@ -2644,14 +2628,14 @@ Adding some usefull unit calculation
   (newline-and-indent))
 #+end_src
 *** Reload configuration
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (defun config-reload ()
     "Reloads ~/.emacs.d/config.org at runtime"
     (interactive)
     (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
 #+end_src
 *** Copy filename
- #+begin_src emacs-lisp :tangle yes
+ #+begin_src emacs-lisp :tangle yes :results silent
  (defun copy-filename ()
    "Copy the current buffer file name to the clipboard."
    (interactive)
@@ -2663,14 +2647,14 @@ Adding some usefull unit calculation
        (message "Copied buffer file name '%s' to the clipboard." filename))))
  #+end_src
 *** add cmakelist.txt
- #+begin_src emacs-lisp :tangle yes
+ #+begin_src emacs-lisp :tangle yes :results silent
    (defun create-CMakeLists.txt ()
      (interactive)
      (find-file "CMakeLists.txt"))
  #+end_src
 
 *** Align sexp table
- #+begin_src emacs-lisp :tangle yes
+ #+begin_src emacs-lisp :tangle yes :results silent
  (defun bjm/align-whitespace (start end)
    "Align columns by whitespace"
    (interactive "r")
@@ -2685,17 +2669,17 @@ Adding some usefull unit calculation
  #+end_src
 
 ** PlantUML-mode
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (setq plantuml-exec-mode "jar")
   (setq plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
   (setq plantuml-output-type "utxt")
 #+end_src
 ** Pkg-Info
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (use-package pkg-info)
    #+end_src
 ** Engine
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (use-package engine-mode
        :defer 3
        :config
@@ -2736,11 +2720,8 @@ Adding some usefull unit calculation
        :bind ("H-a" . engine/search-duckduckgo))
    #+end_src
 
-   #+RESULTS:
-   : engine/search-duckduckgo
-
 ** Elfeed
-      #+begin_src emacs-lisp :tangle yes
+      #+begin_src emacs-lisp :tangle yes :results silent
         (use-package elfeed
           :bind ("C-x w" . elfeed))
 
@@ -2755,13 +2736,13 @@ you need to install the related external package first
   npm install mermaid.cli
   ./node_modules/.bin/mmdc -h
 #+end_src
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle yes :results silent
      (use-package mermaid-mode
        :config
        (setq mermaid-mmdc-location "/home/niccle27/node_modules/.bin/mmdc"))
    #+end_src
 ** Eyebrowse
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :results silent
   (use-package eyebrowse
     :ensure t
     :init
@@ -2787,9 +2768,6 @@ you need to install the related external package first
           )
     )
 #+end_src
-
-#+RESULTS:
-: eyebrowse-switch-to-window-config-9
 
 * To Sort
 
