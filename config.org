@@ -2136,6 +2136,10 @@ package-manage)
           "xelatex -synctex=1 -shell-escape -interaction nonstopmode %f")) ;; for multiple passes
 
 #+end_src
+**** Org-ref
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package org-ref)
+#+end_src
 
 ** Language compilation
 #+begin_src emacs-lisp :tangle yes :results silent
