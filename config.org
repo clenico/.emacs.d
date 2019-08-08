@@ -2116,11 +2116,12 @@ Colorize colors as text with their value.
   (setq org-refile-targets (quote ((nil :maxlevel . 9)  ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
                                    (org-agenda-files :maxlevel . 9))))
 #+end_src
-
-** To refile
-#+begin_src emacs-lisp :tangle yes :results silent
-(setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
+*** Org-ref
+#+begin_src emacs-lisp :tangle yes
+  (use-package org-ref)
 #+end_src
+
+
 ** Export
 *** Latex
 Make sure you got the Pygment python package installed (using pip or your
