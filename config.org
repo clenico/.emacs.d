@@ -1384,6 +1384,19 @@ it later to replace swiper for that usage.
 
  #+end_src
 
+**** hydra image manipulation
+  #+begin_src emacs-lisp :tangle yes :results silent
+    (pretty-hydra-define hydra-image
+      (:hint nil :color pink :quit-key "q" :title (with-faicon "file-image-o" "Images" 1 -0.05))
+      ("Action"
+       (("r" image-rotate "rotate")
+        ("s" image-save "save" :color teal))
+        "Zoom"
+        (("-" image-decrease-size "out")
+         ("+" image-increase-size "in")
+         ("=" image-transform-reset "reset"))))
+  #+end_src
+
 ** Projects
 *** Projectile
 
