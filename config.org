@@ -172,6 +172,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
      (global-set-key (kbd "M-[") 'backward-paragraph-bracket)
      (global-set-key (kbd "M-]") 'forward-paragraph-bracket)
 
+     (global-set-key (kbd "C-x f") 'find-file-at-point)
 
    #+end_src
 
