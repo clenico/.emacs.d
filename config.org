@@ -1015,12 +1015,23 @@ Replace the stock package list manager with a more modern one
 
   (use-package counsel
     :after ivy
+    :preface
+    (defun my-counsel-insert-file-path ()
+      "Insert file path."
+      (interactive)
+      (unless (featurep 'counsel) (require 'counsel))
+      (ivy-read "Find file: " 'read-file-name-internal
+                :matcher #'counsel--find-file-matcher
+                :action
+                (lambda (x)
+                  (insert x))))
     :config
     (setq counsel-grep-base-command
           "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
     :bind
     (("M-x" . counsel-M-x)
      ("C-x C-f" . counsel-find-file)
+     ("C-c F" . my-counsel-insert-file-path)
      ;; ("C-c p f" . counsel-projectile-find-file)
      ;; ("C-c p d" . counsel-projectile-find-dir)
      ;; ("C-c p p" . counsel-projectile-switch-project)
