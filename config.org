@@ -2825,3 +2825,4 @@ you need to install the related external package first
 - [ ] vlf: view large file
 - [ ] mermaid-mode : to make easy graph
 - [ ] cheatsheet ?
+- [ ] company-quickhelp
