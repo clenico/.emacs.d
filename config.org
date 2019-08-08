@@ -2789,6 +2789,7 @@ Adding some usefull unit calculation
    #+begin_src emacs-lisp :tangle yes :results silent
      (use-package engine-mode
        :defer 3
+       :after hydra major-mode-hydra
        :config
        (defengine amazon
          "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=%s"
@@ -2824,7 +2825,22 @@ Adding some usefull unit calculation
          :keybinding "w"
          :docstring "Searchin' the wikis.")
        (engine-mode t)
-       :bind ("H-a" . engine/search-duckduckgo))
+       :config
+       (pretty-hydra-define hydra-query
+         (:hint nil :color teal :quit-key "q" :title (with-faicon "search" "Engine-Mode" 1 -0.05))
+         ("Query"
+          (("a" engine/search-amazon "amazon")
+           ("d" engine/search-duckduckgo "duckduckgo")
+           ("g" engine/search-github "github")
+           ("i" engine/search-google-images "google images")
+           ("m" engine/search-google-maps "google maps")
+           ("s" engine/search-stack-overflow "stack overflow")
+           ("w" engine/search-wikipedia "wikipedia")
+           ("y" engine/search-youtube "youtube"))))
+       :bind (("H-a" . engine/search-duckduckgo)
+              ("H-b" . hydra-query/body)
+              ))
+
    #+end_src
 
 ** Elfeed
