@@ -1891,6 +1891,8 @@ Colorize colors as text with their value.
        ("'" org-edit-special "Edit Src C-c '")
        ("e" org-ctrl-c-ctrl-c "Evaluate Src C-c C-c")
        ("E" org-export-dispatch "Export C-c C-e")
+       ("f" org-footnote-action "Footnote C-c C-x f")
+       ("F" (org-footnote-action t) "Footnote Special actions")
        )
       "Organise"
       (("a" org-agenda "Agenda C-c a")
