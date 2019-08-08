@@ -759,7 +759,7 @@ Should be used in parallel with Flyspell to show a graphic feedback.
   )
 #+end_src
 
-**** Grammar Checker
+**** COMMENT Grammar Checker
      #+begin_src emacs-lisp :tangle yes :results silent
        (use-package langtool
          :defer 2
