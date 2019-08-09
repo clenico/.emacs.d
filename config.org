@@ -2200,7 +2200,10 @@ Make sure you got the Pygment python package installed (using pip or your
 package-manage)
 #+begin_src emacs-lisp :tangle yes :results silent
   (setq org-latex-listings 'minted
-        org-latex-packages-alist '(("" "minted" "natbib")))
+        org-latex-packages-alist '(
+                                   ("" "xcolor")
+                                   ("" "minted" )
+                                   ))
 
   (setq org-latex-pdf-process
         '("xelatex -synctex=1 -shell-escape -interaction nonstopmode %f"
