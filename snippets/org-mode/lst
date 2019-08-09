@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: listing src
+# key: lst
+# --
+#+begin_export latex
+\begin{listing}[ht]
+#+end_export
+#+begin_src ${1:language}
+$2
+#+end_src
+#+begin_export latex
+\caption[${caption in LOC}]{$1: ${caption below source code}}
+\label{listing:3}
+\end{listing}
+#+end_export

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: image
+# key: img
+# --
+#+CAPTION: ${text}
+#+ATTR_LATEX: :width ${width}cm :options angle=${0}
+${link}

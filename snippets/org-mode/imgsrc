@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: image with source
+# key: imgsrc
+# --
+#+ATTR_LATEX: :center t :placement [H]
+#+ATTR_LATEX: :caption   \caption[${Caption for LOF}]{${text}\protect\footnotemark}
+#+ATTR_LATEX: :width ${15}cm :options angle=${0}
+${image}
+#+begin_export latex
+\footnotetext{\textsc{Source: }\url{${link source}}}
+#+end_export
+$0

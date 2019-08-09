@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: table with caption
+# key: tabcap
+# --
+#+attr_latex: :align |c|c|
+#+attr_latex: :caption \caption${[${text in TOC}]}{${caption}}
+${table}

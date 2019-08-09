@@ -2,6 +2,6 @@
 # name: org source emacs lisp
 # key: osel
 # --
-#+begin_src emacs-lisp :tangle ${yes}
+#+begin_src emacs-lisp :tangle ${yes} :results silent
 $0
 #+end_src
