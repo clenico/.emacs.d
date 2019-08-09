@@ -13,6 +13,13 @@ test.org
 url/cookies
 *~
 /.lsp-session-v1
-/elisp/python-language-server/output/bin/Release/Microsoft.CSharp.dll
-/mspyls/.signature.p7s
-/mspyls/Microsoft.CSharp.dll
+/elisp/*
+/mspyls/*
+smex-items
+tramp
+/url/*
+abbrev_defs
+.org-id-locations
+bookmarks
+cheatsheet.el
+cheatsheetPerso.org
