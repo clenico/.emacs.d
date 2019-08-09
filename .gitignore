@@ -23,3 +23,5 @@ abbrev_defs
 bookmarks
 cheatsheet.el
 cheatsheetPerso.org
+/eshell/*
+\#*\#
