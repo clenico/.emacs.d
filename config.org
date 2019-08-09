@@ -1980,6 +1980,8 @@ After the firefox 68 maj, you need to set to do some modification:
                                (wl . wl-other-frame)))
   (setq org-latex-default-class "report")
   (setq org-export-headline-levels 5)
+  (setq org-image-actual-width 500)
+  (setq org-latex-caption-above nil)
 
   (add-hook 'org-mode 'turn-on-auto-fill)
 #+end_src
