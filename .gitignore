@@ -13,3 +13,6 @@ test.org
 url/cookies
 *~
 /.lsp-session-v1
+/elisp/python-language-server/output/bin/Release/Microsoft.CSharp.dll
+/mspyls/.signature.p7s
+/mspyls/Microsoft.CSharp.dll
