@@ -28,3 +28,4 @@
 ;; (org-babel-load-file (expand-file-name "~/Documents/Tmp/.emacs.d/config.org"))
 ;; (org-babel-load-file (expand-file-name "~/Documents/Projects/.emacs.d/config.org"))
 ;; (org-babel-load-file (expand-file-name "~/Downloads/.emacs.d.previous/config.org"))
+(put 'narrow-to-region 'disabled nil)
