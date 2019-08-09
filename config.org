@@ -1956,6 +1956,8 @@ After the firefox 68 maj, you need to set to do some modification:
       (("a" org-agenda "Agenda C-c a")
        ("C" org-capture "Capture H-c")
        ("w" org-refile "Refile C-c C-w"))
+      "Visual"
+      (("ti" org-toggle-inline-images "toggle image C-c C-x C-v"))
       )))
 
 #+end_src
