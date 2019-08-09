@@ -1933,7 +1933,7 @@ After the firefox 68 maj, you need to set to do some modification:
 
 * Org-Mode
 
-** Org use package
+** Org use package hydra
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package org
     :ensure t
