@@ -2593,8 +2593,8 @@ Adding some usefull unit calculation
   (defun create-tmp-file ()
     "Prompt name then create a file in /tmp directory"
     (interactive)
-    (find-file  (concat "/tmp/" (read-string "/tmp/"))))
-  (global-set-key (kbd "H-t") 'create-tmp-file)
+    (counsel-find-file "/tmp/"))
+    (global-set-key (kbd "H-t") 'create-tmp-file)
 
 #+end_src
 
