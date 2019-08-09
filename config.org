@@ -63,9 +63,9 @@
   My configuration is mainly based on many other peoples configuration. Thank
   you all for your work !
 
-[[https://github.com/abrochard/emacs-config][Adrien Brochard]] (=abrochard=)
-[[https://github.com/rememberYou/.emacs.d][Terencio Agozzino]] (=rememberYou=)
-[[https://github.com/sachac/.emacs.d][Sacha Chua]] (=sachac=)
+ *  [[https://github.com/abrochard/emacs-config][Adrien Brochard]] (=abrochard=)
+ * [[https://github.com/rememberYou/.emacs.d][Terencio Agozzino]] (=rememberYou=)
+ * [[https://github.com/sachac/.emacs.d][Sacha Chua]] (=sachac=)
 * Before Startup
 ** Refresh packages
    #+begin_src emacs-lisp :tangle yes :results silent
@@ -1385,6 +1385,19 @@ it later to replace swiper for that usage.
 
  #+end_src
 
+**** hydra image manipulation
+  #+begin_src emacs-lisp :tangle yes :results silent
+    (pretty-hydra-define hydra-image
+      (:hint nil :color pink :quit-key "q" :title (with-faicon "file-image-o" "Images" 1 -0.05))
+      ("Action"
+       (("r" image-rotate "rotate")
+        ("s" image-save "save" :color teal))
+        "Zoom"
+        (("-" image-decrease-size "out")
+         ("+" image-increase-size "in")
+         ("=" image-transform-reset "reset"))))
+  #+end_src
+
 ** Projects
 *** Projectile
 
@@ -1770,16 +1783,45 @@ Colorize colors as text with their value.
 
   (add-hook 'LaTeX-mode-hook 'my-LaTeX-setup-auto-fill)
 
-    (use-package bibtex
-      :after auctex
-      :hook
-      (bibtex-mode . my/bibtex-fill-column)
-      :preface
-      (defun my/bibtex-fill-column ()
-        "Ensures that each entry does not exceed 120 characters."
-        (setq fill-column 120))
-      :config
-      (setq bibtex-maintain-sorted-entries t))
+  (use-package bibtex
+    ;; :after auctex
+    :hook
+    (bibtex-mode . my/bibtex-fill-column)
+    :mode-hydra
+    (bibtex-mode
+     (:hint nil :foreign-keys warn :title "title" :quit-key "q" )
+     ("Help"
+      (
+       ("e" bibtex-entry "bibtex-entry C-c C-b")
+       ("c" bibtex-clean-entry "bibtex-clean-entry C-c C-c")
+       ("j" bibtex-next-field "bibtex-next-field C-j")
+       ("d" bibtex-kill-field "bibtex-kill-field C-c C-k")
+       ("D" bibtex-kill-entry "bibtex-kill-entry C-c C-w")
+       )
+      "Insert"
+      (
+       ("Ia" bibtex-Article "bibtex-Article C-c C-e C-a")
+       ("ib" bibtex-InBook "bibtex-InBook C-c C-e C-b")
+       ("Ib" bibtex-Book "bibtex-Book C-c C-e b")
+       ("Ima" bibtex-Manual "bibtex-Manual C-c C-e RT")
+       ("is" bibtex-String "bibtex-String C-c C-e C-s")
+       ("IT" bibtex-TechReport "bibtex-TechReport C-c C-e C-t")
+       ("iu" bibtex-Unpublished "bibtex-Unpublished C-c C-e C-u")
+       ("Ims" bibtex-Misc "bibtex-Misc C-c C-e M")
+       ("Ip" bibtex-PhdThesis "bibtex-PhdThesis C-c C-e P")
+       ("Imt" bibtex-MastersThesis "bibtex-MastersThesis C-c C-e m")
+       )
+  "Move"
+  (("N" org-ref-bibtex-next-entry "next-entry M-n" :color red)
+   ("P" org-ref-bibtex-previous-entry "next-entry M-p" :color red))
+
+      ))
+    :preface
+    (defun my/bibtex-fill-column ()
+      "Ensures that each entry does not exceed 120 characters."
+      (setq fill-column 120))
+    :config
+    (setq bibtex-maintain-sorted-entries t))
 
   (use-package company-auctex
     :after (auctex company)
@@ -2748,6 +2790,7 @@ Adding some usefull unit calculation
    #+begin_src emacs-lisp :tangle yes :results silent
      (use-package engine-mode
        :defer 3
+       :after hydra major-mode-hydra
        :config
        (defengine amazon
          "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=%s"
@@ -2783,7 +2826,22 @@ Adding some usefull unit calculation
          :keybinding "w"
          :docstring "Searchin' the wikis.")
        (engine-mode t)
-       :bind ("H-a" . engine/search-duckduckgo))
+       :config
+       (pretty-hydra-define hydra-query
+         (:hint nil :color teal :quit-key "q" :title (with-faicon "search" "Engine-Mode" 1 -0.05))
+         ("Query"
+          (("a" engine/search-amazon "amazon")
+           ("d" engine/search-duckduckgo "duckduckgo")
+           ("g" engine/search-github "github")
+           ("i" engine/search-google-images "google images")
+           ("m" engine/search-google-maps "google maps")
+           ("s" engine/search-stack-overflow "stack overflow")
+           ("w" engine/search-wikipedia "wikipedia")
+           ("y" engine/search-youtube "youtube"))))
+       :bind (("H-a" . engine/search-duckduckgo)
+              ("H-b" . hydra-query/body)
+              ))
+
    #+end_src
 
 ** Elfeed
