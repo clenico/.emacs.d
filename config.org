@@ -1434,7 +1434,10 @@ it later to replace swiper for that usage.
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package magit
     :defer 0.3
-    :bind(("C-x g". magit-status)))
+    :bind(("C-x g". magit-status)
+          :map magit-mode-map
+          ("M-u" . magit-section-up)
+          ))
 #+end_src
 
 **** TODO Git-commit
