@@ -1343,6 +1343,7 @@ it later to replace swiper for that usage.
       ("qq" (find-file "~/.config/qutebrowser") "qutebrowser")
       ("qb" (find-file "~/.config/qutebrowser/search_engines.py") "qute engine")
       ("e" (find-file "~/.emacs.d/config.org") "Emacs")
+      ("s" (counsel-find-file "~/.emacs.d/snippets") "Emacs snippets")
       )))
   (global-set-key (kbd "C-z F") 'my/hydra-go-to-config/body)
 #+end_src
