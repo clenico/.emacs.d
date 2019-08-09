@@ -27,7 +27,7 @@
   - [[#web-mode][Web-mode]]
   - [[#snippets][Snippets]]
 - [[#org-mode][Org-Mode]]
-  - [[#org-use-package][Org use package]]
+  - [[#org-use-package-hydra][Org use package hydra]]
   - [[#org-better-defaults][Org better defaults]]
   - [[#org-mode-appearance][Org-Mode appearance]]
   - [[#add-on][Add On]]
