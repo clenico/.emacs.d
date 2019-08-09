@@ -1702,7 +1702,10 @@ Colorize colors as text with their value.
                ("M-N" . move-text-down)))
 #+end_src
 
-*** COMMENT Markdown
+*** Markdown
+After the firefox 68 maj, you need to set to do some modification:
+ 1) type about:config
+ 2) =set security.fileuri.strict_origin_policy= to *false*
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package flymd)
 #+end_src
