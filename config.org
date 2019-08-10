@@ -1438,7 +1438,24 @@ it later to replace swiper for that usage.
     :bind(("C-x g". magit-status)
           :map magit-mode-map
           ("M-u" . magit-section-up)
-          ))
+          )
+    :config
+    (setq magit-display-buffer-function
+          (lambda (buffer)
+            (display-buffer
+             buffer
+             (cond ((and (derived-mode-p 'magit-mode)
+                         (eq (with-current-buffer buffer major-mode)
+                             'magit-status-mode))
+                    nil)
+                   ((memq (with-current-buffer buffer major-mode)
+                          '(magit-process-mode
+                            magit-revision-mode
+                            magit-diff-mode
+                            magit-stash-mode))
+                    nil)
+                   (t
+                    '(display-buffer-same-window)))))))
 #+end_src
 
 **** TODO Git-commit
