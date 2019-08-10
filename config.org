@@ -1327,7 +1327,8 @@ it later to replace swiper for that usage.
             ("md" markdown-mode "markdown")
             ("jn" json-mode "JSON")
             ("ltx" TeX-latex-mode "LaTeX")
-            ("O" org-mode "Org-mode"))))
+            ("O" org-mode "Org-mode")
+            ("sh" sh-mode "Bash"))))
 
         (global-set-key (kbd "H-m") 'my/hydra-switch-mode/body)
       #+end_src
