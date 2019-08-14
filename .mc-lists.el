@@ -5,8 +5,11 @@
       '(
         end-of-buffer
         hungry-delete-forward
+        keyboard-escape-quit
         my/hydra-switch-mode/body
         my/smarter-move-beginning-of-line
+        org-end-of-line
+        org-force-self-insert
         org-self-insert-command
         ))
 
