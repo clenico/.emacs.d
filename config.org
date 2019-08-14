@@ -2226,6 +2226,39 @@ After the firefox 68 maj, you need to set to do some modification:
   (setq org-refile-targets (quote ((nil :maxlevel . 9)  ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
                                    (org-agenda-files :maxlevel . 9))))
 #+end_src
+
+*** Org-noter
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package org-noter
+    :ensure t
+    :after bibtex
+    :config
+    (setq org-noter-always-create-frame nil)
+    (pretty-hydra-define my/hydra-org-noter
+      (:hint nil :foreign-keys warn :title "org-noter" :quit-key "q" :color blue)
+      ("Subtitle"
+       (
+        ("TAB" org-noter-insert-note-toggle-no-questions "take note on page (TAB)")
+        ("i" org-noter-insert-note "take note on custom title (i)")
+        ("M-i" org-noter-insert-precise-note "take note on custom title and pos (M-i)")
+        ("q" org-noter-kill-session "org-noter-kill-session (q)")
+        ("C-M-n" org-noter-sync-next-note "sync-next-note (C-M-n)" :color red)
+        ("C-M-p" org-noter-sync-prev-note "sync-prev-note (C-M-p)":color red)
+        ("M-." org-noter-sync-current-page-or-chapter "sync-current-page-or-chapter (M-.)")
+        ("M-n" org-noter-sync-next-page-or-chapter "sync-next-page-or-chapter (M-n)")
+        ("M-p" org-noter-sync-prev-page-or-chapter "sync-prev-page-or-chapter (M-p)")
+        ("C-M-." org-noter-sync-current-note "sync-current-note (C-M-.)")
+        ("T" org-noter-create-skeleton "Create skeleton")
+        )
+       ))
+    :bind(
+          :map org-noter-doc-mode-map
+          ("M-SPC" . my/hydra-org-noter/body)
+          ("M-;" . org-noter-sync-current-page-or-chapter)
+          ("C-M-;" . org-noter-sync-current-note)
+          ))
+#+end_src
+
 ** Export
 *** Latex
 Make sure you got the Pygment python package installed (using pip or your
