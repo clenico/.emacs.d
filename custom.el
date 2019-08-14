@@ -3,14 +3,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-PDF-mode t)
- '(TeX-auto-save t)
- '(TeX-byte-compile t)
- '(TeX-clean-confirm nil)
- '(TeX-master (quote dwim))
- '(TeX-parse-self t)
- '(TeX-source-correlate-mode t)
- '(TeX-view-program-selection (quote ((output-pdf "PDF Tools"))))
+ '(TeX-PDF-mode t t)
+ '(TeX-auto-save t t)
+ '(TeX-byte-compile t t)
+ '(TeX-clean-confirm nil t)
+ '(TeX-master (quote dwim) t)
+ '(TeX-parse-self t t)
+ '(TeX-source-correlate-mode t t)
+ '(TeX-view-program-selection (quote ((output-pdf "PDF Tools"))) t)
  '(aggressive-indent-comments-too nil)
  '(alert-default-style (quote libnotify))
  '(auto-revert-verbose nil)
@@ -124,7 +124,7 @@ Captured %<%Y-%m-%d %H:%M>" :empty-lines 1)
      ("FIXED" :foreground "forest green" :weight bold))))
  '(package-selected-packages
    (quote
-    (org-ref ox-bibtex eyebrowse flycheck-pos-tip org spaceline yasnippet-snippets yarn-mode yaml-mode xref-js2 wiki-summary which-key webpaste web-mode vue-mode virtualenvwrapper use-package-ensure-system-package try treemacs-projectile treemacs-icons-dired toc-org tide switch-window suggest sqlup-mode sql-indent smooth-scrolling smartparens scss-mode react-snippets ranger rainbow-mode rainbow-delimiters prettier-js popup-kill-ring plantuml-mode pdf-tools paredit paradox org-re-reveal org-plus-contrib org-journal org-bullets nov nord-theme mysql-to-org mu4e-alert move-text markdown-preview-mode major-mode-hydra lua-mode lsp-ui lsp-python-ms lsp-java lorem-ipsum ledger-mode langtool json-mode js2-refactor ivy-yasnippet ivy-rich ivy-pass ivy-hydra imgbb iedit ibuffer-vc ibuffer-projectile ibuffer-git hungry-delete highlight-numbers helpful gradle-mode google-c-style gnuplot-mode gnuplot git-timemachine git-gutter forge flyspell-correct-ivy flymd flycheck-ledger fancy-battery expand-region evil-escape evil-avy eros erc-image erc-hl-nicks engine-mode emmet-mode elpy elisp-demos electric-operator editorconfig dumb-jump dracula-theme doom-modeline dockerfile-mode dired-subtree dired-narrow delight dashboard dap-mode csv-mode counsel-projectile company-tern company-math company-lsp company-go company-box company-auctex cmake-ide cmake-font-lock ccls caps-lock auto-yasnippet atomic-chrome all-the-icons-ivy aggressive-indent ace-jump-mode ac-php)))
+    (org-noter org-ref ox-bibtex eyebrowse flycheck-pos-tip org spaceline yasnippet-snippets yarn-mode yaml-mode xref-js2 wiki-summary which-key webpaste web-mode vue-mode virtualenvwrapper use-package-ensure-system-package try treemacs-projectile treemacs-icons-dired toc-org tide switch-window suggest sqlup-mode sql-indent smooth-scrolling smartparens scss-mode react-snippets ranger rainbow-mode rainbow-delimiters prettier-js popup-kill-ring plantuml-mode pdf-tools paredit paradox org-re-reveal org-plus-contrib org-journal org-bullets nov nord-theme mysql-to-org mu4e-alert move-text markdown-preview-mode major-mode-hydra lua-mode lsp-ui lsp-python-ms lsp-java lorem-ipsum ledger-mode langtool json-mode js2-refactor ivy-yasnippet ivy-rich ivy-pass ivy-hydra imgbb iedit ibuffer-vc ibuffer-projectile ibuffer-git hungry-delete highlight-numbers helpful gradle-mode google-c-style gnuplot-mode gnuplot git-timemachine git-gutter forge flyspell-correct-ivy flymd flycheck-ledger fancy-battery expand-region evil-escape evil-avy eros erc-image erc-hl-nicks engine-mode emmet-mode elpy elisp-demos electric-operator editorconfig dumb-jump dracula-theme doom-modeline dockerfile-mode dired-subtree dired-narrow delight dashboard dap-mode csv-mode counsel-projectile company-tern company-math company-lsp company-go company-box company-auctex cmake-ide cmake-font-lock ccls caps-lock auto-yasnippet atomic-chrome all-the-icons-ivy aggressive-indent ace-jump-mode ac-php)))
  '(paradox-execute-asynchronously t)
  '(pdf-view-display-size (quote fit-page))
  '(pdf-view-resize-factor 1.1)
@@ -135,7 +135,7 @@ Captured %<%Y-%m-%d %H:%M>" :empty-lines 1)
  '(projectile-mode-line (quote (:eval (projectile-project-name))) t)
  '(projectile-project-root-files-top-down-recurring
    (quote
-    ("compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" ".svn" "CVS" "Makefile")))
+    ("compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" "compile_commands.json" ".ccls" ".svn" "CVS" "Makefile")))
  '(ranger-preview-file 1 t)
  '(recentf-exclude
    (quote
