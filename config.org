@@ -1791,75 +1791,75 @@ After the firefox 68 maj, you need to set to do some modification:
     ;; the ":hook" doesn't work for this one... don't ask me why.
     (add-hook 'TeX-after-compilation-finished-functions 'TeX-revert-document-buffer)
     (setq reftex-plug-into-auctex t)
-    (setq font-latex-fontify-script nil))
-
-  (defvar my-LaTeX-no-autofill-environments
-    '("equation" "equation*" "align" "align*")
-    "A list of LaTeX environment names in which `auto-fill-mode' should be inhibited.")
-
-  (defun my-LaTeX-auto-fill-function ()
-    "This function checks whether point is currently inside one of
-  the LaTeX environments listed in
-  `my-LaTeX-no-autofill-environments'. If so, it inhibits automatic
-  filling of the current paragraph."
-    (let ((do-auto-fill t)
-          (current-environment "")
-          (level 0))
-      (while (and do-auto-fill (not (string= current-environment "document")))
-        (setq level (1+ level)
-              current-environment (LaTeX-current-environment level)
-              do-auto-fill (not (member current-environment my-LaTeX-no-autofill-environments))))
-      (when do-auto-fill
-        (do-auto-fill))))
-
-  (defun my-LaTeX-setup-auto-fill ()
-    "This function turns on auto-fill-mode and sets the function
-  used to fill a paragraph to `my-LaTeX-auto-fill-function'."
-    (auto-fill-mode)
-    (setq auto-fill-function 'my-LaTeX-auto-fill-function))
-
-  (add-hook 'LaTeX-mode-hook 'my-LaTeX-setup-auto-fill)
-
-  (use-package bibtex
-    ;; :after auctex
-    :hook
-    (bibtex-mode . my/bibtex-fill-column)
-    :mode-hydra
-    (bibtex-mode
-     (:hint nil :foreign-keys warn :title "title" :quit-key "q" )
-     ("Help"
-      (
-       ("e" bibtex-entry "bibtex-entry C-c C-b")
-       ("c" bibtex-clean-entry "bibtex-clean-entry C-c C-c")
-       ("j" bibtex-next-field "bibtex-next-field C-j")
-       ("d" bibtex-kill-field "bibtex-kill-field C-c C-k")
-       ("D" bibtex-kill-entry "bibtex-kill-entry C-c C-w")
-       )
-      "Insert"
-      (
-       ("Ia" bibtex-Article "bibtex-Article C-c C-e C-a")
-       ("ib" bibtex-InBook "bibtex-InBook C-c C-e C-b")
-       ("Ib" bibtex-Book "bibtex-Book C-c C-e b")
-       ("Ima" bibtex-Manual "bibtex-Manual C-c C-e RT")
-       ("is" bibtex-String "bibtex-String C-c C-e C-s")
-       ("IT" bibtex-TechReport "bibtex-TechReport C-c C-e C-t")
-       ("iu" bibtex-Unpublished "bibtex-Unpublished C-c C-e C-u")
-       ("Ims" bibtex-Misc "bibtex-Misc C-c C-e M")
-       ("Ip" bibtex-PhdThesis "bibtex-PhdThesis C-c C-e P")
-       ("Imt" bibtex-MastersThesis "bibtex-MastersThesis C-c C-e m")
-       )
-  "Move"
-  (("N" org-ref-bibtex-next-entry "next-entry M-n" :color red)
-   ("P" org-ref-bibtex-previous-entry "next-entry M-p" :color red))
+    (setq font-latex-fontify-script nil)
     (setq org-preview-latex-default-process nil))
 
-      ))
-    :preface
-    (defun my/bibtex-fill-column ()
-      "Ensures that each entry does not exceed 120 characters."
-      (setq fill-column 120))
-    :config
-    (setq bibtex-maintain-sorted-entries t))
+      (defvar my-LaTeX-no-autofill-environments
+        '("equation" "equation*" "align" "align*")
+        "A list of LaTeX environment names in which `auto-fill-mode' should be inhibited.")
+
+      (defun my-LaTeX-auto-fill-function ()
+        "This function checks whether point is currently inside one of
+      the LaTeX environments listed in
+      `my-LaTeX-no-autofill-environments'. If so, it inhibits automatic
+      filling of the current paragraph."
+        (let ((do-auto-fill t)
+              (current-environment "")
+              (level 0))
+          (while (and do-auto-fill (not (string= current-environment "document")))
+            (setq level (1+ level)
+                  current-environment (LaTeX-current-environment level)
+                  do-auto-fill (not (member current-environment my-LaTeX-no-autofill-environments))))
+          (when do-auto-fill
+            (do-auto-fill))))
+
+      (defun my-LaTeX-setup-auto-fill ()
+        "This function turns on auto-fill-mode and sets the function
+      used to fill a paragraph to `my-LaTeX-auto-fill-function'."
+        (auto-fill-mode)
+        (setq auto-fill-function 'my-LaTeX-auto-fill-function))
+
+      (add-hook 'LaTeX-mode-hook 'my-LaTeX-setup-auto-fill)
+
+      (use-package bibtex
+        ;; :after auctex
+        :hook
+        (bibtex-mode . my/bibtex-fill-column)
+        :mode-hydra
+        (bibtex-mode
+         (:hint nil :foreign-keys warn :title "title" :quit-key "q" )
+         ("Help"
+          (
+           ("e" bibtex-entry "bibtex-entry C-c C-b")
+           ("c" bibtex-clean-entry "bibtex-clean-entry C-c C-c")
+           ("j" bibtex-next-field "bibtex-next-field C-j")
+           ("d" bibtex-kill-field "bibtex-kill-field C-c C-k")
+           ("D" bibtex-kill-entry "bibtex-kill-entry C-c C-w")
+           )
+          "Insert"
+          (
+           ("Ia" bibtex-Article "bibtex-Article C-c C-e C-a")
+           ("ib" bibtex-InBook "bibtex-InBook C-c C-e C-b")
+           ("Ib" bibtex-Book "bibtex-Book C-c C-e b")
+           ("Ima" bibtex-Manual "bibtex-Manual C-c C-e RT")
+           ("is" bibtex-String "bibtex-String C-c C-e C-s")
+           ("IT" bibtex-TechReport "bibtex-TechReport C-c C-e C-t")
+           ("iu" bibtex-Unpublished "bibtex-Unpublished C-c C-e C-u")
+           ("Ims" bibtex-Misc "bibtex-Misc C-c C-e M")
+           ("Ip" bibtex-PhdThesis "bibtex-PhdThesis C-c C-e P")
+           ("Imt" bibtex-MastersThesis "bibtex-MastersThesis C-c C-e m")
+           )
+      "Move"
+      (("N" org-ref-bibtex-next-entry "next-entry M-n" :color red)
+       ("P" org-ref-bibtex-previous-entry "next-entry M-p" :color red))
+
+          ))
+        :preface
+        (defun my/bibtex-fill-column ()
+          "Ensures that each entry does not exceed 120 characters."
+          (setq fill-column 120))
+        :config
+        (setq bibtex-maintain-sorted-entries t))
 
       (use-package company-auctex
         :after (auctex company)
