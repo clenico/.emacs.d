@@ -1851,6 +1851,7 @@ After the firefox 68 maj, you need to set to do some modification:
   "Move"
   (("N" org-ref-bibtex-next-entry "next-entry M-n" :color red)
    ("P" org-ref-bibtex-previous-entry "next-entry M-p" :color red))
+    (setq org-preview-latex-default-process nil))
 
       ))
     :preface
