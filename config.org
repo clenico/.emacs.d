@@ -8,6 +8,7 @@
   - [[#refresh-packages][Refresh packages]]
   - [[#define-repos][Define repos]]
   - [[#install-use-package][Install use-package]]
+  - [[#load-lisp-files][Load lisp files]]
 - [[#general][General]]
   - [[#better-defaults][Better defaults]]
   - [[#navigation][Navigation]]
