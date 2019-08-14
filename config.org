@@ -738,7 +738,7 @@ Should be used in parallel with Flyspell to show a graphic feedback.
   :defer 2
   ;; :ensure-system-package (hunspell . "sudo apt-get install  hunspell")
   :custom
-  (ispell-dictionary "en_US")
+  (ispell-dictionary "fr_BE")
   (ispell-dictionary-alist
    '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
      ("fr_BE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "fr_BE") nil utf-8)))
