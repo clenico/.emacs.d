@@ -2,6 +2,7 @@
 # name: table with caption
 # key: tabcap
 # --
+#+ATTR_LATEX: :center t :placement [H]
 #+attr_latex: :align |c|c|
 #+attr_latex: :caption \caption${[${text in TOC}]}{${caption}}
 ${table}
