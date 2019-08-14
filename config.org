@@ -1757,8 +1757,15 @@ After the firefox 68 maj, you need to set to do some modification:
                 ("C-c C-l" . TeX-next-error)
                 ("M-[" . outline-previous-heading)
                 ("M-]" . outline-next-heading))
+
     :hook ((LaTeX-mode . reftex-mode))
     :preface
+    (defun my/latexNewline ()             ;unused for now
+      "latex new line backline"
+      (interactive)
+      (insert"\\\\")
+      (newline)
+      )
     (defun my/switch-to-help-window (&optional ARG REPARSE)
       "Switches to the *TeX Help* buffer after compilation."
       (other-window 1))
