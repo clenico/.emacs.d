@@ -1860,23 +1860,23 @@ After the firefox 68 maj, you need to set to do some modification:
     :config
     (setq bibtex-maintain-sorted-entries t))
 
-  (use-package company-auctex
-    :after (auctex company)
-    :config (company-auctex-init))
+      (use-package company-auctex
+        :after (auctex company)
+        :config (company-auctex-init))
 
-  (use-package company-math :after (auctex company))
+      (use-package company-math :after (auctex company))
 
 
-  (setq-default TeX-engine 'xetex)
+      (setq-default TeX-engine 'xetex)
 
-  (add-hook 'LaTeX-mode-hook
-            (lambda()
-              (add-to-list 'TeX-command-list
-                           '("XeLaTeX" "xelatex  --shell-escape -synctex=1 -interaction=nonstopmode %s "
-                             TeX-run-command t t :help "Run xelatex") t)
-              (setq TeX-command-default "XeLaTeX")
-              (setq TeX-save-query nil)
-              (setq TeX-show-compilation t)))
+      (add-hook 'LaTeX-mode-hook
+                (lambda()
+                  (add-to-list 'TeX-command-list
+                               '("XeLaTeX" "xelatex  --shell-escape -synctex=1 -interaction=nonstopmode %s "
+                                 TeX-run-command t t :help "Run xelatex") t)
+                  (setq TeX-command-default "XeLaTeX")
+                  (setq TeX-save-query nil)
+                  (setq TeX-show-compilation t)))
 #+end_src
 
 *** JSON
