@@ -614,6 +614,8 @@ might change shortly
 #+end_src
 
 *** Icons
+The first time you run it, you must run =all-the-icons-install-fonts= in
+order to install the needed fonts
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package all-the-icons :defer 0.5)
 #+end_src
