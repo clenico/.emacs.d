@@ -238,6 +238,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (use-package avy
     :ensure t
     :bind (("C-z SPC" . avy-goto-char)
+           ("M-é" . avy-goto-char)
            ("C-z l" . avy-goto-line)
            ("C-z w" . avy-goto-word-2))
     :config
