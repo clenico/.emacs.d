@@ -55,7 +55,6 @@
   - [[#pkg-info][Pkg-Info]]
   - [[#engine][Engine]]
   - [[#elfeed][Elfeed]]
-  - [[#mermaid][Mermaid]]
   - [[#eyebrowse][Eyebrowse]]
 - [[#to-sort][To Sort]]
 - [[#to-add][To add]]
@@ -2924,12 +2923,15 @@ Adding some usefull unit calculation
           (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org"))
           (elfeed-org))
       #+end_src
-** Mermaid
+** COMMENT Mermaid
 you need to install the related external package first
 #+begin_src bash
   npm install mermaid.cli
   ./node_modules/.bin/mmdc -h
 #+end_src
+
+#+RESULTS:
+
    #+begin_src emacs-lisp :tangle yes :results silent
      (use-package mermaid-mode
        :config
