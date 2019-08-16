@@ -945,18 +945,6 @@ Replace the stock package list manager with a more modern one
              (:columns
               ((ivy-rich-file-icon)
                (ivy-read-file-transformer)
-               (ivy-rich-candidate
-                (:width 73))
-               (ivy-rich-file-user
-                (:width 8 :face font-lock-doc-face))
-               (ivy-rich-file-group
-                (:width 4 :face font-lock-doc-face))
-               (ivy-rich-file-modes
-                (:width 11 :face font-lock-doc-face))
-               (ivy-rich-file-size
-                (:width 7 :face font-lock-doc-face))
-               (ivy-rich-file-last-modified-time
-                (:width 30 :face font-lock-doc-face))
                ))
              counsel-file-jump
              (:columns
