@@ -2226,7 +2226,9 @@ After the firefox 68 maj, you need to set to do some modification:
                                    (org-agenda-files :maxlevel . 9))))
 #+end_src
 
-*** Org-noter
+*** BUG COMMENT Org-noter
+    - State "BUG"        from              [2019-08-16 Fr 22:40] \\
+      make bibtex mode unusable
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package org-noter
     :ensure t
