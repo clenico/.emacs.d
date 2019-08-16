@@ -1000,15 +1000,15 @@ Replace the stock package list manager with a more modern one
                 (:face font-lock-doc-face))))
              )))
 
-   (use-package ivy
-     :hook (after-init . ivy-mode)
-     :after ivy-rich
-     :config
-     (progn
-       (setq ivy-use-virtual-buffers t)
-       (setq ivy-initial-inputs-alist nil)
-       (counsel-mode)
-       (ivy-rich-mode)))
+      (use-package ivy
+        :hook (after-init . ivy-mode)
+        :after ivy-rich
+        :config
+        (progn
+          (setq ivy-use-virtual-buffers t)
+          (setq ivy-initial-inputs-alist nil)
+          (counsel-mode)
+          (ivy-rich-mode)))
    #+end_src
 
 **** Counsel
