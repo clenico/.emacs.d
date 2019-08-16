@@ -1791,8 +1791,7 @@ After the firefox 68 maj, you need to set to do some modification:
     ;; the ":hook" doesn't work for this one... don't ask me why.
     (add-hook 'TeX-after-compilation-finished-functions 'TeX-revert-document-buffer)
     (setq reftex-plug-into-auctex t)
-    (setq font-latex-fontify-script nil)
-    (setq org-preview-latex-default-process nil))
+    (setq font-latex-fontify-script nil))
 
       (defvar my-LaTeX-no-autofill-environments
         '("equation" "equation*" "align" "align*")
@@ -1999,7 +1998,7 @@ After the firefox 68 maj, you need to set to do some modification:
 #+begin_src emacs-lisp :tangle yes :results silent
   (setq org-src-window-setup 'current-window)
   (setq org-startup-folded nil)
-  (setq org-startup-with-latex-preview t)
+  (setq org-startup-with-latex-preview nil)
   (setq org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar")
   (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
   (setq org-startup-with-inline-images t)
