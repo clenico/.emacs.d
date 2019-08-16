@@ -1258,7 +1258,7 @@ it later to replace swiper for that usage.
 *** Hydra
  Since it's quite difficult to remember all the shortcuts. Hydra gives you the opportunity to configure control panels from which you can run some commands.
 **** Hydra use-package
- #+begin_src emacs-lisp :tangle yes :results silent
+#+begin_src emacs-lisp :tangle yes :results silent
    (use-package hydra)
 
    (use-package dash)  ;; need dash for major-mode-hydra
