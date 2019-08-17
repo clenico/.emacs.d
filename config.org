@@ -1228,7 +1228,7 @@ it later to replace swiper for that usage.
   (use-package flycheck
     :defer 2
     :delight
-    :init (global-flycheck-mode)
+    ;; :init (global-flycheck-mode)
     :custom
     (flycheck-display-errors-delay 1)
     ;; (flycheck-pylintrc "~/.pylintrc")
