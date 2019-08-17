@@ -15,6 +15,9 @@
 ;; If use-package isn't already installed, it's extremely likely that this is a
 ;; fresh installation! So we'll want to update the package repository and
 ;; install use-package before loading the literate configuration.
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                           ("melpa" . "http://melpa.org/packages/")
+                           ("org" . "http://orgmode.org/elpa/")))
 
 (when (not (package-installed-p 'use-package))
   (package-refresh-contents)
