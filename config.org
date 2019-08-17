@@ -746,8 +746,8 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 Flyspell provides on-the-fly checking and highlighting of misspellings.
      #+begin_src emacs-lisp :tangle yes :results silent
        (use-package flyspell
-         :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
-         (prog-mode . flyspell-prog-mode)
+         ;; :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
+         ;; (prog-mode . flyspell-prog-mode)
          :custom
          (flyspell-abbrev-p t)
          (flyspell-default-dictionary "en_US")
