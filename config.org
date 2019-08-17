@@ -63,7 +63,7 @@
   My configuration is mainly based on many other peoples configuration. Thank
   you all for your work !
 
- *  [[https://github.com/abrochard/emacs-config][Adrien Brochard]] (=abrochard=)
+ * [[https://github.com/abrochard/emacs-config][Adrien Brochard]] (=abrochard=)
  * [[https://github.com/rememberYou/.emacs.d][Terencio Agozzino]] (=rememberYou=)
  * [[https://github.com/sachac/.emacs.d][Sacha Chua]] (=sachac=)
 * Before Startup
