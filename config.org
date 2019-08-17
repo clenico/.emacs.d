@@ -66,6 +66,33 @@
  * [[https://github.com/abrochard/emacs-config][Adrien Brochard]] (=abrochard=)
  * [[https://github.com/rememberYou/.emacs.d][Terencio Agozzino]] (=rememberYou=)
  * [[https://github.com/sachac/.emacs.d][Sacha Chua]] (=sachac=)
+
+* Fix
+Sometimes Emacs can be tricky and many things can go wrong.
+Here is a few fix you can try to get things to work based on my
+experience.
+
+** Remove compiled files
+This can help fixing some Org symptoms like expand region not working.
+
+#+begin_src bash
+  $ cd ~/emacs.d/elpa
+  $ find . -type f -name '*elc' -exec rm -v {} \;
+#+end_src
+
+** Overall slowdown
+From my experience flycheck and flyspell can cause it. Try disabling.
+
+Otherwise, try disabling minor mode one by one.
+
+You can also try to use =M-x profiler-start= playing in a buffer, then
+displaying the profiler log.
+
+** Update packaging from Melpa
+Some packaging from elpa are being updated while others aren't. This can
+cause reference problem. I experienced it with =counsel= and =ivy=.
+
+**
 * Before Startup
 ** Refresh packages
    #+begin_src emacs-lisp :tangle yes :results silent
