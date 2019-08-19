@@ -2325,6 +2325,7 @@ package-manage)
         org-latex-packages-alist '(
                                    ("" "xcolor")
                                    ("" "minted" )
+                                   ("" "tikz")
                                    ))
 
   (setq org-latex-pdf-process
