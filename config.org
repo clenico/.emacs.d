@@ -96,7 +96,7 @@ displaying the profiler log.
 Some packaging from elpa are being updated while others aren't. This can
 cause reference problem. I experienced it with =counsel= and =ivy=.
 
-**
+
 * Before Startup
 ** Refresh packages
    #+begin_src emacs-lisp :tangle yes :results silent
