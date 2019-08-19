@@ -3015,6 +3015,8 @@ you need to install the related external package first
     (unbind-key "C-c C-w" eyebrowse-mode-map)
     (eyebrowse-switch-to-window-config-0)
     (find-file "~/.emacs.d/config.org")
+    (eyebrowse-switch-to-window-config-1)
+    (find-file "~/Dotfiles/i3/.config/i3/config")
     (eyebrowse-switch-to-window-config-9)
     (elfeed)
     (eyebrowse-switch-to-window-config-1)
