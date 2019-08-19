@@ -8,7 +8,6 @@
   - [[#remove-compiled-files][Remove compiled files]]
   - [[#overall-slowdown][Overall slowdown]]
   - [[#update-packaging-from-melpa][Update packaging from Melpa]]
-  - [[#][]]
 - [[#before-startup][Before Startup]]
   - [[#refresh-packages][Refresh packages]]
   - [[#define-repos][Define repos]]
