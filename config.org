@@ -2310,13 +2310,13 @@ After the firefox 68 maj, you need to set to do some modification:
     :after org
     :preface
     (defvar my/org-basic-task-template "* TODO %^{Task}
-        :PROPERTIES:
-        :Effort: %^{effort|1:00|0:05|0:15|0:30|2:00|4:00}
-        :END:
-        Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+          :PROPERTIES:
+          :Effort: %^{effort|1:00|0:05|0:15|0:30|2:00|4:00}
+          :END:
+          Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
     (defvar my/learning-template "* TODO %^{Subject}
-        Captured %<%Y-%m-%d %H:%M>
-        [[%^{Source}]]" "Template for learning subject.")
+          Captured %<%Y-%m-%d %H:%M>
+          [[%^{Source}]]" "Template for learning subject.")
 
     ;;   (defvar my/org-contacts-template "* %(org-contacts-template-name)
     ;; :PROPERTIES:
@@ -2327,12 +2327,12 @@ After the firefox 68 maj, you need to set to do some modification:
     ;; :END:" "Template for org-contacts.")
 
     (defvar my/org-ledger-card-template "%(org-read-date) %^{Payee}
-          Expenses:%^{Account}  €%^{Amount}
-          Liabilities:CreditsCards:Belfius" "Template for credit card transaction with ledger.")
+            Expenses:%^{Account}  €%^{Amount}
+            Liabilities:CreditsCards:Belfius" "Template for credit card transaction with ledger.")
 
     (defvar my/org-ledger-cash-template "%(org-read-date) * %^{Payee}
-          Expenses:%^{Account}  €%^{Amount}
-          Assets:Cash:Wallet" "Template for cash transaction with ledger.")
+            Expenses:%^{Account}  €%^{Amount}
+            Assets:Cash:Wallet" "Template for cash transaction with ledger.")
     :custom
     (org-capture-templates
      `(("B" "Book" checkitem (file+headline "~/Org/other/books.org" "Books")
@@ -2343,13 +2343,13 @@ After the firefox 68 maj, you need to set to do some modification:
         "- [ ] %^{Movie}"
         :immediate-finish t)
 
-       ("S" "Learning" entry (file+headline "~/Org/learning.org" "Learning"),
+       ("S" "Learning" entry (file+headline "~/Org/other/learning.org" "Learning"),
         my/learning-template
         :empty-lines 1)
 
-       ("P" "Linux" entry (file+headline "~/Notes/linux.org" "To Sort"),
+       ("P" "Linux" entry (file+headline "~/Notes/Linux/linux.org" "To Sort"),
         "** %^{subject}
-Tested on %^{OS}"
+  Tested on %^{OS}"
         :empty-lines 1
         ;; :unnarrowed 1
         )
