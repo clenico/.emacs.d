@@ -8,6 +8,7 @@
         keyboard-escape-quit
         my/hydra-switch-mode/body
         my/smarter-move-beginning-of-line
+        org-cycle
         org-end-of-line
         org-force-self-insert
         org-self-insert-command
@@ -16,6 +17,7 @@
 (setq mc/cmds-to-run-once
       '(
         hungry-delete-backward
+        org-export-dispatch
         org-kill-line
         org-refile
         ))
