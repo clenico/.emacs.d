@@ -2343,11 +2343,11 @@ After the firefox 68 maj, you need to set to do some modification:
         "- [ ] %^{Movie}"
         :immediate-finish t)
 
-       ("S" "Learning" entry (file+headline "~/Org/other/learning.org" "Learning"),
+       ("l" "Learning" entry (file+headline "~/Org/other/learning.org" "Learning"),
         my/learning-template
         :empty-lines 1)
 
-       ("P" "Linux" entry (file+headline "~/Notes/Linux/linux.org" "To Sort"),
+       ("L" "Linux" entry (file+headline "~/Notes/Linux/linux.org" "To Sort"),
         "** %^{subject}
   Tested on %^{OS}"
         :empty-lines 1
