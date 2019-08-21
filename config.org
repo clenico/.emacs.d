@@ -1555,6 +1555,15 @@ it later to replace swiper for that usage.
       )))
   (global-set-key (kbd "C-z f") 'my/hydra-go-to-folder/body)
 #+end_src
+***** Go to Notes
+#+begin_src emacs-lisp :tangle yes :results silent
+  (pretty-hydra-define my/hydra-Go-To-Notes
+    (:hint nil :foreign-keys warn :title "Go-To-Notes" :quit-key "q")
+    ("Personal"
+     (("pli" (find-file "~/Notes/Linux/linux.org") "Linux"))))
+  (global-set-key (kbd "C-z N") 'my/hydra-Go-To-Notes/body)
+#+end_src
+
 
 **** TODO COMMENT hydra-Launcher
  #+begin_src emacs-lisp :tangle yes :results silent
