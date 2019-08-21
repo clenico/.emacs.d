@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Strike-Through
+# key: +
+# --
++$1+$2
