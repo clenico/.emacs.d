@@ -94,7 +94,6 @@
         - [[#switch-mode-hydra][switch mode hydra]]
         - [[#go-to-config-hydra][Go to config hydra]]
         - [[#go-to-folder-hydra][Go to folder hydra]]
-        - [[#go-to-notes][Go to Notes]]
       - [[#hydra-image-manipulation][hydra image manipulation]]
   - [[#projects][Projects]]
     - [[#projectile][Projectile]]
@@ -1558,7 +1557,7 @@ it later to replace swiper for that usage.
       )))
   (global-set-key (kbd "C-z f") 'my/hydra-go-to-folder/body)
 #+end_src
-***** Go to Notes
+***** COMMENT Go to Notes
 #+begin_src emacs-lisp :tangle yes :results silent
   (pretty-hydra-define my/hydra-Go-To-Notes
     (:hint nil :foreign-keys warn :title "Go-To-Notes" :quit-key "q" :color blue)
