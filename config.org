@@ -1979,7 +1979,7 @@ sudo pip install grip
 
   (use-package grip-mode
     :ensure t
-    :hook ((markdown-mode org-mode) . grip-mode))
+    :hook ((markdown-mode) . grip-mode))
 #+end_src
 
 *** X Mod Map Mode
