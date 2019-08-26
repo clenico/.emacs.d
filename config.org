@@ -1253,18 +1253,27 @@ Replace the stock package list manager with a more modern one
          "Insert file path."
          (interactive)
          (unless (featurep 'counsel) (require 'counsel))
-         (ivy-read "Find file: " 'read-file-name-internal
+         (ivy-read "Insert path file: " 'read-file-name-internal
                    :matcher #'counsel--find-file-matcher
                    :action
                    (lambda (x)
                      (insert x))))
+       (defun my-counsel-killring-file-path()
+         "Copy file path."
+         (interactive)
+         (unless (featurep 'counsel) (require 'counsel))
+         (ivy-read "Insert path file: " 'read-file-name-internal
+                   :matcher #'counsel--find-file-matcher
+                   :action
+                   (lambda (x)
+                     (kill-new x))))
        :config
        (setq counsel-grep-base-command
              "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
        :bind
        (("M-x" . counsel-M-x)
         ("C-x C-f" . counsel-find-file)
-        ("C-c F" . my-counsel-insert-file-path)
+        ("C-c F" . my-counsel-killring-file-path)
         ;; ("C-c p f" . counsel-projectile-find-file)
         ;; ("C-c p d" . counsel-projectile-find-dir)
         ;; ("C-c p p" . counsel-projectile-switch-project)
