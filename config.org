@@ -1557,7 +1557,7 @@ it later to replace swiper for that usage.
       )))
   (global-set-key (kbd "C-z f") 'my/hydra-go-to-folder/body)
 #+end_src
-***** COMMENT Go to Notes
+***** Go to Notes
 #+begin_src emacs-lisp :tangle yes :results silent
   (pretty-hydra-define my/hydra-Go-To-Notes
     (:hint nil :foreign-keys warn :title "Go-To-Notes" :quit-key "q" :color blue)
