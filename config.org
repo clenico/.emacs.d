@@ -642,6 +642,36 @@ C-c right : redo
   (global-set-key (kbd "C-x C-u") 'xah-toggle-letter-case)
 #+end_src
 
+**** Org internal link
+#+begin_src emacs-lisp :tangle yes :results silent
+  ; use ivy to insert a link to a heading in the current document
+  ;; based on `worf-goto`
+
+  (defun bjm/worf-insert-internal-link-action (x)
+    "Insert link for `bjm/worf-insert-internal-link'"
+    ;; go to heading
+    (save-excursion
+      (goto-char (cdr x))
+      ;; store link
+      (call-interactively 'org-store-link)
+      )
+    ;; return to original point and insert link
+    (org-insert-last-stored-link 1)
+    ;; org-insert-last-stored-link adds a newline so delete this
+    (delete-backward-char 1)
+    )
+
+  (defun bjm/worf-insert-internal-link ()
+    "Use ivy to insert a link to a heading in the current `org-mode' document. Code is based on `worf-goto'."
+    (interactive)
+    (let ((cands (worf--goto-candidates)))
+      (ivy-read "Heading: " cands
+                :action 'bjm/worf-insert-internal-link-action)))
+
+  (define-key org-mode-map "\C-z\C-l" 'bjm/worf-insert-internal-link)
+
+#+end_src
+
 *** Iedit
 [[https://github.com/victorhge/iedit][Iedit]]
 Edit multiple regions in the same way simultaneously
@@ -3214,6 +3244,12 @@ you need to install the related external package first
           )
     )
 #+end_src
+** Worf
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package worf
+    :ensure t)
+#+end_src
+
 
 * To Sort
 
