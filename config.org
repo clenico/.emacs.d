@@ -2893,8 +2893,6 @@ Adding some usefull unit calculation
 #+end_src
 
 ** Wiki-summary
-*** =wiki-summary=
-
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package wiki-summary
     :defer 1
