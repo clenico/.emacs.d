@@ -1925,11 +1925,18 @@ Colorize colors as text with their value.
 #+end_src
 
 *** Markdown
-After the firefox 68 maj, you need to set to do some modification:
- 1) type about:config
- 2) =set security.fileuri.strict_origin_policy= to *false*
+In order to work, you need to install grip first
+
+#+begin_src bash
+sudo pip install grip
+#+end_src
+
 #+begin_src emacs-lisp :tangle yes :results silent
-  (use-package flymd)
+  ;; (use-package flymd)
+
+  (use-package grip-mode
+    :ensure t
+    :hook ((markdown-mode org-mode) . grip-mode))
 #+end_src
 
 *** X Mod Map Mode
