@@ -2156,6 +2156,13 @@ sudo pip install grip
        ("d" json-decrement-number-at-point "Decrement the number at point (C-c C-d)" :color red)))))
 #+end_src
 
+*** Proto
+Proto is a syntax created by google : [[https://developers.google.com/protocol-buffers/docs/overview][lien]]
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package protobuf-mode
+    :ensure t)
+#+end_src
+
 ** YAML
  #+BEGIN_SRC emacs-lisp :tangle yes :results silent
    (use-package yaml-mode
