@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Latex_Attribute
+# key: attr
+# --
+#+ATTR_LATEX: $1

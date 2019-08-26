@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: for directory in directories
+# key: fordir
+# --
+for ${directory} in \${${directories}[@]}; do
+${}
+done
