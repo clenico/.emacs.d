@@ -135,6 +135,7 @@
     - [[#x-mod-map-mode][X Mod Map Mode]]
     - [[#latex][LaTeX]]
     - [[#json][JSON]]
+    - [[#proto][Proto]]
   - [[#yaml][YAML]]
   - [[#web-mode][Web-mode]]
   - [[#snippets][Snippets]]
