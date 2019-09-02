@@ -39,6 +39,7 @@
     - [[#better-editing-default][Better editing default]]
     - [[#improve-built-in-functions][Improve built in functions]]
       - [[#kill-word][Kill Word]]
+      - [[#incrementdecrement-on-point][Increment/Decrement on point]]
       - [[#copy-word][Copy Word]]
       - [[#copy-a-line][Copy a line]]
       - [[#kill-line][Kill line]]
@@ -96,6 +97,7 @@
         - [[#go-to-config-hydra][Go to config hydra]]
         - [[#go-to-folder-hydra][Go to folder hydra]]
         - [[#go-to-notes][Go to Notes]]
+        - [[#set-workspace-mode][Set Workspace mode]]
       - [[#hydra-image-manipulation][hydra image manipulation]]
   - [[#projects][Projects]]
     - [[#projectile][Projectile]]
@@ -206,6 +208,7 @@
   - [[#elfeed][Elfeed]]
   - [[#eyebrowse][Eyebrowse]]
   - [[#worf][Worf]]
+  - [[#cliphist][Cliphist]]
 - [[#to-sort][To Sort]]
 - [[#to-add][To add]]
 
@@ -559,6 +562,26 @@ C-c right : redo
     (kill-word 1))
   (global-set-key (kbd "C-c cw") 'daedreth/kill-inner-word)
 #+end_src
+**** Increment/Decrement on point
+#+begin_src emacs-lisp :tangle yes :results silent
+  (defun increment-number-at-point ()
+    (interactive)
+    (skip-chars-backward "0-9")
+    (or (looking-at "[0-9]+")
+        (error "No number at point"))
+    (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+
+  (defun decrement-number-at-point ()
+    (interactive)
+    (skip-chars-backward "0-9")
+    (or (looking-at "[0-9]+")
+        (error "No number at point"))
+    (replace-match (number-to-string (- (string-to-number (match-string 0)) 1))))
+
+  (global-set-key (kbd "H-M-j") 'increment-number-at-point)
+  (global-set-key (kbd "H-M-k") 'decrement-number-at-point)
+#+end_src
+
 **** Copy Word
 #+begin_src emacs-lisp :tangle yes :results silent
 (defun daedreth/copy-whole-word ()
@@ -1608,6 +1631,58 @@ it later to replace swiper for that usage.
     ("Personal"
      (("pli" (find-file "~/Notes/Linux/linux.org") "Linux"))))
   (global-set-key (kbd "C-z N") 'my/hydra-Go-To-Notes/body)
+#+end_src
+***** Set Workspace mode
+#+begin_src emacs-lisp :tangle yes :results silent
+  (pretty-hydra-define my/hydra-set-workspaces
+    (:hint nil :foreign-keys warn :title "set-workspaces" :quit-key "q" :color blue)
+    ("Personnal"
+     (("b" (lambda()
+             (interactive)
+             (eyebrowse-switch-to-window-config-0)
+             (find-file "~/.emacs.d/config.org")
+             (eyebrowse-switch-to-window-config-1)
+             (find-file "~/Dotfiles/i3/.config/i3status/config")
+             (eyebrowse-switch-to-window-config-2)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-3)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-4)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-5)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-6)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-7)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-8)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-9)
+             (elfeed)
+             (eyebrowse-switch-to-window-config-0)
+             )
+       "Base")
+      ("T" (lambda()
+             (interactive)
+             (eyebrowse-switch-to-window-config-2)
+             (delete-other-windows)
+             (find-file "~/TFE/Rapport/Rapport.org")
+             (hsplit-last-buffer)
+             (find-file "~/TFE/Rapport/Rapport.pdf")
+             (other-window 1)
+
+             (eyebrowse-switch-to-window-config-3)
+             (find-file "~/TFE/idee/idee.org")
+
+             (eyebrowse-switch-to-window-config-2)
+             ) "TFE"))
+     "School"
+     ))
+
+  (global-set-key (kbd "C-z m") 'my/hydra-set-workspaces/body)
+
+  ;; (eyebrowse-switch-to-window-config-0)
+  ;; (find-file "~/.emacs.d/config.org")
 #+end_src
 
 
@@ -2867,14 +2942,18 @@ Adding some usefull unit calculation
 
   (setq dashboard-startup-banner "~/.emacs.d/assert/img/dashLogo.png")
   (setq dashboard-banner-logo-title "Live as if you were to die tomorrow. Learn as if you were to live forever")
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (setq dashboard-set-footer nil)
+  (setq initial-buffer-choice
+        (lambda () (get-buffer "*dashboard*")
+          (with-current-buffer "*dashboard*"
+            (emacs-lock-mode 'kill))))
 
-  (setq dashboard-items '((recents  . 5)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 5)
-                          (registers . 5)))
+        (setq dashboard-set-footer nil)
+
+        (setq dashboard-items '((recents  . 5)
+                                (bookmarks . 5)
+                                (projects . 5)
+                                (agenda . 5)
+                                (registers . 5)))
 #+end_src
 
 ** Dired
@@ -3269,6 +3348,20 @@ you need to install the related external package first
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package worf
     :ensure t)
+#+end_src
+** Cliphist
+[[https://github.com/redguardtoo/cliphist][Cliphist]] read data from a clipboard manager like clipit.
+*NOTE* be aware to activate the history saving in clipit for the plugin
+to work.
+
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package cliphist
+    :ensure t
+    :bind ("M-Y" . cliphist-paste-item)
+    :config
+    (setq cliphist-linux-clipboard-managers '("clipit")
+          cliphist-cc-kill-ring t))
+
 #+end_src
 
 
