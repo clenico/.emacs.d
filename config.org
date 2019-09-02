@@ -1815,6 +1815,8 @@ Show add, modification, delete on the side of a versioned file
     :init (global-git-gutter-mode )
     :bind (
            ("C-:" . git-gutter:popup-hunk-other-windows)
+           ("H-;" . git-gutter:next-hunk)
+           ("H-:" . git-gutter:previous-hunk)
            ))
 #+end_src
 
