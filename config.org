@@ -2367,6 +2367,8 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
                                               "spl"
                                               "bbl"
                                               )))
+
+  (setq org-highlight-latex-and-related '(latex))
   (add-hook 'org-mode 'turn-on-auto-fill)
 #+end_src
 
