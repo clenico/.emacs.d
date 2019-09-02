@@ -39,6 +39,7 @@
     - [[#better-editing-default][Better editing default]]
     - [[#improve-built-in-functions][Improve built in functions]]
       - [[#kill-word][Kill Word]]
+      - [[#incrementdecrement-on-point][Increment/Decrement on point]]
       - [[#copy-word][Copy Word]]
       - [[#copy-a-line][Copy a line]]
       - [[#kill-line][Kill line]]
@@ -96,6 +97,7 @@
         - [[#go-to-config-hydra][Go to config hydra]]
         - [[#go-to-folder-hydra][Go to folder hydra]]
         - [[#go-to-notes][Go to Notes]]
+        - [[#set-workspace-mode][Set Workspace mode]]
       - [[#hydra-image-manipulation][hydra image manipulation]]
   - [[#projects][Projects]]
     - [[#projectile][Projectile]]
@@ -206,6 +208,7 @@
   - [[#elfeed][Elfeed]]
   - [[#eyebrowse][Eyebrowse]]
   - [[#worf][Worf]]
+  - [[#cliphist][Cliphist]]
 - [[#to-sort][To Sort]]
 - [[#to-add][To add]]
 
