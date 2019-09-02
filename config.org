@@ -3346,6 +3346,16 @@ you need to install the related external package first
   (use-package worf
     :ensure t)
 #+end_src
+** Cliphist
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package cliphist
+    :ensure t
+    :bind ("M-Y" . cliphist-paste-item)
+    :config
+    (setq cliphist-linux-clipboard-managers '("clipit")
+          cliphist-cc-kill-ring t))
+
+#+end_src
 
 
 * To Sort
