@@ -3350,6 +3350,10 @@ you need to install the related external package first
     :ensure t)
 #+end_src
 ** Cliphist
+[[https://github.com/redguardtoo/cliphist][Cliphist]] read data from a clipboard manager like clipit.
+*NOTE* be aware to activate the history saving in clipit for the plugin
+to work.
+
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package cliphist
     :ensure t
