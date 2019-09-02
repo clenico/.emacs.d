@@ -1609,6 +1609,58 @@ it later to replace swiper for that usage.
      (("pli" (find-file "~/Notes/Linux/linux.org") "Linux"))))
   (global-set-key (kbd "C-z N") 'my/hydra-Go-To-Notes/body)
 #+end_src
+***** Set Workspace mode
+#+begin_src emacs-lisp :tangle yes :results silent
+  (pretty-hydra-define my/hydra-set-workspaces
+    (:hint nil :foreign-keys warn :title "set-workspaces" :quit-key "q" :color blue)
+    ("Personnal"
+     (("b" (lambda()
+             (interactive)
+             (eyebrowse-switch-to-window-config-0)
+             (find-file "~/.emacs.d/config.org")
+             (eyebrowse-switch-to-window-config-1)
+             (find-file "~/Dotfiles/i3/.config/i3status/config")
+             (eyebrowse-switch-to-window-config-2)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-3)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-4)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-5)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-6)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-7)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-8)
+             (switch-to-buffer "*dashboard*")
+             (eyebrowse-switch-to-window-config-9)
+             (elfeed)
+             (eyebrowse-switch-to-window-config-0)
+             )
+       "Base")
+      ("T" (lambda()
+             (interactive)
+             (eyebrowse-switch-to-window-config-2)
+             (delete-other-windows)
+             (find-file "~/TFE/Rapport/Rapport.org")
+             (hsplit-last-buffer)
+             (find-file "~/TFE/Rapport/Rapport.pdf")
+             (other-window 1)
+
+             (eyebrowse-switch-to-window-config-3)
+             (find-file "~/TFE/idee/idee.org")
+
+             (eyebrowse-switch-to-window-config-2)
+             ) "TFE"))
+     "School"
+     ))
+
+  (global-set-key (kbd "C-z m") 'my/hydra-set-workspaces/body)
+
+  ;; (eyebrowse-switch-to-window-config-0)
+  ;; (find-file "~/.emacs.d/config.org")
+#+end_src
 
 
 **** TODO COMMENT hydra-Launcher
