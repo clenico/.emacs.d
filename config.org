@@ -559,6 +559,26 @@ C-c right : redo
     (kill-word 1))
   (global-set-key (kbd "C-c cw") 'daedreth/kill-inner-word)
 #+end_src
+**** Increment/Decrement on point
+#+begin_src emacs-lisp :tangle yes :results silent
+  (defun increment-number-at-point ()
+    (interactive)
+    (skip-chars-backward "0-9")
+    (or (looking-at "[0-9]+")
+        (error "No number at point"))
+    (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+
+  (defun decrement-number-at-point ()
+    (interactive)
+    (skip-chars-backward "0-9")
+    (or (looking-at "[0-9]+")
+        (error "No number at point"))
+    (replace-match (number-to-string (- (string-to-number (match-string 0)) 1))))
+
+  (global-set-key (kbd "H-M-j") 'increment-number-at-point)
+  (global-set-key (kbd "H-M-k") 'decrement-number-at-point)
+#+end_src
+
 **** Copy Word
 #+begin_src emacs-lisp :tangle yes :results silent
 (defun daedreth/copy-whole-word ()
