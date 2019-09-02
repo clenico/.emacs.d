@@ -2,6 +2,7 @@
 # name: image
 # key: img
 # --
+#+ATTR_LATEX: :center t :placement [H]
 #+CAPTION: ${text}
 #+ATTR_LATEX: :width ${width}cm :options angle=${0}
 ${link}
