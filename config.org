@@ -2939,14 +2939,18 @@ Adding some usefull unit calculation
 
   (setq dashboard-startup-banner "~/.emacs.d/assert/img/dashLogo.png")
   (setq dashboard-banner-logo-title "Live as if you were to die tomorrow. Learn as if you were to live forever")
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (setq dashboard-set-footer nil)
+  (setq initial-buffer-choice
+        (lambda () (get-buffer "*dashboard*")
+          (with-current-buffer "*dashboard*"
+            (emacs-lock-mode 'kill))))
 
-  (setq dashboard-items '((recents  . 5)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 5)
-                          (registers . 5)))
+        (setq dashboard-set-footer nil)
+
+        (setq dashboard-items '((recents  . 5)
+                                (bookmarks . 5)
+                                (projects . 5)
+                                (agenda . 5)
+                                (registers . 5)))
 #+end_src
 
 ** Dired
