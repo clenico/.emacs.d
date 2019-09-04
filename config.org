@@ -1634,30 +1634,66 @@ it later to replace swiper for that usage.
 #+end_src
 ***** Set Workspace mode
 #+begin_src emacs-lisp :tangle yes :results silent
+  (defun set-one-file-to-window (filePath)
+    "delete other windows and find file"
+    (interactive)
+    (delete-other-windows)
+    (find-file filePath)
+    )
+
+  (defun set-two-files-to-window-hsplit (filePath-1 filePath-2)
+    "set 2 files side by side in a window"
+    (interactive)
+    (delete-other-windows)
+    (find-file filePath-1)
+    (hsplit-last-buffer)
+    (find-file filePath-2)
+    (other-window 1)
+    )
+
+
+  (defun set-one-buffer-to-window (filePath)
+    "delete other windows and  switch to buffer"
+    (interactive)
+    (delete-other-windows)
+    (switch-to-buffer filePath)
+    )
+
+  (defun set-two-buffers-to-window-hsplit (filePath)
+    "set 2 buffers side by side in a window"
+    (delete-other-windows)
+    (find-file filePath-1)
+    (hsplit-last-buffer)
+    (find-file filePath-2)
+    (other-window 1)
+    )
+
   (pretty-hydra-define my/hydra-set-workspaces
     (:hint nil :foreign-keys warn :title "set-workspaces" :quit-key "q" :color blue)
     ("Personnal"
      (("b" (lambda()
              (interactive)
              (eyebrowse-switch-to-window-config-0)
-             (find-file "~/.emacs.d/config.org")
+             (set-one-file-to-window "~/.emacs.d/config.org")
              (eyebrowse-switch-to-window-config-1)
-             (find-file "~/Dotfiles/i3/.config/i3/config")
+             (set-one-file-to-window "~/Dotfiles/i3/.config/i3/config")
              (eyebrowse-switch-to-window-config-2)
+             (delete-other-windows)
              (switch-to-buffer "*dashboard*")
              (eyebrowse-switch-to-window-config-3)
-             (switch-to-buffer "*dashboard*")
+             (set-one-buffer-to-window "*dashboard*")
              (eyebrowse-switch-to-window-config-4)
-             (switch-to-buffer "*dashboard*")
+             (set-one-buffer-to-window "*dashboard*")
              (eyebrowse-switch-to-window-config-5)
-             (switch-to-buffer "*dashboard*")
+             (set-one-buffer-to-window "*dashboard*")
              (eyebrowse-switch-to-window-config-6)
-             (switch-to-buffer "*dashboard*")
+             (set-one-buffer-to-window "*dashboard*")
              (eyebrowse-switch-to-window-config-7)
-             (switch-to-buffer "*dashboard*")
+             (set-one-buffer-to-window "*dashboard*")
              (eyebrowse-switch-to-window-config-8)
-             (switch-to-buffer "*dashboard*")
+             (set-one-buffer-to-window "*dashboard*")
              (eyebrowse-switch-to-window-config-9)
+             (delete-other-windows)
              (elfeed)
              (eyebrowse-switch-to-window-config-0)
              )
@@ -1665,15 +1701,10 @@ it later to replace swiper for that usage.
       ("T" (lambda()
              (interactive)
              (eyebrowse-switch-to-window-config-2)
-             (delete-other-windows)
-             (find-file "~/TFE/Rapport/Rapport.org")
-             (hsplit-last-buffer)
-             (find-file "~/TFE/Rapport/Rapport.pdf")
-             (other-window 1)
-
+             (set-two-files-to-window-hsplit "~/TFE/Rapport/Rapport.org" "~/TFE/Rapport/Rapport.pdf")
              (eyebrowse-switch-to-window-config-3)
-             (find-file "~/TFE/idee/idee.org")
-
+             (delete-other-windows)
+             (set-one-file-to-window "~/TFE/idee/idee.org")
              (eyebrowse-switch-to-window-config-2)
              ) "TFE"))
      "School"
