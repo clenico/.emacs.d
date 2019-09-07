@@ -2,4 +2,4 @@
 # name: definition
 # key:def
 # --
-- ${name} :: ${definition}
+- ${1:name} :: $2
