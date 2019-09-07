@@ -116,6 +116,20 @@ func main() {
     ;;
 
     ))
+(when (boundp 'go-mode-abbrev-table)
+  (clear-abbrev-table dockerfile-mode-abbrev-table))
+
+(define-abbrev-table 'dockerfile-mode-abbrev-table
+  '(
+    ("from" "FROM")
+    ("run" "RUN")
+    ("cmd" "CMD")
+    ("expose" "EXPOSE")
+    ("workdir" "WORKDIR")
+    ("copy" "COPY")
+    ("add" "ADD")
+    ("maintainer" "MAINTAINER")
+    ))
 
 (set-default 'abbrev-mode t)
 
