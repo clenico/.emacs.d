@@ -1,123 +1,69 @@
-;; -*- coding: utf-8; lexical-binding: t; -*-
-;; sample use of abbrev
+;;-*-coding: utf-8;-*-
+(define-abbrev-table 'Buffer-menu-mode-abbrev-table '())
 
-(clear-abbrev-table global-abbrev-table)
+(define-abbrev-table 'Custom-mode-abbrev-table '())
 
-(define-abbrev-table 'global-abbrev-table
+(define-abbrev-table 'Info-edit-mode-abbrev-table '())
+
+(define-abbrev-table 'awk-mode-abbrev-table
   '(
+   ))
 
-    ;; net abbrev
-    ("afaik" "as far as i know" )
-    ("atm" "at the moment" )
-    ("dfb" "difference between" )
-    ("ty" "thank you" )
-    ("ui" "user interface" )
-    ("uns" "understand" )
-    ("ur" "you are" )
-    ("btw" "by the way" )
+(define-abbrev-table 'biblio-selection-mode-abbrev-table '())
 
-    ("cnt" "can't" )
-    ("ddnt" "didn't" )
-    ("dnt" "don't" )
+(define-abbrev-table 'bibtex-mode-abbrev-table '())
 
-    ;; english word abbrev
-    ("ann" "announcement" )
-    ("arg" "argument" )
-    ("autom" "automatic" )
-    ("bc" "because" )
-    ("bg" "background" )
-    ("bt" "between" )
-    ("math" "mathematics" )
+(define-abbrev-table 'bookmark-bmenu-mode-abbrev-table '())
 
-    ;; computing
-    ("ahk" "AutoHotkey" )
-    ("cfg" "context-free grammar" )
-    ("cj" "Clojure" )
-    ("cs" "computer science" )
+(define-abbrev-table 'bookmark-edit-annotation-mode-abbrev-table '())
 
-    ;; tech company
-    ("gc" "Google Chrome" )
-    ("gm" "Google Map" )
-    ("macos" "Mac OS" )
-    ("msw" "Microsoft Windows" )
+(define-abbrev-table 'bui-info-mode-abbrev-table '())
 
-    ;; programing
-    ("ev" "environment variable" )
-    ("ipa" "IP address" )
-    ("jvm" "Java Virtual Machine" )
-    ("rsi" "Repetitive Strain Injury" )
-    ("subdir" "sub-directory" )
-    ("wd" "web development" )
+(define-abbrev-table 'bui-list-mode-abbrev-table '())
 
-    ("db" "database" )
-    ("gui3" "graphical user interface" )
-    ("oop3" "object oriented programing" )
-
-    ("os3" "operating system" )
-
-    ;; programing
-    ("eq" "==" )
-    ("r" "return" )
-    ("utf8" "-*- coding: utf-8 -*-" )
-
-    ;; regex
-    ("xaz" "\\([A-Za-z0-9]+\\)" )
-
-    ;; unicode
-    ("md" "—" )
-
-    ("hr" "--------------------------------------------------" )
-    ("bu" "•" )
-    ("catface" "😸" )
-    ("hearts" "♥💕💓💔💖💗💘💝💞💟💙💚💛💜" )
-    ("ra" "→" )
-
-    ;; url
-    ("urlemacs" "http://ergoemacs.org/" )
-
-    ;;
-    ))
-
-;; define abbrev for specific major mode
-;; the first part of the name should be the value of the variable major-mode of that mode
-;; e.g. for go-mode, name should be go-mode-abbrev-table
-
-(when (boundp 'go-mode-abbrev-table)
-  (clear-abbrev-table go-mode-abbrev-table))
-
-(define-abbrev-table 'go-mode-abbrev-table
+(define-abbrev-table 'c++-mode-abbrev-table
   '(
-    ("go" "package main
-import \"fmt\"
-func main() {
-        fmt.Println(\"3\")
-}")
+   ))
 
-    ("p" "fmt.Printf(\"%v\\n\", hh▮)")
-    ("pl" "fmt.Println(hh▮)")
-    ("r" "return")
-    ("st" "string")
-    ("eq" "==")
-    ("v" "var x = 3")
-    ("df" "x := 3")
-    ("c" "const x = 3")
-    ("f" "func ff(x int) int {
-    return nil
-}")
-    ("if" "if 4 { 3 }")
-    ("ie" " if err != nil { panic(err) }")
-    ("ei" "else if x > 0 { 3 }")
-    ("else" "else { 3 }")
-    ("for" "for i := 0; i < 4; i++ { i }")
-    ("fr" "for k, v := range xxx {
-▮
-    }
-")
-    ;;
+(define-abbrev-table 'c-mode-abbrev-table
+  '(
+   ))
 
-    ))
-(when (boundp 'go-mode-abbrev-table)
-  (clear-abbrev-table dockerfile-mode-abbrev-table))
+(define-abbrev-table 'calendar-mode-abbrev-table '())
+
+(define-abbrev-table 'ccls-tree-mode-abbrev-table '())
+
+(define-abbrev-table 'change-log-mode-abbrev-table '())
+
+(define-abbrev-table 'comint-mode-abbrev-table '())
+
+(define-abbrev-table 'completion-list-mode-abbrev-table '())
+
+(define-abbrev-table 'conf-colon-mode-abbrev-table '())
+
+(define-abbrev-table 'conf-desktop-mode-abbrev-table '())
+
+(define-abbrev-table 'conf-javaprop-mode-abbrev-table '())
+
+(define-abbrev-table 'conf-ppd-mode-abbrev-table '())
+
+(define-abbrev-table 'conf-space-mode-abbrev-table '())
+
+(define-abbrev-table 'conf-toml-mode-abbrev-table '())
+
+(define-abbrev-table 'conf-unix-mode-abbrev-table '())
+
+(define-abbrev-table 'conf-windows-mode-abbrev-table '())
+
+(define-abbrev-table 'conf-xdefaults-mode-abbrev-table '())
+
+(define-abbrev-table 'css-mode-abbrev-table '())
+
+(define-abbrev-table 'dap-ui-breakpoints-ui-list-mode-abbrev-table '())
+
+(define-abbrev-table 'diff-mode-abbrev-table '())
+
+(define-abbrev-table 'display-time-world-mode-abbrev-table '())
 
 (define-abbrev-table 'dockerfile-mode-abbrev-table
   '(
@@ -131,6 +77,279 @@ func main() {
     ("maintainer" "MAINTAINER")
     ))
 
-(set-default 'abbrev-mode t)
+(define-abbrev-table 'edit-abbrevs-mode-abbrev-table '())
 
-(setq save-abbrevs nil)
+(define-abbrev-table 'elisp-byte-code-mode-abbrev-table '())
+
+(define-abbrev-table 'emacs-lisp-mode-abbrev-table '())
+
+(define-abbrev-table 'epa-info-mode-abbrev-table '())
+
+(define-abbrev-table 'epa-key-list-mode-abbrev-table '())
+
+(define-abbrev-table 'epa-key-mode-abbrev-table '())
+
+(define-abbrev-table 'eshell-mode-abbrev-table '())
+
+(define-abbrev-table 'flycheck-error-list-mode-abbrev-table '())
+
+(define-abbrev-table 'flymake-diagnostics-buffer-mode-abbrev-table '())
+
+(define-abbrev-table 'fundamental-mode-abbrev-table '())
+
+(define-abbrev-table 'gdb-breakpoints-mode-abbrev-table '())
+
+(define-abbrev-table 'gdb-disassembly-mode-abbrev-table '())
+
+(define-abbrev-table 'gdb-frames-mode-abbrev-table '())
+
+(define-abbrev-table 'gdb-locals-mode-abbrev-table '())
+
+(define-abbrev-table 'gdb-memory-mode-abbrev-table '())
+
+(define-abbrev-table 'gdb-registers-mode-abbrev-table '())
+
+(define-abbrev-table 'gdb-script-mode-abbrev-table '())
+
+(define-abbrev-table 'gdb-threads-mode-abbrev-table '())
+
+(define-abbrev-table 'gfm-mode-abbrev-table '())
+
+(define-abbrev-table 'gfm-view-mode-abbrev-table '())
+
+(define-abbrev-table 'git-commit-elisp-text-mode-abbrev-table '())
+
+(define-abbrev-table 'global-abbrev-table
+  '(
+    ("afaik" "as far as i know" nil 0)
+    ("ahk" "AutoHotkey" nil 0)
+    ("ann" "announcement" nil 0)
+    ("arg" "argument" nil 0)
+    ("atm" "at the moment" nil 0)
+    ("autom" "automatic" nil 0)
+    ("bc" "because" nil 0)
+    ("bg" "background" nil 0)
+    ("bt" "between" nil 0)
+    ("btw" "by the way" nil 0)
+    ("bu" "•" nil 0)
+    ("catface" "😸" nil 0)
+    ("cfg" "context-free grammar" nil 0)
+    ("cj" "Clojure" nil 0)
+    ("cnt" "can't" nil 0)
+    ("cs" "computer science" nil 0)
+    ("db" "database" nil 0)
+    ("ddnt" "didn't" nil 0)
+    ("dfb" "difference between" nil 0)
+    ("dnt" "don't" nil 0)
+    ("eq" "==" nil 0)
+    ("ev" "environment variable" nil 0)
+    ("gc" "Google Chrome" nil 0)
+    ("gm" "Google Map" nil 0)
+    ("gui3" "graphical user interface" nil 0)
+    ("hr" "--------------------------------------------------" nil 0)
+    ("ipa" "IP address" nil 0)
+    ("jvm" "Java Virtual Machine" nil 0)
+    ("macos" "Mac OS" nil 0)
+    ("math" "mathematics" nil 0)
+    ("md" "—" nil 0)
+    ("msw" "Microsoft Windows" nil 0)
+    ("oop3" "object oriented programing" nil 0)
+    ("os3" "operating system" nil 0)
+    ("r" "return" nil 0)
+    ("ra" "→" nil 0)
+    ("rsi" "Repetitive Strain Injury" nil 0)
+    ("subdir" "sub-directory" nil 0)
+    ("ty" "thank you" nil 0)
+    ("ui" "user interface" nil 0)
+    ("uns" "understand" nil 0)
+    ("ur" "you are" nil 0)
+    ("urlemacs" "http://ergoemacs.org/" nil 0)
+    ("utf8" "-*- coding: utf-8 -*-" nil 0)
+    ("wd" "web development" nil 0)
+    ("xaz" "\\([A-Za-z0-9]+\\)" nil 0)
+    ))
+
+(define-abbrev-table 'gnuplot-comint-mode-abbrev-table '())
+
+(define-abbrev-table 'gnus-group-mode-abbrev-table '())
+
+(define-abbrev-table 'go-mode-abbrev-table
+  '(
+    ("c" "const x = 3" nil 0)
+    ("df" "x := 3" nil 0)
+    ("ei" "else if x > 0 { 3 }" nil 0)
+    ("else" "else { 3 }" nil 0)
+    ("eq" "==" nil 0)
+    ("f" "func ff(x int) int {
+    return nil
+}" nil 0)
+    ("for" "for i := 0; i < 4; i++ { i }" nil 0)
+    ("fr" "for k, v := range xxx {
+▮
+    }
+" nil 0)
+    ("go" "package main
+import \"fmt\"
+func main() {
+        fmt.Println(\"3\")
+}" nil 0)
+    ("ie" " if err != nil { panic(err) }" nil 0)
+    ("if" "if 4 { 3 }" nil 0)
+    ("p" "fmt.Printf(\"%v\\n\", hh▮)" nil 0)
+    ("pl" "fmt.Println(hh▮)" nil 0)
+    ("r" "return" nil 0)
+    ("st" "string" nil 0)
+    ("v" "var x = 3" nil 0)
+   ))
+
+(define-abbrev-table 'godoc-mode-abbrev-table '())
+
+(define-abbrev-table 'grep-mode-abbrev-table '())
+
+(define-abbrev-table 'gud-mode-abbrev-table '())
+
+(define-abbrev-table 'helm-major-mode-abbrev-table '())
+
+(define-abbrev-table 'help-mode-abbrev-table '())
+
+(define-abbrev-table 'html-mode-abbrev-table '())
+
+(define-abbrev-table 'ibuffer-mode-abbrev-table '())
+
+(define-abbrev-table 'idl-mode-abbrev-table '())
+
+(define-abbrev-table 'inferior-python-mode-abbrev-table '())
+
+(define-abbrev-table 'ivy-occur-grep-mode-abbrev-table '())
+
+(define-abbrev-table 'ivy-occur-mode-abbrev-table '())
+
+(define-abbrev-table 'java-mode-abbrev-table
+  '(
+   ))
+
+(define-abbrev-table 'lisp-mode-abbrev-table '())
+
+(define-abbrev-table 'log-edit-mode-abbrev-table '())
+
+(define-abbrev-table 'log4e-mode-abbrev-table '())
+
+(define-abbrev-table 'lsp-browser-mode-abbrev-table '())
+
+(define-abbrev-table 'lsp-log-io-mode-abbrev-table '())
+
+(define-abbrev-table 'lsp-ui-flycheck-list-mode-abbrev-table '())
+
+(define-abbrev-table 'lsp-ui-imenu-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-cherry-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-diff-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-log-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-log-select-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-merge-preview-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-process-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-reflog-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-refs-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-repolist-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-revision-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-stash-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-stashes-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-status-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-submodule-list-mode-abbrev-table '())
+
+(define-abbrev-table 'markdown-mode-abbrev-table '())
+
+(define-abbrev-table 'markdown-view-mode-abbrev-table '())
+
+(define-abbrev-table 'message-mode-abbrev-table '())
+
+(define-abbrev-table 'messages-buffer-mode-abbrev-table '())
+
+(define-abbrev-table 'objc-mode-abbrev-table
+  '(
+   ))
+
+(define-abbrev-table 'occur-edit-mode-abbrev-table '())
+
+(define-abbrev-table 'occur-mode-abbrev-table '())
+
+(define-abbrev-table 'org-export-stack-mode-abbrev-table '())
+
+(define-abbrev-table 'org-mode-abbrev-table '())
+
+(define-abbrev-table 'outline-mode-abbrev-table '())
+
+(define-abbrev-table 'package-menu-mode-abbrev-table '())
+
+(define-abbrev-table 'paradox-commit-list-mode-abbrev-table '())
+
+(define-abbrev-table 'paradox-menu-mode-abbrev-table '())
+
+(define-abbrev-table 'pdf-occur-buffer-mode-abbrev-table '())
+
+(define-abbrev-table 'pike-mode-abbrev-table
+  '(
+   ))
+
+(define-abbrev-table 'process-menu-mode-abbrev-table '())
+
+(define-abbrev-table 'prog-mode-abbrev-table '())
+
+(define-abbrev-table 'python-mode-abbrev-table '())
+
+(define-abbrev-table 'python-mode-skeleton-abbrev-table
+  '(
+   ))
+
+(define-abbrev-table 'scss-mode-abbrev-table '())
+
+(define-abbrev-table 'select-tags-table-mode-abbrev-table '())
+
+(define-abbrev-table 'sgml-mode-abbrev-table '())
+
+(define-abbrev-table 'sh-mode-abbrev-table '())
+
+(define-abbrev-table 'shell-mode-abbrev-table '())
+
+(define-abbrev-table 'snippet-mode-abbrev-table '())
+
+(define-abbrev-table 'special-mode-abbrev-table '())
+
+(define-abbrev-table 'tablist-mode-abbrev-table '())
+
+(define-abbrev-table 'tabulated-list-mode-abbrev-table '())
+
+(define-abbrev-table 'term-mode-abbrev-table '())
+
+(define-abbrev-table 'text-mode-abbrev-table '())
+
+(define-abbrev-table 'tree-mode-abbrev-table '())
+
+(define-abbrev-table 'url-cookie-mode-abbrev-table '())
+
+(define-abbrev-table 'use-package-statistics-mode-abbrev-table '())
+
+(define-abbrev-table 'vc-git-log-edit-mode-abbrev-table '())
+
+(define-abbrev-table 'vc-git-log-view-mode-abbrev-table '())
+
+(define-abbrev-table 'vc-git-region-history-mode-abbrev-table '())
+
+(define-abbrev-table 'xref--xref-buffer-mode-abbrev-table '())
+
+(define-abbrev-table 'yaml-mode-abbrev-table '())
