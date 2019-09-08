@@ -962,10 +962,10 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 *** TODO Abbrev
     When taking some notes, abbreviation can save you some time.
 #+begin_src emacs-lisp :tangle yes :results silent
-  (use-package abbrev
-    :hook (text-mode . abbrev-mode)
-    :config
-    (load "~/.emacs.d/lisp/my-abbrev.el"))
+  (setq abbrev-file-name                ;; tell emacs where to read abbrev
+        "~/.emacs.d/lisp/my-abbrev.el") ;; definitions from...
+  (setq-default abbrev-mode t)
+
 #+end_src
 
 *** Spelling
