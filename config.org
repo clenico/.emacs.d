@@ -1713,11 +1713,11 @@ it later to replace swiper for that usage.
      "School"
      (("E" (lambda()
              (interactive)
-             ((eyebrowse-switch-to-window-config-2)
-              (set-one-file-to-window "~/School/Dossier de l'équipe niccle heh/ma2/Erasmus/TodoList/TodoList.org")
+             (eyebrowse-switch-to-window-config-2)
+              (set-one-file-to-window "~/School/ma2/Erasmus/TodoList/TodoList.org")
 
               (eyebrowse-switch-to-window-config-2)
-              )) "Erasmus"))
+              )"Erasmus"))
      ))
 
   (global-set-key (kbd "C-z m") 'my/hydra-set-workspaces/body)
