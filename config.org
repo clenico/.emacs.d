@@ -1921,7 +1921,10 @@ separately for each major mode that you wish to use it with.
 Colorize colors as text with their value.
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package rainbow-mode
-    :hook (prog-mode))
+    :hook ((prog-mode . rainbow-mode)
+           (text-mode . rainbow-mode)
+           (help-mode . rainbow-mode)
+           (conf-mode . rainbow-mode)))
 #+end_src
 
 *** Whitespaces deletion
