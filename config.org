@@ -2337,6 +2337,7 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package org
     :ensure t
+    :bind ("C-c ù" . org-table-edit-field)
     :mode-hydra
     (org-mode
      (:hint nil :foreign-keys warn :title "Help" :quit-key "q" :color blue)
