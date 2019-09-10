@@ -2685,6 +2685,7 @@ package-manage)
                                    ("" "xcolor")
                                    ("" "minted" )
                                    ("" "tikz")
+                                   ("top=3cm,bottom=3cm,left=3cm,right=3cm" "geometry")
                                    ))
 
   (setq org-latex-pdf-process
