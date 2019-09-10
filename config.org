@@ -2098,7 +2098,21 @@ Colorize colors as text with their value.
   (use-package make-mode
     :bind(:map makefile-mode-map
                ("M-P" . move-text-up)
-               ("M-N" . move-text-down)))
+               ("M-N" . move-text-down))
+    :mode-hydra
+    (makefile-gmake-mode
+     (:hint nil :foreign-keys warn :title "title" :quit-key "q" :color blue)
+     ("Move"
+      (
+       ("N" move-text-down "move-text-down M-P" :color red)
+       ("P" move-text-up "move-text-up M-N" :color red)
+       )
+      "Location"
+      (
+       ("n" makefile-next-dependency "makefile-next-dependency M-n" :color red)
+       ("p" makefile-previous-dependency "makefile-previous-dependency M-p" :color red)
+       ("b"makefile-switch-to-browser "makefile-switch-to-browser C-c C-b")
+       ))))
 #+end_src
 
 *** Markdown
