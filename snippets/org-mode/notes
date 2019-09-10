@@ -10,6 +10,7 @@ baselinestretch=1.2,
 bgcolor=light-gray,
 fontsize=\footnotesize,
 linenos}
+\usemintedstyle{perldoc}
 #+end_export
 
 #+begin_export latex
