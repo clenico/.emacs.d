@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        electric-newline-and-maybe-indent
         end-of-buffer
         hungry-delete-forward
         keyboard-escape-quit
