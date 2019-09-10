@@ -5,14 +5,17 @@
       '(
         electric-newline-and-maybe-indent
         end-of-buffer
+        forward-whitespace
         hungry-delete-forward
         keyboard-escape-quit
+        kill-region
         my/hydra-switch-mode/body
         my/smarter-move-beginning-of-line
         org-cycle
         org-end-of-line
         org-force-self-insert
         org-self-insert-command
+        yas-expand
         ))
 
 (setq mc/cmds-to-run-once
