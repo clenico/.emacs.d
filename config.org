@@ -3405,9 +3405,23 @@ you need to install the related external package first
     (find-file "~/.emacs.d/config.org")
     (eyebrowse-switch-to-window-config-1)
     (find-file "~/Dotfiles/i3/.config/i3/config")
+    (eyebrowse-switch-to-window-config-2)
+    (switch-to-buffer "*dashboard*")
+    (eyebrowse-switch-to-window-config-3)
+    (switch-to-buffer "*dashboard*")
+    (eyebrowse-switch-to-window-config-4)
+    (switch-to-buffer "*dashboard*")
+    (eyebrowse-switch-to-window-config-5)
+    (switch-to-buffer "*dashboard*")
+    (eyebrowse-switch-to-window-config-6)
+    (switch-to-buffer "*dashboard*")
+    (eyebrowse-switch-to-window-config-7)
+    (switch-to-buffer "*dashboard*")
+    (eyebrowse-switch-to-window-config-8)
+    (switch-to-buffer "*dashboard*")
     (eyebrowse-switch-to-window-config-9)
     (elfeed)
-    (eyebrowse-switch-to-window-config-1)
+    (eyebrowse-switch-to-window-config-3)
     :bind(
           ("H-&" . eyebrowse-switch-to-window-config-0)
           ("H-é" . eyebrowse-switch-to-window-config-1)
@@ -3421,6 +3435,7 @@ you need to install the related external package first
           ("H-à" . eyebrowse-switch-to-window-config-9)
           )
     )
+  (add-hook 'emacs-startup-hook 'eyebrowse-switch-to-window-config-3)
 #+end_src
 ** Worf
 #+begin_src emacs-lisp :tangle yes :results silent
