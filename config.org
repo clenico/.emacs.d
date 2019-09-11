@@ -2099,9 +2099,12 @@ Colorize colors as text with their value.
 *** Makefile
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package make-mode
+    :hook
+    (makefile-mode . whitespace-mode)
     :bind(:map makefile-mode-map
                ("M-P" . move-text-up)
-               ("M-N" . move-text-down))
+               ("M-N" . move-text-down)
+               ("H-SPC" . completion-at-point))
     :mode-hydra
     (makefile-gmake-mode
      (:hint nil :foreign-keys warn :title "title" :quit-key "q" :color blue)
