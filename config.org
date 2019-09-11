@@ -324,6 +324,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (setq visible-bell 1)                             ; Disable the bell on Windows
   (setq save-silently 1)                            ; Disable minibuffer messageon saving
   (setq scroll-margin 3)                            ; Set number of lines left at the top and bottom
+  (setq revert-without-query '(".+pdf$"))           ; Doesn't ask y or n should revert after generating latex pdfé
   (setq-default buffer-file-coding-system 'utf-8-unix)
   (setq-default default-buffer-file-coding-system 'utf-8-unix)
   (set-default-coding-systems 'utf-8-unix)
