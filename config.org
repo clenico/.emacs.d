@@ -363,6 +363,8 @@ For a better user experience of GNU Emacs, here are the default values I use.
 
      (global-set-key (kbd "C-x f") 'find-file-at-point)
      (global-set-key (kbd "H-~") 'other-window)
+
+     (global-set-key (kbd "H-w") 'backward-kill-word)
    #+end_src
 
 *** Advanced
