@@ -2397,7 +2397,10 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
        ("ts" org-set-tags-command "Set tag C-c C-q")
        ("tS" org-match-sparse-tree "Show match tag C-c \\"))
       "Visual"
-      (("ti" org-toggle-inline-images "toggle image C-c C-x C-v"))
+      (("ti" org-toggle-inline-images "toggle image C-c C-x C-v")
+       ("to" org-overview "org-overview []" )
+       ("ta" org-show-all "org-show-all []")
+       )
       )))
 
 #+end_src
