@@ -1636,7 +1636,7 @@ it later to replace swiper for that usage.
 #+end_src
 ***** Set Workspace mode
 #+begin_src emacs-lisp :tangle yes :results silent
-  (defun set-one-file-to-window (filePath)
+(defun set-one-file-to-window (filePath)
     "delete other windows and find file"
     (interactive)
     (delete-other-windows)
