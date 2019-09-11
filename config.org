@@ -161,6 +161,8 @@
   - [[#custom-function][Custom function]]
     - [[#org-copy-block][Org copy block]]
     - [[#org-return][Org return]]
+    - [[#org-split-block][Org split block]]
+    - [[#org-meta-return][Org meta return]]
 - [[#advanced-configurations][Advanced configurations]]
   - [[#alert][Alert]]
   - [[#auto-completion][Auto-Completion]]
