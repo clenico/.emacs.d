@@ -38,6 +38,7 @@
   - [[#edition][Edition]]
     - [[#better-editing-default][Better editing default]]
     - [[#improve-built-in-functions][Improve built in functions]]
+      - [[#kill-previous-word-region][Kill previous word/ region]]
       - [[#kill-word][Kill Word]]
       - [[#incrementdecrement-on-point][Increment/Decrement on point]]
       - [[#copy-word][Copy Word]]
@@ -558,6 +559,18 @@ C-c right : redo
    #+end_src
 
 *** Improve built in functions
+
+**** Kill previous word/ region
+#+begin_src emacs-lisp :tangle yes :results silent
+  (defun kill-region-or-backward-word ()
+    "Kill selected region if region is active. Otherwise kill a backward word."
+    (interactive)
+    (if (region-active-p)
+        (kill-region (region-beginning) (region-end) 1)
+      (backward-kill-word 1)))
+  (define-key global-map (kbd "C-w") 'kill-region-or-backward-word)
+#+end_src
+
 **** Kill Word
 #+begin_src emacs-lisp :tangle yes :results silent
   (defun daedreth/kill-inner-word ()
