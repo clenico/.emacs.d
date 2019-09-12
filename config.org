@@ -1976,6 +1976,14 @@ Colorize colors as text with their value.
 
 ** Specific mode settings
 
+*** Matlab
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package matlab-load
+    :ensure matlab-mode
+    :mode ("\\.m\\'" . matlab-mode)
+    )
+#+end_src
+
 *** CSS – LESS – SCSS
     #+begin_src emacs-lisp :tangle yes :results silent
       (use-package css-mode
