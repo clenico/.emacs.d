@@ -3539,7 +3539,6 @@ you need to install the related external package first
     (switch-to-buffer "*dashboard*")
     (eyebrowse-switch-to-window-config-9)
     (elfeed)
-    (eyebrowse-switch-to-window-config-3)
     :bind(
           ("H-&" . eyebrowse-switch-to-window-config-0)
           ("H-é" . eyebrowse-switch-to-window-config-1)
@@ -3553,7 +3552,7 @@ you need to install the related external package first
           ("H-à" . eyebrowse-switch-to-window-config-9)
           )
     )
-  (add-hook 'emacs-startup-hook 'eyebrowse-switch-to-window-config-3)
+  (add-hook 'emacs-startup-hook 'eyebrowse-switch-to-window-config-2)
 #+end_src
 ** Worf
 #+begin_src emacs-lisp :tangle yes :results silent
