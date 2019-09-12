@@ -5,6 +5,12 @@
 
 (define-abbrev-table 'Info-edit-mode-abbrev-table '())
 
+(define-abbrev-table 'TeX-error-overview-mode-abbrev-table '())
+
+(define-abbrev-table 'TeX-output-mode-abbrev-table '())
+
+(define-abbrev-table 'TeX-special-mode-abbrev-table '())
+
 (define-abbrev-table 'awk-mode-abbrev-table
   '(
    ))
@@ -34,6 +40,8 @@
 (define-abbrev-table 'ccls-tree-mode-abbrev-table '())
 
 (define-abbrev-table 'change-log-mode-abbrev-table '())
+
+(define-abbrev-table 'cmake-mode-abbrev-table '())
 
 (define-abbrev-table 'comint-mode-abbrev-table '())
 
@@ -67,15 +75,17 @@
 
 (define-abbrev-table 'dockerfile-mode-abbrev-table
   '(
-    ("from" "FROM")
-    ("run" "RUN")
-    ("cmd" "CMD")
-    ("expose" "EXPOSE")
-    ("workdir" "WORKDIR")
-    ("copy" "COPY")
-    ("add" "ADD")
-    ("maintainer" "MAINTAINER")
-    ))
+    ("add" "ADD" nil 0)
+    ("cmd" "CMD" nil 0)
+    ("copy" "COPY" nil 0)
+    ("expose" "EXPOSE" nil 0)
+    ("from" "FROM" nil 0)
+    ("maintainer" "MAINTAINER" nil 0)
+    ("run" "RUN" nil 0)
+    ("workdir" "WORKDIR" nil 0)
+   ))
+
+(define-abbrev-table 'doctex-mode-abbrev-table '())
 
 (define-abbrev-table 'edit-abbrevs-mode-abbrev-table '())
 
@@ -167,7 +177,7 @@
     ("utf8" "-*- coding: utf-8 -*-" nil 0)
     ("wd" "web development" nil 0)
     ("xaz" "\\([A-Za-z0-9]+\\)" nil 0)
-    ))
+   ))
 
 (define-abbrev-table 'gnuplot-comint-mode-abbrev-table '())
 
@@ -228,6 +238,8 @@ func main() {
   '(
    ))
 
+(define-abbrev-table 'latex-mode-abbrev-table '())
+
 (define-abbrev-table 'lisp-mode-abbrev-table '())
 
 (define-abbrev-table 'log-edit-mode-abbrev-table '())
@@ -272,6 +284,18 @@ func main() {
 
 (define-abbrev-table 'magit-submodule-list-mode-abbrev-table '())
 
+(define-abbrev-table 'makefile-automake-mode-abbrev-table '())
+
+(define-abbrev-table 'makefile-bsdmake-mode-abbrev-table '())
+
+(define-abbrev-table 'makefile-gmake-mode-abbrev-table '())
+
+(define-abbrev-table 'makefile-imake-mode-abbrev-table '())
+
+(define-abbrev-table 'makefile-makepp-mode-abbrev-table '())
+
+(define-abbrev-table 'makefile-mode-abbrev-table '())
+
 (define-abbrev-table 'markdown-mode-abbrev-table '())
 
 (define-abbrev-table 'markdown-view-mode-abbrev-table '())
@@ -290,7 +314,10 @@ func main() {
 
 (define-abbrev-table 'org-export-stack-mode-abbrev-table '())
 
-(define-abbrev-table 'org-mode-abbrev-table '())
+(define-abbrev-table 'org-mode-abbrev-table
+  '(
+    ("cmakelist" "CMakeLists.txt" nil 2)
+   ))
 
 (define-abbrev-table 'outline-mode-abbrev-table '())
 
@@ -300,11 +327,17 @@ func main() {
 
 (define-abbrev-table 'paradox-menu-mode-abbrev-table '())
 
+(define-abbrev-table 'pdf-annot-list-mode-abbrev-table '())
+
 (define-abbrev-table 'pdf-occur-buffer-mode-abbrev-table '())
+
+(define-abbrev-table 'pdf-outline-buffer-mode-abbrev-table '())
 
 (define-abbrev-table 'pike-mode-abbrev-table
   '(
    ))
+
+(define-abbrev-table 'plain-tex-mode-abbrev-table '())
 
 (define-abbrev-table 'process-menu-mode-abbrev-table '())
 
@@ -326,15 +359,23 @@ func main() {
 
 (define-abbrev-table 'shell-mode-abbrev-table '())
 
+(define-abbrev-table 'slitex-mode-abbrev-table '())
+
 (define-abbrev-table 'snippet-mode-abbrev-table '())
 
 (define-abbrev-table 'special-mode-abbrev-table '())
+
+(define-abbrev-table 'speedbar-mode-abbrev-table '())
 
 (define-abbrev-table 'tablist-mode-abbrev-table '())
 
 (define-abbrev-table 'tabulated-list-mode-abbrev-table '())
 
 (define-abbrev-table 'term-mode-abbrev-table '())
+
+(define-abbrev-table 'tex-mode-abbrev-table '())
+
+(define-abbrev-table 'tex-shell-abbrev-table '())
 
 (define-abbrev-table 'text-mode-abbrev-table '())
 
@@ -344,12 +385,21 @@ func main() {
 
 (define-abbrev-table 'use-package-statistics-mode-abbrev-table '())
 
+(define-abbrev-table 'vc-bzr-log-view-mode-abbrev-table '())
+
 (define-abbrev-table 'vc-git-log-edit-mode-abbrev-table '())
 
 (define-abbrev-table 'vc-git-log-view-mode-abbrev-table '())
 
 (define-abbrev-table 'vc-git-region-history-mode-abbrev-table '())
 
+(define-abbrev-table 'vc-hg-log-view-mode-abbrev-table '())
+
+(define-abbrev-table 'vc-mtn-log-view-mode-abbrev-table '())
+
+(define-abbrev-table 'vc-svn-log-view-mode-abbrev-table '())
+
 (define-abbrev-table 'xref--xref-buffer-mode-abbrev-table '())
 
 (define-abbrev-table 'yaml-mode-abbrev-table '())
+
