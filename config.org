@@ -121,6 +121,7 @@
     - [[#prog-fill][Prog-Fill]]
     - [[#highlight-numbers][Highlight-Numbers]]
   - [[#specific-mode-settings][Specific mode settings]]
+    - [[#matlab][Matlab]]
     - [[#css--less--scss][CSS – LESS – SCSS]]
     - [[#csv][CSV]]
     - [[#elisp][Elisp]]
