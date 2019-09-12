@@ -30,3 +30,6 @@ cheatsheetPerso.org
 /.mc-lists.el
 /custom.el
 /.dap-breakpoints
+/srecode-map.el
+/image-dired/*
+/thumbs/*
