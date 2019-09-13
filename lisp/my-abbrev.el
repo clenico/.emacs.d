@@ -41,7 +41,17 @@
 
 (define-abbrev-table 'change-log-mode-abbrev-table '())
 
-(define-abbrev-table 'cmake-mode-abbrev-table '())
+(define-abbrev-table 'checkdoc-output-mode-abbrev-table '())
+
+(define-abbrev-table 'cmake-mode-abbrev-table
+  '(
+    ("archive" "ARCHIVE" nil 0)
+    ("destination" "DESTINATION" nil 0)
+    ("library" "LIBRARY" nil 0)
+    ("runtime" "RUNTIME" nil 0)
+    ("shared" "SHARED" nil 4)
+    ("targets" "TARGETS" nil 0)
+   ))
 
 (define-abbrev-table 'comint-mode-abbrev-table '())
 
@@ -68,6 +78,8 @@
 (define-abbrev-table 'css-mode-abbrev-table '())
 
 (define-abbrev-table 'dap-ui-breakpoints-ui-list-mode-abbrev-table '())
+
+(define-abbrev-table 'debugger-mode-abbrev-table '())
 
 (define-abbrev-table 'diff-mode-abbrev-table '())
 
@@ -170,7 +182,7 @@
     ("rsi" "Repetitive Strain Injury" nil 0)
     ("subdir" "sub-directory" nil 0)
     ("ty" "thank you" nil 0)
-    ("ui" "user interface" nil 0)
+    ("ui" "user interface" nil 6)
     ("uns" "understand" nil 0)
     ("ur" "you are" nil 0)
     ("urlemacs" "http://ergoemacs.org/" nil 0)
@@ -316,7 +328,7 @@ func main() {
 
 (define-abbrev-table 'org-mode-abbrev-table
   '(
-    ("cmakelist" "CMakeLists.txt" nil 2)
+    ("cmakelist" "CMakeLists.txt" nil 3)
    ))
 
 (define-abbrev-table 'outline-mode-abbrev-table '())
