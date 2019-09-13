@@ -2111,7 +2111,7 @@ Colorize colors as text with their value.
 #+begin_src emacs-lisp :tangle yes :results silent
   ;; define files for which to enable cmake mode
   (use-package cmake-mode
-    :init(defun cn/cmake-help ()
+    :init(defun cn/cmake-help()
            "Queries doc for current "
            (interactive)
            (let* ((default-entry (cmake-symbol-at-point))
