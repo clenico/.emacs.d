@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: link directories
+# key: linkd
+# --
+link_directories()

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: add sub directory
+# key: asubd
+# --
+add_subdirectory($1)
