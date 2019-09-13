@@ -2642,13 +2642,17 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
     :after org
     :preface
     (defvar my/org-basic-task-template "* TODO %^{Task}
-          :PROPERTIES:
-          :Effort: %^{effort|1:00|0:05|0:15|0:30|2:00|4:00}
-          :END:
-          Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
-    (defvar my/learning-template "* TODO %^{Subject}
-          Captured %<%Y-%m-%d %H:%M>
-          [[%^{Source}]]" "Template for learning subject.")
+               :PROPERTIES:
+               :Effort: %^{effort|1:00|0:05|0:15|0:30|2:00|4:00}
+               :END:
+               Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+    (defvar my/learning-template-url "* TODO %^{Subject}
+               Captured %<%Y-%m-%d %H:%M>
+               [[%^{Source}]]" "Template for learning subject.")
+
+    (defvar my/learning-template "* %?\n"
+      "Template for learning subject.")
+
 
     ;;   (defvar my/org-contacts-template "* %(org-contacts-template-name)
     ;; :PROPERTIES:
@@ -2659,12 +2663,12 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
     ;; :END:" "Template for org-contacts.")
 
     (defvar my/org-ledger-card-template "%(org-read-date) %^{Payee}
-            Expenses:%^{Account}  €%^{Amount}
-            Liabilities:CreditsCards:Belfius" "Template for credit card transaction with ledger.")
+                 Expenses:%^{Account}  €%^{Amount}
+                 Liabilities:CreditsCards:Belfius" "Template for credit card transaction with ledger.")
 
     (defvar my/org-ledger-cash-template "%(org-read-date) * %^{Payee}
-            Expenses:%^{Account}  €%^{Amount}
-            Assets:Cash:Wallet" "Template for cash transaction with ledger.")
+                 Expenses:%^{Account}  €%^{Amount}
+                 Assets:Cash:Wallet" "Template for cash transaction with ledger.")
     :custom
     (org-capture-templates
      `(("B" "Book" checkitem (file+headline "~/Org/other/books.org" "Books")
@@ -2674,14 +2678,21 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
        ("M" "Movie" checkitem (file+headline "~/Org/other/movies.org" "Movies")
         "- [ ] %^{Movie}"
         :immediate-finish t)
-
-       ("l" "Learning" entry (file+headline "~/Org/other/learning.org" "Learning"),
+       ("l" "Learning")
+       ("ll" "Learning Unsorted" entry (file+headline "~/Org/other/learning.org" "Learning"),
+        my/org-basic-task-template
+        :empty-lines 1)
+       ("ls" "Learning Spanish")
+       ("lsg" "Grammar" entry (file+headline "~/Org/other/Spanish.org" "Grammar"),
+        my/learning-template
+        :empty-lines 1)
+       ("lsu" "Unsorted" entry (file+headline "~/Org/other/Spanish.org" "Unsorted"),
         my/learning-template
         :empty-lines 1)
 
        ("L" "Linux" entry (file+headline "~/Notes/Linux/linux.org" "To Sort"),
         "** %^{subject}
-  Tested on %^{OS}"
+       Tested on %^{OS}"
         :empty-lines 1
         ;; :unnarrowed 1
         )
