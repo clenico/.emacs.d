@@ -38,6 +38,7 @@
   - [[#edition][Edition]]
     - [[#better-editing-default][Better editing default]]
     - [[#improve-built-in-functions][Improve built in functions]]
+      - [[#delete-text-block--paragraph][Delete text block / paragraph]]
       - [[#kill-previous-word-region][Kill previous word/ region]]
       - [[#kill-word][Kill Word]]
       - [[#incrementdecrement-on-point][Increment/Decrement on point]]
@@ -559,6 +560,25 @@ C-c right : redo
    #+end_src
 
 *** Improve built in functions
+
+**** Delete text block / paragraph
+#+begin_src emacs-lisp :tangle yes :results silent
+  (defun xah-delete-current-text-block ()
+    "Delete the current text block and also copy to `kill-ring'.
+  URL `http://ergoemacs.org/emacs/emacs_delete_block.html'
+  Version 2016-07-22"
+    (interactive)
+    (let (-p1 -p2)
+      (progn
+        (if (re-search-backward "\n[ \t]*\n" nil "NOERROR")
+            (progn (re-search-forward "\n[ \t]*\n")
+                   (setq -p1 (point)))
+          (setq -p1 (point)))
+        (re-search-forward "\n[ \t]*\n" nil "NOERROR")
+        (setq -p2 (point)))
+      (kill-region -p1 -p2)))
+  (global-set-key (kbd "C-c dp") 'xah-delete-current-text-block)
+#+end_src
 
 **** Kill previous word/ region
 #+begin_src emacs-lisp :tangle yes :results silent
