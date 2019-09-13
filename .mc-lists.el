@@ -15,6 +15,7 @@
         org-end-of-line
         org-force-self-insert
         org-self-insert-command
+        xah-toggle-letter-case
         yas-expand
         ))
 
