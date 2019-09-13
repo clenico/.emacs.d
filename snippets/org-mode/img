@@ -4,5 +4,5 @@
 # --
 #+ATTR_LATEX: :center t :placement [H]
 #+CAPTION: ${text}
-#+ATTR_LATEX: :width ${width}cm :options angle=${0}
+#+ATTR_LATEX: :width ${15}cm :options angle=${0}
 ${link}
