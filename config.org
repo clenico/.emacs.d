@@ -21,8 +21,8 @@
       - [[#set][Set]]
         - [[#prefix-key][Prefix key]]
         - [[#functions][Functions]]
-    - [[#advanced][Advanced]]
-      - [[#backup][Backup]]
+    - [[#backup][Backup]]
+    - [[#mode][Mode]]
   - [[#navigation][Navigation]]
     - [[#goto-last-change][Goto-last-change]]
     - [[#caps-lock][Caps Lock]]
@@ -372,9 +372,7 @@ For a better user experience of GNU Emacs, here are the default values I use.
      (global-set-key (kbd "H-w") 'backward-kill-word)
    #+end_src
 
-*** Advanced
-
-**** Backup
+*** Backup
 #+begin_src emacs-lisp :tangle yes :results silent
   ;; make backup to a designated dir, mirroring the full path
 
