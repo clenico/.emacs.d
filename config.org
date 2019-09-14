@@ -392,6 +392,11 @@ For a better user experience of GNU Emacs, here are the default values I use.
   (setq make-backup-file-name-function 'my-backup-file-name)
 #+end_src
 
+*** Mode
+#+begin_src emacs-lisp :tangle yes :results silent
+  (add-to-list 'auto-mode-alist '("\\dunstrc\\'" . conf-space-mode))
+#+end_src
+
 
 ** Navigation
 *** Goto-last-change
