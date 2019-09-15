@@ -3398,6 +3398,16 @@ Adding some usefull unit calculation
     (org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/"))
 #+end_src
 ** Utility functions
+*** Delete all buffer
+#+begin_src emacs-lisp :tangle yes :results silent
+  (defun kill-all-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer (buffer-list))
+    (cn/startup-state)
+    )
+#+end_src
+
 *** Generate scratch buffer
 #+begin_src emacs-lisp :tangle yes :results silent
   (defun generate-scratch-buffer ()
