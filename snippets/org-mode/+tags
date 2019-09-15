@@ -2,4 +2,4 @@
 # name: +tags
 # key: +tags
 # --
-#+TAGS: @${tag}(${t})
+#+TAGS: ${tag}(${t})
