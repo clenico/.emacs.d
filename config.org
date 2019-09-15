@@ -567,6 +567,23 @@ C-c right : redo
 
 **** Upcase/downcase word
 #+begin_src emacs-lisp :tangle yes :results silent
+  (defun cn/upcase-initials-word ()
+    "downcase all current word"
+    (interactive)
+    (let (
+          (deactivate-mark nil)
+          $p1 $p2)
+      (if (use-region-p)
+          (setq $p1 (region-beginning)
+                $p2 (region-end))
+        (save-excursion
+          (skip-chars-backward "[:alnum:]-_")
+          (setq $p1 (point))
+          (skip-chars-forward "[:alnum:]-_")
+          (setq $p2 (point))))
+      (upcase-initials-region $p1 $p2))
+    )
+
   (defun cn/downcase-word ()
     "downcase all current word"
     (interactive)
@@ -583,6 +600,7 @@ C-c right : redo
           (setq $p2 (point))))
       (downcase-region $p1 $p2))
     )
+
   (defun cn/upcase-word ()
     "downcase all current word"
     (interactive)
@@ -599,8 +617,10 @@ C-c right : redo
           (setq $p2 (point))))
       (upcase-region $p1 $p2))
     )
+
   (global-set-key (kbd "M-u") 'cn/upcase-word)
   (global-set-key (kbd "M-l") 'cn/downcase-word)
+  (global-set-key (kbd "M-c") 'cn/upcase-initials-word)
 #+end_src
 
 **** Delete text block / paragraph
