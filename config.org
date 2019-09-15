@@ -196,6 +196,7 @@
   - [[#recent-files][Recent Files]]
   - [[#revealjs][Reveal.js]]
   - [[#utility-functions][Utility functions]]
+    - [[#delete-all-buffer][Delete all buffer]]
     - [[#generate-scratch-buffer][Generate scratch buffer]]
     - [[#create-a-tmp-file][Create a tmp file]]
     - [[#open-all-marked-files-in-dired][Open all marked files in Dired]]
