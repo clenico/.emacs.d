@@ -722,6 +722,11 @@ C-c right : redo
 
 **** forward WORD (like vi)
 #+begin_src emacs-lisp :tangle yes :results silent
+  (defun cn/backward-whitespace ()
+    "personnal implementation of forward-whitespace"
+    (interactive)
+    (forward-whitespace -1))
+  (global-set-key (kbd "M-B") 'cn/backward-whitespace)
   (global-set-key (kbd "M-F") 'forward-whitespace)
 #+end_src
 
