@@ -1067,7 +1067,7 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 | google-make-newline-indent |
 
 ** Typing
-*** TODO Abbrev
+*** Abbrev
     When taking some notes, abbreviation can save you some time.
 #+begin_src emacs-lisp :tangle yes :results silent
   (setq abbrev-file-name                ;; tell emacs where to read abbrev
