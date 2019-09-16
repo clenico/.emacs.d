@@ -3720,7 +3720,9 @@ to work.
 
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package cliphist
-    :init
+    :bind ("M-Y" . cn/cliphist-paste-item)
+    :ensure t
+    :config
     (defun cn/cliphist-paste-item()
       "docstring"
       (interactive)
@@ -3729,11 +3731,9 @@ to work.
                              (when (region-active-p)
                                (delete-region (region-beginning) (region-end)))
                              (insert  str))))
-    :ensure t
-    :config
     (setq cliphist-linux-clipboard-managers '("clipit")
           cliphist-cc-kill-ring t)
-    :bind ("M-Y" . cn/cliphist-paste-item))
+    )
 #+end_src
 
 
