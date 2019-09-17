@@ -1739,7 +1739,12 @@ it later to replace swiper for that usage.
   (pretty-hydra-define my/hydra-Go-To-Notes
     (:hint nil :foreign-keys warn :title "Go-To-Notes" :quit-key "q" :color blue)
     ("Personal"
-     (("pli" (find-file "~/Notes/Linux/linux.org") "Linux"))))
+     (("pli" (find-file "~/Notes/Linux/linux.org") "Linux")
+      ("pdo" (find-file "~/Notes/Docker/docker.org") "Docker")
+      ("psh" (find-file "~/Notes/Bash/bash.org") "Bash")
+      ("pcm" (find-file "~/Notes/Cmake/cmake.org") "Cmake")
+      ("pmf" (find-file "~/Notes/Makefile/makefile.org") "Makefile")
+      ("ppy" (find-file "~/Notes/Python/python.org") "Python"))))
   (global-set-key (kbd "C-z N") 'my/hydra-Go-To-Notes/body)
 #+end_src
 ***** Set Workspace mode
