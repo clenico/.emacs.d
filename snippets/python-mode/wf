@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: write to file
+# key: wf
+# --
+path = "${1:/tmp/test.txt}"
+${2:days}_file_content ="${3:test}"
+try:
+    fw = open(path,'w')
+    fw.write($2_file_content)
+    fw.close()
+except Exception:
+    print("Couldn't write the file")
