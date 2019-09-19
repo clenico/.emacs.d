@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org source python
+# key: ospy
+# --
+#+begin_src python :results ${1:output}
+$2
+#+end_src
