@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: enumerate loop
+# key: enumerate
+# --
+for i, elt in enumerate(${1:list}):
+    $2

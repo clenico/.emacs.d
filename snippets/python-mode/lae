@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: list alpha exemple
+# key: lae
+# --
+mListAlpha = ['a', 'b', 'c', 'd', 'e', 'f']

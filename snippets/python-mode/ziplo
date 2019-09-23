@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: zip loop
+# key: ziplo
+# --
+for ${1:elt_a}, ${2:elt_b} in zip(${3:list_a}, ${4:list_b}):

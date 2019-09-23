@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: dictionnary loop
+# key: dicloop
+# --
+for ${1:key}, ${2:value} in ${3:dic}.items():
+    $4
