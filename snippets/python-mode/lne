@@ -2,4 +2,4 @@
 # name: list number example
 # key: lne
 # --
-mList = [0, 1, 2, 3, 4, 5]
+mListNum = [0, 1, 2, 3, 4, 5]

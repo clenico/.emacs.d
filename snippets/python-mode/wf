@@ -5,7 +5,7 @@
 path = "${1:/tmp/test.txt}"
 ${2:days}_file_content ="${3:test}"
 try:
-    fw = open(path,'w')
+    with open(path,'w') as fw:
     fw.write($2_file_content)
     fw.close()
 except Exception:
