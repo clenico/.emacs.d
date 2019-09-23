@@ -2558,6 +2558,7 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
       (("ti" org-toggle-inline-images "toggle image C-c C-x C-v")
        ("to" org-overview "org-overview []" )
        ("ta" org-show-all "org-show-all []")
+       ("tt" org-content "org-content []")
        )
       )))
 
