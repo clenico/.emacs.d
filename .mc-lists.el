@@ -7,8 +7,10 @@
         end-of-buffer
         forward-whitespace
         hungry-delete-forward
+        indent-for-tab-command
         keyboard-escape-quit
         kill-region
+        kill-region-or-backward-word
         my/hydra-switch-mode/body
         my/smarter-move-beginning-of-line
         org-cycle
@@ -23,6 +25,7 @@
 (setq mc/cmds-to-run-once
       '(
         hungry-delete-backward
+        kmacro-end-or-call-macro
         org-export-dispatch
         org-kill-line
         org-refile
