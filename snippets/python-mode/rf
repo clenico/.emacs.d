@@ -4,9 +4,9 @@
 # --
 path = "${1:/tmp/test.txt}"
 try:
-    f = open(path,'r')
-    f.seek(0)    # set cursor at top of the file ( it was at the end after write)
-    ${2:content} = f.read()
-    f.close()
+    with open(path) as reader:
+    reader.seek(0)    # set cursor at top of the file ( it was at the end after write)
+    content = reader.read()
+    reader.close()
 except Exception:
     print("Couldn't read the file")

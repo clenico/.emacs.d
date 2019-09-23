@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: write object
+# key: wo
+# --
+with open('${1:/tmp/donnees.obj}', 'wb') as object_writer:
+     mPickler = pickle.Pickler(object_writer)
+     mon_pickler.dump(${2:object})

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: read object
+# key: ro
+# --
+with open('${1:path}', 'rb') as object_reader:
+     mPickler = pickle.Unpickler(object_reader)
+     ${2:object} = mon_depickler.load()
