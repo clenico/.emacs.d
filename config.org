@@ -1042,7 +1042,8 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
                 ("M-]" . python-nav-forward-block))
     :config
     (setq python-indent-guess-indent-offset t)
-    (setq python-indent-guess-indent-offset-verbose nil))
+    (setq python-indent-guess-indent-offset-verbose nil)
+    (setq python-shell-interpreter "python3"))
 #+end_src
 
 *** C/C++
