@@ -2545,6 +2545,7 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
        ("E" org-export-dispatch "Export C-c C-e")
        ("f" org-footnote-action "Footnote C-c C-x f")
        ("F" (org-footnote-action t) "Footnote Special actions")
+       ("s" (org-sort) "org-sort")
        )
       "Organise"
       (("a" org-agenda "Agenda C-c a")
