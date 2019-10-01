@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org source javascript
+# key: osjs
+# --
+#+begin_src js
+$1
+#+end_src

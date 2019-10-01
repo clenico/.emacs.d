@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org source html
+# key: osht
+# --
+#+begin_src html
+$1
+#+end_src
