@@ -1697,6 +1697,7 @@ it later to replace swiper for that usage.
             ("ltx" TeX-latex-mode "LaTeX")
             ("O" org-mode "Org-mode")
             ("sh" sh-mode "Bash")
+            ("js" js-mode "Javascript")
             ("do" dockerfile-mode "Dockerfile"))))
 
         (global-set-key (kbd "H-m") 'my/hydra-switch-mode/body)
