@@ -2960,7 +2960,7 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
                                    (org-agenda-files :maxlevel . 9))))
 #+end_src
 
-*** BUG COMMENT Org-noter
+*** Org-noter
     - State "BUG"        from              [2019-08-16 Fr 22:40] \\
       make bibtex mode unusable
 #+begin_src emacs-lisp :tangle yes :results silent
