@@ -3525,6 +3525,12 @@ Adding some usefull unit calculation
     (org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/"))
 #+end_src
 ** Utility functions
+*** Insert today's date
+#+begin_src emacs-lisp :tangle yes :results silent
+  (defun insert-current-date () (interactive)
+         (insert (shell-command-to-string "echo -n $(date +%Y-%m-%d)")))
+#+end_src
+
 *** Delete all buffer
 #+begin_src emacs-lisp :tangle yes :results silent
   (defun kill-all-buffers ()
