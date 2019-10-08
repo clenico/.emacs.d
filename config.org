@@ -2045,6 +2045,8 @@ separately for each major mode that you wish to use it with.
     :hook
     (python-mode . electric-operator-mode)
     (c-mode . electric-operator-mode)
+    (c++-mode . electric-operator-mode)
+    (js-mode . electric-operator-mode)
     :config (electric-operator-mode 1))
 #+end_src
 
