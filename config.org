@@ -3006,6 +3006,7 @@ package-manage)
                                    ("" "tikz")
                                    ("top=3cm,bottom=3cm,left=3cm,right=3cm" "geometry")
                                    ("" "subcaption")
+                                   ("version=3" "mhchem")
                                    ))
 
   (setq org-latex-pdf-process
