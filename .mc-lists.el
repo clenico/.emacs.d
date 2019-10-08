@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        cn/upcase-initials-word
         electric-newline-and-maybe-indent
         end-of-buffer
         forward-whitespace
