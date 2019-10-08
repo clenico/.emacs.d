@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: pthread worker
+# key: ptworker
+# --
+void* $1_worker ( void * params_arg ) // void* (*)(void *) prototype is mandatory
+{
+    struct $1_worker_param_s * params = (struct $1_worker_param_s *)params_arg; // cast to struc from void *
+    pthread_exit(NULL);
+}

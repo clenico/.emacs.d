@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: pthread create
+# key: ptc
+# --
+int ret = pthread_create( ${1:threadVar}, NULL, ${2:worker}, &${3:structArg});
+if (ret != 0)
+{
+    fprintf(stderr, "Erreur création thread\\n");
+}

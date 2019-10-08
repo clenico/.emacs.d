@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: new array
+# key: newa
+# --
+${1:type} *${2:name} = new $1[$3];
+delete[] $2;
