@@ -1732,6 +1732,7 @@ it later to replace swiper for that usage.
       ("O" (counsel-find-file "~/Org") "Org")
       ("N" (counsel-find-file "~/Notes") "Notes")
       ("T" (counsel-find-file "~/TFE") "TFE")
+      ("E" (counsel-find-file "~/School/ma2/Esigelec") "ESIGELEC")
       ("." (counsel-find-file "~/Dotfiles") "Dotfiles")
       )))
   (global-set-key (kbd "C-z f") 'my/hydra-go-to-folder/body)
