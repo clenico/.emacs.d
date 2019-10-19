@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: histogramme
+# key: hist
+# --
+imhist(${1:I})

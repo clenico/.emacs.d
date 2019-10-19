@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: figure title
+# key: fig
+# --
+figure
+title('$1');

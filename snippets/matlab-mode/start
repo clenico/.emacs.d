@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: start
+# key: start
+# --
+clc;                                    % clear console
+clear;                                  % Detruit les variables
+close all;                              % ferme les fenêtres

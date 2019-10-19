@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: convolution2
+# key: conv2
+# --
+${If} = conv2(${I}, ${H}, 'same');
