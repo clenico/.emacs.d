@@ -1750,7 +1750,9 @@ it later to replace swiper for that usage.
       ("pcm" (find-file "~/Notes/Cmake/cmake.org") "Cmake")
       ("pmf" (find-file "~/Notes/Makefile/makefile.org") "Makefile")
       ("ppy" (find-file "~/Notes/Python/python.org") "Python")
-      ("pjs" (find-file "~/Notes/Javascript/javascript.org") "Javascript")    )))
+      ("pjs" (find-file "~/Notes/Javascript/javascript.org") "Javascript")
+      ("pml" (find-file "~/Notes/Matlab/matlab.org") "Matlab"))))
+
   (global-set-key (kbd "C-z N") 'my/hydra-Go-To-Notes/body)
 #+end_src
 ***** Set Workspace mode
