@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org source cpp
+# key: oscp
+# --
+#+begin_src cpp
+$1
+#+end_src

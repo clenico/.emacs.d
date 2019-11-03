@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org source bash
+# key: osba
+# --
+#+begin_src bash
+$1
+#+end_src
