@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: image read
+# key: imr
+# --
+${1:I} = imread('$2');

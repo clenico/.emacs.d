@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: im2bw
+# key: bw
+# --
+im2bw(${1:I}, $2/255);

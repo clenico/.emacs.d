@@ -5,218 +5,198 @@
 * Table of Contents                                                     :TOC_6:
 - [[#acknowledgement][Acknowledgement]]
 - [[#fix][Fix]]
-  - [[#remove-compiled-files][Remove compiled files]]
-  - [[#overall-slowdown][Overall slowdown]]
-  - [[#update-packaging-from-melpa][Update packaging from Melpa]]
+       - [[#remove-compiled-files][Remove compiled files]]
+       - [[#overall-slowdown][Overall slowdown]]
+       - [[#update-packaging-from-melpa][Update packaging from Melpa]]
 - [[#before-startup][Before Startup]]
-  - [[#refresh-packages][Refresh packages]]
-  - [[#define-repos][Define repos]]
-  - [[#install-use-package][Install use-package]]
-  - [[#load-lisp-files][Load lisp files]]
+       - [[#refresh-packages][Refresh packages]]
+       - [[#define-repos][Define repos]]
+       - [[#install-use-package][Install use-package]]
+       - [[#load-lisp-files][Load lisp files]]
 - [[#general][General]]
-  - [[#better-defaults][Better defaults]]
-    - [[#variables][Variables]]
-    - [[#keybindings][Keybindings]]
-      - [[#unset][Unset]]
-      - [[#set][Set]]
-        - [[#prefix-key][Prefix key]]
-        - [[#functions][Functions]]
-    - [[#backup][Backup]]
-    - [[#mode][Mode]]
-  - [[#navigation][Navigation]]
-    - [[#goto-last-change][Goto-last-change]]
-    - [[#caps-lock][Caps Lock]]
-    - [[#half-scroll][Half scroll]]
-    - [[#move-text][Move-text]]
-    - [[#avy][Avy]]
-    - [[#matching-parentheses][Matching parentheses]]
-    - [[#smart-move-to-beginning-of-the-line][Smart move to beginning of the line]]
-    - [[#imenu][Imenu]]
-    - [[#split-windows][Split windows]]
-    - [[#windmove][Windmove]]
-    - [[#winner][Winner]]
-  - [[#edition][Edition]]
-    - [[#better-editing-default][Better editing default]]
-    - [[#improve-built-in-functions][Improve built in functions]]
-      - [[#upcasedowncase-word][Upcase/downcase word]]
-      - [[#delete-text-block--paragraph][Delete text block / paragraph]]
-      - [[#kill-previous-word-region][Kill previous word/ region]]
-      - [[#kill-word][Kill Word]]
-      - [[#incrementdecrement-on-point][Increment/Decrement on point]]
-      - [[#copy-word][Copy Word]]
-      - [[#copy-a-line][Copy a line]]
-      - [[#kill-line][Kill line]]
-      - [[#kill-all-scratch-buffer][Kill all scratch buffer]]
-      - [[#forward-word-like-vi][forward WORD (like vi)]]
-      - [[#clear][Clear]]
-      - [[#toggle-case][Toggle case]]
-      - [[#org-internal-link][Org internal link]]
-    - [[#iedit][Iedit]]
-    - [[#expand-region][Expand-region]]
-    - [[#atomic-chrome][atomic-chrome]]
-    - [[#sudo-edit][Sudo-edit]]
-    - [[#zzz-to-char][zzz-to-char]]
-    - [[#ciel][Ciel]]
-    - [[#multi-cursor][Multi-cursor]]
-  - [[#customization][Customization]]
-    - [[#change-custom-file-location][Change custom file location]]
-    - [[#modeline][Modeline]]
-    - [[#auto-revert][Auto-revert]]
-    - [[#parentheses][Parentheses]]
-      - [[#color-matching-parentheses][Color matching parentheses]]
-      - [[#smart-parentheses][Smart parentheses]]
-  - [[#fonts][Fonts]]
-  - [[#theme][Theme]]
-    - [[#icons][Icons]]
-  - [[#lsp][LSP]]
-    - [[#setup-lsp][Setup LSP]]
-    - [[#python][Python]]
-    - [[#cc][C/C++]]
-  - [[#typing][Typing]]
-    - [[#abbrev][Abbrev]]
-    - [[#spelling][Spelling]]
-      - [[#flyspell][Flyspell]]
-      - [[#ispell][Ispell]]
-    - [[#lorem-ipsum][Lorem Ipsum]]
-  - [[#interface-enhancement][Interface Enhancement]]
-    - [[#enhanced-package-manager][Enhanced package manager]]
-    - [[#which-key][Which-key]]
-    - [[#search][Search]]
-      - [[#ivy][Ivy]]
-      - [[#counsel][Counsel]]
-      - [[#swiper][Swiper]]
-      - [[#password][Password]]
-    - [[#pdf][PDF]]
-    - [[#treemacs][Treemacs]]
-    - [[#close-all-buffers][Close all buffers]]
-    - [[#popup-kill-ring][Popup-kill-ring]]
-    - [[#linters][Linters]]
-    - [[#volatile-highlights][Volatile-Highlights]]
-    - [[#hydra][Hydra]]
-      - [[#hydra-use-package][Hydra use-package]]
-      - [[#hydra-panel][Hydra panel]]
-        - [[#toggle-hydra][toggle hydra]]
-        - [[#switch-mode-hydra][switch mode hydra]]
-        - [[#go-to-config-hydra][Go to config hydra]]
-        - [[#go-to-folder-hydra][Go to folder hydra]]
-        - [[#go-to-notes][Go to Notes]]
-        - [[#set-workspace-mode][Set Workspace mode]]
-      - [[#hydra-image-manipulation][hydra image manipulation]]
-  - [[#projects][Projects]]
-    - [[#projectile][Projectile]]
-    - [[#version-control][Version Control]]
-      - [[#magit][Magit]]
-      - [[#git-commit][Git-commit]]
-      - [[#smerge-mode][Smerge-mode]]
-      - [[#git-gutter][Git-gutter]]
-      - [[#git-timemachine][Git-timemachine]]
-  - [[#file-manager][File Manager]]
-    - [[#ranger][Ranger]]
+       - [[#better-defaults][Better defaults]]
+              - [[#variables][Variables]]
+              - [[#keybindings][Keybindings]]
+                     - [[#unset][Unset]]
+                     - [[#set][Set]]
+                            - [[#prefix-key][Prefix key]]
+                            - [[#functions][Functions]]
+              - [[#backup][Backup]]
+              - [[#mode][Mode]]
+       - [[#navigation][Navigation]]
+              - [[#goto-last-change][Goto-last-change]]
+              - [[#caps-lock][Caps Lock]]
+              - [[#half-scroll][Half scroll]]
+              - [[#move-text][Move-text]]
+              - [[#avy][Avy]]
+              - [[#matching-parentheses][Matching parentheses]]
+              - [[#smart-move-to-beginning-of-the-line][Smart move to beginning of the line]]
+              - [[#imenu][Imenu]]
+              - [[#split-windows][Split windows]]
+              - [[#windmove][Windmove]]
+       - [[#edition][Edition]]
+              - [[#better-editing-default][Better editing default]]
+              - [[#improve-built-in-functions][Improve built in functions]]
+                     - [[#upcasedowncase-word][Upcase/downcase word]]
+                     - [[#delete-text-block--paragraph][Delete text block / paragraph]]
+                     - [[#kill-previous-word-region][Kill previous word/ region]]
+                     - [[#kill-word][Kill Word]]
+                     - [[#incrementdecrement-on-point][Increment/Decrement on point]]
+                     - [[#copy-word][Copy Word]]
+                     - [[#copy-a-line][Copy a line]]
+                     - [[#kill-line][Kill line]]
+                     - [[#kill-all-scratch-buffer][Kill all scratch buffer]]
+                     - [[#forward-word-like-vi][forward WORD (like vi)]]
+                     - [[#clear][Clear]]
+                     - [[#toggle-case][Toggle case]]
+                     - [[#org-internal-link][Org internal link]]
+              - [[#iedit][Iedit]]
+              - [[#expand-region][Expand-region]]
+              - [[#sudo-edit][Sudo-edit]]
+              - [[#zzz-to-char][zzz-to-char]]
+              - [[#ciel][Ciel]]
+              - [[#multi-cursor][Multi-cursor]]
+       - [[#customization][Customization]]
+              - [[#change-custom-file-location][Change custom file location]]
+              - [[#modeline][Modeline]]
+              - [[#auto-revert][Auto-revert]]
+              - [[#parentheses][Parentheses]]
+                     - [[#color-matching-parentheses][Color matching parentheses]]
+                     - [[#smart-parentheses][Smart parentheses]]
+       - [[#theme][Theme]]
+              - [[#icons][Icons]]
+       - [[#typing][Typing]]
+              - [[#abbrev][Abbrev]]
+              - [[#spelling][Spelling]]
+              - [[#lorem-ipsum][Lorem Ipsum]]
+       - [[#interface-enhancement][Interface Enhancement]]
+              - [[#enhanced-package-manager][Enhanced package manager]]
+              - [[#which-key][Which-key]]
+              - [[#search][Search]]
+                     - [[#ivy][Ivy]]
+                     - [[#counsel][Counsel]]
+                     - [[#swiper][Swiper]]
+              - [[#pdf][PDF]]
+              - [[#treemacs][Treemacs]]
+              - [[#close-all-buffers][Close all buffers]]
+              - [[#popup-kill-ring][Popup-kill-ring]]
+              - [[#volatile-highlights][Volatile-Highlights]]
+              - [[#hydra][Hydra]]
+                     - [[#hydra-use-package][Hydra use-package]]
+                     - [[#hydra-panel][Hydra panel]]
+                            - [[#toggle-hydra][toggle hydra]]
+                            - [[#switch-mode-hydra][switch mode hydra]]
+                            - [[#go-to-config-hydra][Go to config hydra]]
+                            - [[#go-to-folder-hydra][Go to folder hydra]]
+                            - [[#go-to-notes][Go to Notes]]
+                            - [[#set-workspace-mode][Set Workspace mode]]
+                     - [[#hydra-image-manipulation][hydra image manipulation]]
+       - [[#projects][Projects]]
+              - [[#projectile][Projectile]]
+              - [[#version-control][Version Control]]
+                     - [[#magit][Magit]]
+                     - [[#git-commit][Git-commit]]
+                     - [[#smerge-mode][Smerge-mode]]
+                     - [[#git-gutter][Git-gutter]]
+                     - [[#git-timemachine][Git-timemachine]]
+       - [[#file-manager][File Manager]]
+              - [[#ranger][Ranger]]
 - [[#programming-languages][Programming languages]]
-  - [[#general-programming-settings][General programming settings]]
-    - [[#editorconfig][EditorConfig]]
-    - [[#aggressive-indent][Aggressive-indent]]
-    - [[#electric-operator][Electric-operator]]
-    - [[#rainbow-mode][Rainbow-mode]]
-    - [[#whitespaces-deletion][Whitespaces deletion]]
-    - [[#hungry-delete][Hungry-delete]]
-    - [[#kill-buffer-without-confirmation][Kill buffer without confirmation]]
-    - [[#prog-fill][Prog-Fill]]
-    - [[#highlight-numbers][Highlight-Numbers]]
-  - [[#specific-mode-settings][Specific mode settings]]
-    - [[#matlab][Matlab]]
-    - [[#css--less--scss][CSS – LESS – SCSS]]
-    - [[#csv][CSV]]
-    - [[#elisp][Elisp]]
-    - [[#lua][Lua]]
-    - [[#sql][SQL]]
-    - [[#docker][Docker]]
-    - [[#emacs-lisp][Emacs-lisp]]
-    - [[#python-1][Python]]
-    - [[#restclient-mode][RestClient-mode]]
-    - [[#gradle][Gradle]]
-    - [[#cmake][cmake]]
-    - [[#makefile][Makefile]]
-    - [[#markdown][Markdown]]
-    - [[#x-mod-map-mode][X Mod Map Mode]]
-    - [[#latex][LaTeX]]
-    - [[#json][JSON]]
-    - [[#proto][Proto]]
-  - [[#yaml][YAML]]
-  - [[#web-mode][Web-mode]]
-  - [[#snippets][Snippets]]
-    - [[#yasnippet][YASnippet]]
+       - [[#general-programming-settings][General programming settings]]
+              - [[#editorconfig][EditorConfig]]
+              - [[#aggressive-indent][Aggressive-indent]]
+              - [[#electric-operator][Electric-operator]]
+              - [[#rainbow-mode][Rainbow-mode]]
+              - [[#whitespaces-deletion][Whitespaces deletion]]
+              - [[#hungry-delete][Hungry-delete]]
+              - [[#kill-buffer-without-confirmation][Kill buffer without confirmation]]
+              - [[#prog-fill][Prog-Fill]]
+              - [[#highlight-numbers][Highlight-Numbers]]
+       - [[#specific-mode-settings][Specific mode settings]]
+              - [[#matlab][Matlab]]
+              - [[#css--less--scss][CSS – LESS – SCSS]]
+              - [[#csv][CSV]]
+              - [[#elisp][Elisp]]
+              - [[#lua][Lua]]
+              - [[#sql][SQL]]
+              - [[#docker][Docker]]
+              - [[#emacs-lisp][Emacs-lisp]]
+              - [[#python][Python]]
+              - [[#cmake][cmake]]
+              - [[#makefile][Makefile]]
+              - [[#x-mod-map-mode][X Mod Map Mode]]
+              - [[#latex][LaTeX]]
+              - [[#json][JSON]]
+              - [[#proto][Proto]]
+       - [[#yaml][YAML]]
+       - [[#web-mode][Web-mode]]
+       - [[#snippets][Snippets]]
+              - [[#yasnippet][YASnippet]]
 - [[#org-mode][Org-Mode]]
-  - [[#org-use-package-hydra][Org use package hydra]]
-  - [[#org-better-defaults][Org better defaults]]
-    - [[#org-speed-command][Org speed command]]
-  - [[#org-mode-appearance][Org-Mode appearance]]
-    - [[#toc-org][Toc-org]]
-    - [[#bullets][Bullets]]
-    - [[#faces][Faces]]
-  - [[#add-on][Add On]]
-    - [[#org-capture][Org-capture]]
-    - [[#agenda][Agenda]]
-    - [[#org-noter][Org-noter]]
-  - [[#export][Export]]
-    - [[#latex-1][Latex]]
-      - [[#org-ref][Org-ref]]
-  - [[#language-compilation][Language compilation]]
-  - [[#custom-function][Custom function]]
-    - [[#org-copy-block][Org copy block]]
-    - [[#org-return][Org return]]
-    - [[#org-split-block][Org split block]]
-    - [[#org-meta-return][Org meta return]]
+       - [[#org-use-package-hydra][Org use package hydra]]
+       - [[#org-better-defaults][Org better defaults]]
+              - [[#org-speed-command][Org speed command]]
+       - [[#org-mode-appearance][Org-Mode appearance]]
+              - [[#toc-org][Toc-org]]
+              - [[#bullets][Bullets]]
+              - [[#faces][Faces]]
+       - [[#add-on][Add On]]
+              - [[#org-capture][Org-capture]]
+              - [[#agenda][Agenda]]
+              - [[#org-noter][Org-noter]]
+       - [[#export][Export]]
+              - [[#latex-1][Latex]]
+                     - [[#org-ref][Org-ref]]
+       - [[#language-compilation][Language compilation]]
+       - [[#custom-function][Custom function]]
+              - [[#org-copy-block][Org copy block]]
+              - [[#org-return][Org return]]
+              - [[#org-split-block][Org split block]]
+              - [[#org-meta-return][Org meta return]]
 - [[#advanced-configurations][Advanced configurations]]
-  - [[#alert][Alert]]
-  - [[#auto-completion][Auto-Completion]]
-    - [[#company][Company]]
-    - [[#company-go][Company-go]]
-    - [[#company-box][Company-box]]
-  - [[#external-launch][External Launch]]
-    - [[#browser][Browser]]
-      - [[#default-launcher][Default launcher]]
-      - [[#launch-specific-search-from-emacs][Launch specific search from emacs]]
-  - [[#buffer][Buffer]]
-    - [[#ibuffer][Ibuffer]]
-    - [[#protection-against-deletion][Protection against deletion]]
-  - [[#calculator][Calculator]]
-  - [[#dashboard][Dashboard]]
-  - [[#dired][Dired]]
-    - [[#dired-better-default][Dired better default]]
-    - [[#enhancement][Enhancement]]
-    - [[#dired-subtree][dired-subtree]]
-    - [[#customise-dired][customise dired]]
-  - [[#history][History]]
-  - [[#draw-graphics][Draw graphics]]
-    - [[#gnuplot][Gnuplot]]
-  - [[#try][Try]]
-  - [[#undo-tree][Undo-tree]]
-  - [[#wiki-summary][Wiki-summary]]
-  - [[#recent-files][Recent Files]]
-  - [[#revealjs][Reveal.js]]
-  - [[#utility-functions][Utility functions]]
-    - [[#insert-todays-date][Insert today's date]]
-    - [[#delete-all-buffer][Delete all buffer]]
-    - [[#generate-scratch-buffer][Generate scratch buffer]]
-    - [[#create-a-tmp-file][Create a tmp file]]
-    - [[#open-all-marked-files-in-dired][Open all marked files in Dired]]
-    - [[#copy-file-path][Copy file path]]
-    - [[#get-current-public-ip][Get current public ip]]
-    - [[#myhydra-window][my/hydra-window]]
-    - [[#move-files][Move files]]
-    - [[#format-long-function-parameter-list-into-multiline][Format long function parameter list into multiline]]
-    - [[#reload-configuration][Reload configuration]]
-    - [[#copy-filename][Copy filename]]
-    - [[#add-cmakelisttxt][add cmakelist.txt]]
-    - [[#align-sexp-table][Align sexp table]]
-  - [[#plantuml-mode][PlantUML-mode]]
-  - [[#pkg-info][Pkg-Info]]
-  - [[#engine][Engine]]
-  - [[#elfeed][Elfeed]]
-  - [[#eyebrowse][Eyebrowse]]
-  - [[#worf][Worf]]
-  - [[#cliphist][Cliphist]]
+       - [[#auto-completion][Auto-Completion]]
+              - [[#company][Company]]
+              - [[#company-go][Company-go]]
+              - [[#company-box][Company-box]]
+       - [[#buffer][Buffer]]
+              - [[#ibuffer][Ibuffer]]
+              - [[#protection-against-deletion][Protection against deletion]]
+       - [[#calculator][Calculator]]
+       - [[#dashboard][Dashboard]]
+       - [[#dired][Dired]]
+              - [[#dired-better-default][Dired better default]]
+              - [[#enhancement][Enhancement]]
+              - [[#dired-subtree][dired-subtree]]
+              - [[#customise-dired][customise dired]]
+       - [[#history][History]]
+       - [[#draw-graphics][Draw graphics]]
+              - [[#gnuplot][Gnuplot]]
+       - [[#try][Try]]
+       - [[#undo-tree][Undo-tree]]
+       - [[#wiki-summary][Wiki-summary]]
+       - [[#recent-files][Recent Files]]
+       - [[#utility-functions][Utility functions]]
+              - [[#insert-todays-date][Insert today's date]]
+              - [[#delete-all-buffer][Delete all buffer]]
+              - [[#generate-scratch-buffer][Generate scratch buffer]]
+              - [[#create-a-tmp-file][Create a tmp file]]
+              - [[#open-all-marked-files-in-dired][Open all marked files in Dired]]
+              - [[#copy-file-path][Copy file path]]
+              - [[#get-current-public-ip][Get current public ip]]
+              - [[#myhydra-window][my/hydra-window]]
+              - [[#move-files][Move files]]
+              - [[#format-long-function-parameter-list-into-multiline][Format long function parameter list into multiline]]
+              - [[#reload-configuration][Reload configuration]]
+              - [[#copy-filename][Copy filename]]
+              - [[#add-cmakelisttxt][add cmakelist.txt]]
+              - [[#align-sexp-table][Align sexp table]]
+       - [[#plantuml-mode][PlantUML-mode]]
+       - [[#pkg-info][Pkg-Info]]
+       - [[#engine][Engine]]
+       - [[#elfeed][Elfeed]]
+       - [[#eyebrowse][Eyebrowse]]
+       - [[#worf][Worf]]
+       - [[#cliphist][Cliphist]]
 - [[#to-sort][To Sort]]
 - [[#to-add][To add]]
 
@@ -549,7 +529,7 @@ Put the focus on the newly created frame
            ("C-c k" . windmove-up)
            ("C-c l" . windmove-right)))
 #+end_src
-*** Winner
+*** COMMENT Winner
 This package allow you to keep an history of windows so that you can roll back
 C-c left : undo
 C-c right : redo
@@ -826,14 +806,6 @@ Edit multiple regions in the same way simultaneously
            ("C-=" . er/expand-region)))
 #+end_src
 
-*** atomic-chrome
-#+begin_src emacs-lisp :tangle yes :results silent
-(use-package atomic-chrome
-:ensure t
-:config (atomic-chrome-start-server))
-(setq atomic-chrome-buffer-open-style 'frame)
-#+end_src
-
 *** Sudo-edit
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package sudo-edit
@@ -851,31 +823,6 @@ Edit multiple regions in the same way simultaneously
        :bind ("M-Z" . zzz-up-to-char))
    #+end_src
 
-*** TODO COMMENT Viking-mode
-    This mode create several actions when pressing several time de C-d might
-    take a look at this as well
-       #+begin_src emacs-lisp :tangle yes :results silent
-         (use-package viking-mode
-           :diminish viking-mode
-           :config
-           (viking-global-mode)
-           (setq viking-greedy-kill nil)
-           (setq viking-enable-region-kill t)
-           (setq viking-kill-functions (list '(lambda()
-                                                (if (region-active-p)
-                                                    (kill-region (region-beginning) (region-end))
-                                                  (delete-char 1 t)))
-                                             '(lambda()
-                                                (insert (pop kill-ring)) ;; insert the char back
-                                                (kill-new "") ;; start a new entry in the kill-ring
-                                                (viking-kill-word)
-                                                (kill-append " " nil)) ;; append the extra space
-                                             'viking-kill-line-from-point
-                                             'viking-kill-line
-                                             'viking-kill-paragraph
-                                             'viking-kill-buffer))
-           :bind("C-D" . viking-kill-thing-at-point))
-       #+end_src
 *** Ciel
     Ci vim equivalent
        #+begin_src emacs-lisp :tangle yes :results silent
@@ -949,7 +896,7 @@ In order to keep the init.el file clean,we specify an other file which should be
     :bind("C-c spd" . sp-splice-sexp))
 #+end_src
 
-** Fonts
+** COMMENT Fonts
 In order to use your favorite font.
 
 #+begin_src emacs-lisp :tangle yes :results silent
@@ -983,7 +930,7 @@ order to install the needed fonts
   (use-package all-the-icons :defer 0.5)
 #+end_src
 
-** TODO LSP
+** TODO COMMENT LSP
 Emacs is sometimes quite tricky to set up. In order to get some nice IDE features, i decided to go for an LSP client-server model.
 
 *** Setup LSP
@@ -1080,7 +1027,7 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
 
 *** Spelling
 
-**** Flyspell
+**** COMMENT Flyspell
 Flyspell provides on-the-fly checking and highlighting of misspellings.
      #+begin_src emacs-lisp :tangle yes :results silent
        (use-package flyspell
@@ -1097,7 +1044,7 @@ Flyspell provides on-the-fly checking and highlighting of misspellings.
          :init (setq flyspell-correct-interface #'flyspell-correct-ivy))
 #+end_src
 
-**** Ispell
+**** COMMENT Ispell
 Handles spell-checking and correction.
 Ensure to install the hunspell before using the package.
 Should be used in parallel with Flyspell to show a graphic feedback.
@@ -1441,7 +1388,7 @@ Replace the stock package list manager with a more modern one
                  :map swiper-map
                  ("M-r" . swiper-query-replace)))
 #+end_src
-**** TODO Password
+**** TODO COMMENT Password
 #+begin_src emacs-lisp :tangle yes :results silent
   ;; (use-package ivy-pass
   ;;   :after ivy
@@ -1597,7 +1544,7 @@ it later to replace swiper for that usage.
     :bind ("M-y" . popup-kill-ring))
 #+end_src
 
-*** TODO Linters
+*** TODO COMMENT Linters
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package flycheck
     :defer 2
@@ -1852,7 +1799,19 @@ it later to replace swiper for that usage.
              (set-one-file-to-window "~/School/ma2/Erasmus/TodoList/TodoList.org")
 
              (eyebrowse-switch-to-window-config-2)
-             )"Erasmus"))
+             )"Erasmus")
+      ("V" (lambda()
+             (interactive)
+             (eyebrowse-switch-to-window-config-2)
+             (set-one-file-to-window "~/School/ma2/Esigelec/VisionParOrdinateur/Pdf/Vision par Ordinateur ISE-VA.pdf" )
+             (eyebrowse-switch-to-window-config-3)
+             (set-one-file-to-window "~/School/ma2/Esigelec/VisionParOrdinateur/Notes/")
+             (eyebrowse-switch-to-window-config-4)
+             (set-one-file-to-window "~/Notes/Matlab/matlab.org")
+             (eyebrowse-switch-to-window-config-5)
+             (set-one-file-to-window "~/VM Shared/")
+             (eyebrowse-switch-to-window-config-2)
+             )"Vision par ordinateur"))
      ))
 
   (global-set-key (kbd "C-z m") 'my/hydra-set-workspaces/body)
@@ -1861,26 +1820,6 @@ it later to replace swiper for that usage.
   ;; (find-file "~/.emacs.d/config.org")
 #+end_src
 
-
-**** TODO COMMENT hydra-Launcher
- #+begin_src emacs-lisp :tangle yes :results silent
-   ;; (pretty-hydra-define hydra-launcher
-   ;;   (:hint nil :color teal :quit-key "q" :title (with-faicon "clock-o" "Clock" 1 -0.05))
-   ;;   ("Action"
-   ;;    (("g" hydra-general/body "hydra general")))))
-
-   ;; (pretty-hydra-define hydra-general
-   ;;   (:hint nil :color amaranth :quit-key "q" :title (with-faicon "toggle-on" "Toggle" 1 -0.05))
-   ;;   ("Create"
-   ;;    (("s" generate-scratch-buffer "generate scratch buffer" ))
-   ;;    "Coding"
-   ;;    (("e" electric-operator-mode "electric operator" :toggle t)
-   ;;     ("F" flyspell-mode "flyspell" :toggle t)
-   ;;     ("l" lsp-mode "lsp" :toggle t))
-   ;;    "UI"
-   ;;    (("t" treemacs  "Treemacs" :toggle t))))
-
- #+end_src
 
 **** hydra image manipulation
   #+begin_src emacs-lisp :tangle yes :results silent
@@ -2051,6 +1990,7 @@ separately for each major mode that you wish to use it with.
     (c-mode . electric-operator-mode)
     (c++-mode . electric-operator-mode)
     (js-mode . electric-operator-mode)
+    (matlab-mode . electric-operator-mode)
     :config (electric-operator-mode 1))
 #+end_src
 
@@ -2174,9 +2114,7 @@ Colorize colors as text with their value.
     (elpy-enable))
 #+end_src
 
-*** TODO RestClient-mode
-
-*** TODO Gradle
+*** TODO COMMENT Gradle
     #+begin_src emacs-lisp :tangle yes :results silent
       (use-package gradle-mode
         :mode ("\\.java\\'" "\\.gradle\\'")
@@ -2286,7 +2224,7 @@ Colorize colors as text with their value.
        ))))
 #+end_src
 
-*** Markdown
+*** COMMENT Markdown
 In order to work, you need to install grip first
 
 #+begin_src bash
@@ -2648,8 +2586,7 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
 ** Org use package hydra
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package org
-    :ensure org-plus-contrib
-    :pin org
+    :ensure t
     :bind ("C-c ù" . org-table-edit-field)
     :mode-hydra
     (org-mode
@@ -3019,7 +2956,7 @@ package-manage)
           "bibtex %b"
           "xelatex -synctex=1 -shell-escape -interaction nonstopmode %f"
           "xelatex -synctex=1 -shell-escape -interaction nonstopmode %f")) ;; for multiple passes
-
+  (setq org-list-indent-offset 5)
 #+end_src
 **** Org-ref
 #+begin_src emacs-lisp :tangle yes :results silent
@@ -3224,7 +3161,7 @@ This function is heavily adapted from `org-between-regexps-p'."
 
 
 * Advanced configurations
-** Alert
+** COMMENT Alert
 
 Most packages use =alerts= to make notifications with =libnotify=. Don't forget
 to first install a notification daemon, like =dunst=.
@@ -3284,7 +3221,7 @@ A company front-end with icons.
     :hook (company-mode . company-box-mode))
 #+end_src
 
-** External Launch
+** COMMENT External Launch
 *** Browser
 **** Default launcher
 #+begin_src emacs-lisp :tangle yes :results silent
@@ -3521,7 +3458,7 @@ Adding some usefull unit calculation
     :config (run-at-time nil (* 5 60) 'recentf-save-list))
 #+end_src
 
-** Reveal.js
+** COMMENT Reveal.js
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package org-re-reveal
     :after org

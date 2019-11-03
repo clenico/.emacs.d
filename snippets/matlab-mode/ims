@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: image show
+# key: ims
+# --
+imshow(${1:I});

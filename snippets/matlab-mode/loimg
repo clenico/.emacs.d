@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: loop on image
+# key: loimg
+# --
+hauteur = size(I, 1);
+largeur = size(I, 2);
+
+for i=1:largeur
+    for j=1:hauteur
+        ${1:I(j, i) = 255;}
+    end
+end

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: display print
+# key: d
+# --
+disp('$1')

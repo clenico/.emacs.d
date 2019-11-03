@@ -26,7 +26,14 @@
 ;; (load "~/.emacs.d/init_backup.el")
 ;; (load "~/.emacs.d/custom.el")
 ;; (load "~/Documents/Projects/.emacs.d/config.el")
-(org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
+
+
+(if (equal (shell-command-to-string "~/.emacs.d/get_hostname.sh") "Virtualbox
+")
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config_light.org"))
+  (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+
+
 ;; (org-babel-load-file (expand-file-name "~/.emacs.d.old/config.org"))
 ;; (org-babel-load-file (expand-file-name "~/Documents/Tmp/.emacs.d/config.org"))
 ;; (org-babel-load-file (expand-file-name "~/Documents/Projects/.emacs.d/config.org"))

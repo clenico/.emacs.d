@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org source matlab
+# key: osml
+# --
+#+begin_src matlab
+$1
+#+end_src
