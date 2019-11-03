@@ -2646,7 +2646,8 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
 ** Org use package hydra
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package org
-    :ensure t
+    :ensure org-plus-contrib
+    :pin org
     :bind ("C-c ù" . org-table-edit-field)
     :mode-hydra
     (org-mode
