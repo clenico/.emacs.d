@@ -194,7 +194,6 @@
   - [[#undo-tree][Undo-tree]]
   - [[#wiki-summary][Wiki-summary]]
   - [[#recent-files][Recent Files]]
-  - [[#revealjs][Reveal.js]]
   - [[#utility-functions][Utility functions]]
     - [[#insert-todays-date][Insert today's date]]
     - [[#delete-all-buffer][Delete all buffer]]
@@ -3551,14 +3550,6 @@ Adding some usefull unit calculation
     :config (run-at-time nil (* 5 60) 'recentf-save-list))
 #+end_src
 
-** Reveal.js
-#+begin_src emacs-lisp :tangle yes :results silent
-  (use-package org-re-reveal
-    :after org
-    :custom
-    (org-reveal-mathjax t)
-    (org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/"))
-#+end_src
 ** Utility functions
 *** Insert today's date
 #+begin_src emacs-lisp :tangle yes :results silent
