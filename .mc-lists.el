@@ -3,7 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        c-electric-slash
+        c-fill-paragraph
+        c-indent-line-or-region
         cn/upcase-initials-word
+        comment-dwim
+        counsel-M-x
         electric-newline-and-maybe-indent
         end-of-buffer
         forward-whitespace
@@ -19,6 +24,8 @@
         org-force-self-insert
         org-self-insert-command
         org-yank
+        repeat
+        sp-splice-sexp
         xah-toggle-letter-case
         yas-expand
         ))
