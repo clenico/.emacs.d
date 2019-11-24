@@ -3048,7 +3048,14 @@ package-manage)
           "bibtex %b"
           "xelatex -synctex=1 -shell-escape -interaction nonstopmode %f"
           "xelatex -synctex=1 -shell-escape -interaction nonstopmode %f")) ;; for multiple passes
-
+  (with-eval-after-load "ox-latex"
+    (add-to-list 'org-latex-classes
+                 '("extreport" "\\documentclass{extreport}"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 #+end_src
 **** Org-ref
 #+begin_src emacs-lisp :tangle yes :results silent
