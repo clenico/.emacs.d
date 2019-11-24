@@ -1736,7 +1736,8 @@ it later to replace swiper for that usage.
       ("pmf" (find-file "~/Notes/Makefile/makefile.org") "Makefile")
       ("ppy" (find-file "~/Notes/Python/python.org") "Python")
       ("pjs" (find-file "~/Notes/Javascript/javascript.org") "Javascript")
-      ("pml" (find-file "~/Notes/Matlab/matlab.org") "Matlab"))))
+      ("pml" (find-file "~/Notes/Matlab/matlab.org") "Matlab")
+      ("pdl" (find-file "~/Notes/MachineLearning/machineLearning.org") "Deep Learning"))))
 
   (global-set-key (kbd "C-z N") 'my/hydra-Go-To-Notes/body)
 #+end_src
