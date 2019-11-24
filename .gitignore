@@ -34,3 +34,5 @@ cheatsheetPerso.org
 /image-dired/*
 /thumbs/*
 /.python-environments/*
+/Plugins
+/elpy
