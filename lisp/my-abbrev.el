@@ -13,6 +13,7 @@
 
 (define-abbrev-table 'awk-mode-abbrev-table
   '(
+    ("+-" "±" nil 0)
    ))
 
 (define-abbrev-table 'biblio-selection-mode-abbrev-table '())
@@ -103,6 +104,8 @@
 
 (define-abbrev-table 'elisp-byte-code-mode-abbrev-table '())
 
+(define-abbrev-table 'elpy-refactor-mode-abbrev-table '())
+
 (define-abbrev-table 'emacs-lisp-mode-abbrev-table '())
 
 (define-abbrev-table 'epa-info-mode-abbrev-table '())
@@ -112,6 +115,8 @@
 (define-abbrev-table 'epa-key-mode-abbrev-table '())
 
 (define-abbrev-table 'eshell-mode-abbrev-table '())
+
+(define-abbrev-table 'ffip-diff-mode-abbrev-table '())
 
 (define-abbrev-table 'flycheck-error-list-mode-abbrev-table '())
 
@@ -141,55 +146,7 @@
 
 (define-abbrev-table 'git-commit-elisp-text-mode-abbrev-table '())
 
-;; (define-abbrev-table 'global-abbrev-table
-;;   '(
-;;     ("afaik" "as far as i know" nil 0)
-;;     ("ahk" "AutoHotkey" nil 0)
-;;     ("ann" "announcement" nil 0)
-;;     ("arg" "argument" nil 0)
-;;     ("atm" "at the moment" nil 0)
-;;     ("autom" "automatic" nil 0)
-;;     ("bc" "because" nil 0)
-;;     ("bg" "background" nil 0)
-;;     ("bt" "between" nil 0)
-;;     ("btw" "by the way" nil 0)
-;;     ("bu" "•" nil 0)
-;;     ("catface" "😸" nil 0)
-;;     ("cfg" "context-free grammar" nil 0)
-;;     ("cj" "Clojure" nil 0)
-;;     ("cnt" "can't" nil 0)
-;;     ("cs" "computer science" nil 0)
-;;     ("db" "database" nil 0)
-;;     ("ddnt" "didn't" nil 0)
-;;     ("dfb" "difference between" nil 0)
-;;     ("dnt" "don't" nil 0)
-;;     ("eq" "==" nil 0)
-;;     ("ev" "environment variable" nil 0)
-;;     ("gc" "Google Chrome" nil 0)
-;;     ("gm" "Google Map" nil 0)
-;;     ("gui3" "graphical user interface" nil 0)
-;;     ("hr" "--------------------------------------------------" nil 0)
-;;     ("ipa" "IP address" nil 0)
-;;     ("jvm" "Java Virtual Machine" nil 0)
-;;     ("macos" "Mac OS" nil 0)
-;;     ("math" "mathematics" nil 0)
-;;     ("md" "—" nil 0)
-;;     ("msw" "Microsoft Windows" nil 0)
-;;     ("oop3" "object oriented programing" nil 0)
-;;     ("os3" "operating system" nil 0)
-;;     ("r" "return" nil 0)
-;;     ("ra" "→" nil 0)
-;;     ("rsi" "Repetitive Strain Injury" nil 0)
-;;     ("subdir" "sub-directory" nil 0)
-;;     ("ty" "thank you" nil 0)
-;;     ("ui" "user interface" nil 6)
-;;     ("uns" "understand" nil 0)
-;;     ("ur" "you are" nil 0)
-;;     ("urlemacs" "http://ergoemacs.org/" nil 0)
-;;     ("utf8" "-*- coding: utf-8 -*-" nil 0)
-;;     ("wd" "web development" nil 0)
-;;     ("xaz" "\\([A-Za-z0-9]+\\)" nil 0)
-;;    ))
+(define-abbrev-table 'global-abbrev-table '())
 
 (define-abbrev-table 'gnuplot-comint-mode-abbrev-table '())
 
@@ -249,6 +206,12 @@ func main() {
 (define-abbrev-table 'java-mode-abbrev-table
   '(
    ))
+
+(define-abbrev-table 'js-jsx-mode-abbrev-table '())
+
+(define-abbrev-table 'js-mode-abbrev-table '())
+
+(define-abbrev-table 'json-mode-abbrev-table '())
 
 (define-abbrev-table 'latex-mode-abbrev-table '())
 
@@ -311,6 +274,12 @@ func main() {
 (define-abbrev-table 'markdown-mode-abbrev-table '())
 
 (define-abbrev-table 'markdown-view-mode-abbrev-table '())
+
+(define-abbrev-table 'matlab-mode-abbrev-table '())
+
+(define-abbrev-table 'matlab-shell-help-mode-abbrev-table '())
+
+(define-abbrev-table 'matlab-shell-topic-mode-abbrev-table '())
 
 (define-abbrev-table 'message-mode-abbrev-table '())
 
@@ -383,6 +352,8 @@ func main() {
 
 (define-abbrev-table 'tabulated-list-mode-abbrev-table '())
 
+(define-abbrev-table 'tar-mode-abbrev-table '())
+
 (define-abbrev-table 'term-mode-abbrev-table '())
 
 (define-abbrev-table 'tex-mode-abbrev-table '())
@@ -414,3 +385,4 @@ func main() {
 (define-abbrev-table 'xref--xref-buffer-mode-abbrev-table '())
 
 (define-abbrev-table 'yaml-mode-abbrev-table '())
+
