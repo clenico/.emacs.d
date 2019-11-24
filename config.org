@@ -2854,7 +2854,7 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
        )))
 #+end_src
 
-** Add On
+** Plugins
 
 *** Org-capture
 #+begin_src emacs-lisp :tangle yes :results silent
