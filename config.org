@@ -3021,6 +3021,14 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
           ))
 #+end_src
 
+*** COMMENT Reveal.js
+ #+begin_src emacs-lisp :tangle yes :results silent
+   (use-package org-re-reveal
+     :after org
+     :custom
+     (org-reveal-mathjax t)
+     (org-reveal-root "~/.emacs.d/Plugins/reveal.js-3.8.0/js/reveal.js"))
+ #+end_src
 ** Export
 *** Latex
 Make sure you got the Pygment python package installed (using pip or your
