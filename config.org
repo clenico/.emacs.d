@@ -70,7 +70,6 @@
     - [[#icons][Icons]]
   - [[#lsp][LSP]]
     - [[#setup-lsp][Setup LSP]]
-    - [[#python][Python]]
     - [[#cc][C/C++]]
   - [[#typing][Typing]]
     - [[#abbrev][Abbrev]]
@@ -132,7 +131,7 @@
     - [[#sql][SQL]]
     - [[#docker][Docker]]
     - [[#emacs-lisp][Emacs-lisp]]
-    - [[#python-1][Python]]
+    - [[#python][Python]]
     - [[#restclient-mode][RestClient-mode]]
     - [[#gradle][Gradle]]
     - [[#cmake][cmake]]
@@ -154,13 +153,14 @@
     - [[#toc-org][Toc-org]]
     - [[#bullets][Bullets]]
     - [[#faces][Faces]]
-  - [[#add-on][Add On]]
+  - [[#plugins][Plugins]]
     - [[#org-capture][Org-capture]]
     - [[#agenda][Agenda]]
     - [[#org-noter][Org-noter]]
   - [[#export][Export]]
     - [[#latex-1][Latex]]
       - [[#org-ref][Org-ref]]
+    - [[#beamer][Beamer]]
   - [[#language-compilation][Language compilation]]
   - [[#custom-function][Custom function]]
     - [[#org-copy-block][Org copy block]]
@@ -1007,45 +1007,16 @@ Emacs is sometimes quite tricky to set up. In order to get some nice IDE feature
     (dap-ui-mode t))
 #+end_src
 
-*** Python
+*** COMMENT Python
 #+begin_src emacs-lisp :tangle yes :results silent
-  ;; (setq py-python-command "python3")
-  ;; (setq python-shell-interpreter "python3")
-
-  ;; (use-package elpy
-  ;;   :ensure t
-  ;;   :custom (elpy-rpc-backend "jedi")
-  ;;   :config
-  ;;   (advice-add 'python-mode :before 'elpy-enable))
-
-  ;; (use-package virtualenvwrapper
-  ;;   :ensure t
-  ;;   :config
-  ;;   (venv-initialize-interactive-shells)
-  ;;   (venv-initialize-eshell))
-
   (use-package lsp-python-ms
     :ensure t
     :after projectile
     :hook (python-mode . (lambda ()
                            (require 'lsp-python-ms)
                            (lsp))))  ; or lsp-deferred
-
-  (defun my/clear ()
-    (interactive)
-    (let ((comint-buffer-maximum-size 0))
-      (comint-truncate-buffer)))
-
-  (use-package python
-    :delight "π "
-    :bind (:map python-mode-map
-                ("M-[" . python-nav-backward-block)
-                ("M-]" . python-nav-forward-block))
-    :config
-    (setq python-indent-guess-indent-offset t)
-    (setq python-indent-guess-indent-offset-verbose nil)
-    (setq python-shell-interpreter "python3"))
 #+end_src
+
 
 *** C/C++
 #+begin_src emacs-lisp :tangle yes :results silent
@@ -2167,12 +2138,48 @@ Colorize colors as text with their value.
     #+end_src
 
 *** Python
-#+begin_src emacs-lisp :tangle no
+# #+begin_src emacs-lisp :tangle no
+#   (use-package elpy
+#     :ensure t
+#     :init
+#     (elpy-enable))
+# #+end_src
+
+#+begin_src emacs-lisp :tangle yes :results silent
+  (setq py-python-command "python3")
+  (setq python-shell-interpreter "python3")
+
   (use-package elpy
     :ensure t
-    :init
-    (elpy-enable))
+    :custom (elpy-rpc-backend "jedi")
+    :config
+    (advice-add 'python-mode :before 'elpy-enable))
+
+  (use-package virtualenvwrapper
+     :ensure t
+    :config
+    (venv-initialize-interactive-shells)
+    (venv-initialize-eshell))
 #+end_src
+
+#+begin_src emacs-lisp :tangle yes :results silent
+  (defun my/clear ()
+    (interactive)
+    (let ((comint-buffer-maximum-size 0))
+      (comint-truncate-buffer)))
+
+  (use-package python
+    :delight "π "
+    :bind (:map python-mode-map
+                ("M-[" . python-nav-backward-block)
+                ("M-]" . python-nav-forward-block))
+    :config
+    (setq python-indent-guess-indent-offset t)
+    (setq python-indent-guess-indent-offset-verbose nil)
+    (setq python-shell-interpreter "python3"))
+#+end_src
+
+
 
 *** TODO RestClient-mode
 
