@@ -36,4 +36,4 @@ cheatsheetPerso.org
 /.python-environments/*
 /Plugins
 /elpy
-/backup/sudroot@localhos/etc/apache2/sites-available/myvrp.com.conf
+/backup/*
