@@ -2282,6 +2282,27 @@ sudo pip install grip
        ("d" json-decrement-number-at-point "Decrement the number at point (C-c C-d)" :color red)))))
 #+end_src
 
+*** XML
+**** BUG Pretty
+     - State "BUG"        from              [2019-12-09 Mo 22:12] \\
+       nxml-mode bugged
+#+begin_src emacs-lisp :tangle yes :results silent
+  (defun mu-xml-format ()
+    "Format an XML buffer with `xmllint'."
+    (interactive)
+    (shell-command-on-region (point-min) (point-max)
+                             "xmllint -format -"
+                             (current-buffer) t
+                             "*Xmllint Error Buffer*" t))
+
+  ;; (use-package nxml-mode
+  ;;   :ensure t
+  ;;   :mode "\\.xml\\'"
+  ;;   :bind (:map nxml-mode-map
+  ;;               ("C-c m f" . mu-xml-format)))
+#+end_src
+
+
 *** Proto
 Proto is a syntax created by google : [[https://developers.google.com/protocol-buffers/docs/overview][lien]]
 #+begin_src emacs-lisp :tangle yes :results silent
