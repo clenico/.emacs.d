@@ -3116,6 +3116,7 @@ package-manage)
   (use-package ob-org :ensure nil :after org)
 
   (use-package ob-python :ensure nil :after org)
+  (setq org-babel-python-command "python3")
   (use-package ob-ruby :ensure nil :after org)
   (use-package ob-shell :ensure nil :after org)
   (use-package ob-sql :ensure nil :after org)
