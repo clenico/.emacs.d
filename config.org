@@ -1677,6 +1677,7 @@ it later to replace swiper for that usage.
            (("el" emacs-lisp-mode "emacs-lisp")
             ("py" python-mode "python")
             ("P" php-mode "php")
+            ("W" web-mode "web")
             ("cpp" c++-mode "C++")
             ("cc" func "C")
             ("md" markdown-mode "markdown")
