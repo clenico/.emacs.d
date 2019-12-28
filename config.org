@@ -3068,6 +3068,7 @@ package-manage)
                                    ("top=3cm,bottom=3cm,left=3cm,right=3cm" "geometry")
                                    ("" "subcaption")
                                    ("version=3" "mhchem")
+                                   ("" "url")
                                    ))
 
   (setq org-latex-pdf-process
