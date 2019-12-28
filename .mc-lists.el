@@ -6,6 +6,7 @@
         c-electric-slash
         c-fill-paragraph
         c-indent-line-or-region
+        cn/backward-whitespace
         cn/upcase-initials-word
         comment-dwim
         counsel-M-x
