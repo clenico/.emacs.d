@@ -10,10 +10,12 @@
         cn/upcase-initials-word
         comment-dwim
         counsel-M-x
+        decrement-number-at-point
         electric-newline-and-maybe-indent
         end-of-buffer
         forward-whitespace
         hungry-delete-forward
+        increment-number-at-point
         indent-for-tab-command
         keyboard-escape-quit
         kill-region
