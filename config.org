@@ -3069,6 +3069,7 @@ package-manage)
                                    ("" "subcaption")
                                    ("version=3" "mhchem")
                                    ("" "url")
+                                   ("os=win" "menukeys")
                                    ))
 
   (setq org-latex-pdf-process
