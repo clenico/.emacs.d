@@ -3946,6 +3946,26 @@ to work.
     :ensure t)
 #+end_src
 
+
+** Create Term in Dir
+#+begin_src emacs-lisp :tangle yes :results silent
+  (global-set-key (kbd "H-<return>") 'shell-at-dir)
+  (defun shell-at-dir (dir)
+    "Open a shell at DIR.
+  If a shell buffer visiting DIR already exists, show that one."
+    (interactive (list default-directory))
+    (let ((buf (car (cl-remove-if-not
+                     (lambda (it)
+                       (with-current-buffer it
+                         (and (derived-mode-p 'shell-mode)
+                              (equal default-directory dir))))
+                     (buffer-list)))))
+      (if buf
+          (switch-to-buffer buf)
+        (shell (generate-new-buffer-name "*shell*")))))
+#+end_src
+
+
 * To add
 - [ ] isend-mode : peut être utile pour envoyer ligne par ligne du python pour débugger
 - [ ] refine : permet d'éditer des variables
