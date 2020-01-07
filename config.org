@@ -219,6 +219,8 @@
   - [[#worf][Worf]]
   - [[#cliphist][Cliphist]]
 - [[#to-sort][To Sort]]
+  - [[#php-mode][php-mode]]
+  - [[#create-term-in-dir][Create Term in Dir]]
 - [[#to-add][To add]]
 
 * Acknowledgement
