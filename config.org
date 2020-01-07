@@ -3940,6 +3940,12 @@ to work.
 
 * To Sort
 
+** php-mode
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package php-mode
+    :ensure t)
+#+end_src
+
 * To add
 - [ ] isend-mode : peut être utile pour envoyer ligne par ligne du python pour débugger
 - [ ] refine : permet d'éditer des variables
