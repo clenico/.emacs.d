@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: abstract
+# key: +abs
+# --
+#+begin_export latex
+\begin{abstract}
+    $1
+\end{abstract}
+#+end_export

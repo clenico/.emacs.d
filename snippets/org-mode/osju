@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: osju
+# key: osju
+# --
+#+begin_src ein-python
+$1
+#+end_src
