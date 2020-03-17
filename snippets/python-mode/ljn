@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: load json
+# key: ljn
+# --
+def load_json(path):
+    try:
+        with open(path) as reader:
+            tmp_dict = json.load(reader)
+    except json.JSONDecodeError as err:
+        print(f"error parsing json {path}")
+        print(err)
+        exit(0)
+    except IOError:
+        print(f"Couldn't read the file {path}")
+        exit(0)
+    return tmp_dict
