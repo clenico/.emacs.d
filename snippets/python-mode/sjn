@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: save_dict_to_json
+# key: sjn
+# --
+def save_dict_to_json(m_dict, path):
+    m_json = json.dumps(m_dict, indent=4, sort_keys=True)
+    try:
+        with open(path, 'w') as fw:
+            fw.write(m_json)
+            fw.close()
+    except Exception:
+        print("Couldn't write the file")
