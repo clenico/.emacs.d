@@ -143,6 +143,9 @@
     - [[#xml][XML]]
       - [[#bug-pretty][BUG Pretty]]
     - [[#proto][Proto]]
+    - [[#javascript][JavaScript]]
+      - [[#js2-mode][=js2-mode=]]
+      - [[#company-tern][=company-tern=]]
   - [[#yaml][YAML]]
   - [[#web-mode][Web-mode]]
   - [[#snippets][Snippets]]
@@ -221,6 +224,8 @@
 - [[#to-sort][To Sort]]
   - [[#php-mode][php-mode]]
   - [[#create-term-in-dir][Create Term in Dir]]
+  - [[#csharp][csharp]]
+  - [[#ein][Ein]]
 - [[#to-add][To add]]
 
 * Acknowledgement
