@@ -3,10 +3,15 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        beginning-of-buffer
+        c-electric-lt-gt
+        c-electric-paren
         c-electric-slash
         c-fill-paragraph
         c-indent-line-or-region
         cn/backward-whitespace
+        cn/cliphist-paste-item
+        cn/downcase-word
         cn/upcase-initials-word
         comment-dwim
         counsel-M-x
@@ -14,20 +19,26 @@
         electric-newline-and-maybe-indent
         end-of-buffer
         forward-whitespace
+        goto-match-paren
         hungry-delete-forward
         increment-number-at-point
         indent-for-tab-command
         keyboard-escape-quit
         kill-region
         kill-region-or-backward-word
+        kmacro-start-macro-or-insert-counter
+        move-text-up
         my/hydra-switch-mode/body
         my/smarter-move-beginning-of-line
         org-cycle
         org-end-of-line
         org-force-self-insert
+        org-kill-line
+        org-return
         org-self-insert-command
         org-yank
         repeat
+        scimax/org-return
         sp-splice-sexp
         xah-toggle-letter-case
         yas-expand
@@ -35,9 +46,9 @@
 
 (setq mc/cmds-to-run-once
       '(
+        elpy-shell-send-region-or-buffer
         hungry-delete-backward
         kmacro-end-or-call-macro
         org-export-dispatch
-        org-kill-line
         org-refile
         ))
