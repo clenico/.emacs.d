@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: osjn
+# key: osjn
+# --
+#+begin_src json
+$1
+#+end_src
