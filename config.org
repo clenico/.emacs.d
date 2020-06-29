@@ -1720,6 +1720,7 @@ it later to replace swiper for that usage.
       ("o" (counsel-find-file "~/OneDrive") "Onedrive")
       ("p" (counsel-find-file "~/Personnal/") "Personnal")
       ("s" (counsel-find-file "~/School") "School")
+      ("S" (counsel-find-file "~/School/ma2/Stage/Multitel/") "Stage")
       ("O" (counsel-find-file "~/Org") "Org")
       ("N" (counsel-find-file "~/Notes") "Notes")
       ("T" (counsel-find-file "~/TFE") "TFE")
