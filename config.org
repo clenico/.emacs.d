@@ -3974,6 +3974,12 @@ to work.
         (shell (generate-new-buffer-name "*shell*")))))
 #+end_src
 
+** csharp
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package csharp-mode
+    :ensure t)
+#+end_src
+
 
 * To add
 - [ ] isend-mode : peut être utile pour envoyer ligne par ligne du python pour débugger
