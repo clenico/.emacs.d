@@ -3980,6 +3980,12 @@ to work.
     :ensure t)
 #+end_src
 
+** Ein
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package ein
+    :ensure t)
+#+end_src
+
 
 * To add
 - [ ] isend-mode : peut être utile pour envoyer ligne par ligne du python pour débugger
