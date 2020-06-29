@@ -3774,6 +3774,12 @@ Adding some usefull unit calculation
      (interactive "r")
      (align-regexp start end
                    "\\(\\s-*\\)," 1 1 t))
+
+   (defun cn/align-less\< (start end)
+     "Align columns by ampersand"
+     (interactive "r")
+     (align-regexp start end
+                   "\\(\\s-*\\)<" 1 1 t))
  #+end_src
 
 ** PlantUML-mode
