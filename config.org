@@ -3111,6 +3111,7 @@ package-manage)
   (use-package ob-gnuplot :ensure nil :after org)
   (use-package ob-java :ensure nil :after org)
   (use-package ob-js :ensure nil :after org)
+  (use-package ob-ein :ensure nil :after org)
 
   (use-package ob-latex
     :ensure nil
