@@ -145,7 +145,6 @@
     - [[#proto][Proto]]
     - [[#javascript][JavaScript]]
       - [[#js2-mode][=js2-mode=]]
-      - [[#company-tern][=company-tern=]]
   - [[#yaml][YAML]]
   - [[#web-mode][Web-mode]]
   - [[#snippets][Snippets]]
@@ -2636,7 +2635,8 @@ Proto is a syntax created by google : [[https://developers.google.com/protocol-b
    }
  #+end_src
 
-**** =company-tern=
+**** COMMENT =company-tern=
+Comment because the package has been removed
 
  =tern= backend for =company-mode=.
 
