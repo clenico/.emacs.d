@@ -1693,6 +1693,7 @@ it later to replace swiper for that usage.
             ("O" org-mode "Org-mode")
             ("sh" sh-mode "Bash")
             ("js" js-mode "Javascript")
+            ("pl" perl-mode "Perl")
             ("do" dockerfile-mode "Dockerfile"))))
 
         (global-set-key (kbd "H-m") 'my/hydra-switch-mode/body)
