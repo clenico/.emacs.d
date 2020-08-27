@@ -3126,6 +3126,7 @@ Comment because the package has been removed
                              ("~/Org/GTD/maybe.org" :level . 2)
                              ("~/Org/GTD/projects.org" :maxlevel . 2)
                              ("~/Org/GTD/tasks.org" :level . 1)
+                             (nil :maxlevel . 9)
                              ;; ("~/gtd/tickler.org" :maxlevel . 2)
                              ))
 
