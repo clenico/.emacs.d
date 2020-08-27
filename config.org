@@ -3257,6 +3257,7 @@ package-manage)
                                    ("version=3" "mhchem")
                                    ("" "url")
                                    ;; ("os=win" "menukeys")
+                                   ("os=mac,mackeys=symbols" "menukeys")
                                    ))
 
   (setq org-latex-pdf-process
