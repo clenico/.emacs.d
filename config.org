@@ -2938,16 +2938,28 @@ Comment because the package has been removed
     :ensure nil
     :after org
     :preface
-    (defvar my/org-basic-task-template "* TODO %^{Task}
+    (defvar my/org-basic-maybe-task-template "* TODO %^{Task}
+               Captured %<%Y-%m-%d %H:%M>" "Template for maybe task.")
+    (defvar my/org-basic-maybe-project-template "* TODO %^{Project}
+               Captured %<%Y-%m-%d %H:%M>" "Template for maybe project.")
+
+    (defvar my/org-basic-task-template "* TODO [#%^{priority|1|2|3|4|5}] %^{Tasks}
                :PROPERTIES:
-               :Effort: %^{effort|1:00|0:05|0:15|0:30|2:00|4:00}
+               :Effort: %^{effort|0:30|1:00|1:30|0:05|0:15|2:00|4:00}
                :END:
                Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+
+    (defvar my/org-basic-order-template "* TODO Order:  %^{Order}
+                 Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+
+    (defvar my/org-basic-project-template "* TODO [#%^{priority|1|2|3|4|5}] %^{Project}
+               Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+
     (defvar my/learning-template-url "* TODO %^{Subject}
                Captured %<%Y-%m-%d %H:%M>
                [[%^{Source}]]" "Template for learning subject.")
 
-    (defvar my/learning-template "* %?\n"
+    (defvar my/journal-template "* %?\n"
       "Template for learning subject.")
 
 
@@ -2959,56 +2971,57 @@ Comment because the package has been removed
     ;; :NOTE: %^{NOTE}
     ;; :END:" "Template for org-contacts.")
 
-    (defvar my/org-ledger-card-template "%(org-read-date) %^{Payee}
-                 Expenses:%^{Account}  €%^{Amount}
-                 Liabilities:CreditsCards:Belfius" "Template for credit card transaction with ledger.")
-
-    (defvar my/org-ledger-cash-template "%(org-read-date) * %^{Payee}
-                 Expenses:%^{Account}  €%^{Amount}
-                 Assets:Cash:Wallet" "Template for cash transaction with ledger.")
     :custom
     (org-capture-templates
-     `(("B" "Book" checkitem (file+headline "~/Org/other/books.org" "Books")
+     `(
+       ("m" "Maybe")
+       ("mt" "Maybe task" entry (file+headline "~/Org/GTD/maybe.org" "Tasks"),
+        my/org-basic-maybe-task-template
+        :empty-lines 1)
+
+       ("mp" "Maybe project" entry (file+headline "~/Org/GTD/maybe.org" "Projects"),
+        my/org-basic-maybe-project-template
+        :empty-lines 1)
+       ("mo" "Maybe order" entry (file+headline "~/Org/GTD/maybe.org" "Orders"),
+        my/org-basic-order-template
+        :empty-lines 1)
+
+       ("t" "Task" entry (file+headline "~/Org/GTD/tasks.org" "Tasks"),
+        my/org-basic-task-template
+        :empty-lines 1)
+
+       ("P" "Project" entry (file+headline "~/Org/GTD/projects.org" "Projects"),
+        my/org-basic-project-template
+        :empty-lines 1)
+
+       ("l" "Link" entry (file+headline "~/Org/GTD/inbox.org" "Links"),
+        my/learning-template-url
+        :empty-lines 1)
+
+       ("p" "Project tasks" entry (file+headline "~/Org/GTD/inbox.org" "Projects"),
+        my/org-basic-task-template
+        :empty-lines 1)
+
+       ("r" "Random" entry (file+headline "~/Org/GTD/inbox.org" "Random"),
+        my/org-basic-task-template
+        :empty-lines 1)
+
+       ("o" "Order" entry (file+headline "~/Org/Other/orders.org" "Orders"),
+        my/org-basic-order-template
+        :empty-lines 1)
+
+       ("j" "Journal" plain (file+datetree "~/Org/Journal/summary.org")
+        "%?"
+        :empty-lines 1)
+
+       ("B" "Book" checkitem (file+headline "~/Org/Other/books.org" "Books")
         "- [ ] %^{Book}"
         :immediate-finish t)
 
-       ("M" "Movie" checkitem (file+headline "~/Org/other/movies.org" "Movies")
+       ("M" "Movie" checkitem (file+headline "~/Org/Other/movies.org" "Movies")
         "- [ ] %^{Movie}"
         :immediate-finish t)
-       ("l" "Learning")
-       ("ll" "Learning Unsorted" entry (file+headline "~/Org/other/learning.org" "Learning"),
-        my/org-basic-task-template
-        :empty-lines 1)
-       ("ls" "Learning Spanish")
-       ("lsg" "Grammar" entry (file+headline "~/Org/other/Spanish.org" "Grammar"),
-        my/learning-template
-        :empty-lines 1)
-       ("lsu" "Unsorted" entry (file+headline "~/Org/other/Spanish.org" "Unsorted"),
-        my/learning-template
-        :empty-lines 1)
 
-       ("L" "Linux" entry (file+headline "~/Notes/Linux/linux.org" "To Sort"),
-        "** %^{subject}
-       Tested on %^{OS}"
-        :empty-lines 1
-        ;; :unnarrowed 1
-        )
-
-       ("p" "People" entry (file+headline "~/Org/agenda/people.org" "Tasks"),
-        my/org-basic-task-template
-        :empty-lines 1)
-
-       ("s" "School" entry (file+headline "~/Org/agenda/school.org" "Tasks"),
-        my/org-basic-task-template
-        :empty-lines 1)
-
-       ("t" "Task" entry (file+headline "~/Org/agenda/organizer.org" "Tasks"),
-        my/org-basic-task-template
-        :empty-lines 1)
-
-       ("j" "Journal" entry (file+datetree "~/Org/Journal/journal.org")
-        ""
-        :empty-lines 1)
 
        ;; ("L" "Learning" checkitem (file+headline "~/Org/other/learning.org" "Things")
        ;;  "- [ ] %^{Thing}"
