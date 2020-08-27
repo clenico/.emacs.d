@@ -1876,7 +1876,21 @@ it later to replace swiper for that usage.
   ;; (eyebrowse-switch-to-window-config-0)
   ;; (find-file "~/.emacs.d/config.org")
 #+end_src
-
+***** hydra clock
+#+begin_src emacs-lisp :tangle yes :results silent
+  (pretty-hydra-define my/hydra-clock
+    (:hint nil :color teal :quit-key "q" :title (with-faicon "clock-o" "Clock" 1 -0.05))
+    ("Action"
+     (("c" org-clock-cancel "cancel")
+      ("d" org-clock-display "display")
+      ("e" org-clock-modify-effort-estimate "effort")
+      ("i" org-clock-in "in")
+      ("j" org-clock-goto "jump")
+      ("o" org-clock-out "out")
+      ("p" org-pomodoro "pomodoro")
+      ("r" org-clock-report "report"))))
+  (global-set-key (kbd "C-z c") 'my/hydra-clock/body)
+#+end_src
 
 **** TODO COMMENT hydra-Launcher
  #+begin_src emacs-lisp :tangle yes :results silent
