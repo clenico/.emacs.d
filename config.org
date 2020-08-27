@@ -3081,6 +3081,19 @@ Comment because the package has been removed
     :after org
     :custom (org-contacts-files '("~/.personal/agenda/contacts.org")))
 #+end_src
+*** Journal
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package org-journal
+    :ensure t
+    :defer t
+    :init
+    ;; Change default prefix key; needs to be set before loading org-journal
+    (setq org-journal-prefix-key "C-c j ")
+    :config
+    (setq org-journal-dir "~/Org/Journal/DayByDay/"
+          org-journal-date-format "%A, %d/%B/%Y"))
+  (global-set-key (kbd "C-z j") 'org-journal-new-entry)
+#+end_src
 
 *** Agenda
 #+begin_src emacs-lisp :tangle yes :results silent
