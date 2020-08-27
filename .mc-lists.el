@@ -14,12 +14,15 @@
         cn/downcase-word
         cn/upcase-initials-word
         comment-dwim
+        comment-line
         counsel-M-x
         decrement-number-at-point
         electric-newline-and-maybe-indent
         end-of-buffer
         forward-whitespace
         goto-match-paren
+        haskell-indentation-common-electric-command
+        haskell-indentation-newline-and-indent
         hungry-delete-forward
         increment-number-at-point
         indent-for-tab-command
@@ -39,6 +42,7 @@
         org-yank
         repeat
         scimax/org-return
+        sh-assignment
         sp-splice-sexp
         xah-toggle-letter-case
         yas-expand
