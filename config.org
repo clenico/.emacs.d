@@ -246,8 +246,8 @@ experience.
 This can help fixing some Org symptoms like expand region not working.
 
 #+begin_src bash
-  $ cd ~/emacs.d/elpa
-  $ find . -type f -name '*elc' -exec rm -v {} \;
+  cd ~/emacs.d/elpa
+  find . -type f -name '*elc' -exec rm -v {} \;
 #+end_src
 
 ** Overall slowdown
