@@ -2734,6 +2734,12 @@ Comment because the package has been removed
   (use-package auto-yasnippet )
 #+end_src
 
+** Haskell
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package haskell-mode
+    :ensure t)
+#+end_src
+
 * Org-Mode
 
 ** Org use package hydra
