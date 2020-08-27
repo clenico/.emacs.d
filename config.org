@@ -4077,7 +4077,7 @@ you need to install the related external package first
     (eyebrowse-switch-to-window-config-0)
     (find-file "~/.emacs.d/config.org")
     (eyebrowse-switch-to-window-config-1)
-    (find-file "~/Dotfiles/i3/.config/i3/config")
+    (find-file "~/Dotfiles/Xmonad/.xmonad/xmonad.hs")
     (eyebrowse-switch-to-window-config-2)
     (switch-to-buffer "*dashboard*")
     (eyebrowse-switch-to-window-config-3)
