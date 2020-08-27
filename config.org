@@ -3099,15 +3099,104 @@ Comment because the package has been removed
 #+begin_src emacs-lisp :tangle yes :results silent
   (global-set-key (kbd "C-c a") 'org-agenda)
 
-  (setq org-agenda-files (quote ("~/Org/agenda/organizer.org")))
+
+  (setq org-agenda-sticky t)
+  ;; (setq org-agenda-files '("/home/niccle27/Org/GTD"))
+  (setq org-agenda-files (list "~/Org/GTD/tasks.org"
+                               "~/Org/GTD/projects.org"
+                               "~/Org/GTD/recurrent_checklist.org"
+                               ))
 
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)"  "|" "DONE(d)" "CANCELED(c@/!)")
+        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)"  "|" "DONE(d@)" "CANCELED(c@/!)")
           (sequence "BUG(b@/!)" "KNOWNCAUSE(k@)" "|" "FIXED(f)")))
 
 
-  (setq org-refile-targets (quote ((nil :maxlevel . 9)  ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
-                                   (org-agenda-files :maxlevel . 9))))
+  ;; (setq org-refile-targets (quote ((nil :maxlevel . 9)  ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
+  ;;                                  (org-agenda-files :maxlevel . 9))))
+
+  (setq org-refile-targets '(("~/Org/GTD/tasks.org" :level . 1)
+                             ("~/Org/GTD/inbox.org" :level . 2)
+                             ("~/Org/GTD/maybe.org" :level . 2)
+                             ("~/Org/GTD/projects.org" :maxlevel . 2)
+                             ("~/Org/GTD/tasks.org" :level . 1)
+                             ;; ("~/gtd/tickler.org" :maxlevel . 2)
+                             ))
+
+  (setq org-agenda-custom-commands
+
+        '(
+          ("H" "Office and Home Lists"
+           ((agenda)
+            (tags-todo "OFFICE")
+            (tags-todo "HOME")
+            (tags-todo "COMPUTER")
+            (tags-todo "DVD")
+            (tags-todo "READING")))
+
+          ;; ("D" "Daily Action List"
+          ;;  (
+          ;;   (agenda "" ((org-agenda-ndays 1)
+          ;;               (org-agenda-sorting-strategy
+          ;;                (quote ((agenda time-up priority-up effort-down tag-up) )))
+          ;;               (org-deadline-warning-days 0)
+          ;;               ))))
+
+          ("d" agenda "Today's Tasks"
+           ((org-agenda-span 'day)
+            (org-agenda-skip-function '(org-agenda-skip-deadline-if-not-today))
+            (org-agenda-sorting-strategy
+             (quote ((agenda time-up priority-up effort-down tag-up) )))
+            (org-agenda-log-mode)
+            ;; (org-agenda-entry-types '(:deadline))
+            (org-agenda-overriding-header "Today's Deadlines ")))
+
+          ("D" agenda "Today's Deadlines"
+           ((org-agenda-span 'day)
+            (org-agenda-skip-function '(org-agenda-skip-deadline-if-not-today))
+            (org-agenda-sorting-strategy
+             (quote ((agenda time-up priority-up effort-down tag-up) )))
+            (org-agenda-entry-types '(:deadline))
+            (org-agenda-overriding-header "Today's Deadlines ")))
+          )
+        )
+
+  (defun org-agenda-skip-deadline-if-not-today ()
+    "If this function returns nil, the current match should not be skipped.
+    Otherwise, the function must return a position from where the search
+    should be continued."
+    (ignore-errors
+      (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+            (deadline-day
+             (time-to-days
+              (org-time-string-to-time
+               (org-entry-get nil "DEADLINE"))))
+            (now (time-to-days (current-time))))
+        (and deadline-day
+             (not (= deadline-day now))
+             subtree-end))))
+
+  (setq org-agenda-prefix-format
+        '((agenda  . " %i  %-12:c [%e] %?-12t% s")
+          (todo . " %i %-12:c")
+          (tags  . " %i %-12:c")
+          (search . " %i %-12:c")))
+
+  (setq org-agenda-start-with-log-mode t)
+
+
+
+  (defmacro η (fnc)
+    "Return function that ignores its arguments and invokes FNC."
+    `(lambda (&rest _rest)
+       (funcall ,fnc)))
+
+
+  (advice-add 'org-deadline       :after (η #'org-save-all-org-buffers))
+  (advice-add 'org-schedule       :after (η #'org-save-all-org-buffers))
+  (advice-add 'org-store-log-note :after (η #'org-save-all-org-buffers))
+  (advice-add 'org-todo           :after (η #'org-save-all-org-buffers))
+
 #+end_src
 
 *** Org-noter
