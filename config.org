@@ -2819,6 +2819,13 @@ Comment because the package has been removed
 
   (setq org-highlight-latex-and-related '(latex))
   (add-hook 'org-mode 'turn-on-auto-fill)
+
+  (setq org-file-apps
+        '(("\\.docx\\'" . default)
+          ("\\.mm\\'" . default)
+          ("\\.x?html?\\'" . default)
+          ("\\.pdf\\'" . emacs)
+          (auto-mode . emacs)))
 #+end_src
 
 *** Org speed command
