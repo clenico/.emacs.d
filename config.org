@@ -8,6 +8,8 @@
   - [[#remove-compiled-files][Remove compiled files]]
   - [[#overall-slowdown][Overall slowdown]]
   - [[#update-packaging-from-melpa][Update packaging from Melpa]]
+  - [[#refile-not-working][Refile not working]]
+  - [[#org-block-color-not-all-line][Org block color not all line]]
 - [[#before-startup][Before Startup]]
   - [[#refresh-packages][Refresh packages]]
   - [[#define-repos][Define repos]]
@@ -259,6 +261,21 @@ displaying the profiler log.
 ** Update packaging from Melpa
 Some packaging from elpa are being updated while others aren't. This can
 cause reference problem. I experienced it with =counsel= and =ivy=.
+
+** Refile not working
+#+begin_src bash
+  cd ~/.emacs.d/elpa/develop
+  find org*/*.elc -print0 | xargs -0 rm
+#+end_src
+
+** Org block color not all line
+This is a change required from emacs 26  to 27.1. Can be easily fixed by
+editing the theme used :
+#+begin_src emacs-lisp :tangle no :results silent
+  ;; (org-block :foreground ,dracula-orange)
+  (org-block :foreground ,dracula-orange :extend t)
+#+end_src
+
 
 
 * Before Startup
