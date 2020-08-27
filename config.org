@@ -77,7 +77,6 @@
     - [[#abbrev][Abbrev]]
     - [[#spelling][Spelling]]
       - [[#flyspell][Flyspell]]
-      - [[#ispell][Ispell]]
     - [[#lorem-ipsum][Lorem Ipsum]]
   - [[#interface-enhancement][Interface Enhancement]]
     - [[#enhanced-package-manager][Enhanced package manager]]
@@ -102,6 +101,7 @@
         - [[#go-to-folder-hydra][Go to folder hydra]]
         - [[#go-to-notes][Go to Notes]]
         - [[#set-workspace-mode][Set Workspace mode]]
+        - [[#hydra-clock][hydra clock]]
       - [[#hydra-image-manipulation][hydra image manipulation]]
   - [[#projects][Projects]]
     - [[#projectile][Projectile]]
@@ -151,6 +151,7 @@
   - [[#web-mode][Web-mode]]
   - [[#snippets][Snippets]]
     - [[#yasnippet][YASnippet]]
+  - [[#haskell][Haskell]]
 - [[#org-mode][Org-Mode]]
   - [[#org-use-package-hydra][Org use package hydra]]
   - [[#org-better-defaults][Org better defaults]]
@@ -161,6 +162,7 @@
     - [[#faces][Faces]]
   - [[#plugins][Plugins]]
     - [[#org-capture][Org-capture]]
+    - [[#journal][Journal]]
     - [[#agenda][Agenda]]
     - [[#org-noter][Org-noter]]
   - [[#export][Export]]
@@ -227,6 +229,7 @@
   - [[#create-term-in-dir][Create Term in Dir]]
   - [[#csharp][csharp]]
   - [[#ein][Ein]]
+  - [[#calendar][Calendar]]
 - [[#to-add][To add]]
 
 * Acknowledgement
@@ -424,7 +427,6 @@ For a better user experience of GNU Emacs, here are the default values I use.
 #+begin_src emacs-lisp :tangle yes :results silent
   (add-to-list 'auto-mode-alist '("\\dunstrc\\'" . conf-space-mode))
 #+end_src
-
 
 ** Navigation
 *** Goto-last-change
