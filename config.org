@@ -1813,7 +1813,7 @@ it later to replace swiper for that usage.
     (eyebrowse-switch-to-window-config-0)
     (set-one-file-to-window "~/.emacs.d/config.org")
     (eyebrowse-switch-to-window-config-1)
-    (set-one-file-to-window "~/Dotfiles/i3/.config/i3/config")
+    (set-one-file-to-window "~/Dotfiles/Xmonad/.xmonad/xmonad.hs")
     (eyebrowse-switch-to-window-config-2)
     (delete-other-windows)
     (switch-to-buffer "*dashboard*")
