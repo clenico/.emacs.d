@@ -4111,7 +4111,7 @@ you need to install the related external package first
     )
   (add-hook 'emacs-startup-hook 'eyebrowse-switch-to-window-config-2)
 #+end_src
-** Worf
+** COMMENT Worf
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package worf
     :ensure t)
@@ -4186,30 +4186,30 @@ to work.
   ;; (require 'calfw-howm)
   ;; (require 'calfw-org)
 
-  (use-package calfw-cal
-    :ensure t)
+  ;; (use-package calfw-cal
+  ;; :ensure t)
 
-  (use-package calfw-ical
-    :ensure t)
+  ;; (use-package calfw-ical
+  ;; :ensure t)
 
   ;; (use-package calfw-howm
   ;;   :ensure t)
 
-  (use-package calfw-org
-    :ensure t)
+  ;; (use-package calfw-org
+  ;; :ensure t)
 
-  (defun my-open-calendar ()
-    (interactive)
-    (cfw:open-calendar-buffer
-     :contents-sources
-     (list
-      (cfw:org-create-source "Green")  ; orgmode source
-      ;; (cfw:howm-create-source "Blue")  ; howm source
-      ;; (cfw:cal-create-source "Orange") ; diary source
-      ;; (cfw:ical-create-source "Moon" "~/moon.ics" "Gray")  ; ICS source1
-      ;; (cfw:ical-create-source "gcal" "https://..../basic.ics" "IndianRed") ; google calendar ICS
-      (cfw:ical-create-source "gcal" "https://calendar.google.com/calendar/b/2?cid=Y2xlbWVudC5uaWNvbGFzLjE5OTZAZ21haWwuY29t" "Red") ; devorah calender
-      )))
+  ;; (defun my-open-calendar ()
+  ;;   (interactive)
+  ;;   (cfw:open-calendar-buffer
+  ;;    :contents-sources
+  ;;    (list
+  ;;     (cfw:org-create-source "Green")  ; orgmode source
+  ;;     ;; (cfw:howm-create-source "Blue")  ; howm source
+  ;;     ;; (cfw:cal-create-source "Orange") ; diary source
+  ;;     ;; (cfw:ical-create-source "Moon" "~/moon.ics" "Gray")  ; ICS source1
+  ;;     ;; (cfw:ical-create-source "gcal" "https://..../basic.ics" "IndianRed") ; google calendar ICS
+  ;;     (cfw:ical-create-source "gcal" "https://calendar.google.com/calendar/b/2?cid=Y2xlbWVudC5uaWNvbGFzLjE5OTZAZ21haWwuY29t" "Red") ; devorah calender
+  ;;     )))
 
   ;; (use-package calfw
   ;;   :ensure t
