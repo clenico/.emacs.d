@@ -1779,21 +1779,21 @@ it later to replace swiper for that usage.
   (pretty-hydra-define my/hydra-Go-To-Agenda
     (:hint nil :foreign-keys warn :title "Go-To-Notes" :quit-key "q" :color blue)
     ("GTD"
-     (("in" (find-file "/home/niccle27/Org/GTD/inbox.org") "Inbox")
-      ("mb" (find-file "/home/niccle27/Org/GTD/maybe.org") "Maybe")
-      ("pj" (find-file "/home/niccle27/Org/GTD/projects.org") "Projects")
-      ("ta" (find-file "/home/niccle27/Org/GTD/tasks.org") "Tasks")
-      ("ar" (find-file "/home/niccle27/Org/GTD/archive.org") "Archive"))
+     (("in" (find-file "~/Org/GTD/inbox.org") "Inbox")
+      ("mb" (find-file "~/Org/GTD/maybe.org") "Maybe")
+      ("pj" (find-file "~/Org/GTD/projects.org") "Projects")
+      ("ta" (find-file "~/Org/GTD/tasks.org") "Tasks")
+      ("ar" (find-file "~/Org/GTD/archive.org") "Archive"))
      "Sorted"
-     (("im" (find-file "/home/niccle27/Org/Other/improve.org") "Improve")
-      ("lr" (find-file "/home/niccle27/Org/Other/learning.org") "Learning")
-      ("li" (find-file "/home/niccle27/Org/Other/links.org") "Links")
-      ("or" (find-file "/home/niccle27/Org/Other/orders.org") "Orders")
-      ("mo" (find-file "/home/niccle27/Org/Other/movies.org") "Movies"))
+     (("im" (find-file "~/Org/Other/improve.org") "Improve")
+      ("lr" (find-file "~/Org/Other/learning.org") "Learning")
+      ("li" (find-file "~/Org/Other/links.org") "Links")
+      ("or" (find-file "~/Org/Other/orders.org") "Orders")
+      ("mo" (find-file "~/Org/Other/movies.org") "Movies"))
      "Organisation"
-     (("cl" (find-file "/home/niccle27/Org/GTD/recurrent_checklist.org") "Check list"))
+     (("cl" (find-file "~/Org/GTD/recurrent_checklist.org") "Check list"))
      "Journal"
-     (("jo" (find-file "/home/niccle27/Org/Journal/summary.org") "Journal"))
+     (("jo" (find-file "~/Org/Journal/summary.org") "Journal"))
      ))
 
   (global-set-key (kbd "C-z C-a") 'my/hydra-Go-To-Agenda/body)
@@ -1804,7 +1804,7 @@ it later to replace swiper for that usage.
     (:hint nil :foreign-keys warn :title "Go-To-Notes" :quit-key "q" :color blue)
     (
      "Installing script"
-     (("mj" (find-file "/home/niccle27/Documents/Projects/Install-scripts/Manjaro/Install_manjaro.org") "Manjaro.org"))
+     (("mj" (find-file "~/Documents/Projects/Install-scripts/Manjaro/Install_manjaro.org") "Manjaro.org"))
      ))
 
   (global-set-key (kbd "C-z C-p") 'my/hydra-Go-To-Project/body)
