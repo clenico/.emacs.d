@@ -3194,7 +3194,7 @@ Comment because the package has been removed
              (quote ((agenda time-up priority-up effort-down tag-up) )))
             (org-agenda-log-mode)
             ;; (org-agenda-entry-types '(:deadline))
-            (org-agenda-overriding-header "Today's Deadlines ")))
+            (org-agenda-overriding-header "Today's Tasks ")))
 
           ("D" agenda "Today's Deadlines"
            ((org-agenda-span 'day)
