@@ -2994,16 +2994,18 @@ Comment because the package has been removed
                :Effort: %^{effort|0:30|1:00|1:30|0:05|0:15|2:00|4:00}
                :END:
                Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+    (defvar my/org-basic-project-template "**  %^{Project}
+    Captured %<%Y-%m-%d %H:%M>" "Template for maybe project.")
 
     (defvar my/org-basic-order-template "* TODO Order:  %^{Order}
-                 Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+    Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
 
     (defvar my/org-basic-project-template "* TODO [#%^{priority|1|2|3|4|5}] %^{Project}
-               Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+    Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
 
     (defvar my/learning-template-url "* TODO %^{Subject}
-               Captured %<%Y-%m-%d %H:%M>
-               [[%^{Source}]]" "Template for learning subject.")
+    Captured %<%Y-%m-%d %H:%M>
+    [[%^{Source}]]" "Template for learning subject.")
 
     (defvar my/journal-template   "**** %?\n"
       "Template for learning subject.")
@@ -3145,14 +3147,12 @@ Comment because the package has been removed
 #+begin_src emacs-lisp :tangle yes :results silent
   (global-set-key (kbd "C-c a") 'org-agenda)
 
-
   (setq org-agenda-sticky t)
   ;; (setq org-agenda-files '("/home/niccle27/Org/GTD"))
   (setq org-agenda-files (list "~/Org/GTD/tasks.org"
                                "~/Org/GTD/projects.org"
                                "~/Org/GTD/recurrent_checklist.org"
-                               ))
-
+                                 ))
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)"  "|" "DONE(d@)" "CANCELED(c@/!)")
           (sequence "BUG(b@/!)" "KNOWNCAUSE(k@)" "|" "FIXED(f)")))
@@ -4272,6 +4272,7 @@ to work.
   ;;     ;; (cfw:ical-create-source "gcal" "https://..../basic.ics" "IndianRed") ; google calendar ICS
   ;;     (cfw:ical-create-source "gcal" "https://calendar.google.com/calendar/b/2?cid=Y2xlbWVudC5uaWNvbGFzLjE5OTZAZ21haWwuY29t" "Red") ; devorah calender
   ;;     )))
+
 
   ;; (use-package calfw
   ;;   :ensure t
