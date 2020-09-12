@@ -230,6 +230,8 @@
   - [[#create-term-in-dir][Create Term in Dir]]
   - [[#csharp][csharp]]
   - [[#ein][Ein]]
+  - [[#disable-mouse][Disable mouse]]
+  - [[#haskell-1][Haskell]]
   - [[#calendar][Calendar]]
 - [[#to-add][To add]]
 
@@ -4225,6 +4227,19 @@ to work.
     :ensure t)
 #+end_src
 
+** Disable mouse
+#+begin_src emacs-lisp :tangle yes :results silent
+  ;; (use-package disable-mouse
+  ;; :ensure t
+  ;; :config(disable-mouse-global-mode 1))
+#+end_src
+
+** Haskell
+#+begin_src emacs-lisp :tangle yes :results silent
+  (use-package haskell-mode
+    :ensure t)
+#+end_src
+
 ** Calendar
 #+begin_src emacs-lisp :tangle yes :results silent
   ;; (require 'calfw-cal)
@@ -4240,6 +4255,7 @@ to work.
 
   ;; (use-package calfw-howm
   ;;   :ensure t)
+
 
   ;; (use-package calfw-org
   ;; :ensure t)
