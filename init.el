@@ -28,8 +28,7 @@
 ;; (load "~/Documents/Projects/.emacs.d/config.el")
 
 
-(if (equal (shell-command-to-string "~/.emacs.d/get_hostname.sh") "Virtualbox
-")
+(if (equal (shell-command-to-string "~/.emacs.d/get_hostname.sh") "Virtualbox")
     (org-babel-load-file (expand-file-name "~/.emacs.d/config_light.org"))
   (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
 
