@@ -1782,6 +1782,7 @@ it later to replace swiper for that usage.
       ("mb" (find-file "~/Org/GTD/maybe.org") "Maybe")
       ("pj" (find-file "~/Org/GTD/projects.org") "Projects")
       ("ta" (find-file "~/Org/GTD/tasks.org") "Tasks")
+      ("ti" (find-file "~/Org/GTD/tickler.org") "Tickler")
       ("ar" (find-file "~/Org/GTD/archive.org") "Archive"))
      "Sorted"
      (("im" (find-file "~/Org/Other/improve.org") "Improve")
@@ -2967,6 +2968,7 @@ Comment because the package has been removed
        ("WAITING" . (:foreground "orange" :weight bold))
        ("DONE" . (:foreground "green" :weight bold))
        ("CANCELED" . (:foreground "gray" :weight bold))
+       ("DELEGATED" . (:foreground "light sky blue" :weight bold))
        ("BUG" . (:foreground "yellow" :weight bold))
        ("KNOWNCAUSE" . (:foreground "light sea green" :weight bold))
        ("FIXED" . (:foreground "forest green" :weight bold))
@@ -2986,19 +2988,29 @@ Comment because the package has been removed
     (defvar my/org-basic-maybe-project-template "* TODO %^{Project}
                Captured %<%Y-%m-%d %H:%M>" "Template for maybe project.")
 
-    (defvar my/org-basic-task-template "* TODO [#%^{priority|1|2|3|4|5}] %^{Tasks}
+    (defvar my/org-full-task-template "* TODO [#%^{priority|1|2|3|4|5}] %^{Tasks}
+               SCHEDULED:%(org-insert-time-stamp (org-read-date nil t) nil nil nil nil \" .+1d\")
                :PROPERTIES:
                :Effort: %^{effort|0:30|1:00|1:30|0:05|0:15|2:00|4:00}
                :END:
                Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
-    (defvar my/org-basic-project-template "**  %^{Project}
+    (defvar my/org-basic-tickler-template "* TODO [#%^{priority|1|2|3|4|5}] %^{Tasks}
+                 SCHEDULED:%(org-insert-time-stamp (org-read-date nil t) nil nil nil nil \" .+1d\")
+                 Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+    (defvar my/org-basic-task-today-template "* TODO %^{Tasks}
+              :SCHEDULED: <%<%Y-%m-%d %a>>
+              Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+    (defvar my/org-basic-task-template "* TODO %^{Tasks}
+                 Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+
+    (defvar my/org-basic-project-template "**  %^{Project} [%]
     Captured %<%Y-%m-%d %H:%M>" "Template for maybe project.")
 
     (defvar my/org-basic-order-template "* TODO Order:  %^{Order}
     Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
 
-    (defvar my/org-basic-project-template "* TODO [#%^{priority|1|2|3|4|5}] %^{Project}
-    Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
+    ;; (defvar my/org-basic-project-template "* TODO [#%^{priority|1|2|3|4|5}] %^{Project}
+    ;; Captured %<%Y-%m-%d %H:%M>" "Template for basic task.")
 
     (defvar my/learning-template-url "* TODO %^{Subject}
     Captured %<%Y-%m-%d %H:%M>
@@ -3031,11 +3043,19 @@ Comment because the package has been removed
         my/org-basic-order-template
         :empty-lines 1)
 
-       ("t" "Task" entry (file+headline "~/Org/GTD/tasks.org" "Tasks"),
+       ("T" "Task full" entry (file+headline "~/Org/GTD/tickler.org" "Tasks"),
+        my/org-full-task-template
+        :empty-lines 1)
+
+       ("a" "Task today" entry (file+headline "~/Org/GTD/tickler.org" "Tasks"),
+        my/org-basic-task-today-template
+        :empty-lines 1)
+
+       ("t" "Task basic" entry (file+headline "~/Org/GTD/tasks.org" "Tasks"),
         my/org-basic-task-template
         :empty-lines 1)
 
-       ("P" "Project" entry (file+headline "~/Org/GTD/projects.org" "Projects"),
+       ("p" "Project" entry (file+headline "~/Org/GTD/projects.org" "Projects"),
         my/org-basic-project-template
         :empty-lines 1)
 
@@ -3043,11 +3063,11 @@ Comment because the package has been removed
         my/learning-template-url
         :empty-lines 1)
 
-       ("p" "Project tasks" entry (file+headline "~/Org/GTD/inbox.org" "Projects"),
-        my/org-basic-task-template
-        :empty-lines 1)
+       ;; ("p" "Project tasks" entry (file+headline "~/Org/GTD/inbox.org" "Projects"),
+       ;;  my/org-basic-task-template
+       ;;  :empty-lines 1)
 
-       ("r" "Random" entry (file+headline "~/Org/GTD/inbox.org" "Random"),
+       ("i" "Random" entry (file+headline "~/Org/GTD/inbox.org" "inbox"),
         my/org-basic-task-template
         :empty-lines 1)
 
@@ -3146,12 +3166,11 @@ Comment because the package has been removed
 
   (setq org-agenda-sticky t)
   ;; (setq org-agenda-files '("/home/niccle27/Org/GTD"))
-  (setq org-agenda-files (list "~/Org/GTD/tasks.org"
-                               "~/Org/GTD/projects.org"
+  (setq org-agenda-files (list "~/Org/GTD/tickler.org"
                                "~/Org/GTD/recurrent_checklist.org"
                                  ))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)"  "|" "DONE(d@)" "CANCELED(c@/!)")
+        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@/!)" "DELEGATED(m@/!)")
           (sequence "BUG(b@/!)" "KNOWNCAUSE(k@)" "|" "FIXED(f)")))
 
 
@@ -3163,6 +3182,8 @@ Comment because the package has been removed
                              ("~/Org/GTD/maybe.org" :level . 2)
                              ("~/Org/GTD/projects.org" :maxlevel . 2)
                              ("~/Org/GTD/tasks.org" :level . 1)
+                             ("~/Org/GTD/tickler.org" :level . 1)
+                             ("~/Org/GTD/archive.org" :level . 1)
                              (nil :maxlevel . 9)
                              ;; ("~/gtd/tickler.org" :maxlevel . 2)
                              ))
