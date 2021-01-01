@@ -15,6 +15,7 @@
         cn/upcase-initials-word
         comment-dwim
         comment-line
+        company-complete
         counsel-M-x
         decrement-number-at-point
         electric-newline-and-maybe-indent
