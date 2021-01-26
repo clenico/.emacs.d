@@ -10,6 +10,7 @@
   - [[#update-packaging-from-melpa][Update packaging from Melpa]]
   - [[#refile-not-working][Refile not working]]
   - [[#org-block-color-not-all-line][Org block color not all line]]
+  - [[#org-journal-not-in-the-right-language][Org journal not in the right language]]
 - [[#before-startup][Before Startup]]
   - [[#refresh-packages][Refresh packages]]
   - [[#define-repos][Define repos]]
@@ -282,6 +283,9 @@ editing the theme used :
   (org-block :foreground ,dracula-orange :extend t)
 #+end_src
 
+** Org journal not in the right language
+   https://ubuntu-mate.community/t/how-to-change-the-language-settings-in-ubuntu/3448
+   Need to change region parameters
 
 
 * Before Startup
