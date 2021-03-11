@@ -10,6 +10,7 @@
   - [[#update-packaging-from-melpa][Update packaging from Melpa]]
   - [[#refile-not-working][Refile not working]]
   - [[#org-block-color-not-all-line][Org block color not all line]]
+  - [[#org-journal-not-in-the-right-language][Org journal not in the right language]]
 - [[#before-startup][Before Startup]]
   - [[#refresh-packages][Refresh packages]]
   - [[#define-repos][Define repos]]
@@ -282,6 +283,9 @@ editing the theme used :
   (org-block :foreground ,dracula-orange :extend t)
 #+end_src
 
+** Org journal not in the right language
+   https://ubuntu-mate.community/t/how-to-change-the-language-settings-in-ubuntu/3448
+   Need to change region parameters
 
 
 * Before Startup
@@ -2828,7 +2832,7 @@ Comment because the package has been removed
   (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
   (setq org-startup-with-inline-images t)
   (setq org-latex-toc-command "\\tableofcontents \\clearpage")
-
+  (setq org-export-with-sub-superscripts '{})
   (setq org-link-frame-setup '((vm . vm-visit-folder-other-frame)
                                (vm-imap . vm-visit-imap-folder-other-frame)
                                (gnus . org-gnus-no-new-news)
