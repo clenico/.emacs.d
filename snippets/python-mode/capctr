@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: number of frames in videos opencv
+# key: capctr
+# --
+frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))

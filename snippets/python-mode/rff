@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: read file function
+# key: rff
+# --
+def readFile(path):
+    try:
+        with open(path) as reader:
+            reader.seek(0)    # set cursor at top of the file ( it was at the end after write)
+            content = reader.read()
+            reader.close()
+        return content
+    except Exception:
+        print("Couldn't read the file")
