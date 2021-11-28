@@ -3,6 +3,10 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        LaTeX-babel-insert-hyphen
+        LaTeX-insert-left-brace
+        TeX-insert-backslash
+        TeX-newline
         beginning-of-buffer
         c-electric-lt-gt
         c-electric-paren
@@ -20,6 +24,7 @@
         decrement-number-at-point
         electric-newline-and-maybe-indent
         end-of-buffer
+        eval-print-last-sexp
         forward-whitespace
         goto-match-paren
         haskell-indentation-common-electric-command
@@ -46,6 +51,7 @@
         sh-assignment
         sp-splice-sexp
         xah-toggle-letter-case
+        yaml-electric-dash-and-dot
         yas-expand
         ))
 
