@@ -1792,12 +1792,14 @@ it later to replace swiper for that usage.
       ("pj" (find-file "~/Org/GTD/projects.org") "Projects")
       ("ta" (find-file "~/Org/GTD/tasks.org") "Tasks")
       ("ti" (find-file "~/Org/GTD/tickler.org") "Tickler")
+      ("to" (find-file "~/Org/GTD/today.org") "Today")
       ("ar" (find-file "~/Org/GTD/archive.org") "Archive"))
      "Sorted"
      (("im" (find-file "~/Org/Other/improve.org") "Improve")
       ("lr" (find-file "~/Org/Other/learning.org") "Learning")
       ("li" (find-file "~/Org/Other/links.org") "Links")
       ("or" (find-file "~/Org/Other/orders.org") "Orders")
+      ("tt" (find-file "~/Org/Other/commands.org") "Commands")
       ("mo" (find-file "~/Org/Other/movies.org") "Movies"))
      "Organisation"
      (("cl" (find-file "~/Org/GTD/recurrent_checklist.org") "Check list"))
@@ -3182,6 +3184,8 @@ Comment because the package has been removed
   ;; (setq org-agenda-files '("/home/niccle27/Org/GTD"))
   (setq org-agenda-files (list "~/Org/GTD/tickler.org"
                                "~/Org/GTD/recurrent_checklist.org"
+                               "~/Org/GTD/projects.org"
+                               "~/Org/GTD/today.org"
                                  ))
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@/!)" "DELEGATED(m@/!)")
@@ -3198,6 +3202,7 @@ Comment because the package has been removed
                              ("~/Org/GTD/tasks.org" :level . 1)
                              ("~/Org/GTD/tickler.org" :level . 1)
                              ("~/Org/GTD/archive.org" :level . 1)
+                             ("~/Org/GTD/today.org" :level . 1)
                              (nil :maxlevel . 9)
                              ;; ("~/gtd/tickler.org" :maxlevel . 2)
                              ))
