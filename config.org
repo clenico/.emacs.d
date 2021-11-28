@@ -3330,6 +3330,7 @@ Comment because the package has been removed
 Make sure you got the Pygment python package installed (using pip or your
 package-manage)
 #+begin_src emacs-lisp :tangle yes :results silent
+  (setenv "PATH" "/usr/local/texlive/2021/bin/x86_64-linux:$PATH" t)
   (setq org-latex-listings 'minted
         org-latex-packages-alist '(
                                    ("" "xcolor")
