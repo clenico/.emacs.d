@@ -3347,8 +3347,10 @@ package-manage)
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                    ("\\paragraph{%s}" . "\\paragraph*{%s}")
                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+  (setq TeX-show-compilation t)
+  (setq org-latex-logfiles-extensions (quote ("aux" "bcf" "blg" "fdb_latexmk" "fls" "figlist" "idx" "log" "nav" "out" "ptc" "run.xml" "snm" "toc" "vrb" "xdv" "synctex.gz" "bbl")))
 #+end_src
-**** Org-ref
+**** COMMENT Org-ref
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package org-ref)
 #+end_src
