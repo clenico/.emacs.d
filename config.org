@@ -170,7 +170,6 @@
     - [[#org-noter][Org-noter]]
   - [[#export][Export]]
     - [[#latex-1][Latex]]
-      - [[#org-ref][Org-ref]]
     - [[#beamer][Beamer]]
   - [[#language-compilation][Language compilation]]
   - [[#custom-function][Custom function]]
