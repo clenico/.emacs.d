@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tqdm
+# key: tq
+# --
+pbar = tqdm(total = $1)
+pbar.update($2{1})

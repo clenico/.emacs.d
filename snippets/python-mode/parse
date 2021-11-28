@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: parse function
+# key: parse
+# --
+def parse_arguments():
+    # Create the parser
+    parser = argparse.ArgumentParser(
+        description='Generate list of names for Updrs video acquisitions')
+    # Add the arguments
+    parser.add_argument('--$1',
+                        type=str,
+                        help="""$2""",
+                        required=True)
+    return parser.parse_args()

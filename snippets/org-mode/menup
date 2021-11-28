@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: menu path
+# key: menup
+# --
+#+begin_export latex
+\menu[>]{$1>$2}
+#+end_export

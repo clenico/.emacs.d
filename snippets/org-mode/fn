@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: framed note
+# key: fn
+# --
+#+begin_export latex
+  \begin{framednote*}
+  $1
+  \end{framednote*}
+#+end_export

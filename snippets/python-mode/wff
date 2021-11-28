@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: write file function
+# key: wff
+# --
+
+def writeFile(path, content):
+    try:
+        with open(path,'w') as fw:
+            fw.write(content)
+            fw.close()
+    except Exception:
+        print("Couldn't write the file")
