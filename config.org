@@ -38,6 +38,7 @@
     - [[#split-windows][Split windows]]
     - [[#windmove][Windmove]]
     - [[#winner][Winner]]
+    - [[#disable-mouse][Disable Mouse]]
   - [[#edition][Edition]]
     - [[#better-editing-default][Better editing default]]
     - [[#improve-built-in-functions][Improve built in functions]]
@@ -123,7 +124,6 @@
     - [[#electric-operator][Electric-operator]]
     - [[#rainbow-mode][Rainbow-mode]]
     - [[#whitespaces-deletion][Whitespaces deletion]]
-    - [[#hungry-delete][Hungry-delete]]
     - [[#kill-buffer-without-confirmation][Kill buffer without confirmation]]
     - [[#prog-fill][Prog-Fill]]
     - [[#highlight-numbers][Highlight-Numbers]]
@@ -228,9 +228,8 @@
 - [[#to-sort][To Sort]]
   - [[#php-mode][php-mode]]
   - [[#create-term-in-dir][Create Term in Dir]]
-  - [[#csharp][csharp]]
   - [[#ein][Ein]]
-  - [[#disable-mouse][Disable mouse]]
+  - [[#disable-mouse-1][Disable mouse]]
   - [[#haskell-1][Haskell]]
   - [[#calendar][Calendar]]
 - [[#to-add][To add]]
@@ -605,6 +604,14 @@ C-c right : redo
     :defer 2
     :config (winner-mode 1))
 #+end_src
+
+*** Disable Mouse
+#+begin_src emacs-lisp :tangle yes :results silent
+  (require 'disable-mouse)
+  (global-disable-mouse-mode)
+#+end_src
+
+
 ** Edition
 *** Better editing default
    #+begin_src emacs-lisp :tangle yes :results silent
@@ -2155,7 +2162,7 @@ Colorize colors as text with their value.
     :hook (before-save . delete-trailing-whitespace))
 #+end_src
 
-*** Hungry-delete
+*** COMMENT Hungry-delete
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package hungry-delete
     :defer 0.7
@@ -3413,73 +3420,73 @@ package-manage)
    #+begin_src emacs-lisp :tangle yes :results silent
      (require 'org-inlinetask)
 
-     (defun scimax/org-return (&optional ignore)
-       "Add new list item, heading or table row with RET.
-     A double return on an empty element deletes it.
-     Use a prefix arg to get regular RET. "
-       (interactive "P")
-       (if ignore
-           (org-return)
-         (cond
+     ;; (defun scimax/org-return (&optional ignore)
+     ;;   "Add new list item, heading or table row with RET.
+     ;; A double return on an empty element deletes it.
+     ;; Use a prefix arg to get regular RET. "
+     ;;   (interactive "P")
+     ;;   (if ignore
+     ;;       (org-return)
+     ;;     (cond
 
-          ((eq 'line-break (car (org-element-context)))
-           (org-return-indent))
+     ;;      ((eq 'line-break (car (org-element-context)))
+     ;;       (org-return-indent))
 
-          ;; Open links like usual, unless point is at the end of a line.
-          ;; and if at beginning of line, just press enter.
-          ((or (and (eq 'link (car (org-element-context))) (not (eolp)))
-               (bolp))
-           (org-return))
+     ;;      ;; Open links like usual, unless point is at the end of a line.
+     ;;      ;; and if at beginning of line, just press enter.
+     ;;      ((or (and (eq 'link (car (org-element-context))) (not (eolp)))
+     ;;           (bolp))
+     ;;       (org-return))
 
-          ;; It doesn't make sense to add headings in inline tasks. Thanks Anders
-          ;; Johansson!
-          ((org-inlinetask-in-task-p)
-           (org-return))
+     ;;      ;; It doesn't make sense to add headings in inline tasks. Thanks Anders
+     ;;      ;; Johansson!
+     ;;      ((org-inlinetask-in-task-p)
+     ;;       (org-return))
 
-          ;; checkboxes too
-          ((org-at-item-checkbox-p)
-           (org-insert-todo-heading nil))
+     ;;      ;; checkboxes too
+     ;;      ((org-at-item-checkbox-p)
+     ;;       (org-insert-todo-heading nil))
 
-          ;; lists end with two blank lines, so we need to make sure we are also not
-          ;; at the beginning of a line to avoid a loop where a new entry gets
-          ;; created with only one blank line.
-          ((org-in-item-p)
-           (if (save-excursion (beginning-of-line) (org-element-property :contents-begin (org-element-context)))
-               (org-insert-heading)
-             (beginning-of-line)
-             (delete-region (line-beginning-position) (line-end-position))
-             (org-return)))
+     ;;      ;; lists end with two blank lines, so we need to make sure we are also not
+     ;;      ;; at the beginning of a line to avoid a loop where a new entry gets
+     ;;      ;; created with only one blank line.
+     ;;      ((org-in-item-p)
+     ;;       (if (save-excursion (beginning-of-line) (org-element-property :contents-begin (org-element-context)))
+     ;;           (org-insert-heading)
+     ;;         (beginning-of-line)
+     ;;         (delete-region (line-beginning-position) (line-end-position))
+     ;;         (org-return)))
 
-          ;; org-heading
-          ((org-at-heading-p)
-           (if (not (string= "" (org-element-property :title (org-element-context))))
-               (progn (org-end-of-meta-data)
-                      (org-insert-heading-respect-content)
-                      (outline-show-entry))
-             (beginning-of-line)
-             (setf (buffer-substring
-                    (line-beginning-position) (line-end-position)) "")))
+     ;;      ;; org-heading
+     ;;      ((org-at-heading-p)
+     ;;       (if (not (string= "" (org-element-property :title (org-element-context))))
+     ;;           (progn (org-end-of-meta-data)
+     ;;                  (org-insert-heading-respect-content)
+     ;;                  (outline-show-entry))
+     ;;         (beginning-of-line)
+     ;;         (setf (buffer-substring
+     ;;                (line-beginning-position) (line-end-position)) "")))
 
-          ;; tables
-          ((org-at-table-p)
-           (if (-any?
-                (lambda (x) (not (string= "" x)))
-                (nth
-                 (- (org-table-current-dline) 1)
-                 (org-table-to-lisp)))
-               (org-return)
-             ;; empty row
-             (beginning-of-line)
-             (setf (buffer-substring
-                    (line-beginning-position) (line-end-position)) "")
-             (org-return)))
+     ;;      ;; tables
+     ;;      ((org-at-table-p)
+     ;;       (if (-any?
+     ;;            (lambda (x) (not (string= "" x)))
+     ;;            (nth
+     ;;             (- (org-table-current-dline) 1)
+     ;;             (org-table-to-lisp)))
+     ;;           (org-return)
+     ;;         ;; empty row
+     ;;         (beginning-of-line)
+     ;;         (setf (buffer-substring
+     ;;                (line-beginning-position) (line-end-position)) "")
+     ;;         (org-return)))
 
-          ;; fall-through case
-          (t
-           (org-return)))))
+     ;;      ;; fall-through case
+     ;;      (t
+     ;;       (org-return)))))
 
 
-     (define-key org-mode-map (kbd "RET") 'scimax/org-return)
+     ;; (define-key org-mode-map (kbd "RET") 'scimax/org-return)
      (define-key org-mode-map (kbd "C-j") 'org-return)
    #+end_src
 *** Org split block
@@ -4254,7 +4261,7 @@ to work.
         (shell (generate-new-buffer-name "*shell*")))))
 #+end_src
 
-** csharp
+** COMMENT csharp
 #+begin_src emacs-lisp :tangle yes :results silent
   (use-package csharp-mode
     :ensure t)

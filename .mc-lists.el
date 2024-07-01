@@ -17,6 +17,7 @@
         cn/cliphist-paste-item
         cn/downcase-word
         cn/upcase-initials-word
+        cn/upcase-word
         comment-dwim
         comment-line
         company-complete
@@ -25,6 +26,7 @@
         electric-newline-and-maybe-indent
         end-of-buffer
         eval-print-last-sexp
+        eyebrowse-switch-to-window-config-1
         forward-whitespace
         goto-match-paren
         haskell-indentation-common-electric-command
@@ -36,6 +38,7 @@
         kill-region
         kill-region-or-backward-word
         kmacro-start-macro-or-insert-counter
+        mark-paragraph
         move-text-up
         my/hydra-switch-mode/body
         my/smarter-move-beginning-of-line
@@ -58,6 +61,7 @@
 (setq mc/cmds-to-run-once
       '(
         elpy-shell-send-region-or-buffer
+        handle-switch-frame
         hungry-delete-backward
         kmacro-end-or-call-macro
         org-export-dispatch
